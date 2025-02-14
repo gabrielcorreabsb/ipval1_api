@@ -23,5 +23,3 @@ API REST desenvolvida para gerenciamento de loja, utilizando Spring Boot.
 1. Clone o repositório:
 ```bash
 git clone https://github.com/gabrielcorreabsb/api_gerenciamentoloja.git
-
-⌨️ com ❤️ por Gabriel Corrêa 😊
