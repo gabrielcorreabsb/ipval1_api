@@ -1,0 +1,622 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --pink: rgba(255, 192, 203, 0.55);
+    /* FFC0CB com 55% de opacidade */
+    --main-color: black;
+    --bg: #EFEFEF;
+    --border: #FFEAF1;
+    --text: #777;
+}
+
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: .2s linear;
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-padding-top: 9rem;
+    scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar {
+    width: .4rem;
+}
+
+html::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+    background: white;
+    border-radius: 5rem;
+    transition: 5s;
+}
+
+body {
+    background: var(--bg);
+}
+
+section {
+    padding: 2rem 7%;
+}
+
+.heading {
+    text-align: center;
+    color: black;
+    text-transform: uppercase;
+    padding-bottom: 3.5rem;
+    font-size: 4rem;
+
+}
+
+.heading span {
+    color: var(--main-color);
+    text-transform: uppercase;
+}
+
+/* Botão padrão com estilos sugeridos */
+.btn {
+    display: inline-flex;
+    /* Alinha o conteúdo do botão centralizado */
+    align-items: center;
+    /* Centraliza verticalmente o conteúdo */
+    justify-content: center;
+    /* Centraliza horizontalmente o conteúdo */
+    width: 70px;
+    /* Largura do botão */
+    height: 60px;
+    /* Altura do botão */
+    padding: 1rem 2rem;
+    /* Ajuste do espaçamento interno */
+    font-size: 1.5rem;
+    background: linear-gradient(to right, #FFC0CB 0%, #E29BA8 100%);
+    /* Degradê do rosa claro para button */
+    border-radius: 8px;
+    /* Bordas arredondadas */
+    cursor: pointer;
+    color: var(--main-color);
+    /* Cor do texto */
+    text-align: center;
+    /* Garante que o texto esteja centralizado */
+    text-decoration: none;
+    /* Remove sublinhado do link */
+    z-index: 100;
+    border: 1px solid transparent;
+    /* Adiciona um pouco de espaçamento visual */
+}
+
+.btn a {
+    color: var(--main-color);
+    /* Cor do link */
+    text-decoration: none;
+    /* Remover sublinhado de links */
+}
+
+
+
+/* Botão "Visualizar Produto" com gradiente */
+.btn-visualizar-produto {
+    display: inline-flex;
+    /* Alinha o conteúdo do botão centralizado */
+    align-items: center;
+    /* Centraliza verticalmente o conteúdo */
+    justify-content: center;
+    /* Centraliza horizontalmente o conteúdo */
+    width: 70px;
+    /* Largura do botão */
+    height: 60px;
+    /* Altura do botão */
+    padding: 1rem 2rem;
+    /* Ajuste do espaçamento interno */
+    font-size: 1.5rem;
+    background: var(--pink);
+    /* Cor de fundo */
+    border-radius: 8px;
+    /* Bordas arredondadas */
+    cursor: pointer;
+    color: var(--text);
+    /* Cor do texto */
+    text-align: center;
+    /* Garante que o texto esteja centralizado */
+    text-decoration: none;
+    /* Remove sublinhado do link */
+    z-index: 100;
+    border: 1px solid transparent;
+    /* Adiciona um pouco de espaçamento visual */
+}
+
+/* Botão de WhatsApp */
+.btn-whatsapp {
+    display: inline-flex;
+    /* Alinha o conteúdo do botão centralizado */
+    align-items: center;
+    /* Centraliza verticalmente o conteúdo */
+    justify-content: center;
+    /* Centraliza horizontalmente o conteúdo */
+    width: 70px;
+    /* Largura do botão */
+    height: 60px;
+    /* Altura do botão */
+    padding: 1rem 2rem;
+    /* Ajuste do espaçamento interno */
+    font-size: 1.5rem;
+    background: var(--pink);
+    /* Cor de fundo */
+    border-radius: 8px;
+    /* Bordas arredondadas */
+    cursor: pointer;
+    color: var(--text);
+    /* Cor do texto */
+    text-align: center;
+    /* Garante que o texto esteja centralizado */
+    text-decoration: none;
+    /* Remove sublinhado do link */
+    z-index: 100;
+    border: 1px solid transparent;
+    /* Adiciona um pouco de espaçamento visual */
+}
+
+
+
+.btn-whatsapp i {
+    font-size: 2rem;
+    /* Tamanho do ícone WhatsApp */
+}
+
+/* Outros estilos gerais */
+.header {
+    background: var(--pink);
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 7%;
+    border-bottom: var(--border);
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.header .logo img {
+    height: 8rem;
+}
+
+.header .navbar a {
+    align-items: center;
+    justify-content: center;
+    margin-right: 5rem;
+    margin: 0 1rem;
+    font-size: 2rem;
+    color: var(--text);
+}
+
+.header .navbar a:hover {
+    border-bottom: 1px solid var(--main-color);
+    padding-bottom: .5rem;
+}
+
+.button {
+    background-color: var(--pink);
+}
+
+.header .icons div {
+    align-items: center;
+    justify-content: flex-end;
+    background: var(--pink);
+    color: var(--bg);
+    cursor: pointer;
+    font-size: 2.5rem;
+    margin-left: 3rem;
+}
+
+.header .icons div:hover {
+    color: var(--main-color);
+    border-bottom: 1px solid var(--main-color);
+}
+
+#menu-btn {
+    display: none;
+}
+
+.img {
+    border-radius: 10px;
+}
+
+.searchTerm {
+    width: 161px;
+    height: 30px;
+    background: var(--bg);
+    border-radius: 8px;
+    text-align: center;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.searchButton {
+    font-size: 26px;
+    background: transparent;
+}
+
+.wrap {
+    width: 30%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.header .cart-items-container {
+    position: absolute;
+    top: 100%;
+    right: -100%;
+    height: calc(100vh - 9.5rem);
+    width: 70rem;
+    background: black;
+    padding: 0 1.5rem;
+}
+
+.header .cart-items-container.active {
+    right: 0;
+}
+
+.header .cart-items-container .cart-item {
+    position: relative;
+    margin: 2rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.header .cart-items-container .cart-item .fa-times {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--pink);
+}
+
+.header .cart-items-container .cart-item .fa-times:hover {
+    color: var(--pink);
+}
+
+.header .cart-items-container .cart-item img {
+    height: 7rem;
+}
+
+.header .cart-items-container .cart-item .content h3 {
+    font-size: 2rem;
+    color: var(--pink);
+    padding-bottom: .5rem;
+}
+
+.header .cart-items-container .cart-item .content .price {
+    font-size: 1.5rem;
+    color: var(--main-color);
+}
+
+.header .cart-items-container .btn {
+    width: 100%;
+    text-align: center;
+}
+
+.home {
+    width: 100%;
+    min-height: 20vh;
+    display: none;
+    align-items: center;
+
+
+    background-position: center;
+}
+
+.about {
+    padding-top: 5rem;
+    /* Adiciona espaço para o menu fixo */
+
+}
+
+.about .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background: var(--pink);
+    border-radius: 20px;
+    padding: 20px;
+    gap: 20px;
+}
+
+.about .row .image {
+    flex: 1 1 45rem;
+    max-width: 200%;
+}
+
+.about .row .image img {
+    width: 100%;
+    height: auto;
+    border-radius: 25px;
+}
+
+.about .row .content {
+    flex: 2 1 45rem;
+    padding: 2rem;
+}
+
+.about .row .content h3 {
+    font-size: 3rem;
+    color: var(--main-color);
+}
+
+.about .row .content p {
+    font-size: 15px;
+    color: var(--main-color);
+    padding: 1rem 0;
+    line-height: 1.8;
+}
+.menu .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+.menu .box-container .box {
+    padding: 2rem;
+    text-align: center;
+    width: 100%;
+    border: 1px solid var(--main-color);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.menu .box-container .box:hover {
+    transform: translateY(-5px);
+}
+
+.menu .box-container .box img {
+    width: 100%;
+    height: auto;
+    max-height: 200px; /* Ajuste conforme necessário */
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    display: block; /* Garante que a imagem ocupe toda a largura do contêiner */
+}
+
+.menu .box-container .box h3 {
+    color: var(--main-color);
+    font-size: 2rem;
+    padding: 1rem 0;
+}
+
+.menu .box-container .box .price {
+    color: var(--main-color);
+    font-size: 2rem;
+    padding: 1rem 0;
+}
+
+.menu .box-container .box .btn,
+.menu .box-container .box .btn2 {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menu .box-container .box .btn {
+    background-color: var(--pink);
+    color: var(--main-color);
+    border: none;
+}
+
+.menu .box-container .box .btn:hover {
+    background-color: var(--main-color);
+    color: #fff;
+}
+
+.menu .box-container .box .btn2 {
+    background: none;
+    border: 1px solid var(--main-color);
+    color: var(--main-color);
+}
+
+.menu .box-container .box .btn2:hover {
+    background: var(--pink);
+    color: var(--bg);
+}
+
+.footer {
+    width: 100%;
+    background: var(--pink);
+    text-align: center;
+}
+
+.footer .share {
+    padding: 1rem 0;
+}
+
+.footer .share a {
+    height: 5rem;
+    width: 5rem;
+    line-height: 5rem;
+    font-size: 2rem;
+    color: var(--text);
+    margin: 1rem;
+    border-radius: 50%;
+}
+
+.footer .share a:hover {
+    background: linear-gradient(to right, #FFC0CB 0%, #E29BA8 100%);
+}
+
+.footer .links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 2rem 0;
+    gap: 1rem;
+}
+
+.footer .links a {
+    padding: .7rem 2rem;
+    color: var(--text);
+    font-size: 2rem;
+    border-radius: 20px;
+}
+
+.footer .links a:hover {
+    background: linear-gradient(to right, #FFC0CB 0%, #E29BA8 100%);
+}
+
+.footer .credit {
+    font-size: 2rem;
+    color: var(--text);
+    font-weight: lighter;
+    padding: 1.5rem;
+}
+
+/* Menu colapsável */
+.mobile-menu {
+    display: none;
+    position: relative;
+}
+
+.menu-toggle {
+    background: none;
+    border: none;
+    font-size: 3rem;
+    cursor: pointer;
+    color: var(--main-color);
+}
+
+.menu-content {
+    display: none;
+    /* Menu escondido inicialmente */
+    flex-direction: column;
+    background-color: white;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    width: 200px;
+    border-radius: 5px;
+}
+
+.menu-content a {
+    align-items: center;
+    justify-content: center;
+    margin-right: 5rem;
+    margin: 0 1rem;
+    font-size: 2rem;
+    color: var(--text);
+    background: var(--bg);
+
+}
+
+.menu-content a:hover {
+    border-bottom: 1px solid var(--main-color);
+    padding-bottom: .5rem;
+}
+
+.menu-content .back-button {
+    padding: 1rem 7%;
+    text-align: left;
+    background: var(--pink);
+    color: var(--main-color);
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.menu-content .back-button:hover {
+    background-color: var(--border);
+}
+
+/* Mostrar o menu colapsável quando ativado */
+.menu-content.show {
+    display: flex;
+    background: var(--bg);
+    max-width: 100%;
+
+}
+
+@media screen and (max-width: 768px) {
+    * {
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        max-width: 100%;
+    }
+
+    .navbar {
+        display: none;
+        /* Esconde o conteúdo esquerdo e direito em telas pequenas */
+    }
+
+    .mobile-menu {
+        display: block;
+        /* Exibe o menu colapsável (hamburger) no modo responsivo */
+    }
+
+    .header {
+        text-align: justify;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .footer {
+        width: 100%;
+    }
+
+    .menu .box-container {
+        grid-template-columns: 1fr;
+    }
+
+    .menu .box-container .box {
+        height: auto;
+    }
+
+    .heading {
+        padding-top: calc(6rem + 2rem);
+    }
+
+    .about .row .image {
+        flex: none;
+
+    }
+
+    .searchTerm {
+        width: 250px;
+        height: 40px;
+
+    }
+
+    .searchButton {
+        font-size: 30px;
+
+
+    }
+
+    .icons-desktop {
+        display: none;
+    }
+}
