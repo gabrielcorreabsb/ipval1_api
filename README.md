@@ -10,6 +10,9 @@ API REST desenvolvida para gerenciamento de loja, utilizando Spring Boot.
 * Spring Security
 * Spring MVC
 * Spring Data JPA
+* CSS
+* HTML
+
 
 ## 📋 Pré-requisitos
 
