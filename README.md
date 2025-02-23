@@ -25,3 +25,4 @@ API REST desenvolvida para gerenciamento de loja, utilizando Spring Boot.
 * IDE de sua preferência (Eclipse, IntelliJ, VS Code)
 * Git
 
+"# meusite_apirest" 
