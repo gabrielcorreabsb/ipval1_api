@@ -1,0 +1,13 @@
+com\example\api_teste\config\JpaConfig.class
+com\example\api_teste\controller\UsuarioController.class
+com\example\api_teste\ApiTesteApplication.class
+com\example\api_teste\securingweb\SecuringWebApplication.class
+com\example\api_teste\dto\LoginRequest.class
+com\example\api_teste\securingweb\CustomAuthenticationProvider.class
+com\example\api_teste\controller\LoginController.class
+com\example\api_teste\repository\IUsuario.class
+com\example\api_teste\securingweb\SecurityConfig.class
+com\example\api_teste\securingweb\McvConfig.class
+com\example\api_teste\model\Usuario$UsuarioBuilder.class
+com\example\api_teste\service\UsuarioService.class
+com\example\api_teste\model\Usuario.class

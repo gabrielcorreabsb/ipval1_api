@@ -1,0 +1,12 @@
+D:\Projetos\projeto_portifolio\api-teste\src\main\java\com\example\api_teste\controller\UsuarioController.java
+D:\Projetos\projeto_portifolio\api-teste\src\main\java\com\example\api_teste\ApiTesteApplication.java
+D:\Projetos\projeto_portifolio\api-teste\src\main\java\com\example\api_teste\securingweb\CustomAuthenticationProvider.java
+D:\Projetos\projeto_portifolio\api-teste\src\main\java\com\example\api_teste\securingweb\SecuringWebApplication.java
+D:\Projetos\projeto_portifolio\api-teste\src\main\java\com\example\api_teste\repository\IUsuario.java
+D:\Projetos\projeto_portifolio\api-teste\src\main\java\config\JpaConfig.java
+D:\Projetos\projeto_portifolio\api-teste\src\main\java\com\example\api_teste\securingweb\SecurityConfig.java
+D:\Projetos\projeto_portifolio\api-teste\src\main\java\com\example\api_teste\controller\LoginController.java
+D:\Projetos\projeto_portifolio\api-teste\src\main\java\com\example\api_teste\model\Usuario.java
+D:\Projetos\projeto_portifolio\api-teste\src\main\java\com\example\api_teste\securingweb\McvConfig.java
+D:\Projetos\projeto_portifolio\api-teste\src\main\java\com\example\api_teste\service\UsuarioService.java
+D:\Projetos\projeto_portifolio\api-teste\src\main\java\dto\LoginRequest.java

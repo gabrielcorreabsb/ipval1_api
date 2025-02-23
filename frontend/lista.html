@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Meus Projetos</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <div class="header-actions">
+        <h2>Meus Projetos</h2>
+        <a th:href="@{/projetos/novo}" class="btn btn-primary">Novo Projeto</a>
+    </div>
+
+    <div class="projects-list">
+        <div th:if="${projetos.empty}" class="alert alert-info">
+            Nenhum projeto cadastrado.
+        </div>
+
+        <div th:each="projeto : ${projetos}" class="project-card">
+            <h3 th:text="${projeto.nome}">Nome do Projeto</h3>
+            <a th:href="${projeto.link}"
+               target="_blank"
+               class="project-link">
+                Acessar Projeto
+            </a>
+            <small th:text="${#temporals.format(projeto.dataCriacao, 'dd/MM/yyyy HH:mm')}">
+                Data de Criação
+            </small>
+        </div>
+    </div>
+
+    <a th:href="@{/home}" class="btn btn-secondary">Voltar</a>
+</div>
+</body>
+</html>
