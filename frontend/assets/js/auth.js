@@ -54,3 +54,13 @@ function logout() {
 function isAuthenticated() {
     return localStorage.getItem('token') !== null;
 }
+
+// Adicione estas funções no final do auth.js
+function getToken() {
+    return localStorage.getItem('token');
+}
+
+function getUser() {
+    const userStr = localStorage.getItem('user');
+    return userStr ? JSON.parse(userStr) : null;
+}

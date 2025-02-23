@@ -1,46 +1,42 @@
-document.addEventListener('DOMContentLoaded', function() {
-    if (!AuthService.checkAuthentication()) return;
-
-    const userInfo = AuthService.getUserInfo();
-    if (userInfo) {
-        document.getElementById('userName').textContent = userInfo.nome;
-    }
-});
-
 async function handleSubmit(event) {
     event.preventDefault();
 
-    const nome = document.getElementById('nome').value;
-    const link = document.getElementById('link').value;
+    const nome = document.getElementById('nome').value.trim();
+    const link = document.getElementById('link').value.trim();
+
+    if (!nome || !link) {
+        mostrarMensagem('Por favor, preencha todos os campos', 'error');
+        return;
+    }
 
     try {
-        const response = await fetch(`${AuthService.API_URL}/projetos`, {
+        const token = getToken(); // Pega o token usando a função do auth.js
+
+        if (!token) {
+            window.location.replace('./login.html');
+            return;
+        }
+
+        const response = await fetch(`${API_URL}/projetos`, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${AuthService.getToken()}`,
+                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ nome, link })
         });
 
         if (!response.ok) {
-            throw new Error('Erro ao criar projeto');
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Erro ao criar projeto');
         }
 
-        window.location.href = '/home.html';
+        mostrarMensagem('Projeto criado com sucesso!', 'success');
+        setTimeout(() => {
+            window.location.replace('./home.html');
+        }, 1500);
     } catch (error) {
         console.error('Erro:', error);
-        mostrarMensagem('Erro ao criar projeto', 'error');
+        mostrarMensagem(error.message || 'Erro ao criar projeto', 'error');
     }
-}
-
-function mostrarMensagem(texto, tipo) {
-    const div = document.createElement('div');
-    div.className = `message ${tipo}`;
-    div.textContent = texto;
-    document.body.appendChild(div);
-
-    setTimeout(() => {
-        div.remove();
-    }, 3000);
 }
