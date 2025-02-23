@@ -1,58 +1,59 @@
 const loginForm = document.querySelector("#loginForm");
 const loginInput = document.querySelector("#login");
 const senhaInput = document.querySelector("#senha");
+const errorMessage = document.querySelector("#errorMessage");
+const successMessage = document.querySelector("#successMessage");
 
-async function handleLogin() {
+async function handleLogin(event) {
+    event.preventDefault();
+
     try {
         if (!loginInput.value.trim() || !senhaInput.value.trim()) {
-            alert('Por favor, preencha todos os campos.');
+            showError('Por favor, preencha todos os campos.');
             return;
         }
 
-        const credentials = {
-            login: loginInput.value.trim(),
-            senha: senhaInput.value.trim()
-        };
-
-        const response = await fetch('/usuario/verificar', {  // Removido o http://localhost:8080
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            credentials: 'include',  // Importante para cookies de sessão
-            body: JSON.stringify(credentials)
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-
-        if (data.success) {
-            sessionStorage.setItem('userSession', JSON.stringify({
-                id: data.id,
-                username: data.login,
-                nome: data.nome,
-                loginTime: new Date().toLocaleString()
-            }));
-            window.location.href = "/home";
-        } else {
-            alert(data.message || 'Credenciais inválidas. Tente novamente.');
-        }
+        // Usar o AuthService para fazer login
+        await AuthService.login(loginInput.value.trim(), senhaInput.value.trim());
+        window.location.replace('/home.html'); // ou '/home' dependendo da sua configuração
     } catch (error) {
         console.error('Erro durante o login:', error);
-        alert('Erro ao fazer login. Por favor, tente novamente.');
+        showError('Credenciais inválidas. Tente novamente.');
     }
+}
+
+function showError(message) {
+    errorMessage.textContent = message;
+    errorMessage.style.display = 'block';
+    successMessage.style.display = 'none';
+}
+
+function showSuccess(message) {
+    successMessage.textContent = message;
+    successMessage.style.display = 'block';
+    errorMessage.style.display = 'none';
 }
 
 function limpar() {
     loginInput.value = "";
     senhaInput.value = "";
+    errorMessage.style.display = 'none';
+    successMessage.style.display = 'none';
 }
 
-loginForm.addEventListener('submit', function(event) {
-    event.preventDefault();
-    handleLogin();
+// Verifica se já está autenticado ao carregar a página
+document.addEventListener('DOMContentLoaded', () => {
+    if (AuthService.isAuthenticated()) {
+        window.location.replace('/home.html'); // ou '/home'
+    }
+
+    // Verifica se foi redirecionado do logout
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('logout') === 'true') {
+        showSuccess('Você foi desconectado com sucesso.');
+    }
 });
+
+// Remove o evento anterior e adiciona o novo
+loginForm.removeEventListener('submit', handleLogin);
+loginForm.addEventListener('submit', handleLogin);
