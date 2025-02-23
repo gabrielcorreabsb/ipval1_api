@@ -1,86 +1,56 @@
-class AuthService {
-    static API_URL = 'http://localhost:8080/api';
+// auth.js
+const API_URL = 'http://localhost:8080/api';
 
-    static async login(login, senha) {
-        try {
-            const response = await fetch(`${this.API_URL}/auth/login`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ login, senha })
-            });
+async function login(login, senha) {
+    try {
+        const response = await fetch(`${API_URL}/auth/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'  // Adicionado para garantir resposta JSON
+            },
+            body: JSON.stringify({
+                login: login,
+                senha: senha
+            })
+        });
 
-            if (!response.ok) {
-                throw new Error('Falha na autenticação');
-            }
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Erro no login');
+        }
 
-            const data = await response.json();
-            this.setToken(data.token);
-            this.setUserInfo(data.userDTO);
+        const data = await response.json();
+        if (data.token) {
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('user', JSON.stringify(data.user));
             return data;
-        } catch (error) {
-            console.error('Erro no login:', error);
-            throw error;
+        } else {
+            throw new Error('Token não recebido');
         }
+    } catch (error) {
+        console.error('Erro no login:', error);
+        throw error;
     }
+}
 
-    static async logout() {
-        try {
-            const response = await fetch(`${this.API_URL}/auth/logout`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${this.getToken()}`
-                }
-            });
+function logout() {
+    const token = localStorage.getItem('token');
 
-            if (!response.ok) {
-                console.error('Erro ao fazer logout no servidor');
-            }
-        } catch (error) {
-            console.error('Erro durante logout:', error);
-        } finally {
-            // Sempre limpa os dados locais, independente da resposta do servidor
-            this.removeToken();
-            this.removeUserInfo();
-            window.location.href = '/login.html';
+    return fetch(`${API_URL}/auth/logout`, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
         }
-    }
+    }).finally(() => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        window.location.replace('./login.html');
+    });
+}
 
-    static getToken() {
-        return localStorage.getItem('jwt_token');
-    }
-
-    static setToken(token) {
-        localStorage.setItem('jwt_token', token);
-    }
-
-    static removeToken() {
-        localStorage.removeItem('jwt_token');
-    }
-
-    static setUserInfo(userInfo) {
-        localStorage.setItem('user_info', JSON.stringify(userInfo));
-    }
-
-    static getUserInfo() {
-        const userInfo = localStorage.getItem('user_info');
-        return userInfo ? JSON.parse(userInfo) : null;
-    }
-
-    static removeUserInfo() {
-        localStorage.removeItem('user_info');
-    }
-
-    static isAuthenticated() {
-        return !!this.getToken();
-    }
-
-    static checkAuthentication() {
-        if (!this.isAuthenticated()) {
-            window.location.href = '/login.html';
-            return false;
-        }
-        return true;
-    }
+// Função para verificar se o usuário está autenticado
+function isAuthenticated() {
+    return localStorage.getItem('token') !== null;
 }

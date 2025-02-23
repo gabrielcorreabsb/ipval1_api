@@ -5,18 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sistema de Projetos</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
 <div class="container">
   <header class="main-header">
     <div class="header-actions">
       <h2>Meus Projetos</h2>
-      <a href="/novo_projeto.html" class="btn btn-primary">Novo Projeto</a>
+      <a href="novo_projeto.html" class="btn btn-primary">Novo Projeto</a>
     </div>
     <div class="user-actions">
       <span id="userName">Usuário</span>
-      <button onclick="AuthService.logout()" class="btn btn-logout">Sair</button>
+      <button onclick="logout()" class="btn btn-logout">Sair</button>
     </div>
   </header>
 
@@ -25,7 +25,7 @@
   </div>
 </div>
 
-<script src="assets/js/auth.js"></script>
-<script src="assets/js/home.js"></script>
+<script src="./assets/js/auth.js"></script>
+<script src="./assets/js/home.js"></script>
 </body>
 </html>
