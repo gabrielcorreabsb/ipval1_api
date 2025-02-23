@@ -1,0 +1,699 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --pink: rgba(255, 192, 203, 0.55);
+    /* FFC0CB com 55% de opacidade */
+    --main-color: black;
+    --bg: #EFEFEF;
+    --border: #FFEAF1;
+    --text: #666;
+}
+
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: .2s linear;
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-padding-top: 9rem;
+    scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar {
+    width: .4rem;
+}
+
+html::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+html::-webkit-scrollbar-thumb:hover {
+    background: white;
+    border-radius: 5rem;
+    transition: 5s;
+}
+
+body {
+    padding-top: 0rem;
+    /* altura do navbar */
+    background: var(--bg);
+}
+
+section {
+    padding: 2rem 7%;
+}
+
+.heading {
+    text-align: center;
+    color: black;
+    text-transform: uppercase;
+    padding-bottom: 3.5rem;
+    font-size: 4rem;
+}
+
+.heading span {
+    color: var(--main-color);
+    text-transform: uppercase;
+}
+
+.btn {
+    margin-top: 1rem;
+    display: inline-block;
+    padding: .9rem 3rem;
+    font-size: 1.7rem;
+    color: black;
+    background: var(--pink);
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.btn-salvar {
+    margin-top: 1rem;
+    display: inline-block;
+    padding: .9rem 3rem;
+    background: linear-gradient(to right, #FFC0CB 0%, #E29BA8 100%);
+    /* Degradê do rosa claro para button */
+    font-size: 1.7rem;
+    color: black;
+    background: var(--pink);
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.btn-excluir {
+    margin-top: 1rem;
+    display: inline-block;
+    padding: .9rem 3rem;
+    font-size: 1.7rem;
+    color: black;
+    background: linear-gradient(to right, #FFC0CB 0%, #E29BA8 100%);
+    /* Degradê do rosa claro para button */
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.btn-editar {
+    margin-top: 1rem;
+    display: inline-block;
+    padding: .9rem 3rem;
+    font-size: 1.7rem;
+    color: black;
+    background: linear-gradient(to right, #FFC0CB 0%, #E29BA8 100%);
+    /* Degradê do rosa claro para button */
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+
+
+.header {
+    background: var(--pink);
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 7%;
+    border-bottom: var(--border);
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.header .logo img {
+    height: 8rem;
+}
+
+.header .navbar a {
+    background: linear-gradient(to right, #FFC0CB 0%, #E29BA8 100%);
+    align-items: center;
+    justify-content: center;
+    margin-right: 5rem;
+    margin: 0 1rem;
+    font-size: 1.6rem;
+    color: white;
+}
+
+button {
+    width: 200px;
+    padding: 12px 20px;
+    background: linear-gradient(to right, #FFC0CB 0%, #E29BA8 100%);
+    /* Degradê do rosa claro para button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.back-button {
+    width: 200px;
+    padding: 12px 20px;
+    background: linear-gradient(to right, #FFC0CB 0%, #E29BA8 100%);
+    /* Degradê do rosa claro para button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+.header .icons div {
+    align-items: center;
+    justify-content: flex-end;
+    background: var(--pink);
+    color: black;
+    cursor: pointer;
+    font-size: 2.5rem;
+    margin-left: 3rem;
+}
+
+.header .icons div:hover {
+    color: var(--main-color);
+    border-bottom: 1px solid var(--main-color);
+}
+
+#menu-btn {
+    display: none;
+}
+
+.img {
+    border-radius: 10px;
+}
+
+.searchTerm {
+    width: 161px;
+    height: 25px;
+    background: var(--bg);
+    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+    padding: 0.5rem;
+}
+
+
+.searchButton {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap {
+    width: 30%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.header .cart-items-container {
+    position: absolute;
+    top: 100%;
+    right: -100%;
+    height: calc(100vh - 9.5rem);
+    width: 70rem;
+    background: black;
+    padding: 0 1.5rem;
+}
+
+.header .cart-items-container.active {
+    right: 0;
+}
+
+.header .cart-items-container .cart-item {
+    position: relative;
+    margin: 2rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.header .cart-items-container .cart-item .fa-times {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--pink);
+}
+
+.header .cart-items-container .cart-item .fa-times:hover {
+    color: var(--pink);
+}
+
+.header .cart-items-container .cart-item img {
+    height: 7rem;
+}
+
+.header .cart-items-container .cart-item .content h3 {
+    font-size: 2rem;
+    color: var(--pink);
+    padding-bottom: .5rem;
+}
+
+.header .cart-items-container .cart-item .content .price {
+    font-size: 1.5rem;
+    color: var(--main-color);
+}
+
+.header .cart-items-container .btn {
+    width: 100%;
+    text-align: center;
+}
+
+.home {
+    width: 100%;
+    min-height: 120vh;
+    display: flex;
+    align-items: center;
+    background: url(../imgs/logo.png) no-repeat;
+    background-position: center;
+}
+
+.about .row {
+    display: flex;
+    align-items: center;
+    background: var(--pink);
+    border-radius: 25px;
+
+}
+
+.about .row .image {
+    flex: 1 1 45rem;
+
+}
+
+.about .row .image img {
+    width: 100%;
+    border-radius: 25px 25px 0 0;
+}
+
+.about .row .content {
+    flex: 1 1 45rem;
+    padding: 2rem;
+}
+
+.about .row .content h3 {
+    font-size: 3rem;
+    color: black;
+}
+
+.about .row .content p {
+    font-size: 1.6rem;
+    color: black;
+    padding: 1rem 0;
+    line-height: 1.8;
+}
+
+a {
+    color: var(--main-color);
+}
+
+.menu,
+.products {
+    padding-top: calc(10rem + 2rem);
+    /* Altura estimada do cabeçalho + margem extra */
+}
+
+.menu .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 1.5rem;
+}
+
+.menu .box-container .box {
+    padding: 5rem;
+    text-align: center;
+
+}
+
+.menu .box-container .box img {
+    height: 10rem;
+}
+
+.menu .box-container .box h3 {
+    color: black;
+    font-size: 2rem;
+    padding: 1rem 0;
+}
+
+.menu .box-container .box .price {
+    color: black;
+    font-size: 2.5rem;
+    padding: .5rem 0;
+}
+
+.menu .box-container .box .price span {
+    font-size: 1.5rem;
+    text-decoration: line-through;
+    font-weight: lighter;
+}
+
+.menu .box-container .box:hover {
+    background: #999;
+    border-radius: 20px;
+}
+
+.products .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 1.5rem;
+}
+
+.products .box-container .box {
+    text-align: center;
+
+    padding: 2rem;
+}
+
+.products .box-container .box:hover {
+    background: #999;
+    border-radius: 20px;
+}
+
+
+.products .box-container .box .icons a {
+    height: 5rem;
+    width: 5rem;
+    line-height: 5rem;
+    border: var(--border);
+    margin: .3rem;
+}
+
+.products .box-container .box .icons a:hover {
+    border: var(--border);
+    background: #888;
+}
+
+.products .box-container .box .image {
+    padding: 2.5rem 0;
+}
+
+.products .box-container .box .image img {
+    height: 25rem;
+}
+
+.products .box-container .box .content h3 {
+    color: black;
+    font-size: 2.5rem;
+}
+
+.products .box-container .box .content .stars {
+    padding: 1.5rem;
+}
+
+.products .box-container .box .content .stars i {
+    font-size: 1.7rem;
+    color: var(--main-color);
+}
+
+.products .box-container .box .content .price {
+    color: black;
+    font-size: 2.5rem;
+}
+
+.products .box-container .box .content .price span {
+    text-decoration: line-through;
+    font-weight: lighter;
+    font-size: 1.5rem;
+}
+
+
+
+.footer {
+    width: 100%;
+    background: var(--pink);
+    text-align: center;
+}
+
+.footer .share {
+    padding: 1rem 0;
+}
+
+.footer .share a {
+    height: 5rem;
+    width: 5rem;
+    line-height: 5rem;
+    font-size: 2rem;
+    color: var(--text);
+    border: var(--border);
+    margin: 1rem;
+    border-radius: 50%;
+}
+
+.footer .share a:hover {
+    background: linear-gradient(to right, #FFC0CB 0%, #E29BA8 100%);
+    /* Degradê do rosa claro para button */
+
+}
+
+.footer .links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 2rem 0;
+    gap: 1rem;
+}
+
+.footer .links a {
+    padding: .7rem 2rem;
+    color: var(--text);
+    border: var(--border);
+    font-size: 2rem;
+    border-radius: 20px;
+}
+
+.footer .links a:hover {
+    background: linear-gradient(to right, #FFC0CB 0%, #E29BA8 100%);
+    /* Degradê do rosa claro para button */
+}
+
+.footer .credit {
+    font-size: 2rem;
+    color: var(--text);
+    font-weight: lighter;
+    padding: 1.5rem;
+}
+
+.footer .credit span {
+    color: var(--text);
+}
+
+.header {
+    background: var(--pink);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 7%;
+    border-bottom: 1px solid var(--border);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    /* Alinha os itens nas extremidades */
+    align-items: center;
+    width: 100%;
+}
+
+.left-content {
+    display: flex;
+    align-items: center;
+    padding-left: 40px;
+    /* Adiciona um padding de 20px no lado esquerdo */
+
+}
+
+.right-content {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    /* Espaçamento entre a barra de busca e o botão "Sair" */
+}
+
+.navbar a {
+    background-color: #E29BA8;
+    border-radius: 5px;
+    height: 41px;
+    padding: 0.5rem 1rem;
+    font-size: 1.6rem;
+    color: var(--text);
+    flex-grow: 1;
+    /* Permite que o menu ocupe mais espaço */
+
+}
+
+.sair {
+
+    margin-left: 100px;
+    margin-top: 15vh;
+}
+
+.sair a {
+    background-color: #E29BA8;
+    border-radius: 5px;
+    height: 41px;
+    padding: 0.5rem 1rem;
+    font-size: 1.6rem;
+    color: var(--text);
+    margin-right: 1rem;
+
+}
+
+.back-button {
+    padding: 12px 20px;
+    background: linear-gradient(to right, #FFC0CB 0%, #E29BA8 100%);
+    /* Degradê do rosa claro para button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+
+}
+
+.cadastrar-button {
+    padding: 12px 20px;
+    background: linear-gradient(to right, #FFC0CB 0%, #E29BA8 100%);
+    /* Degradê do rosa claro para button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+
+}
+
+.edit-input {
+    border: 1px solid #ddd; /* Adiciona uma borda sutil */
+    border-radius: 5px;  /* Arredonda os cantos */
+    padding: 8px; /* Adiciona um espaçamento interno */
+    font-size: 16px; /* Define o tamanho da fonte */
+    width: calc(100% - 16px); /* Ajusta a largura para considerar o padding */
+    box-sizing: border-box; /* Garante que o padding e a borda sejam incluídos na largura total */
+    margin-bottom: 5px; /* Adiciona um pequeno espaçamento inferior */
+}
+
+.edit-input:focus {
+    outline: none; /* Remove a borda padrão do foco */
+    box-shadow: 0 0 5px rgba(255, 192, 203, 0.8); /* Adiciona uma sombra suave ao focar */
+    border-color: #FFC0CB; /* Muda a cor da borda ao focar */
+}
+
+
+
+
+.descricao-edit {
+    /* Estilos específicos para o input de descrição */
+    resize: vertical; /* Permite redimensionar verticalmente */
+
+}
+
+/* Estilos para o menu colapsável */
+.mobile-menu {
+    display: none; /* Escondido por padrão */
+    position: relative;
+}
+
+.menu-toggle {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--main-color);
+}
+
+.menu-content {
+    display: none; /* Menu escondido inicialmente */
+    flex-direction: column;
+    background-color: var(--pink);
+    position: absolute;
+    right: 0;
+    top: 100%;
+    width: 200px;
+    border-radius: 5px;
+}
+
+.menu-content a,
+.menu-content button {
+    padding: 10px;
+    color: white;
+    text-align: center;
+    background: linear-gradient(to right, #FFC0CB 0%, #E29BA8 100%);
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.menu-content button {
+    width: 100%;
+}
+
+.menu-content a:hover,
+.menu-content button:hover {
+    background-color: #ff9eb5;
+}
+
+
+@media screen and (max-width:768px) {
+    * {
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        max-width: 100%;
+    }
+
+    .left-content, .right-content {
+        width: 100%;
+        text-align: center; /* Centraliza os itens no modo responsivo */
+        display: none; /* Esconde o conteúdo esquerdo e direito em telas pequenas */
+
+    }
+
+
+    .mobile-menu {
+        display: block; /* Exibe o menu colapsável (hamburger) no modo responsivo */
+    }
+
+    .header-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .searchTerm {
+        width: 100%;
+    }
+
+    .left-content {
+        padding-left: 0;
+    }
+
+    .menu,
+    .products {
+        padding-top: calc(16rem + 2rem);
+        /* Aumente o padding em telas menores, se necessário */
+    }
+
+
+}
