@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-"# meusite_apirest" 
 =======
 # API Gerenciamento de Loja
 
@@ -24,5 +22,3 @@ API REST desenvolvida para gerenciamento de loja, utilizando Spring Boot.
 * Maven
 * IDE de sua preferência (Eclipse, IntelliJ, VS Code)
 * Git
-
-"# meusite_apirest" 
