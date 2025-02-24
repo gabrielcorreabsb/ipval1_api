@@ -65,7 +65,8 @@ public class SecurityConfig {
                         ).permitAll()
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/error").permitAll()
-                        .requestMatchers("/api/projetos/**").authenticated()
+                        .requestMatchers("/api/projetos").permitAll() // Permite GET público
+                        .requestMatchers("/api/projetos/**").authenticated() // Outras operações requerem autenticação
                         .anyRequest().authenticated()
 
                 )

@@ -34,6 +34,7 @@ public class ProjetoController {
         Projeto projeto = projetoService.criarProjeto(
                 projetoDTO.getNome(),
                 projetoDTO.getLink(),
+                projetoDTO.getGithub(),
                 usuario
         );
 
@@ -41,14 +42,12 @@ public class ProjetoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ProjetoDTO>> listarProjetos(@AuthenticationPrincipal Usuario usuario) {
-        log.info("Listando projetos para usuário: {}", usuario.getLogin());
-
-        List<Projeto> projetos = projetoService.listarProjetosPorUsuario(usuario);
+    public ResponseEntity<List<ProjetoDTO>> listarProjetos() {
+        log.info("Listando todos os projetos");
+        List<Projeto> projetos = projetoService.listarTodosProjetos(); // Novo método
         List<ProjetoDTO> projetosDTO = projetos.stream()
                 .map(this::converterParaDTO)
                 .collect(Collectors.toList());
-
         return ResponseEntity.ok(projetosDTO);
     }
 
@@ -57,7 +56,36 @@ public class ProjetoController {
         dto.setId(projeto.getId());
         dto.setNome(projeto.getNome());
         dto.setLink(projeto.getLink());
+        dto.setGithub(projeto.getGithub());
         dto.setDataCriacao(projeto.getDataCriacao());
         return dto;
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProjetoDTO> atualizarProjeto(
+            @PathVariable Long id,
+            @RequestBody ProjetoDTO projetoDTO,
+            @AuthenticationPrincipal Usuario usuario) {
+        log.info("Recebida requisição para atualizar projeto: {}", id);
+
+        Projeto projeto = projetoService.atualizarProjeto(
+                id,
+                projetoDTO.getNome(),
+                projetoDTO.getLink(),
+                projetoDTO.getGithub(),
+                usuario
+        );
+
+        return ResponseEntity.ok(converterParaDTO(projeto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarProjeto(
+            @PathVariable Long id,
+            @AuthenticationPrincipal Usuario usuario) {
+        log.info("Recebida requisição para deletar projeto: {}", id);
+
+        projetoService.deletarProjeto(id, usuario);
+        return ResponseEntity.noContent().build();
     }
 }

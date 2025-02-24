@@ -29,8 +29,11 @@ public class Projeto {
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String link;
+
+    @Column(nullable = true)
+    private String github;
 
     @Column(name = "data_criacao")
     private LocalDateTime dataCriacao = LocalDateTime.now();

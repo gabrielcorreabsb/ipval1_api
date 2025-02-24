@@ -6,6 +6,7 @@
   <title>Meus Links</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/index.css">
+  <link rel="stylesheet" href="assets/css/modal.css">
 </head>
 <body>
 <div class="container">
@@ -15,10 +16,8 @@
     <p>Olá, Desenvolvedor back-end em formação, transformando energia em código. Especialista em fazer sistemas conversarem entre si com Spring Boot, e quando sobra tempo, brinco um pouco com HTML, CSS e JavaScript. Formando em ADS e sempre disposto a aprender tecnologias novas.</p>
   </div>
 
-
-
   <div class="links">
-    <a href="#" class="link-item projects">
+    <a href="#" class="link-item projects" id="showProjects">
       <i class="fas fa-laptop-code"></i>
       Meus Projetos
     </a>
@@ -42,12 +41,27 @@
       <i class="fab fa-instagram"></i>
       Instagram
     </a>
-
   </div>
+
   <footer class="footer">
     <p class="bible-verse">"Porque pela graça sois salvos, por meio da fé; e isto não vem de vós, é dom de Deus. Não vem das obras, para que ninguém se glorie. Porque somos feitura sua, criados em Cristo Jesus para as boas obras, as quais Deus preparou para que andássemos nelas."</p>
     <p class="verse-reference">Efésios 2:8-10</p>
   </footer>
 </div>
+
+<!-- Modal de Projetos -->
+<div id="projectsModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Meus Projetos</h2>
+      <span class="close">&times;</span>
+    </div>
+    <div class="projects-grid" id="projectsList">
+      <!-- Projetos serão inseridos aqui via JavaScript -->
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/projects.js"></script>
 </body>
 </html>

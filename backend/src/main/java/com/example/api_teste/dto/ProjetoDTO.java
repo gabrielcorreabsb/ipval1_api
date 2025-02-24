@@ -14,6 +14,7 @@ public class ProjetoDTO {
     private Long id;
     private String nome;
     private String link;
+    private String github;
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime dataCriacao;
