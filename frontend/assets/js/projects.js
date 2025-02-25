@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function fetchProjects() {
         try {
-            const response = await fetch('http://localhost:8080/api/projetos', {
+            const response = await fetch(`${CONFIG.API_URL}/projetos`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'

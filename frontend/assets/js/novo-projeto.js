@@ -1,3 +1,15 @@
+// novo-projeto.js
+const API_URL = 'https://gabrielcorrea.tech/api';
+
+// Verificar autenticação ao carregar a página
+document.addEventListener('DOMContentLoaded', () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        window.location.replace('./login.html');
+        return;
+    }
+});
+
 async function handleSubmit(event) {
     event.preventDefault();
 
@@ -11,14 +23,14 @@ async function handleSubmit(event) {
     }
 
     try {
-        const token = getToken();
+        const token = localStorage.getItem('token');
 
         if (!token) {
             window.location.replace('./login.html');
             return;
         }
 
-        const response = await fetch(`${API_URL}/projetos`, {
+        const response = await fetch(`${CONFIG.API_URL}/projetos`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -27,7 +39,7 @@ async function handleSubmit(event) {
             body: JSON.stringify({
                 nome,
                 link,
-                github  // Adicionando o campo github ao JSON
+                github
             })
         });
 
@@ -57,12 +69,11 @@ function mostrarMensagem(texto, tipo) {
     }, 3000);
 }
 
-// Adicione esta função para validar URLs do GitHub
+// Validação da URL do GitHub
 function validarUrlGithub(url) {
     return url.startsWith('https://github.com/');
 }
 
-// Adicione um evento para validar a URL do GitHub quando o usuário sair do campo
 document.getElementById('github').addEventListener('blur', function(e) {
     const url = e.target.value.trim();
     if (url && !validarUrlGithub(url)) {

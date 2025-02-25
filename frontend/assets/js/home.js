@@ -2,36 +2,43 @@
 let projetos = [];
 
 document.addEventListener('DOMContentLoaded', function() {
-    if (!isAuthenticated()) {
-        window.location.href = './login.html';
-        return;
-    }
-
-    const user = getUser();
-    if (user) {
-        document.getElementById('userName').textContent = user.nome;
-    }
-
+    // Carrega os projetos imediatamente
     carregarProjetos();
+
+    // Tenta carregar as informações do usuário se estiver logado
+    try {
+        const userStr = localStorage.getItem('user');
+        if (userStr) {
+            const user = JSON.parse(userStr);
+            document.getElementById('userName').textContent = user.nome;
+        }
+    } catch (error) {
+        console.log('Usuário não está logado');
+        document.getElementById('userName').textContent = 'Visitante';
+    }
 });
 
 async function carregarProjetos() {
     try {
-        const response = await fetch(`${API_URL}/projetos`, {
-            headers: {
-                'Authorization': `Bearer ${getToken()}`
-            }
-        });
+        console.log('Iniciando carregamento de projetos...');
+
+        // URL correta para os projetos
+        const response = await fetch(`${CONFIG.API_URL}/projetos`);
+        console.log('Status da resposta:', response.status);
 
         if (!response.ok) {
-            throw new Error('Erro ao carregar projetos');
+            const errorText = await response.text();
+            console.error('Resposta de erro:', errorText);
+            throw new Error(`Erro ao carregar projetos: ${response.status}`);
         }
 
-        // Armazena os projetos na variável global
-        projetos = await response.json();
+        const data = await response.json();
+        console.log('Dados recebidos:', data);
+
+        projetos = data;
         exibirProjetos(projetos);
     } catch (error) {
-        console.error('Erro:', error);
+        console.error('Erro detalhado:', error);
         mostrarMensagem('Erro ao carregar projetos', 'error');
     }
 }
@@ -88,10 +95,16 @@ async function deletarProjeto(id) {
     }
 
     try {
-        const response = await fetch(`${API_URL}/projetos/${id}`, {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            mostrarMensagem('Você precisa estar logado para excluir projetos', 'error');
+            return;
+        }
+
+        const response = await fetch(`${CONFIG.API_URL}/projetos/${id}`, {
             method: 'DELETE',
             headers: {
-                'Authorization': `Bearer ${getToken()}`
+                'Authorization': `Bearer ${token}`
             }
         });
 
@@ -109,6 +122,12 @@ async function deletarProjeto(id) {
 
 async function editarProjeto(id) {
     try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            mostrarMensagem('Você precisa estar logado para editar projetos', 'error');
+            return;
+        }
+
         const projeto = projetos.find(p => p.id === id);
         if (!projeto) {
             throw new Error('Projeto não encontrado');
@@ -134,10 +153,10 @@ async function editarProjeto(id) {
         });
 
         if (formValues) {
-            const response = await fetch(`${API_URL}/projetos/${id}`, {
+            const response = await fetch(`${CONFIG.API_URL}/projetos/${id}`, {
                 method: 'PUT',
                 headers: {
-                    'Authorization': `Bearer ${getToken()}`,
+                    'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formValues)

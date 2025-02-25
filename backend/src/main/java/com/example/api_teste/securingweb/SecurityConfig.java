@@ -5,6 +5,7 @@ import com.example.api_teste.repository.IUsuario;
 import com.example.api_teste.service.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -53,6 +54,13 @@ public class SecurityConfig {
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        // Primeiro, permitir OPTIONS para CORS preflight
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        // Endpoints públicos da API
+                        .requestMatchers("/api/auth/login").permitAll()
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/projetos").permitAll()
+                        // Recursos estáticos
                         .requestMatchers(
                                 "/",
                                 "/index.html",
@@ -61,14 +69,13 @@ public class SecurityConfig {
                                 "/novo_projeto.html",
                                 "/assets/**",
                                 "/css/**",
-                                "/js/**"
+                                "/js/**",
+                                "/favicon.ico"
                         ).permitAll()
-                        .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/error").permitAll()
-                        .requestMatchers("/api/projetos").permitAll() // Permite GET público
-                        .requestMatchers("/api/projetos/**").authenticated() // Outras operações requerem autenticação
+                        // Endpoints protegidos
+                        .requestMatchers("/api/projetos/**").authenticated()
                         .anyRequest().authenticated()
-
                 )
                 .authenticationProvider(customAuthenticationProvider)
                 .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
@@ -77,35 +84,38 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-        return config.getAuthenticationManager();
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
+
+        // Configurar origens permitidas
         configuration.setAllowedOrigins(Arrays.asList(
-                "http://localhost:63342",
-                "http://127.0.0.1:63342"
+                "https://gabrielcorrea.tech"  // Primeiro, coloque o domínio principal
         ));
+
+        // Métodos HTTP permitidos
         configuration.setAllowedMethods(Arrays.asList(
-                "GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "PATCH"
+                "GET", "POST", "PUT", "DELETE", "OPTIONS"
         ));
+
+        // Headers permitidos
         configuration.setAllowedHeaders(Arrays.asList(
                 "Authorization",
                 "Content-Type",
-                "X-Requested-With",
                 "Accept",
                 "Origin",
+                "X-Requested-With",
                 "Access-Control-Request-Method",
                 "Access-Control-Request-Headers"
         ));
-        configuration.setExposedHeaders(Collections.singletonList("Authorization"));
+
+        // Headers expostos
+        configuration.setExposedHeaders(Arrays.asList(
+                "Authorization",
+                "Content-Type",
+                "Access-Control-Allow-Origin",
+                "Access-Control-Allow-Credentials"
+        ));
+
         configuration.setAllowCredentials(true);
         configuration.setMaxAge(3600L);
 
