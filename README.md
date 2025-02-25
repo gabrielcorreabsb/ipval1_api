@@ -1,11 +1,11 @@
 =======
-# API Gerenciamento de Loja
+# API RESTFul para meu site
 
-API REST desenvolvida para gerenciamento de loja, utilizando Spring Boot.
+API REST desenvolvida para o testar minhas habilidades, utilizei Spring Boot, com servidor Nginx, deploy com Docker em um servidor Ubuntu arm64, proxy reverso com Nginx e CORS ativado!
 
 ## 🚀 Tecnologias Utilizadas
 
-* Java 17
+* Java 21
 * Spring Boot
 * Maven
 * Spring Security
@@ -14,6 +14,7 @@ API REST desenvolvida para gerenciamento de loja, utilizando Spring Boot.
 * CSS
 * HTML
 * postgreeSQL
+* Docker
 
 
 ## 📋 Pré-requisitos
