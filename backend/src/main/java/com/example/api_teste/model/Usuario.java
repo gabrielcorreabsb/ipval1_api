@@ -43,8 +43,8 @@ public class Usuario implements UserDetails {
 
     @NotBlank(message = "A senha não pode estar em branco")
     @Size(min = 6, message = "A senha deve ter no mínimo 6 caracteres")
-    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$",
-            message = "A senha deve conter pelo menos uma letra e um número")
+    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@#$%^&+=!])(.{6,})$",
+            message = "A senha deve conter pelo menos uma letra, um número e um caractere especial")
     @Column(name = "senha", columnDefinition = "TEXT", nullable = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String senha;

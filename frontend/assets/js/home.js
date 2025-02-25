@@ -1,6 +1,14 @@
 // Variável global para armazenar os projetos
 let projetos = [];
 
+// Verificar autenticação ao carregar a página
+document.addEventListener('DOMContentLoaded', () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        window.location.replace('./login.html');
+        return;
+    }
+});
 document.addEventListener('DOMContentLoaded', function() {
     // Carrega os projetos imediatamente
     carregarProjetos();
