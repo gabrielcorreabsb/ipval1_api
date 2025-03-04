@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe7ee837-3f70-4d99-9e20-e1d36c4ade36" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/api_teste/securingweb/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/api_teste/securingweb/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+    <list default="true" id="fe7ee837-3f70-4d99-9e20-e1d36c4ade36" name="Changes" comment="Corrigido o application.properties e SecurityConfig">
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/api_teste/securingweb/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/api_teste/securingweb/SecurityConfig.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,11 +105,24 @@
       <option name="presentableId" value="Default" />
       <updated>1741116093476</updated>
       <workItem from="1741116094555" duration="2098000" />
-      <workItem from="1741118866315" duration="540000" />
+      <workItem from="1741118866315" duration="867000" />
     </task>
+    <task id="LOCAL-00001" summary="Corrigido o application.properties e SecurityConfig">
+      <option name="closed" value="true" />
+      <created>1741119443463</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1741119443463</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Corrigido o application.properties e SecurityConfig" />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrigido o application.properties e SecurityConfig" />
   </component>
 </project>

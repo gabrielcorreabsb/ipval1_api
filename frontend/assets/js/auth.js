@@ -1,6 +1,6 @@
 // auth.js
 const AuthService = {
-    API_URL: 'https://gabrielcorrea.tech/api/auth',  // Ajustado para incluir /auth
+    API_URL: 'https://localhost:8080/api/auth',  // Ajustado para incluir /auth
 
     async login(login, senha) {
         console.log('Iniciando tentativa de login...');
