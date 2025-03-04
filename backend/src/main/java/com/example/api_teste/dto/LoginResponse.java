@@ -5,10 +5,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class LoginResponse {
     private String token;
     private String type;
-    private UserDTO user; // Certifique-se que este campo é UserDTO e não Usuario
+    private UserDTO user;
+
+    public LoginResponse(String token, String type, UserDTO user) {
+        this.token = token;
+        this.type = type;
+        this.user = user;
+    }
 }

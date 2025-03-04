@@ -52,7 +52,10 @@ public class AuthController {
             Usuario usuario = usuarioRepository.findByLogin(loginRequest.getLogin())
                     .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
 
-            return ResponseEntity.ok(new LoginResponse(jwt, "Bearer", new UserDTO(usuario)));
+            UserDTO userDTO = new UserDTO(usuario);
+            LoginResponse response = new LoginResponse(jwt, "Bearer", userDTO);
+
+            return ResponseEntity.ok(response);
 
         } catch (AuthenticationException e) {
             return ResponseEntity

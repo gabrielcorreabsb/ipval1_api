@@ -1,5 +1,5 @@
 // novo-projeto.js
-const API_URL = 'https://gabrielcorrea.tech/api';
+const API_URL = 'http://localhost:8080/api';
 
 // Verificar autenticação ao carregar a página
 document.addEventListener('DOMContentLoaded', () => {

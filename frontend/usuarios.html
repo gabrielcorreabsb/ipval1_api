@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciamento de Usuários</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/usuarios.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+<nav class="main-nav">
+  <div class="nav-container">
+    <ul>
+      <li><a href="./home.html"><i class="fas fa-home"></i> Início</a></li>
+      <li><a href="./projetos.html"><i class="fas fa-project-diagram"></i> Projetos</a></li>
+      <li><a href="./usuarios.html" class="active"><i class="fas fa-users"></i> Usuários</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button onclick="abrirModalNovoUsuario()" class="btn btn-primary">
+        <i class="fas fa-plus"></i> Novo Usuário
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <header class="content-header">
+    <h1>Gerenciamento de Usuários</h1>
+  </header>
+
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Buscar usuários...">
+    <select id="cargoFilter">
+      <option value="">Todos os cargos</option>
+      <option value="PASTOR">Pastor</option>
+      <option value="BOASVINDAS">Boas-vindas</option>
+      <option value="SAF">SAF</option>
+      <option value="UPH">UPH</option>
+      <option value="OUTROS">Outros</option>
+    </select>
+  </div>
+
+  <div class="users-grid" id="usersGrid">
+    <!-- Usuários serão carregados aqui dinamicamente -->
+  </div>
+</div>
+
+
+<script src="assets/js/config.js"></script>
+<script src="./assets/js/auth.js"></script>
+<script src="assets/js/usuarios.js"></script>
+</body>
+</html>

@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -20,7 +21,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Table(name = "usuario")
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Builder
 public class Usuario implements UserDetails {
 
@@ -49,6 +49,11 @@ public class Usuario implements UserDetails {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String senha;
 
+    @NotNull(message = "O cargo não pode ser nulo")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "cargo", nullable = false)
+    private Cargo cargo;
+
     @Column(name = "data_criacao", updatable = false)
     private LocalDateTime dataCriacao;
 
@@ -63,10 +68,33 @@ public class Usuario implements UserDetails {
     @Column(name = "tentativas_login")
     private Integer tentativasLogin = 0;
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "usuario_roles",
+            joinColumns = @JoinColumn(name = "usuario_id"))
+    @Column(name = "role")
+    @Builder.Default
+    private Set<String> roles = new HashSet<>();
+
     @PrePersist
-    protected void onCreate() {
-        dataCriacao = LocalDateTime.now();
-        ultimoAcesso = LocalDateTime.now();
+    @PreUpdate
+    protected void onPersistAndUpdate() {
+        // Garante que a data de criação seja definida
+        if (dataCriacao == null) {
+            dataCriacao = LocalDateTime.now();
+        }
+        if (ultimoAcesso == null) {
+            ultimoAcesso = LocalDateTime.now();
+        }
+
+        // Inicializa o conjunto de roles se necessário
+        if (roles == null) {
+            roles = new HashSet<>();
+        }
+
+        // Adiciona a role correspondente ao cargo
+        if (cargo != null) {
+            roles.add("ROLE_" + cargo.name());
+        }
     }
 
     public void atualizarUltimoAcesso() {
@@ -95,7 +123,25 @@ public class Usuario implements UserDetails {
     @Override
     @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
+        Set<SimpleGrantedAuthority> authorities = new HashSet<>();
+
+        // Adiciona role baseada no cargo
+        if (this.cargo != null) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + this.cargo.name()));
+        }
+
+        // Adiciona roles do conjunto roles
+        if (this.roles != null) {
+            this.roles.forEach(role -> {
+                if (!role.startsWith("ROLE_")) {
+                    authorities.add(new SimpleGrantedAuthority("ROLE_" + role));
+                } else {
+                    authorities.add(new SimpleGrantedAuthority(role));
+                }
+            });
+        }
+
+        return authorities;
     }
 
     @Override
@@ -144,6 +190,30 @@ public class Usuario implements UserDetails {
                 ", ultimoAcesso=" + ultimoAcesso +
                 ", ativo=" + ativo +
                 ", tentativasLogin=" + tentativasLogin +
+                ", cargo=" + cargo +
+                ", roles=" + roles +
                 '}';
+    }
+
+    // Constructor with Builder pattern
+    @Builder
+    public Usuario(Integer idUsuario, String login, String nome, String senha,
+                   Cargo cargo, LocalDateTime dataCriacao, LocalDateTime ultimoAcesso,
+                   Boolean ativo, Integer tentativasLogin, Set<String> roles) {
+        this.idUsuario = idUsuario;
+        this.login = login;
+        this.nome = nome;
+        this.senha = senha;
+        this.cargo = cargo;
+        this.dataCriacao = dataCriacao;
+        this.ultimoAcesso = ultimoAcesso;
+        this.ativo = ativo != null ? ativo : true;
+        this.tentativasLogin = tentativasLogin != null ? tentativasLogin : 0;
+        this.roles = roles != null ? roles : new HashSet<>();
+
+        // Garante que a role do cargo esteja presente
+        if (this.cargo != null) {
+            this.roles.add("ROLE_" + this.cargo.name());
+        }
     }
 }

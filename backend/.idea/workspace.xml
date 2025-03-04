@@ -5,8 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe7ee837-3f70-4d99-9e20-e1d36c4ade36" name="Changes" comment="Corrigido o application.properties e SecurityConfig">
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/assets/css/usuarios.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/assets/js/usuarios.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/usuarios.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/api_teste/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/api_teste/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/api_teste/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/api_teste/controller/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/api_teste/dto/LoginResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/api_teste/dto/LoginResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/api_teste/dto/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/api_teste/dto/UserDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/api_teste/model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/api_teste/model/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/api_teste/securingweb/CustomAuthenticationProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/api_teste/securingweb/CustomAuthenticationProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/api_teste/securingweb/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/api_teste/securingweb/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/api_teste/securingweb/JwtTokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/api_teste/securingweb/JwtTokenProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/api_teste/securingweb/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/api_teste/securingweb/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/api_teste/controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/api_teste/controller/AuthController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/api_teste/controller/UsuarioController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/api_teste/controller/UsuarioController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/api_teste/dto/LoginResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/api_teste/dto/LoginResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/api_teste/dto/UserDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/api_teste/dto/UserDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/api_teste/model/Usuario$UsuarioBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/api_teste/model/Usuario$UsuarioBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/api_teste/model/Usuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/api_teste/model/Usuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/api_teste/securingweb/CustomAuthenticationProvider.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/api_teste/securingweb/CustomAuthenticationProvider.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/api_teste/securingweb/JwtAuthenticationFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/api_teste/securingweb/JwtAuthenticationFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/api_teste/securingweb/JwtTokenProvider.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/api_teste/securingweb/JwtTokenProvider.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/api_teste/securingweb/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/api_teste/securingweb/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/assets/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/assets/js/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/assets/js/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/assets/js/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/assets/js/home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/assets/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/assets/js/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/assets/js/novo-projeto.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/assets/js/novo-projeto.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/login.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +134,7 @@
       <option name="presentableId" value="Default" />
       <updated>1741116093476</updated>
       <workItem from="1741116094555" duration="2098000" />
-      <workItem from="1741118866315" duration="867000" />
+      <workItem from="1741118866315" duration="7113000" />
     </task>
     <task id="LOCAL-00001" summary="Corrigido o application.properties e SecurityConfig">
       <option name="closed" value="true" />

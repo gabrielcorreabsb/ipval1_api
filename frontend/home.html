@@ -3,35 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <title>Sistema de Projetos</title>
+  <title>Menu com Logo</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="./assets/css/style.css">
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-<div class="container">
-  <header class="main-header">
-    <div class="header-actions">
-      <h2>Meus Projetos</h2>
-      <a href="novo_projeto.html" class="btn btn-primary">Novo Projeto</a>
+<nav class="main-nav">
+  <div class="nav-container">
+    <ul>
+      <li><a href="#" class="active"><i class="fas fa-home"></i> Início</a></li>
+      <li><a href="#"><i class="fas fa-project-diagram"></i> Projetos</a></li>
+      <li><a href="./usuarios.html"><i class="fas fa-users"></i> Usuários</a></li>
+    </ul>
+    <div class="user-section">
+      <span id="userName"></span>
+      <button id="logoutBtn" class="logout-btn">
+        <i class="fas fa-sign-out-alt"></i> Sair
+      </button>
     </div>
-    <div class="user-actions">
-      <span id="userName">Usuário</span>
-      <button onclick="logout()" class="btn btn-logout">Sair</button>
-    </div>
-  </header>
+  </div>
+</nav>
 
-  <div class="projects-list">
-    <!-- Projetos serão carregados aqui via JavaScript -->
+<div class="logo-container">
+  <div class="logo">
+    <i class="fas fa-church"></i>
   </div>
 </div>
-
+</body>
+<script src="./assets/js/config.js"></script>
 <script src="./assets/js/auth.js"></script>
 <script src="./assets/js/home.js"></script>
-<script src="./assets/js/config.js"></script>
-</body>
 </html>

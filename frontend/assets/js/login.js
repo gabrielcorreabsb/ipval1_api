@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await AuthService.login(loginInput.value, senhaInput.value);
             console.log('Resposta do login:', response);  // Debug
 
-            window.location.replace('/home.html');
+            window.location.replace('./home.html');
         } catch (error) {
             console.error('Erro completo:', error);  // Debug detalhado
             showError('Erro ao fazer login. Por favor, verifique suas credenciais.');

@@ -2,6 +2,7 @@ package com.example.api_teste.dto;
 
 import com.example.api_teste.model.Usuario;
 import lombok.Data;
+import com.example.api_teste.model.Cargo;
 
 import java.time.LocalDateTime;
 
@@ -12,6 +13,7 @@ public class UserDTO {
     private String nome;
     private LocalDateTime dataCriacao;
     private Boolean ativo;
+    private Cargo cargo;
 
     public UserDTO(Usuario usuario) {
         this.idUsuario = usuario.getIdUsuario();
@@ -19,5 +21,6 @@ public class UserDTO {
         this.nome = usuario.getNome();
         this.dataCriacao = usuario.getDataCriacao();
         this.ativo = usuario.getAtivo();
+        this.cargo = usuario.getCargo();
     }
 }

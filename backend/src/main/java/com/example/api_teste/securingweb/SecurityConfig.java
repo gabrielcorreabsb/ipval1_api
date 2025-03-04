@@ -60,6 +60,13 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/login").permitAll()
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/projetos").permitAll()
+
+                        // Adicionar permissões para endpoints de usuários
+                        .requestMatchers(HttpMethod.GET, "/api/usuarios").hasAnyRole("PASTOR", "USER")
+                        .requestMatchers(HttpMethod.POST, "/api/usuarios").hasRole("PASTOR")
+                        .requestMatchers(HttpMethod.PUT, "/api/usuarios/**").hasRole("PASTOR")
+                        .requestMatchers(HttpMethod.DELETE, "/api/usuarios/**").hasRole("PASTOR")
+
                         // Recursos estáticos
                         .requestMatchers(
                                 "/",

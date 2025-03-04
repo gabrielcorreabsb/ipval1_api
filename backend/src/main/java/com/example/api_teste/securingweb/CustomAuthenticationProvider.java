@@ -14,6 +14,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import java.util.ArrayList;
+import java.util.List;
 
 import java.util.Collections;
 
@@ -41,6 +45,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
                     .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado: " + login));
 
             logger.debug("Usuário encontrado: {}", usuario.getLogin());
+            logger.debug("Cargo do usuário: {}", usuario.getCargo());
 
             if (!usuario.isAtivo()) {
                 logger.debug("Usuário está inativo: {}", login);
@@ -52,12 +57,22 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
                 throw new BadCredentialsException("Senha inválida");
             }
 
+            // Criar lista de autoridades baseada no cargo do usuário
+            List<GrantedAuthority> authorities = new ArrayList<>();
+
+            // Adicionar ROLE baseada no cargo
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + usuario.getCargo().toString()));
+
+            // Opcional: adicionar também uma role genérica USER
+            authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+
+            logger.debug("Autoridades atribuídas: {}", authorities);
             logger.debug("Autenticação bem-sucedida para usuário: {}", login);
 
             return new UsernamePasswordAuthenticationToken(
                     usuario,
                     senha,
-                    Collections.singletonList(new SimpleGrantedAuthority("USER"))
+                    authorities
             );
         } catch (Exception e) {
             logger.error("Erro durante autenticação: ", e);
