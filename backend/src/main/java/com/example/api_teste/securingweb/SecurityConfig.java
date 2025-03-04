@@ -89,7 +89,9 @@ public class SecurityConfig {
 
         // Configurar origens permitidas
         configuration.setAllowedOrigins(Arrays.asList(
-                "https://gabrielcorrea.tech"  // Primeiro, coloque o domínio principal
+                "https://gabrielcorrea.tech",  // Primeiro, coloque o domínio principal
+                "http://localhost:63342",
+                "http://127.0.0.1:63342"
         ));
 
         // Métodos HTTP permitidos
