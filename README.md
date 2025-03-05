@@ -1,5 +1,5 @@
 =======
-# API RESTFul para meu site
+# API RESTFul para a igreja que frequento.
 
 API REST desenvolvida para o testar minhas habilidades, utilizei Spring Boot, com servidor Nginx, deploy com Docker em um servidor Ubuntu arm64, proxy reverso com Nginx e CORS ativado!
 
@@ -23,5 +23,3 @@ API REST desenvolvida para o testar minhas habilidades, utilizei Spring Boot, co
 * Maven
 * IDE de sua preferência (Eclipse, IntelliJ, VS Code)
 * Git
-"# ipval1_api" 
-"# ipval1_api" 
