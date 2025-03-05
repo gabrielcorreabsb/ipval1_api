@@ -15,6 +15,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -104,7 +105,7 @@
       <option name="presentableId" value="Default" />
       <updated>1741116093476</updated>
       <workItem from="1741116094555" duration="2098000" />
-      <workItem from="1741118866315" duration="14777000" />
+      <workItem from="1741118866315" duration="16114000" />
     </task>
     <task id="LOCAL-00001" summary="Corrigido o application.properties e SecurityConfig">
       <option name="closed" value="true" />
