@@ -61,6 +61,7 @@ public class SecurityConfig {
                                 .requestMatchers("/api/auth/**").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/api/projetos").permitAll()
 
+
 // Permissões para endpoints de usuários
                                 .requestMatchers(HttpMethod.GET, "/api/usuarios").hasAnyRole("PASTOR", "USER")
                                 .requestMatchers(HttpMethod.POST, "/api/usuarios").hasRole("PASTOR")
@@ -78,6 +79,12 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.POST, "/api/agenda/**").hasRole("PASTOR")
                                 .requestMatchers(HttpMethod.PUT, "/api/agenda/**").hasRole("PASTOR")
                                 .requestMatchers(HttpMethod.DELETE, "/api/agenda/**").hasRole("PASTOR")
+
+                                // Permissões para endpoints de Notícias
+                                .requestMatchers(HttpMethod.GET, "/api/noticias/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/api/noticias").hasAnyRole("OUTROS", "PASTOR")
+                                .requestMatchers(HttpMethod.PUT, "/api/noticias/**").hasAnyRole("OUTROS", "PASTOR")
+                                .requestMatchers(HttpMethod.DELETE, "/api/noticias/**").hasRole("PASTOR")
 
 
                         // Recursos estáticos

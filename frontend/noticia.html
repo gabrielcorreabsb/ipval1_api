@@ -3,15 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Agenda</title>
+  <title>Sistema de Notícias</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
-  <link rel="stylesheet" href="assets/css/agenda.css">
-  <link rel="stylesheet" href="assets/css/menu.css">
+  <link rel="stylesheet" href="./assets/css/noticias.css">
+  <link rel="stylesheet" href="./assets/css/menu.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
-</head>
+  <script src="https://cdn.tiny.cloud/1/5f2f2r7y4p9j9xmrhbjgcrzmkiaqocy9528hbn15z52int43/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script></head>
 <body>
 <nav>
   <div class="nav-container">
@@ -27,8 +25,8 @@
       <li><a href="./agenda.html">Eventos</a></li>
       <li><a href="./noticia.html" class="active">Notícias</a></li>
       <div class="mobile-user-section">
-        <button onclick="abrirModalNovoEvento()" class="btn btn-primary">
-          Novo Evento
+        <button onclick="abrirModalNovaNoticia()" class="btn btn-primary">
+          Nova Notícia
         </button>
         <button id="logoutBtnMobile" class="logout-btn">
           Sair
@@ -36,8 +34,8 @@
       </div>
     </ul>
     <div class="user-section desktop-user-section">
-      <button onclick="abrirModalNovoEvento()" class="btn btn-primary">
-        Novo Evento
+      <button onclick="abrirModalNovaNoticia()" class="btn btn-primary">
+        Nova Notícia
       </button>
       <button id="logoutBtn" class="logout-btn">
         Sair
@@ -48,34 +46,32 @@
 
 <div class="container">
   <header class="content-header">
-    <h1>Agenda de Eventos</h1>
+    <h1>Sistema de Notícias</h1>
   </header>
 
-  <div class="view-toggle">
-    <button class="view-btn active" data-view="calendar">
-      <i class="fas fa-calendar-alt"></i> Calendário
-    </button>
-    <button class="view-btn" data-view="list">
-      <i class="fas fa-list"></i> Lista
-    </button>
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Buscar notícias...">
+    <select id="statusFilter">
+      <option value="">Todos os status</option>
+      <option value="true">Aprovadas</option>
+      <option value="false">Pendentes</option>
+    </select>
   </div>
 
-  <div class="calendar-container" id="calendar"></div>
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="todas">Todas</button>
+    <button class="tab-btn" data-tab="aprovadas">Aprovadas</button>
+    <button class="tab-btn" data-tab="pendentes">Pendentes</button>
+  </div>
 
-  <div class="events-list-container" style="display: none;">
-    <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="Buscar eventos...">
-      <input type="date" id="dateFilter">
-    </div>
-    <div class="events-list" id="eventsList">
-      <!-- Eventos serão carregados aqui dinamicamente -->
-    </div>
+  <div class="news-grid" id="newsGrid">
+    <!-- Notícias serão carregadas aqui dinamicamente -->
   </div>
 </div>
 
-<script src="assets/js/config.js"></script>
-<script src="assets/js/auth.js"></script>
-<script src="assets/js/agenda.js"></script>
-<script src="assets/js/menu.js"></script>
+<script src="./assets/js/config.js"></script>
+<script src="./assets/js/auth.js"></script>
+<script src="./assets/js/noticias.js"></script>
+<script src="./assets/js/menu.js"></script>
 </body>
 </html>
