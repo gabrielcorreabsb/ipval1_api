@@ -36,6 +36,9 @@ public class Noticia {
     @JoinColumn(name = "usuario_id")
     private Usuario autor;
 
+    @Column(columnDefinition = "TEXT")
+    private String imagemUrl;
+
     @PrePersist
     protected void onCreate() {
         dataCriacao = LocalDateTime.now();

@@ -1,3 +1,41 @@
+let noticias = []; // Variável global para armazenar as notícias
+
+// Função para converter imagem para WebP
+async function convertToWebP(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const img = new Image();
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.width;
+                canvas.height = img.height;
+
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0);
+
+                // Converter para WebP
+                canvas.toBlob((blob) => {
+                    if (blob) {
+                        // Criar novo arquivo com extensão .webp
+                        const webpFile = new File([blob], `${file.name.split('.')[0]}.webp`, {
+                            type: 'image/webp',
+                            lastModified: new Date().getTime()
+                        });
+                        resolve(webpFile);
+                    } else {
+                        reject(new Error('Erro ao converter imagem para WebP'));
+                    }
+                }, 'image/webp', 0.8); // 0.8 é a qualidade da imagem (80%)
+            };
+            img.onerror = () => reject(new Error('Erro ao carregar imagem'));
+            img.src = e.target.result;
+        };
+        reader.onerror = () => reject(new Error('Erro ao ler arquivo'));
+        reader.readAsDataURL(file);
+    });
+}
+
 // Configuração do TinyMCE
 function initTinyMCE(selector) {
     return tinymce.init({
@@ -193,7 +231,8 @@ async function carregarNoticias() {
 
         if (response) {
             console.log('Notícias carregadas:', response);
-            filtrarEExibirNoticias(response);
+            noticias = response; // Atualiza a variável global
+            filtrarEExibirNoticias();
         }
     } catch (error) {
         console.error('Erro ao carregar notícias:', error);
@@ -201,15 +240,21 @@ async function carregarNoticias() {
     }
 }
 
-function filtrarEExibirNoticias(noticiasParam = []) {
-    const noticias = Array.isArray(noticiasParam) ? noticiasParam : [];
+function filtrarEExibirNoticias() {
+    if (!Array.isArray(noticias)) {
+        console.warn('Noticias não é um array:', noticias);
+        return;
+    }
 
     const searchTerm = document.getElementById('searchInput')?.value?.toLowerCase() || '';
     const statusFilter = document.getElementById('statusFilter')?.value || '';
     const tabAtiva = document.querySelector('.tab-btn.active')?.dataset?.tab || 'todas';
 
+    console.log('Aplicando filtros:', { searchTerm, statusFilter, tabAtiva });
+
     let noticiasFiltradas = [...noticias];
 
+    // Filtro por texto
     if (searchTerm) {
         noticiasFiltradas = noticiasFiltradas.filter(noticia =>
             noticia.titulo?.toLowerCase().includes(searchTerm) ||
@@ -217,86 +262,86 @@ function filtrarEExibirNoticias(noticiasParam = []) {
         );
     }
 
-    if (statusFilter) {
+    // Filtro por status
+    if (statusFilter !== '') {
         noticiasFiltradas = noticiasFiltradas.filter(noticia =>
-            noticia.aprovada?.toString() === statusFilter
+            noticia.aprovada === (statusFilter === 'true')
         );
     }
 
+    // Filtro por tab
     if (tabAtiva === 'aprovadas') {
         noticiasFiltradas = noticiasFiltradas.filter(noticia => noticia.aprovada);
     } else if (tabAtiva === 'pendentes') {
         noticiasFiltradas = noticiasFiltradas.filter(noticia => !noticia.aprovada);
     }
 
+    console.log('Notícias filtradas:', noticiasFiltradas);
     exibirNoticias(noticiasFiltradas);
-}
-
-function exibirNoticias(noticias) {
-    const grid = document.getElementById('newsGrid');
-    if (!grid) {
-        console.error('Element newsGrid not found');
-        return;
-    }
-
-    grid.innerHTML = '';
-
-    if (noticias.length === 0) {
-        grid.innerHTML = `
-            <div class="no-news">
-                <i class="fas fa-newspaper"></i>
-                <p>Nenhuma notícia encontrada</p>
-            </div>
-        `;
-        return;
-    }
-
-    noticias.forEach(noticia => {
-        const card = criarCardNoticia(noticia);
-        grid.appendChild(card);
-    });
 }
 
 function criarCardNoticia(noticia) {
     const card = document.createElement('div');
-    card.className = 'news-card';
+    card.className = `news-card ${noticia.aprovada ? 'approved' : 'pending'}`;
 
     const dataFormatada = new Date(noticia.dataCriacao).toLocaleDateString('pt-BR');
+    const dataModificada = noticia.dataModificacao ?
+        new Date(noticia.dataModificacao).toLocaleDateString('pt-BR') : null;
     const usuario = getUsuarioLogado();
 
     card.innerHTML = `
-        <div class="news-header">
-            <h3 class="news-title">${noticia.titulo}</h3>
-            <div class="news-meta">
-                <span class="news-date">
-                    <i class="far fa-calendar-alt"></i> ${dataFormatada}
-                </span>
-                <span class="news-status ${noticia.aprovada ? 'approved' : 'pending'}">
-                    ${noticia.aprovada ? 'Aprovada' : 'Pendente'}
-                </span>
+        <div class="news-image-container">
+            ${noticia.imagemUrl ? `
+                <img src="${noticia.imagemUrl}" alt="${noticia.titulo}" class="news-thumbnail">
+            ` : `
+                <div class="news-no-image">
+                    <i class="far fa-newspaper"></i>
+                </div>
+            `}
+            <div class="news-status-badge ${noticia.aprovada ? 'approved' : 'pending'}">
+                <i class="fas ${noticia.aprovada ? 'fa-check-circle' : 'fa-clock'}"></i>
+                ${noticia.aprovada ? 'Aprovada' : 'Pendente'}
             </div>
         </div>
-        <div class="news-content">
-            ${noticia.conteudo}
-        </div>
-        <div class="news-footer">
-            <span class="news-author">
-                <i class="far fa-user"></i> ${noticia.autorNome || 'Autor desconhecido'}
-            </span>
-            <div class="news-actions">
-                ${isPastor() && !noticia.aprovada ? `
-                    <button onclick="aprovarNoticia(${noticia.id})" class="btn-approve">
-                        <i class="fas fa-check"></i> Aprovar
-                    </button>
-                ` : ''}
-                ${(isPastor() || noticia.autorId === usuario?.idUsuario) ? `
-                    <button onclick="editarNoticia(${noticia.id})" class="btn-edit">
-                        <i class="fas fa-edit"></i> Editar
-                    </button>
-                    <button onclick="deletarNoticia(${noticia.id})" class="btn-delete">
-                        <i class="fas fa-trash"></i> Excluir
-                    </button>
-                ` : ''}
+        <div class="news-content-wrapper">
+            <div class="news-header">
+                <h3 class="news-title">${noticia.titulo}</h3>
+                <div class="news-meta">
+                    <span class="news-date" title="Data de criação">
+                        <i class="far fa-calendar-alt"></i> ${dataFormatada}
+                    </span>
+                    ${dataModificada ? `
+                        <span class="news-modified" title="Última modificação">
+                            <i class="fas fa-edit"></i> ${dataModificada}
+                        </span>
+                    ` : ''}
+                    <span class="news-author" title="Autor">
+                        <i class="far fa-user"></i> ${noticia.autorNome || 'Autor desconhecido'}
+                    </span>
+                </div>
+            </div>
+            <div class="news-content">
+                ${noticia.conteudo}
+            </div>
+            <div class="news-footer">
+                <div class="news-actions">
+                    ${isPastor() && !noticia.aprovada ? `
+                        <button onclick="aprovarNoticia(${noticia.id})" class="btn-approve" title="Aprovar notícia">
+                            <i class="fas fa-check"></i>
+                            <span>Aprovar</span>
+                        </button>
+                    ` : ''}
+                    ${(isPastor() || noticia.autorId === usuario?.idUsuario) ? `
+                        <button onclick="editarNoticia(${noticia.id})" class="btn-edit" title="Editar notícia">
+                            <i class="fas fa-edit"></i>
+                            <span>Editar</span>
+                        </button>
+                        <button onclick="deletarNoticia(${noticia.id})" class="btn-delete" title="Excluir notícia">
+                            <i class="fas fa-trash"></i>
+                            <span>Excluir</span>
+                        </button>
+                    ` : ''}
+                </div>
             </div>
         </div>
     `;
@@ -311,21 +356,28 @@ async function criarNoticia(dados) {
             throw new Error('Usuário não encontrado');
         }
 
-        // Criar FormData
         const formData = new FormData();
         formData.append('titulo', dados.titulo);
         formData.append('conteudo', dados.conteudo);
         formData.append('usuarioId', usuario.idUsuario.toString());
 
+        // Converter imagem para WebP se existir
         if (dados.imagem) {
-            formData.append('imagem', dados.imagem);
+            try {
+                const webpImage = await convertToWebP(dados.imagem);
+                formData.append('imagem', webpImage);
+            } catch (error) {
+                console.error('Erro ao converter imagem:', error);
+                mostrarMensagem('Erro ao processar imagem', 'error');
+                // Se houver erro na conversão, usa a imagem original
+                formData.append('imagem', dados.imagem);
+            }
         }
 
         const response = await fetch(`${CONFIG.API_URL}/noticias`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
-                // Não incluir Content-Type, deixe o navegador definir automaticamente
             },
             body: formData
         });
@@ -418,6 +470,7 @@ async function abrirModalNovaNoticia() {
     }
 }
 
+// Função editarNoticia também precisa ser atualizada
 async function editarNoticia(id) {
     try {
         const response = await fazerRequisicao(`${CONFIG.API_URL}/noticias/${id}`);
@@ -428,7 +481,13 @@ async function editarNoticia(id) {
             html: `
                 <div class="modal-content">
                     <input id="titulo" class="swal2-input" value="${noticia.titulo}">
-                    <div id="tituloError" class="error-message"></div>
+                    <input type="file" id="imagem" accept="image/*" class="swal2-file">
+                    ${noticia.imagemUrl ? `
+                        <div class="current-image">
+                            <img src="${noticia.imagemUrl}" alt="Imagem atual" style="max-width: 200px;">
+                            <p>Imagem atual</p>
+                        </div>
+                    ` : ''}
                     <div class="editor-container">
                         <textarea id="conteudo">${noticia.conteudo}</textarea>
                     </div>
@@ -439,18 +498,34 @@ async function editarNoticia(id) {
             },
             preConfirm: () => {
                 const titulo = document.getElementById('titulo').value;
-                const conteudo = tinymce.get('conteudo').getContent();
+                const editor = tinymce.get('conteudo');
+                const imagemInput = document.getElementById('imagem');
 
+                if (!editor) {
+                    Swal.showValidationMessage('Editor não inicializado corretamente');
+                    return false;
+                }
+
+                const conteudo = editor.getContent();
                 const validacao = validarNoticia(titulo, conteudo);
                 if (!validacao.valido) {
                     Swal.showValidationMessage(validacao.mensagem);
                     return false;
                 }
 
-                return {
+                const dados = {
                     titulo: validacao.titulo,
                     conteudo: validacao.conteudo
                 };
+
+                if (imagemInput.files.length > 0) {
+                    dados.imagem = imagemInput.files[0];
+                }
+
+                return dados;
+            },
+            willClose: () => {
+                tinymce.remove('#conteudo');
             },
             showCancelButton: true,
             confirmButtonText: 'Salvar',
@@ -473,16 +548,46 @@ async function editarNoticia(id) {
 
 async function atualizarNoticia(id, dados) {
     try {
-        await fazerRequisicao(`${CONFIG.API_URL}/noticias/${id}`, {
+        console.log('Dados recebidos para atualização:', dados); // Log para debug
+
+        // Criar FormData com os dados atualizados
+        const formData = new FormData();
+        formData.append('titulo', dados.titulo);
+        formData.append('conteudo', dados.conteudo);
+
+        if (dados.imagem) {
+            formData.append('imagem', dados.imagem);
+        }
+
+        // Log para verificar o conteúdo do FormData
+        for (let pair of formData.entries()) {
+            console.log(pair[0] + ': ' + pair[1]);
+        }
+
+        const response = await fetch(`${CONFIG.API_URL}/noticias/${id}`, {
             method: 'PUT',
-            body: JSON.stringify(dados)
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                // Não incluir Content-Type para FormData
+            },
+            body: formData
         });
 
+        if (!response.ok) {
+            const errorData = await response.text();
+            console.error('Erro do servidor:', errorData);
+            throw new Error(`Erro na requisição: ${response.status}`);
+        }
+
+        const result = await response.json();
         mostrarMensagem('Notícia atualizada com sucesso!', 'success');
         await carregarNoticias();
+        return result;
+
     } catch (error) {
         console.error('Erro ao atualizar notícia:', error);
         mostrarMensagem('Erro ao atualizar notícia', 'error');
+        throw error;
     }
 }
 
@@ -498,6 +603,30 @@ async function aprovarNoticia(id) {
         console.error('Erro ao aprovar notícia:', error);
         mostrarMensagem('Erro ao aprovar notícia', 'error');
     }
+}
+function exibirNoticias(noticiasFiltradas) {
+    const grid = document.getElementById('newsGrid');
+    if (!grid) {
+        console.error('Element newsGrid not found');
+        return;
+    }
+
+    grid.innerHTML = '';
+
+    if (!noticiasFiltradas || noticiasFiltradas.length === 0) {
+        grid.innerHTML = `
+            <div class="no-news">
+                <i class="fas fa-newspaper"></i>
+                <p>Nenhuma notícia encontrada</p>
+            </div>
+        `;
+        return;
+    }
+
+    noticiasFiltradas.forEach(noticia => {
+        const card = criarCardNoticia(noticia);
+        grid.appendChild(card);
+    });
 }
 
 async function deletarNoticia(id) {
@@ -535,27 +664,43 @@ document.addEventListener('DOMContentLoaded', async () => {
             return;
         }
 
+        // Carregar notícias iniciais
         await carregarNoticias();
 
-        // Configurar listeners para filtros
+        // Configurar listener para busca
         const searchInput = document.getElementById('searchInput');
         if (searchInput) {
-            searchInput.addEventListener('input', () => filtrarEExibirNoticias(noticias));
+            searchInput.addEventListener('input', () => {
+                console.log('Busca alterada:', searchInput.value);
+                filtrarEExibirNoticias();
+            });
         }
 
+        // Configurar listener para filtro de status
         const statusFilter = document.getElementById('statusFilter');
         if (statusFilter) {
-            statusFilter.addEventListener('change', () => filtrarEExibirNoticias(noticias));
+            statusFilter.addEventListener('change', () => {
+                console.log('Status alterado:', statusFilter.value);
+                filtrarEExibirNoticias();
+            });
         }
 
         // Configurar listeners para tabs
         document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.addEventListener('click', async (e) => {
+                // Remover classe active de todos os botões
+                document.querySelectorAll('.tab-btn').forEach(b =>
+                    b.classList.remove('active')
+                );
+
+                // Adicionar classe active ao botão clicado
                 e.target.classList.add('active');
-                filtrarEExibirNoticias(noticias);
+
+                // Recarregar notícias quando mudar a tab
+                await carregarNoticias();
             });
         });
+
     } catch (error) {
         console.error('Erro na inicialização:', error);
         mostrarMensagem('Erro ao inicializar a página', 'error');

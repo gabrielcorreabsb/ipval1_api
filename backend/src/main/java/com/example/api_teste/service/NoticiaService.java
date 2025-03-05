@@ -11,6 +11,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -25,21 +26,78 @@ public class NoticiaService {
     @Autowired
     private IUsuario usuarioRepository;
 
+    @Autowired
+    private FirebaseStorageService firebaseStorageService;
+
     @Transactional
-    public NoticiaDTO criar(Noticia noticia, Integer usuarioId) {
-        Usuario usuario = usuarioRepository.findById(usuarioId)
-                .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
+    public NoticiaDTO criar(Noticia noticia, MultipartFile imagem, Integer usuarioId) {
+        try {
+            // Busca o usuário
+            Usuario autor = usuarioRepository.findById(usuarioId)
+                    .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
-        noticia.setAutor(usuario);
-        noticia.setAprovada(false);
-        noticia.setDataCriacao(LocalDateTime.now());
+            // Faz o upload da imagem para o Firebase
+            String imageUrl = firebaseStorageService.uploadImage(imagem);
 
-        Noticia savedNoticia = noticiaRepository.save(noticia);
-        return new NoticiaDTO(savedNoticia);
+            // Configura a notícia
+            noticia.setAutor(autor);
+            noticia.setImagemUrl(imageUrl);
+            noticia.setDataCriacao(LocalDateTime.now());
+            noticia.setAprovada(false); // por padrão, notícia não está aprovada
+
+            // Salva a notícia
+            Noticia noticiaSalva = noticiaRepository.save(noticia);
+
+            return new NoticiaDTO(noticiaSalva);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao criar notícia: " + e.getMessage());
+        }
+    }
+
+    public NoticiaDTO atualizarNoticia(Integer id, String titulo, String conteudo, MultipartFile imagem) {
+        // Buscar a notícia existente
+        Noticia noticia = noticiaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Notícia não encontrada"));
+
+        // Atualizar os campos básicos
+        noticia.setTitulo(titulo);
+        noticia.setConteudo(conteudo);
+
+        // Se uma nova imagem foi enviada
+        if (imagem != null && !imagem.isEmpty()) {
+            try {
+                // Se já existe uma imagem antiga, deletar do Firebase
+                if (noticia.getImagemUrl() != null && !noticia.getImagemUrl().isEmpty()) {
+                    firebaseStorageService.deleteFile(noticia.getImagemUrl());
+                }
+
+                // Fazer upload da nova imagem
+                String imageUrl = firebaseStorageService.uploadImage(imagem);
+                noticia.setImagemUrl(imageUrl);
+            } catch (Exception e) {
+                throw new RuntimeException("Erro ao processar imagem: " + e.getMessage());
+            }
+        }
+
+
+
+        // Salvar as alterações
+        Noticia noticiaAtualizada = noticiaRepository.save(noticia);
+
+        // Converter para DTO e retornar
+        return new NoticiaDTO(noticiaAtualizada);
     }
 
     public List<NoticiaDTO> listarNoticiasAprovadas() {
         return noticiaRepository.findByAprovadaOrderByDataCriacaoDesc(true).stream()
+                .map(NoticiaDTO::new)
+                .collect(Collectors.toList());
+    }
+
+    public List<NoticiaDTO> listarTodas() {
+        List<Noticia> noticias = noticiaRepository.findAll();
+        return noticias.stream()
                 .map(NoticiaDTO::new)
                 .collect(Collectors.toList());
     }

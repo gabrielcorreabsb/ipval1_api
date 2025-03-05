@@ -5,22 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe7ee837-3f70-4d99-9e20-e1d36c4ade36" name="Changes" comment="v2.5 - Adicionado o back end de notícias!">
-      <change afterPath="$PROJECT_DIR$/../frontend/assets/css/noticias.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/assets/js/noticias.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/noticia.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/api_teste/controller/NoticiaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/api_teste/controller/NoticiaController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/api_teste/dto/NoticiaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/api_teste/dto/NoticiaDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/api_teste/model/Noticia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/api_teste/model/Noticia.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/api_teste/securingweb/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/api_teste/securingweb/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/api_teste/service/NoticiaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/api_teste/service/NoticiaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/api_teste/securingweb/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/api_teste/securingweb/SecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/agenda.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/agenda.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/usuarios.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/usuarios.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/api_teste/controller/NoticiaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/api_teste/controller/NoticiaController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/api_teste/service/NoticiaService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/api_teste/service/NoticiaService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/assets/css/noticias.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/assets/css/noticias.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/assets/js/noticias.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/assets/js/noticias.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +120,7 @@
       <updated>1741116093476</updated>
       <workItem from="1741116094555" duration="2098000" />
       <workItem from="1741118866315" duration="16850000" />
-      <workItem from="1741204889568" duration="4855000" />
+      <workItem from="1741204889568" duration="6676000" />
     </task>
     <task id="LOCAL-00001" summary="Corrigido o application.properties e SecurityConfig">
       <option name="closed" value="true" />

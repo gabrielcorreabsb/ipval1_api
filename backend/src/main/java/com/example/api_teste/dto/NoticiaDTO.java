@@ -20,6 +20,7 @@ public class NoticiaDTO {
     private boolean aprovada;
     private String autorNome;
     private Integer autorId;
+    private String imagemUrl;
 
     public NoticiaDTO(Noticia noticia) {
         this.id = noticia.getId();
@@ -27,6 +28,7 @@ public class NoticiaDTO {
         this.conteudo = noticia.getConteudo();
         this.dataCriacao = noticia.getDataCriacao();
         this.aprovada = noticia.isAprovada();
+        this.imagemUrl = noticia.getImagemUrl();
         if (noticia.getAutor() != null) {
             this.autorNome = noticia.getAutor().getNome();
             this.autorId = noticia.getAutor().getIdUsuario();
