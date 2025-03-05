@@ -470,28 +470,26 @@ function exibirMembros(membros) {
 }
 
 function criarCardMembro(membro) {
-    console.log('=== Início da criação do card ===');
-    console.log('Membro completo:', membro);
-    console.log('Data de nascimento original:', membro.dataNascimento);
-
     const card = document.createElement('div');
     card.className = 'member-card';
 
     let dataFormatada;
     try {
-        // Corrigindo o problema do fuso horário
         const [ano, mes, dia] = membro.dataNascimento.split('-');
         dataFormatada = `${dia}/${mes}/${ano}`;
-
-        console.log('Data formatada final:', dataFormatada);
     } catch (error) {
         console.error('Erro ao formatar data:', error);
         dataFormatada = 'Data inválida';
     }
 
-    // Calcular idade
     const idade = calcularIdade(membro.dataNascimento);
-    console.log('Idade calculada:', idade);
+    const telefoneNumerico = membro.telefone.replace(/\D/g, '');
+
+    // Criar mensagem para WhatsApp
+    const mensagemWhatsApp = encodeURIComponent(
+        `Olá ${membro.nome}, seja bem-vindo à nossa igreja! \n\n` +
+        `Estamos muito felizes em ter você conosco. Que Deus abençoe sua vida!`
+    );
 
     card.innerHTML = `
         <div class="member-info">
@@ -510,6 +508,12 @@ function criarCardMembro(membro) {
             </p>
         </div>
         <div class="member-actions">
+            <a href="https://wa.me/55${telefoneNumerico}?text=${mensagemWhatsApp}" 
+               target="_blank" 
+               class="btn-whatsapp" 
+               title="Enviar mensagem no WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
             ${podeGerenciarMembros() ? `
                 <button onclick="editarMembro(${membro.id})" class="btn-edit" title="Editar">
                     <i class="fas fa-edit"></i>
@@ -755,3 +759,108 @@ function configurarPesquisa() {
 window.abrirModalNovoMembro = abrirModalNovoMembro;
 window.editarMembro = editarMembro;
 window.excluirMembro = excluirMembro;
+
+// Função principal de exportação
+async function exportarMembrosCSV() {
+    try {
+        // 1. Buscar dados
+        const membros = await buscarMembros();
+        if (!membros) return;
+
+        // 2. Preparar dados
+        const dadosFormatados = prepararDadosParaCSV(membros);
+
+        // 3. Gerar CSV
+        const csv = gerarCSV(dadosFormatados);
+
+        // 4. Fazer download
+        downloadCSV(csv);
+
+        mostrarMensagem('Lista de membros exportada com sucesso!', 'success');
+    } catch (error) {
+        console.error('Erro ao exportar membros:', error);
+        mostrarMensagem('Erro ao exportar lista de membros', 'error');
+    }
+}
+
+// Função para buscar membros da API
+async function buscarMembros() {
+    const response = await fazerRequisicao(`${CONFIG.API_URL}/membros`);
+    if (!response) return null;
+    return response.json();
+}
+
+// Função para preparar dados para o CSV
+function prepararDadosParaCSV(membros) {
+    // Definir cabeçalhos
+    const headers = [
+        'Nome',
+        'Telefone',
+        'Endereço',
+        'Data de Nascimento',
+        'Idade',
+        'E-mail',
+        'Observações'
+    ];
+
+    // Mapear dados dos membros
+    const dados = membros.map(membro => ({
+        Nome: membro.nome,
+        Telefone: formatarTelefone(membro.telefone),
+        Endereço: membro.endereco,
+        'Data de Nascimento': formatarDataCSV(membro.dataNascimento),
+        Idade: `${calcularIdade(membro.dataNascimento)} anos`,
+        'E-mail': membro.email || '',
+        'Observações': membro.observacoes || ''
+    }));
+
+    return { headers, dados };
+}
+
+// Função para gerar CSV usando PapaParse
+function gerarCSV(dadosFormatados) {
+    return Papa.unparse(dadosFormatados.dados, {
+        quotes: true, // Adiciona aspas em todos os campos
+        delimiter: ',',
+        header: true
+    });
+}
+
+// Função para fazer download do arquivo
+function downloadCSV(csv) {
+    // Adicionar BOM para suporte a caracteres especiais
+    const csvContent = '\ufeff' + csv;
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const dataAtual = formatarDataArquivo(new Date());
+    const nomeArquivo = `lista_membros_${dataAtual}.csv`;
+
+    // Criar link e fazer download
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.setAttribute('download', nomeArquivo);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+// Funções auxiliares
+function formatarDataCSV(data) {
+    try {
+        const [ano, mes, dia] = data.split('-');
+        return `${dia}/${mes}/${ano}`;
+    } catch (error) {
+        console.error('Erro ao formatar data:', error);
+        return 'Data inválida';
+    }
+}
+
+function formatarDataArquivo(data) {
+    return data.toLocaleDateString('pt-BR', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+    }).replace(/\//g, '_');
+}
+
+// Adicionar ao escopo global
+window.exportarMembrosCSV = exportarMembrosCSV;

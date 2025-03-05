@@ -13,29 +13,37 @@
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
 </head>
 <body>
-<nav class="main-nav">
+<nav>
   <div class="nav-container">
-    <button class="menu-toggle" aria-label="Menu">
-      <span class="hamburger"></span>
-    </button>
-
-    <div class="menu-container">
-      <ul class="nav-menu">
-        <li><a href="#" class="active"><i class="fas fa-home"></i> Início</a></li>
-        <li><a href="./agenda.html"><i class="fas fa-project-diagram"></i> Agenda</a></li>
-        <li><a href="./usuarios.html"><i class="fas fa-users"></i> Usuários</a></li>
-      </ul>
-
-      <div class="user-section">
-        <span id="userName"></span>
-        <button id="logoutBtn" class="logout-btn">
-          <i class="fas fa-sign-out-alt"></i> Sair
+    <div class="hamburger">
+      <div class="line1"></div>
+      <div class="line2"></div>
+      <div class="line3"></div>
+    </div>
+    <ul class="nav-menu">
+      <li><a href="./home.html">Início</a></li>
+      <li><a href="./membros.html">Membros</a></li>
+      <li><a href="./usuarios.html">Usuários</a></li>
+      <li><a href="./agenda.html">Eventos</a></li>
+      <div class="mobile-user-section">
+        <button onclick="abrirModalNovoEvento()" class="btn btn-primary">
+          Novo Evento
+        </button>
+        <button id="logoutBtnMobile" class="logout-btn">
+          Sair
         </button>
       </div>
+    </ul>
+    <div class="user-section desktop-user-section">
+      <button onclick="abrirModalNovoEvento()" class="btn btn-primary">
+        Novo Evento
+      </button>
+      <button id="logoutBtn" class="logout-btn">
+        Sair
+      </button>
     </div>
   </div>
 </nav>
-<div class="menu-overlay"></div>
 
 <div class="container">
   <header class="content-header">

@@ -11,32 +11,43 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-<nav class="main-nav">
+<nav>
   <div class="nav-container">
-    <button class="menu-toggle" aria-label="Menu">
-      <span class="hamburger"></span>
-    </button>
-
-    <div class="menu-container">
-      <ul class="nav-menu">
-        <li><a href="#" class="active"><i class="fas fa-home"></i> Início</a></li>
-        <li><a href="./agenda.html"><i class="fas fa-project-diagram"></i> Agenda</a></li>
-        <li><a href="./usuarios.html"><i class="fas fa-users"></i> Usuários</a></li>
-      </ul>
-
-      <div class="user-section">
+    <div class="hamburger">
+      <div class="line1"></div>
+      <div class="line2"></div>
+      <div class="line3"></div>
+    </div>
+    <ul class="nav-menu">
+      <li><a href="./home.html">Início</a></li>
+      <li><a href="./membros.html">Membros</a></li>
+      <li><a href="./usuarios.html">Usuários</a></li>
+      <li><a href="./agenda.html">Eventos</a></li>
+      <div class="mobile-user-section">
         <button onclick="abrirModalNovoMembro()" class="btn btn-primary">
-          <i class="fas fa-plus"></i> Novo Membro
+          Novo Membro
         </button>
-        <span id="userName"></span>
-        <button id="logoutBtn" class="logout-btn">
-          <i class="fas fa-sign-out-alt"></i> Sair
+        <button onclick="exportarMembrosCSV()" class="btn btn-export">
+          Exportar Lista
+        </button>
+        <button id="logoutBtnMobile" class="logout-btn">
+          Sair
         </button>
       </div>
+    </ul>
+    <div class="user-section desktop-user-section">
+      <button onclick="abrirModalNovoMembro()" class="btn btn-primary">
+        Novo Membro
+      </button>
+      <button onclick="exportarMembrosCSV()" class="btn btn-export">
+        Exportar Lista
+      </button>
+      <button id="logoutBtn" class="logout-btn">
+        Sair
+      </button>
     </div>
   </div>
 </nav>
-<div class="menu-overlay"></div>
 
 <div class="container">
   <header class="content-header">
@@ -56,6 +67,6 @@
 <script src="./assets/js/auth.js"></script>
 <script src="./assets/js/membros.js"></script>
 <script src="./assets/js/menu.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 </body>
 </html>

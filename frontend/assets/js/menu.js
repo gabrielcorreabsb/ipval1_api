@@ -1,54 +1,24 @@
-class Menu {
-    constructor() {
-        this.menuToggle = document.querySelector('.menu-toggle');
-        this.menuContainer = document.querySelector('.menu-container');
-        this.navLinks = document.querySelectorAll('.nav-menu a');
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
 
-        this.init();
+// Toggle do menu hamburguer
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+});
+
+// Fecha o menu ao clicar em um link
+document.querySelectorAll('.nav-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+    });
+});
+
+// Fecha o menu ao clicar fora
+document.addEventListener('click', (e) => {
+    if (!navMenu.contains(e.target) && !hamburger.contains(e.target) && navMenu.classList.contains('active')) {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
     }
-
-    init() {
-        this.addToggleListener();
-        this.addLinksListener();
-        this.addOutsideClickListener();
-    }
-
-    addToggleListener() {
-        this.menuToggle.addEventListener('click', () => {
-            this.toggleMenu();
-        });
-    }
-
-    addLinksListener() {
-        this.navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                this.closeMenu();
-            });
-        });
-    }
-
-    addOutsideClickListener() {
-        document.addEventListener('click', (e) => {
-            if (this.menuContainer.classList.contains('active') &&
-                !this.menuContainer.contains(e.target) &&
-                !this.menuToggle.contains(e.target)) {
-                this.closeMenu();
-            }
-        });
-    }
-
-    toggleMenu() {
-        this.menuToggle.classList.toggle('active');
-        this.menuContainer.classList.toggle('active');
-    }
-
-    closeMenu() {
-        this.menuToggle.classList.remove('active');
-        this.menuContainer.classList.remove('active');
-    }
-}
-
-// Inicializar o menu quando o DOM estiver carregado
-document.addEventListener('DOMContentLoaded', () => {
-    new Menu();
 });
