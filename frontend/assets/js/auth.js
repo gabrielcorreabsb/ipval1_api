@@ -1,4 +1,11 @@
 // auth.js
+
+async function handleLoginSuccess(response) {
+    console.log('Dados do usuário:', response); // Para debug
+    localStorage.setItem('token', response.token);
+    localStorage.setItem('user', JSON.stringify(response.user));
+}
+
 const AuthService = {
     API_URL: `${CONFIG.API_URL}/auth`,
 
@@ -44,10 +51,6 @@ const AuthService = {
         return userStr ? JSON.parse(userStr) : null;
     },
 
-    isPastor() {
-        const user = this.getUser();
-        return user && user.cargo === 'PASTOR';
-    },
 
     async logout() {
         try {

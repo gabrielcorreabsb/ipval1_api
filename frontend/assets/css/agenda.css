@@ -1,0 +1,549 @@
+:root {
+    --primary: #667eea;
+    --secondary: #764ba2;
+    --background: #1a1a1a;
+    --text: #ffffff;
+    --card-bg: rgba(255, 255, 255, 0.1);
+    --hover-bg: rgba(255, 255, 255, 0.15);
+    --border: rgba(255, 255, 255, 0.2);
+    --nav-bg: rgba(255, 255, 255, 0.05);
+    --error: #ff4d4d;
+    --success: #4caf50;
+    --warning: #ff9800;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: var(--background);
+    min-height: 100vh;
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navegação */
+.main-nav {
+    background: var(--nav-bg);
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--text);
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+}
+
+.main-nav a:hover {
+    background: var(--hover-bg);
+    transform: translateY(-2px);
+}
+
+.main-nav a.active {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-color: transparent;
+}
+
+/* Container Principal */
+.container {
+    max-width: 1200px;
+    margin: 100px auto 2rem; /* Aumentado de 60px para 100px para dar mais espaço abaixo do menu */
+    padding: 0 20px;
+    height: calc(100vh - 120px); /* Ajustado para o novo margin-top */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Cabeçalho de Conteúdo */
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem; /* Reduzido de 2rem para 1rem */
+    padding: 0.5rem 0; /* Reduzido de 1rem para 0.5rem */
+}
+
+.content-header h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Botões */
+.btn {
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: var(--text);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* Barra de Pesquisa */
+.search-bar {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.search-bar input,
+.search-bar select {
+    padding: 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    background: var(--card-bg);
+    color: var(--text);
+    font-size: 1rem;
+}
+
+.search-bar input {
+    flex: 2;
+}
+
+.search-bar select {
+    flex: 1;
+}
+
+/* Alternador de Visualização */
+.view-toggle {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem; /* Reduzido de 1rem para 0.5rem */
+}
+
+.view-btn {
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.view-btn.active {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-color: transparent;
+}
+
+/* Container do Calendário */
+.calendar-container {
+    flex: 1; /* Permite que o calendário ocupe todo o espaço disponível */
+    padding: 15px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin: 10px 0;
+    min-height: 0; /* Importante para evitar overflow */
+    display: flex; /* Adiciona display flex */
+    flex-direction: column; /* Organiza o conteúdo em coluna */
+}
+
+/* Estilos do Calendário */
+.fc {
+    flex: 1; /* Permite que o calendário ocupe todo o espaço disponível */
+    min-height: 0; /* Importante para evitar overflow */
+}
+
+.fc .fc-toolbar {
+    padding: 15px;
+    margin-bottom: 20px !important;
+}
+
+.fc .fc-toolbar-title {
+    font-size: 1.5em !important;
+    font-weight: 600;
+    color: var(--text) !important;
+}
+
+.fc .fc-button {
+    background: var(--card-bg) !important;
+    border: 1px solid var(--border) !important;
+    color: var(--text) !important;
+    padding: 8px 15px !important;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.fc .fc-button:hover {
+    background: var(--hover-bg) !important;
+    border-color: var(--primary) !important;
+}
+
+.fc .fc-button-primary:not(:disabled).fc-button-active,
+.fc .fc-button-primary:not(:disabled):active {
+    background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
+    border-color: transparent !important;
+}
+
+.fc td, .fc th {
+    border: 1px solid var(--border) !important;
+}
+
+.fc .fc-daygrid-day {
+    min-height: auto !important; /* Remove a altura mínima fixa */
+}
+
+.fc .fc-daygrid-day-frame {
+    padding: 4px !important;
+}
+
+.fc-event {
+    background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
+    border: none !important;
+    padding: 4px 6px !important;
+    margin: 2px 0 !important;
+    border-radius: 4px !important;
+    font-size: 0.85em !important;
+    cursor: pointer !important;
+}
+
+.fc-event:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+}
+
+.fc .fc-col-header-cell {
+    background: var(--hover-bg);
+    padding: 10px 0 !important;
+    font-weight: 600;
+}
+
+.fc .fc-col-header-cell-cushion {
+    color: var(--text) !important;
+    text-decoration: none !important;
+}
+
+.fc .fc-daygrid-day-number {
+    padding: 8px !important;
+    font-weight: 500;
+    color: var(--text) !important;
+    text-decoration: none !important;
+}
+
+.fc .fc-day-today {
+    background: var(--hover-bg) !important;
+}
+
+.fc .fc-day-other .fc-daygrid-day-number {
+    opacity: 0.5;
+}
+
+.events-list-container {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+/* Lista de Eventos */
+.events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.event-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.event-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.event-date {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.event-details {
+    margin: 1rem 0;
+}
+
+.event-location {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* SweetAlert2 Customização */
+.swal2-popup {
+    background: var(--background) !important;
+    color: var(--text) !important;
+    border: 1px solid var(--border);
+}
+
+.swal2-title {
+    color: var(--text) !important;
+}
+
+.swal2-html-container {
+    color: var(--text) !important;
+}
+
+.swal2-input,
+.swal2-textarea {
+    background: var(--card-bg) !important;
+    color: var(--text) !important;
+    border: 1px solid var(--border) !important;
+}
+
+.swal2-input:focus,
+.swal2-textarea:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.25) !important;
+}
+
+/* Estilos do Menu Hamburguer */
+.menu-toggle {
+    display: none; /* Esconde por padrão em desktop */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.hamburger {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--text);
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background: var(--text);
+    transition: all 0.3s ease-in-out;
+}
+
+.hamburger::before {
+    transform: translateY(-8px);
+}
+
+.hamburger::after {
+    transform: translateY(8px);
+}
+
+.menu-toggle.active .hamburger {
+    background: transparent;
+}
+
+.menu-toggle.active .hamburger::before {
+    transform: rotate(45deg);
+}
+
+.menu-toggle.active .hamburger::after {
+    transform: rotate(-45deg);
+}
+
+/* Adicione/Atualize estas classes */
+.menu-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.user-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: auto; /* Isso empurra a seção do usuário para a direita */
+}
+
+.logout-btn {
+    background: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: #fff;
+    color: #333;
+}
+
+.logout-btn i {
+    font-size: 16px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .main-nav a {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .content-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .search-bar {
+        flex-direction: column;
+    }
+
+    .calendar-container {
+        height: calc(100vh - 180px);
+        margin: 10px 0;
+        padding: 10px;
+    }
+
+    .fc .fc-toolbar {
+        padding: 10px;
+        margin-bottom: 10px !important;
+    }
+
+    .fc .fc-toolbar-title {
+        font-size: 1.2em !important;
+    }
+
+    .fc .fc-button {
+        padding: 6px 12px !important;
+        font-size: 0.9em !important;
+    }
+
+    .fc .fc-daygrid-day {
+        min-height: 80px !important;
+    }
+
+    .calendar-container {
+        padding: 10px;
+        margin: 5px 0;
+    }
+
+    .fc .fc-toolbar {
+        padding: 5px;
+        margin-bottom: 5px !important;
+    }
+
+    .menu-toggle {
+        display: block;
+        position: fixed;
+        top: 10px;
+        right: 20px;
+    }
+
+
+
+/* Animações */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.event-card {
+    animation: fadeIn 0.5s ease-out;
+}}

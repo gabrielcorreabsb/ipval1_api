@@ -6,21 +6,33 @@
   <title>Menu com Logo</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/menu.css">
+
 </head>
 <body>
 <nav class="main-nav">
   <div class="nav-container">
-    <ul>
-      <li><a href="#" class="active"><i class="fas fa-home"></i> Início</a></li>
-      <li><a href="#"><i class="fas fa-project-diagram"></i> Projetos</a></li>
-      <li><a href="./usuarios.html"><i class="fas fa-users"></i> Usuários</a></li>
-    </ul>
-    <div class="user-section">
-      <span id="userName"></span>
-      <button id="logoutBtn" class="logout-btn">
-        <i class="fas fa-sign-out-alt"></i> Sair
-      </button>
+    <!-- Botão hamburguer -->
+    <button class="menu-toggle" aria-label="Menu">
+      <span class="hamburger"></span>
+    </button>
+
+    <!-- Menu container -->
+    <div class="menu-container">
+      <ul class="nav-menu">
+        <li><a href="#" class="active"><i class="fas fa-home"></i> Início</a></li>
+        <li><a href="./agenda.html"><i class="fas fa-project-diagram"></i> Agenda</a></li>
+        <li><a href="./usuarios.html"><i class="fas fa-users"></i> Usuários</a></li>
+      </ul>
+
+      <!-- Seção do usuário -->
+      <div class="user-section">
+        <span id="userName"></span>
+        <button id="logoutBtn" class="logout-btn">
+          <i class="fas fa-sign-out-alt"></i> Sair
+        </button>
+      </div>
     </div>
   </div>
 </nav>
@@ -34,4 +46,5 @@
 <script src="./assets/js/config.js"></script>
 <script src="./assets/js/auth.js"></script>
 <script src="./assets/js/home.js"></script>
+<script src="./assets/js/menu.js"></script>
 </html>
