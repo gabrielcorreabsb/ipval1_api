@@ -57,15 +57,28 @@ public class SecurityConfig {
                         // Primeiro, permitir OPTIONS para CORS preflight
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         // Endpoints públicos da API
-                        .requestMatchers("/api/auth/login").permitAll()
-                        .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/projetos").permitAll()
+                                .requestMatchers("/api/auth/login").permitAll()
+                                .requestMatchers("/api/auth/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/api/projetos").permitAll()
 
-                        // Adicionar permissões para endpoints de usuários
-                        .requestMatchers(HttpMethod.GET, "/api/usuarios").hasAnyRole("PASTOR", "USER")
-                        .requestMatchers(HttpMethod.POST, "/api/usuarios").hasRole("PASTOR")
-                        .requestMatchers(HttpMethod.PUT, "/api/usuarios/**").hasRole("PASTOR")
-                        .requestMatchers(HttpMethod.DELETE, "/api/usuarios/**").hasRole("PASTOR")
+// Permissões para endpoints de usuários
+                                .requestMatchers(HttpMethod.GET, "/api/usuarios").hasAnyRole("PASTOR", "USER")
+                                .requestMatchers(HttpMethod.POST, "/api/usuarios").hasRole("PASTOR")
+                                .requestMatchers(HttpMethod.PUT, "/api/usuarios/**").hasRole("PASTOR")
+                                .requestMatchers(HttpMethod.DELETE, "/api/usuarios/**").hasRole("PASTOR")
+
+// Permissões para endpoints de membros
+                                .requestMatchers(HttpMethod.GET, "/api/membros/**").hasAnyRole("BOASVINDAS", "PASTOR")
+                                .requestMatchers(HttpMethod.POST, "/api/membros").hasAnyRole("BOASVINDAS", "PASTOR")
+                                .requestMatchers(HttpMethod.PUT, "/api/membros/**").hasAnyRole("BOASVINDAS", "PASTOR")
+                                .requestMatchers(HttpMethod.DELETE, "/api/membros/**").hasRole("PASTOR")
+
+// Permissões para endpoints de agenda/eventos
+                                .requestMatchers(HttpMethod.GET, "/api/agenda/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/api/agenda/**").hasRole("PASTOR")
+                                .requestMatchers(HttpMethod.PUT, "/api/agenda/**").hasRole("PASTOR")
+                                .requestMatchers(HttpMethod.DELETE, "/api/agenda/**").hasRole("PASTOR")
+
 
                         // Recursos estáticos
                         .requestMatchers(
@@ -74,6 +87,9 @@ public class SecurityConfig {
                                 "/login.html",
                                 "/home.html",
                                 "/novo_projeto.html",
+                                "/agenda.html",
+                                "/usuarios.html",
+
                                 "/assets/**",
                                 "/css/**",
                                 "/js/**",
