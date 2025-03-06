@@ -1,5 +1,18 @@
 // membros.js
+let configuracaoGlobal = null;
 
+// Configurar botão de logout
+const logoutBtn = document.getElementById('logoutBtn');
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', async () => {
+        try {
+            await AuthService.logout();
+        } catch (error) {
+            console.error('Erro ao fazer logout:', error);
+            mostrarMensagem('Erro ao fazer logout', 'error');
+        }
+    });
+}
 function mostrarMensagem(texto, tipo) {
     Swal.fire({
         text: texto,
@@ -169,10 +182,24 @@ async function verificarAutenticacao() {
     return true;
 }
 
+async function carregarConfiguracoes() {
+    try {
+        const response = await fazerRequisicao(`${CONFIG.API_URL}/configuracoes`);
+        if (response) {
+            configuracaoGlobal = await response.json();
+            console.log('Configurações carregadas:', configuracaoGlobal);
+        }
+    } catch (error) {
+        console.error('Erro ao carregar configurações:', error);
+        mostrarMensagem('Erro ao carregar configurações', 'error');
+    }
+}
+
 // Inicialização
 document.addEventListener('DOMContentLoaded', async () => {
     if (!await verificarAutenticacao()) return;
 
+    await carregarConfiguracoes(); // Carregar configurações primeiro
     await carregarMembros();
     configurarPesquisa();
     verificarPermissoes();
@@ -485,11 +512,17 @@ function criarCardMembro(membro) {
     const idade = calcularIdade(membro.dataNascimento);
     const telefoneNumerico = membro.telefone.replace(/\D/g, '');
 
-    // Criar mensagem para WhatsApp
-    const mensagemWhatsApp = encodeURIComponent(
-        `Olá ${membro.nome}, seja bem-vindo à nossa igreja! \n\n` +
-        `Estamos muito felizes em ter você conosco. Que Deus abençoe sua vida!`
-    );
+    // Criar mensagem para WhatsApp usando a mensagem personalizada das configurações
+    let mensagemWhatsApp = 'Olá, seja bem-vindo à nossa igreja!'; // Mensagem padrão
+
+    if (configuracaoGlobal && configuracaoGlobal.mensagemWhatsapp) {
+        // Substitui placeholders na mensagem
+        mensagemWhatsApp = configuracaoGlobal.mensagemWhatsapp
+            .replace('{nome}', membro.nome)
+            .replace('{igreja}', configuracaoGlobal.nomeSite || 'nossa igreja');
+    }
+
+    mensagemWhatsApp = encodeURIComponent(mensagemWhatsApp);
 
     card.innerHTML = `
         <div class="member-info">

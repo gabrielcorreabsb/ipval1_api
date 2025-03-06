@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe7ee837-3f70-4d99-9e20-e1d36c4ade36" name="Changes" comment="v2.5 - Adicionado o back end de notícias!" />
+    <list default="true" id="fe7ee837-3f70-4d99-9e20-e1d36c4ade36" name="Changes" comment="v2.5 - Adicionado o back end de notícias!">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ipval1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/ipval1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/assets/js/membros.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/assets/js/membros.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/configuracoes.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/configuracoes.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -109,7 +115,7 @@
       <updated>1741116093476</updated>
       <workItem from="1741116094555" duration="2098000" />
       <workItem from="1741118866315" duration="16850000" />
-      <workItem from="1741204889568" duration="14058000" />
+      <workItem from="1741204889568" duration="19560000" />
     </task>
     <task id="LOCAL-00001" summary="Corrigido o application.properties e SecurityConfig">
       <option name="closed" value="true" />
