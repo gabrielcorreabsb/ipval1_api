@@ -1,3 +1,16 @@
+// Configurar botão de logout
+const logoutBtn = document.getElementById('logoutBtn');
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', async () => {
+        try {
+            await AuthService.logout();
+        } catch (error) {
+            console.error('Erro ao fazer logout:', error);
+            mostrarMensagem('Erro ao fazer logout', 'error');
+        }
+    });}
+
+
 // Funções de utilidade e configuração inicial
 function getUsuarioLogado() {
     try {

@@ -64,7 +64,7 @@ const AuthService = {
             console.error('Erro no logout:', error);
         } finally {
             this.clearAuthData();
-            window.location.href = '/login.html';
+            window.location.href = './login.html';
         }
     },
 

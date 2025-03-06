@@ -86,6 +86,12 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.PUT, "/api/noticias/**").hasAnyRole("OUTROS", "PASTOR")
                                 .requestMatchers(HttpMethod.DELETE, "/api/noticias/**").hasRole("PASTOR")
 
+                                // Permissões para endpoints de Configuracoes
+                                .requestMatchers(HttpMethod.GET, "/api/configuracoes/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/api/configuracoes").hasAnyRole("PASTOR")
+                                .requestMatchers(HttpMethod.PUT, "/api/configuracoes/**").hasAnyRole("PASTOR")
+                                .requestMatchers(HttpMethod.DELETE, "/api/configuracoes/**").hasRole("PASTOR")
+
 
                         // Recursos estáticos
                         .requestMatchers(
