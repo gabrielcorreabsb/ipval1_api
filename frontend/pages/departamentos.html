@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Igreja Presbiteriana do Valparaíso 1</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="../assets/css/index.css">
+    <link rel="stylesheet" href="../assets/css/departamentos.css">
+</head>
+<body>
+<!-- Header -->
+<header class="header">
+    <div class="header-container">
+        <div class="logo">
+            <img src="../assets/imgs/logo.png" alt="Logo Igreja Presbiteriana">
+        </div>
+        <nav class="main-nav">
+            <button class="mobile-menu-btn">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-list">
+                <li><a href="./pages/departamentos.html" data-page="departamentos">Departamentos</a></li>
+                <li><a href="./pages/agenda.html" data-page="agenda">Agenda</a></li>
+                <li><a href="./pages/contribua.html" data-page="contribua">Contribua</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<main class="main-content">
+    <div class="departamentos-container">
+        <div class="page-title">
+            <h1>Departamentos</h1>
+       </div>
+
+        <div class="departamentos-grid" id="departamentosGrid">
+            <!-- Cards serão inseridos via JavaScript -->
+        </div>
+    </div>
+</main>
+
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-info">
+                <!-- Será preenchido dinamicamente -->
+            </div>
+            <div class="footer-social">
+                <h3>Redes Sociais</h3>
+                <div class="social-links">
+                    <!-- Será preenchido dinamicamente -->
+                </div>
+            </div>
+            <div class="footer-contact">
+                <!-- Será preenchido dinamicamente -->
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span id="ano-atual">2024</span> Igreja Presbiteriana do Valparaíso 1. Todos os direitos reservados.</p>
+        </div>
+    </div>
+</footer>
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/departamentos.js"></script>
+</body>
+</html>

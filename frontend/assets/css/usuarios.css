@@ -316,6 +316,7 @@ body {
     gap: 15px;
     margin-left: auto; /* Isso empurra a seção do usuário para a direita */
 }
+
 /* Responsividade */
 @media (max-width: 768px) {
     .nav-container {
@@ -346,6 +347,7 @@ body {
     .users-grid {
         grid-template-columns: 1fr;
     }
+
     .menu-toggle {
         display: block;
         position: fixed;

@@ -316,7 +316,7 @@ async function editarUsuario(idUsuario) {
             return;
         }
 
-        const { value: formValues } = await Swal.fire({
+        const {value: formValues} = await Swal.fire({
             title: 'Editar Usuário',
             html: `
                 <input id="swal-nome" class="swal2-input" placeholder="Nome" value="${usuario.nome || ''}">
@@ -379,7 +379,7 @@ async function editarUsuario(idUsuario) {
 
 async function abrirModalNovoUsuario() {
     try {
-        const { value: formValues } = await Swal.fire({
+        const {value: formValues} = await Swal.fire({
             title: 'Novo Usuário',
             html: `
                 <input id="swal-nome" class="swal2-input" placeholder="Nome">
@@ -421,7 +421,7 @@ async function abrirModalNovoUsuario() {
                     return false;
                 }
 
-                return { nome, login, senha, cargo };
+                return {nome, login, senha, cargo};
             }
         });
 
@@ -462,4 +462,5 @@ if (logoutBtn) {
             console.error('Erro ao fazer logout:', error);
             mostrarMensagem('Erro ao fazer logout', 'error');
         }
-    });}
+    });
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Igreja Presbiteriana do Valparaíso 1</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="./assets/css/index.css">
+</head>
+<body>
+<!-- Header -->
+<header class="header">
+    <div class="header-container">
+        <div class="logo">
+            <img src="./assets/imgs/logo.png" alt="Logo Igreja Presbiteriana">
+        </div>
+        <nav class="main-nav">
+            <button class="mobile-menu-btn">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-list">
+                <li><a href="./pages/departamentos.html" data-page="departamentos">Departamentos</a></li>
+                <li><a href="./pages/agenda.html" data-page="agenda">Agenda</a></li>
+                <li><a href="./pages/contribua.html" data-page="contribua">Contribua</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="welcome-section">
+    <div class="container">
+        <div class="welcome-content">
+            <h1>Igreja Presbiteriana do Valparaíso 1</h1>
+            <div class="divider"></div>
+            <h2>Fé que transforma, comunidade que acolhe.</h2>
+        </div>
+    </div>
+</section>
+
+<section class="about-section" id="sobre">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-title">
+                <h2>Sobre Nós</h2>
+                <div class="title-divider"></div>
+            </div>
+            <div class="about-content">
+                <div id="sobreIgrejaContent">
+                    <!-- Será preenchido via JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="fundamentos">
+    <div class="container">
+        <h2>No Que Cremos</h2>
+        <div class="fundamentos-grid">
+            <div class="fundamento-card" onclick="mostrarIgrejaReformada()">
+                <i class="fas fa-church"></i>
+                <h3>Igreja Reformada</h3>
+                <p>Conheça nossa história e identidade</p>
+            </div>
+
+            <div class="fundamento-card" onclick="mostrarDoutrina()">
+                <i class="fas fa-book-bible"></i>
+                <h3>Nossa Doutrina</h3>
+                <p>Conheça os fundamentos da nossa fé</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="noticias">
+    <div class="container">
+        <div class="noticias-header">
+        </div>
+
+        <div id="newsGrid" class="noticias-feed">
+            <!-- As notícias serão inseridas aqui dinamicamente -->
+        </div>
+    </div>
+</section>
+
+<!-- Hero Section -->
+<!-- Hero Section com duas colunas -->
+<section class="hero">
+    <div class="hero-grid">
+        <!-- Coluna 1: Slider/Banner -->
+        <div class="hero-slider">
+            <div class="slide active">
+                <div class="overlay"></div> <!-- Adicionando div para o overlay -->
+                <div class="slide-content">
+                    <h1>Uma igreja para você e sua família experimentarem o amor de Deus</h1>
+                    <a href="https://g.co/kgs/C2ByTBG" class="cta-button">Venha fazer parte da nossa família!</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Coluna 2: Programação e Endereço -->
+        <div class="hero-info">
+            <div class="programacao-container">
+                <h2>Programação Semanal</h2>
+                <div id="horariosCultos" class="programacao-lista">
+                    <!-- Será preenchido via JavaScript -->
+                </div>
+            </div>
+
+            <div class="endereco-container">
+                <h2>Localização</h2>
+                <div id="enderecoIgreja" class="endereco-info">
+                    <!-- Será preenchido via JavaScript -->
+                </div>
+                <div class="contato-info" id="contatoInfo">
+                    <!-- Será preenchido via JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-info">
+                <!-- Será preenchido dinamicamente -->
+            </div>
+            <div class="footer-social">
+                <h3>Redes Sociais</h3>
+                <div class="social-links">
+                    <!-- Será preenchido dinamicamente -->
+                </div>
+            </div>
+            <div class="footer-contact">
+                <!-- Será preenchido dinamicamente -->
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span id="ano-atual">2024</span> Igreja Presbiteriana do Valparaíso 1. Todos os direitos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="./assets/js/config.js"></script>
+<script src="./assets/js/auth.js"></script>
+<script src="./assets/js/index.js"></script>
+</body>
+</html>

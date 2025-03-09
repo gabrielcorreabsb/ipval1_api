@@ -281,4 +281,5 @@ if (logoutBtn) {
             console.error('Erro ao fazer logout:', error);
             mostrarMensagem('Erro ao fazer logout', 'error');
         }
-    });}
+    });
+}

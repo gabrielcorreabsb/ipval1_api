@@ -1,0 +1,130 @@
+:root {
+    --color-primary: #4A8B4A;
+    --color-secondary: #F0F7F0;
+    --color-text: #2C3E50;
+    --color-text-light: #607D8B;
+    --shadow-soft: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+.main-content {
+    padding: 40px 20px;
+}
+
+.departamentos-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.page-title h1 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--color-primary);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.page-title p {
+    color: var(--color-text-light);
+}
+
+.departamentos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.departamento-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s ease;
+}
+
+.departamento-card:hover {
+    transform: translateY(-5px);
+}
+
+.departamento-header {
+    background: var(--color-primary);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.departamento-header i {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.departamento-header h3 {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.departamento-content {
+    padding: 20px;
+}
+
+.departamento-content p {
+    margin: 0 0 15px 0;
+    color: var(--color-text);
+}
+
+.horario, .lideranca {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+}
+
+.atividades {
+    margin-top: 20px;
+}
+
+.atividades h4 {
+    color: var(--color-primary);
+    margin-bottom: 10px;
+}
+
+.atividades ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.atividades li {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--color-secondary);
+    color: var(--color-text);
+}
+
+.atividades li:last-child {
+    border-bottom: none;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding: 20px 10px;
+    }
+
+    .page-title h1 {
+        font-size: 2rem;
+    }
+
+    .departamentos-grid {
+        grid-template-columns: 1fr;
+    }
+}

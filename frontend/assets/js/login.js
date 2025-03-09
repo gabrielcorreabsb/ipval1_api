@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Redirecionar se já estiver autenticado
     if (AuthService.isAuthenticated()) {
-        window.location.replace('/home.html');
+        window.location.replace('./home.html');
         return;
     }
 

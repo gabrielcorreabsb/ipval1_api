@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 userNameElement.textContent = user.nome;
             }
         }
-}
+    }
 });
 
 

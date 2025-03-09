@@ -16,7 +16,7 @@ const AuthService = {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ login, senha })
+                body: JSON.stringify({login, senha})
             });
 
             if (!response.ok) {

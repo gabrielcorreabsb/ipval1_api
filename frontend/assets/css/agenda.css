@@ -531,19 +531,19 @@ body {
     }
 
 
-
-/* Animações */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
+    /* Animações */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+
+    .event-card {
+        animation: fadeIn 0.5s ease-out;
     }
 }
-
-.event-card {
-    animation: fadeIn 0.5s ease-out;
-}}

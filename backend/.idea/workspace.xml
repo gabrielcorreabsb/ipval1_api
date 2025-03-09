@@ -4,12 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe7ee837-3f70-4d99-9e20-e1d36c4ade36" name="Changes" comment="v2.5 - Adicionado o back end de notícias!">
+    <list default="true" id="fe7ee837-3f70-4d99-9e20-e1d36c4ade36" name="Changes" comment="v2.6 - Adicionado o back end de notícias!">
       <change afterPath="$PROJECT_DIR$/src/main/resources/ipval1.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/ipval1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/assets/css/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/assets/css/noticia_visu.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/assets/docs/A_Confissao_de_Fe_de_Westminster.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/assets/docs/Breve_Catecismo_de_Westminster.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/assets/docs/Catecismo_Maior_de_Westminster.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/assets/imgs/ipv1_familia.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/assets/imgs/welcome.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/assets/js/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/assets/js/noticia_visu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/noticia_visu.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/assets/js/membros.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/assets/js/membros.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/agenda.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/agenda.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/assets/css/agenda.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/assets/css/agenda.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/assets/css/membros.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/assets/css/membros.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/assets/css/menu.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/assets/css/menu.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/assets/css/usuarios.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/assets/css/usuarios.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/assets/js/agenda.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/assets/js/agenda.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/assets/js/ata.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/assets/js/ata.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/assets/js/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/assets/js/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/assets/js/configuracoes.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/assets/js/configuracoes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/assets/js/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/assets/js/home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/assets/js/noticias.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/assets/js/noticias.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/assets/js/usuarios.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/assets/js/usuarios.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/configuracoes.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/configuracoes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/membros.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/membros.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/noticia.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/noticia.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/usuarios.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/usuarios.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,27 +76,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Spring Boot.ApiTesteApplication.executor": "Run",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Projetos/Igreja/api_site/backend/src/main/resources",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "editor.preferences.import",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.ApiTesteApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Projetos/Igreja/api_site/backend/src/main/resources&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.import&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Projetos\Igreja\api_site\backend\src\main\resources" />
@@ -115,7 +141,9 @@
       <updated>1741116093476</updated>
       <workItem from="1741116094555" duration="2098000" />
       <workItem from="1741118866315" duration="16850000" />
-      <workItem from="1741204889568" duration="19560000" />
+      <workItem from="1741204889568" duration="20109000" />
+      <workItem from="1741458880160" duration="6072000" />
+      <workItem from="1741485577370" duration="2483000" />
     </task>
     <task id="LOCAL-00001" summary="Corrigido o application.properties e SecurityConfig">
       <option name="closed" value="true" />

@@ -8,7 +8,8 @@ if (logoutBtn) {
             console.error('Erro ao fazer logout:', error);
             mostrarMensagem('Erro ao fazer logout', 'error');
         }
-    });}
+    });
+}
 
 
 // Funções de utilidade e configuração inicial
@@ -119,11 +120,11 @@ let calendar;
 let eventos = [];
 
 // Inicialização do calendário
-document.addEventListener('DOMContentLoaded', async function() {
+document.addEventListener('DOMContentLoaded', async function () {
     if (!await verificarAutenticacao()) return;
 
     const podeGerenciar = isPastor();
-    console.log('Permissões do usuário:', { podeGerenciar });
+    console.log('Permissões do usuário:', {podeGerenciar});
 
     const calendarEl = document.getElementById('calendar');
     calendar = new FullCalendar.Calendar(calendarEl, {
@@ -140,10 +141,10 @@ document.addEventListener('DOMContentLoaded', async function() {
             week: 'Semana',
             day: 'Dia'
         },
-        eventClick: function(info) {
+        eventClick: function (info) {
             mostrarDetalhesEvento(info.event);
         },
-        events: function(info, successCallback, failureCallback) {
+        events: function (info, successCallback, failureCallback) {
             carregarEventos(info.start, info.end)
                 .then(eventos => successCallback(eventos))
                 .catch(error => failureCallback(error));
@@ -432,7 +433,7 @@ async function abrirModalNovoEvento() {
         return;
     }
 
-    const { value: formValues } = await Swal.fire({
+    const {value: formValues} = await Swal.fire({
         title: 'Novo Evento',
         html: `
             <input id="swal-titulo" class="swal2-input" placeholder="Título">
@@ -462,7 +463,7 @@ async function abrirModalNovoEvento() {
                 return false;
             }
 
-            return { titulo, descricao, localEvento, dataInicio, dataFim };
+            return {titulo, descricao, localEvento, dataInicio, dataFim};
         }
     });
 
@@ -496,7 +497,7 @@ async function editarEvento(id) {
 
         console.log('Editando evento:', evento);
 
-        const { value: formValues } = await Swal.fire({
+        const {value: formValues} = await Swal.fire({
             title: 'Editar Evento',
             html: `
                 <div class="swal2-input-group">
@@ -541,7 +542,7 @@ async function editarEvento(id) {
                     return false;
                 }
 
-                return { titulo, descricao, localEvento, dataInicio, dataFim };
+                return {titulo, descricao, localEvento, dataInicio, dataFim};
             }
         });
 

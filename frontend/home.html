@@ -1,48 +1,48 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menu com Logo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="./assets/css/style.css">
-  <link rel="stylesheet" href="./assets/css/menu.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu com Logo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/menu.css">
 
 </head>
 <body>
 <nav>
-  <div class="nav-container">
-    <div class="hamburger">
-      <div class="line1"></div>
-      <div class="line2"></div>
-      <div class="line3"></div>
+    <div class="nav-container">
+        <div class="hamburger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="./home.html">Início</a></li>
+            <li><a href="./membros.html">Membros</a></li>
+            <li><a href="./usuarios.html">Usuários</a></li>
+            <li><a href="./agenda.html">Eventos</a></li>
+            <li><a href="./noticia.html" class="active">Notícias</a></li>
+            <li><a href="./configuracoes.html" class="active">Outros</a></li>
+            <div class="mobile-user-section">
+                <button id="logoutBtnMobile" class="logout-btn">
+                    Sair
+                </button>
+            </div>
+        </ul>
+        <div class="user-section desktop-user-section">
+            <button id="logutBtn" class="logout-btn">
+                Sair
+            </button>
+        </div>
     </div>
-    <ul class="nav-menu">
-      <li><a href="./home.html">Início</a></li>
-      <li><a href="./membros.html">Membros</a></li>
-      <li><a href="./usuarios.html">Usuários</a></li>
-      <li><a href="./agenda.html">Eventos</a></li>
-      <li><a href="./noticia.html" class="active">Notícias</a></li>
-      <li><a href="./configuracoes.html" class="active">Outros</a></li>
-      <div class="mobile-user-section">
-        <button id="logoutBtnMobile" class="logout-btn">
-          Sair
-        </button>
-      </div>
-    </ul>
-    <div class="user-section desktop-user-section">
-      <button id="logutBtn" class="logout-btn">
-        Sair
-      </button>
-    </div>
-  </div>
 </nav>
 
 <div class="logo-container">
-  <div class="logo">
-    <i class="fas fa-church"></i>
-  </div>
+    <div class="logo">
+        <i class="fas fa-church"></i>
+    </div>
 </div>
 </body>
 <script src="./assets/js/config.js"></script>

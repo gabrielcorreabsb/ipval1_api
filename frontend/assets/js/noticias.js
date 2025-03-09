@@ -9,7 +9,8 @@ if (logoutBtn) {
             console.error('Erro ao fazer logout:', error);
             mostrarMensagem('Erro ao fazer logout', 'error');
         }
-    });}
+    });
+}
 
 // Função para converter imagem para WebP
 async function convertToWebP(file) {
@@ -261,7 +262,7 @@ function filtrarEExibirNoticias() {
     const statusFilter = document.getElementById('statusFilter')?.value || '';
     const tabAtiva = document.querySelector('.tab-btn.active')?.dataset?.tab || 'todas';
 
-    console.log('Aplicando filtros:', { searchTerm, statusFilter, tabAtiva });
+    console.log('Aplicando filtros:', {searchTerm, statusFilter, tabAtiva});
 
     let noticiasFiltradas = [...noticias];
 
@@ -359,6 +360,7 @@ function criarCardNoticia(noticia) {
 
     return card;
 }
+
 // Função para criar notícia
 async function criarNoticia(dados) {
     try {
@@ -420,7 +422,7 @@ async function abrirModalNovaNoticia() {
             return;
         }
 
-        const { value: formValues } = await Swal.fire({
+        const {value: formValues} = await Swal.fire({
             title: 'Nova Notícia',
             html: `
                 <div class="modal-content">
@@ -487,7 +489,7 @@ async function editarNoticia(id) {
         const response = await fazerRequisicao(`${CONFIG.API_URL}/noticias/${id}`);
         const noticia = response;
 
-        const { value: formValues } = await Swal.fire({
+        const {value: formValues} = await Swal.fire({
             title: 'Editar Notícia',
             html: `
                 <div class="modal-content">
@@ -615,6 +617,7 @@ async function aprovarNoticia(id) {
         mostrarMensagem('Erro ao aprovar notícia', 'error');
     }
 }
+
 function exibirNoticias(noticiasFiltradas) {
     const grid = document.getElementById('newsGrid');
     if (!grid) {

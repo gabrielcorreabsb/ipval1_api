@@ -42,7 +42,7 @@ async function gerarAta() {
         validarDados(dados);
 
         // Formatar data e hora
-        const horarioInicio = dados.dataReuniao.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+        const horarioInicio = dados.dataReuniao.toLocaleTimeString('pt-BR', {hour: '2-digit', minute: '2-digit'});
         const dataFormatada = dados.dataReuniao.toLocaleDateString('pt-BR', {
             day: 'numeric',
             month: 'long',
@@ -83,7 +83,7 @@ Notas:
 [6] - Encerramento às ${dados.horarioTermino}h.`;
 
         // Criar e fazer download do arquivo
-        const blob = new Blob([conteudoAta], { type: 'text/plain' });
+        const blob = new Blob([conteudoAta], {type: 'text/plain'});
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
@@ -236,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Adicionar máscara de hora
-    document.getElementById('horarioTermino').addEventListener('input', function() {
+    document.getElementById('horarioTermino').addEventListener('input', function () {
         formatarHora(this);
     });
 
