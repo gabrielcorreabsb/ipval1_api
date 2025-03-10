@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Igreja Presbiteriana do Valparaíso 1</title>
+
+  <!-- Font Awesome e Google Fonts -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Email Script -->
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+  <!-- Estilos próprios -->
+  <link rel="stylesheet" href="../assets/css/index.css">
+  <link rel="stylesheet" href="../assets/css/contato.css">
+</head>
+<body>
+<!-- Header -->
+<header class="header">
+  <div class="header-container">
+    <div class="logo">
+      <img src="../assets/imgs/logo.png" alt="Logo Igreja Presbiteriana">
+    </div>
+    <nav class="main-nav">
+      <button class="mobile-menu-btn">
+        <span class="hamburger"></span>
+      </button>
+      <ul class="nav-list">
+        <li><a href="../index.html" data-page="departamentos">Inicio</a></li>
+        <li><a href="./departamentos.html" data-page="departamentos">Departamentos</a></li>
+        <li><a href="./agenda.html" data-page="agenda">Agenda</a></li>
+        <li><a href="./contribua.html" data-page="contribua">Contribua</a></li>
+        <li><a href="./contato.html" class="active">Contato</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="main-content">
+  <div class="contato-container">
+    <div class="page-title">
+      <h1>Entre em Contato</h1>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Seção Pastoral -->
+      <div class="contact-card pastoral">
+        <div class="card-header">
+          <i class="fas fa-praying-hands"></i>
+          <h2>Atendimento Pastoral</h2>
+        </div>
+        <div class="card-content">
+          <p class="highlight-text">Tem algum motivo de oração ou precisa de uma conversa pastoral?</p>
+          <div class="pastor-info">
+            <p><strong>Pastor Lucas Gomes de Souza</strong></p>
+            <div class="contact-item">
+              <i class="fab fa-whatsapp"></i>
+              <a href="https://wa.me/5561981006238" target="_blank">(61) 98100-6238</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Seção Formulário de Contato -->
+      <div class="contact-card form-section">
+        <div class="card-header">
+          <i class="fas fa-envelope"></i>
+          <h2>Envie sua Mensagem</h2>
+        </div>
+        <form id="contactForm" class="contact-form">
+          <div class="form-group">
+            <label for="name">Nome</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Telefone</label>
+            <input type="tel" id="phone" name="phone">
+          </div>
+          <div class="form-group">
+            <label for="subject">Assunto</label>
+            <select id="subject" name="subject" required>
+              <option value="">Selecione um assunto</option>
+              <option value="oracao">Pedido de Oração</option>
+              <option value="visita">Solicitar Visita</option>
+              <option value="informacoes">Informações Gerais</option>
+              <option value="outros">Outros</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Mensagem</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Enviar Mensagem</button>
+        </form>
+      </div>
+
+      <!-- Seção Localização -->
+      <div class="contact-card location">
+        <div class="card-header">
+          <i class="fas fa-map-marker-alt"></i>
+          <h2>Nossa Localização</h2>
+        </div>
+        <div class="card-content">
+          <div class="address-info">
+            <p><strong>Igreja Presbiteriana do Valparaíso 1</strong></p>
+            <p>Endereço da Igreja</p>
+            <p>Valparaíso de Goiás - GO</p>
+          </div>
+          <div class="map-container">
+            <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9514.075857211832!2d-47.97597809395837!3d-16.087085937336045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9359857b24bdb0cd%3A0x3b816190cfa51841!2sIgreja%20Presbiteriana%20de%20Valpara%C3%ADso%201!5e1!3m2!1spt-BR!2sbr!4v1741568131350!5m2!1spt-BR!2sbr"
+                    width="100%"
+                    height="300"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy">
+            </iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- Seção Horários -->
+      <div class="contact-card schedule">
+        <div class="card-header">
+          <i class="fas fa-clock"></i>
+          <h2>Horários de Culto</h2>
+        </div>
+        <div class="card-content">
+          <div class="schedule-item">
+            <h3>Culto Dominical</h3>
+            <p>Domingo às 18:00</p>
+          </div>
+          <div class="schedule-item">
+            <h3>Escola Dominical</h3>
+            <p>Domingo às 09:00</p>
+          </div>
+          <div class="schedule-item">
+            <h3>Reunião de Oração</h3>
+            <p>Quinta-feira às 19:00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-info">
+        <!-- Será preenchido dinamicamente -->
+      </div>
+      <div class="footer-social">
+        <h3>Redes Sociais</h3>
+        <div class="social-links">
+          <!-- Será preenchido dinamicamente -->
+        </div>
+      </div>
+      <div class="footer-contact">
+        <!-- Será preenchido dinamicamente -->
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="ano-atual">2024</span> Igreja Presbiteriana do Valparaíso 1. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/contato.js"></script>
+<script src="../assets/js/footer.js"></script>
+
+</body>
+</html>

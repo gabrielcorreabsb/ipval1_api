@@ -128,3 +128,60 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+.gerar-ata-btn {
+    background-color: #4A8B4A;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    justify-content: center;
+}
+
+.gerar-ata-btn:hover {
+    background-color: #3a6f3a;
+}
+
+.gerar-ata-btn i {
+    font-size: 1.1em;
+}
+
+.ata-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #333;
+    text-align: left;
+}
+
+.swal2-input, .swal2-textarea {
+    margin: 5px 0 !important;
+}
+
+.swal2-textarea {
+    min-height: 100px !important;
+}
+
+.invalido {
+    border-color: red !important;
+}
