@@ -1,0 +1,107 @@
+/* Estilos adicionais para o feed do Instagram */
+
+/* Animação para carregamento suave */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.instagram-post.fade-in {
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+/* Cabeçalho e rodapé do Instagram */
+.instagram-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.instagram-header h3 {
+    margin: 0;
+    font-size: 24px;
+    color: #262626;
+}
+
+.instagram-profile-link {
+    display: inline-flex;
+    align-items: center;
+    color: #0095f6;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: opacity 0.3s ease;
+}
+
+.instagram-profile-link:hover {
+    opacity: 0.8;
+}
+
+.instagram-profile-link i {
+    margin-right: 6px;
+    font-size: 16px;
+}
+
+#instagram-loader {
+    text-align: center;
+    padding: 20px;
+    color: #8e8e8e;
+    font-size: 14px;
+}
+
+.instagram-footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.instagram-view-more {
+    display: inline-flex;
+    align-items: center;
+    background-color: #0095f6;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.instagram-view-more:hover {
+    background-color: #0077c5;
+}
+
+.instagram-view-more i {
+    margin-left: 8px;
+    font-size: 12px;
+}
+
+/* Melhorias para o modal */
+.modal-close {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.carousel-button {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Indicador de carregamento */
+.loading {
+    text-align: center;
+    padding: 20px;
+    color: #8e8e8e;
+    font-size: 14px;
+}
+
+.error {
+    text-align: center;
+    padding: 20px;
+    color: #ed4956;
+    font-size: 14px;
+}
