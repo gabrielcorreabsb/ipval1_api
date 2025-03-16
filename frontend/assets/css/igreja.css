@@ -179,6 +179,7 @@ h2{
     text-align: center;
     transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease; /* Using transition speed from global.css */
     border: 1px solid rgba(0, 0, 0, 0.02); /* Even more subtle border */
+    max-width: 300px; /* ADDED: Control maximum width of team member card */
 }
 
 .team-member:hover {
@@ -195,6 +196,9 @@ h2{
     border: 1.5px solid var(--color-primary); /* Using primary color from global.css */
     transition: transform var(--transition-speed) ease; /* Using transition speed from global.css */
     opacity: 0.95; /* Slightly less intense image color */
+    margin-left: auto; /* ADDED: Center image horizontally */
+    margin-right: auto; /* ADDED: Center image horizontally */
+    display: block;     /* ADDED: Ensure block display for margin auto */
 }
 
 .team-member img:hover {

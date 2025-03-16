@@ -18,6 +18,14 @@
     --font-primary: 'Montserrat', sans-serif;
     --font-secondary: 'Open Sans', sans-serif;
     --transition-speed: 0.3s; /* Define transition speed variable */
+    font-size: 16px; /* Default base font size */
+}
+
+/* Media query for smaller screens (e.g., phones) - Base Font Size Responsiveness */
+@media (max-width: 480px) {
+    :root {
+        font-size: 15px; /* Slightly smaller base font size on phones */
+    }
 }
 
 /* Reset e Estilos Gerais Globais */
@@ -41,6 +49,26 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px; /* Consistent padding for all containers */
+}
+
+/* Container Padding and Margin Responsiveness - Media Queries */
+@media (max-width: 768px) { /* Adjust breakpoint as needed */
+    .container {
+        padding: 0 15px; /* Reduced padding on tablets and phones */
+    }
+
+    .header-container {
+        padding: 10px 15px; /* Adjust header container padding too */
+    }
+}
+
+@media (max-width: 480px) { /* Even smaller screens - phones */
+    .container {
+        padding: 0 10px; /* Further reduced padding on phones */
+    }
+    .header-container {
+        padding: 10px 10px;
+    }
 }
 
 .main-content {
@@ -92,6 +120,12 @@ body {
     padding: 7px 15px;
     border-radius: 20px;
     transition: all 0.3s ease;
+    min-width: 44px; /* Minimum width for touch targets */
+    min-height: 44px; /* Minimum height for touch targets */
+    display: flex; /* To center text vertically in the touch target */
+    align-items: center;
+    justify-content: center; /* Center text horizontally as well */
+    text-align: center; /* Ensure text is centered if it wraps */
 }
 
 .nav-list a:hover, .nav-list a.active {
@@ -132,6 +166,50 @@ body {
     line-height: 1.8;
     font-weight: 400;
 }
+
+/* Section Padding and Margin Responsiveness - Media Queries */
+@media (max-width: 768px) {
+    .footer {
+        padding: 50px 0 20px; /* Reduced footer padding */
+    }
+    .section-header {
+        margin-bottom: 40px; /* Slightly reduce section header margin */
+    }
+    .section-header h2 {
+        font-size: 2.4rem; /* Slightly smaller section titles */
+    }
+    .page-title-section {
+        padding: 40px 0 20px; /* Reduce page title section padding */
+    }
+    .page-title h1 {
+        font-size: 2.2rem; /* Slightly smaller page title h1 */
+    }
+    .page-title p {
+        font-size: 1rem; /* Slightly smaller page title paragraph */
+    }
+}
+
+@media (max-width: 480px) { /* Even smaller screens - phones */
+    .footer {
+        padding: 40px 0 15px; /* Further reduced footer padding */
+    }
+    .section-header {
+        margin-bottom: 30px; /* Further reduce section header margin */
+    }
+    .section-header h2 {
+        font-size: 2rem; /* Even smaller section titles */
+    }
+    .page-title-section {
+        padding: 30px 0 15px; /* Further reduced page title section padding */
+    }
+    .page-title h1 {
+        font-size: 2rem; /* Even smaller page title h1 */
+    }
+    .page-title p {
+        font-size: 0.95rem; /* Even smaller page title paragraph */
+    }
+}
+
 
 /* --- Page Title - GLOBAL Styles (Moved from igreja.css to global.css) --- */
 .page-title-section { /* Keep page-title-section in page specific css if its layout is page-specific */
@@ -211,6 +289,15 @@ body {
     gap: 50px;
     margin-bottom: 30px;
 }
+
+/* Footer Grid Responsiveness - Media Queries */
+@media (max-width: 768px) {
+    .footer-grid {
+        grid-template-columns: 1fr; /* Footer columns stack on mobile */
+        gap: 30px; /* Adjust gap for stacked layout */
+    }
+}
+
 
 .footer h3 {
     font-size: 1.3rem;
@@ -299,6 +386,13 @@ body {
     transform: rotate(-45deg);
 }
 
+/* --- Image Responsiveness - Global Style --- */
+img {
+    max-width: 100%; /* Make images responsive */
+    height: auto;      /* Keep aspect ratio */
+    display: block; /* Prevents extra space below images in some cases */
+}
+
 
 /* --- Media Query for Mobile Menu (GLOBAL as it affects header on all pages) --- */
 @media (max-width: 768px) {
@@ -328,5 +422,20 @@ body {
 
     .mobile-menu-btn {
         display: block; /* Show mobile menu button on mobile */
+    }
+}
+
+/* --- Touch Target Responsiveness Example - Media Query for smaller screens --- */
+@media (max-width: 480px) {
+    .cta-button, .btn-outline, .news-read-more, .swal-download-btn, /* Add other button classes */
+    .nav-list a /* Include nav links for touch target sizing */
+    {
+        padding: 12px 25px; /* Increase padding on small buttons/links */
+        font-size: 1rem;    /* Maybe slightly increase font size */
+        min-width: 44px; /* Minimum width for touch targets */
+        min-height: 44px; /* Minimum height for touch targets */
+    }
+    .nav-list a { /* For navigation links - re-apply specific padding if needed */
+        padding: 10px 15px; /* Adjust nav link padding - keep it smaller than buttons if desired */
     }
 }
