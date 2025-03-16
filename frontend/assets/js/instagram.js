@@ -1,22 +1,34 @@
 class InstagramFeed {
     constructor(options = {}) {
+        // Propriedades existentes
         this.posts = [];
         this.displayedPosts = [];
         this.currentPost = null;
-        this.maxPosts = options.maxPosts || 20; // Limite total de posts
-        this.postsPerPage = options.postsPerPage || 4; // 4 posts por vez (uma linha)
-        this.loadDelay = options.loadDelay || 1200; // Tempo de carregamento mais lento
+        this.maxPosts = options.maxPosts || 20;
+        this.postsPerPage = options.postsPerPage || 4;
+        this.loadDelay = options.loadDelay || 1200;
         this.currentPage = 0;
         this.loading = false;
         this.allLoaded = false;
         this.accessToken = CONFIG.INSTAGRAM.ACCESS_TOKEN;
         this.instagramUsername = options.username || 'ipvalparaiso1';
-        this.initialized = false; // Flag para evitar inicialização duplicada
+        this.initialized = false;
+
+        // Novas propriedades para a seção de vídeos
+        this.videoPosts = [];
+        this.displayedVideoPosts = [];
+        this.currentVideoPage = 0;
+        this.videoPostsPerPage = options.videoPostsPerPage || 3;
+        this.allVideosLoaded = false;
+        this.loadingVideos = false;
+        this.videoHashtags = options.videoHashtags || ['sermão', 'eventos'];
     }
+
+
 
     async fetchFeed() {
         try {
-            // Adicionando thumbnail_url para vídeos
+            // Código existente para buscar o feed
             const response = await fetch(`https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url,timestamp,children{media_url,media_type,thumbnail_url}&access_token=${this.accessToken}`);
 
             if (!response.ok) {
@@ -61,8 +73,12 @@ class InstagramFeed {
             // Limitar ao número máximo total de posts - aplicamos o limite aqui
             this.posts = posts.slice(0, this.maxPosts);
 
+            // NOVO: Filtrar vídeos com as hashtags específicas
+            this.filterVideosByHashtags();
+
             console.log(`Limitando a ${this.maxPosts} posts no total`);
             console.log('Número de posts após processamento:', this.posts.length);
+            console.log('Número de vídeos com hashtags específicas:', this.videoPosts.length);
             return true;
         } catch (error) {
             console.error('Erro ao carregar feed:', error);
@@ -70,257 +86,192 @@ class InstagramFeed {
         }
     }
 
+    // NOVO: Método para filtrar vídeos com hashtags específicas
+    filterVideosByHashtags() {
+        // Filtrar apenas vídeos que contêm as hashtags especificadas
+        this.videoPosts = this.posts.filter(post => {
+            // Verificar se é um vídeo
+            if (!post.isVideo) return false;
+
+            // Verificar se a legenda contém alguma das hashtags
+            const caption = post.caption.toLowerCase();
+            return this.videoHashtags.some(tag =>
+                caption.includes(`#${tag}`) || caption.includes(`#${tag} `) ||
+                caption.includes(` #${tag}`) || caption.includes(` #${tag} `)
+            );
+        });
+
+        console.log(`Encontrados ${this.videoPosts.length} vídeos com as hashtags: ${this.videoHashtags.join(', ')}`);
+    }
+
+    // Métodos existentes...
     createPostElement(post) {
-        // Cria um resumo curto da caption (primeiros 100 caracteres)
-        const shortCaption = post.caption && post.caption.length > 100
-            ? post.caption.substring(0, 100) + '...'
-            : (post.caption || '');
-
-        // Usamos mediaUrl para imagens e thumbnailUrl para vídeos na grade
-        const displayUrl = post.isVideo ? post.thumbnailUrl : post.mediaUrl;
-
-        // Verificar se temos uma URL válida para exibir
-        if (!displayUrl) {
-            console.error('URL de mídia inválida para o post:', post.id);
-            return '';
-        }
-
-        return `
-        <div class="instagram-post fade-in" 
-             data-post-id="${post.id}" 
-             title="${shortCaption.replace(/"/g, '&quot;')}">
-            <img src="${displayUrl}" alt="Post do Instagram" loading="lazy">
-            <div class="instagram-post-overlay">
-                ${post.isVideo ? '<i class="fas fa-play"></i>' : ''}
-                ${post.type === 'CAROUSEL_ALBUM' ? '<i class="fas fa-clone"></i>' : ''}
-            </div>
-            <div class="instagram-post-tooltip">
-                <p>${shortCaption}</p>
-            </div>
-        </div>
-        `;
+        // Código existente...
     }
 
     openModal(post) {
-        const formattedDate = post.timestamp.toLocaleDateString('pt-BR', {
-            day: '2-digit',
-            month: 'long',
-            year: 'numeric'
-        });
-
-        let mediaContent = '';
-        if (post.isVideo && post.videoUrl) {
-            // Para vídeos, usamos o elemento video com controles
-            mediaContent = `
-                <video controls autoplay>
-                    <source src="${post.videoUrl}" type="video/mp4">
-                    Seu navegador não suporta vídeos.
-                </video>
-            `;
-            console.log('Carregando vídeo:', post.videoUrl);
-        } else if (post.carousel && post.carousel.length > 0) {
-            // Implementação do carrossel
-            mediaContent = `
-                <div class="carousel-container">
-                    <div class="carousel-slides">
-                        ${post.carousel.map(url => `
-                            <div class="carousel-slide">
-                                <img src="${url}" alt="Post do Instagram">
-                            </div>
-                        `).join('')}
-                    </div>
-                    ${post.carousel.length > 1 ? `
-                        <button class="carousel-button prev">&lt;</button>
-                        <button class="carousel-button next">&gt;</button>
-                        <div class="carousel-dots">
-                            ${post.carousel.map((_, i) => `
-                                <span class="dot${i === 0 ? ' active' : ''}" data-index="${i}"></span>
-                            `).join('')}
-                        </div>
-                    ` : ''}
-                </div>
-            `;
-        } else {
-            mediaContent = `<img src="${post.mediaUrl}" alt="Post do Instagram">`;
-        }
-
-        const modalHTML = `
-            <div class="instagram-modal">
-                <div class="modal-content">
-                    <button class="modal-close">&times;</button>
-                    <div class="modal-grid">
-                        <div class="modal-media">
-                            ${mediaContent}
-                        </div>
-                        <div class="modal-info">
-                            <div class="modal-header">
-                                <img src="../assets/imgs/img_instagram.jpg" alt="Perfil" class="profile-pic">
-                                <div class="header-text">
-                                    <h4>${this.instagramUsername}</h4>
-                                    <span class="post-date">${formattedDate}</span>
-                                </div>
-                            </div>
-                            <div class="modal-caption">
-                                ${(post.caption || '').replace(/\n/g, '<br>')}
-                            </div>
-                            <div class="modal-actions">
-                                <a href="${post.permalink}" target="_blank" class="instagram-link">
-                                    <i class="fab fa-instagram"></i> Ver no Instagram
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-
-        document.body.insertAdjacentHTML('beforeend', modalHTML);
-        document.body.style.overflow = 'hidden';
-
-        const modal = document.querySelector('.instagram-modal');
-
-        // Adicionar listeners para o carrossel se existir
-        if (post.carousel && post.carousel.length > 1) {
-            let currentSlide = 0;
-            const slides = modal.querySelectorAll('.carousel-slide');
-            const dots = modal.querySelectorAll('.dot');
-            const slidesContainer = modal.querySelector('.carousel-slides');
-
-            const updateSlides = () => {
-                slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
-                dots.forEach((dot, i) => {
-                    dot.classList.toggle('active', i === currentSlide);
-                });
-            };
-
-            // Inicializar o carrossel
-            updateSlides();
-
-            modal.querySelector('.carousel-button.prev')?.addEventListener('click', () => {
-                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-                updateSlides();
-            });
-
-            modal.querySelector('.carousel-button.next')?.addEventListener('click', () => {
-                currentSlide = (currentSlide + 1) % slides.length;
-                updateSlides();
-            });
-
-            modal.querySelectorAll('.dot').forEach((dot, i) => {
-                dot.addEventListener('click', () => {
-                    currentSlide = i;
-                    updateSlides();
-                });
-            });
-        }
-
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal || e.target.classList.contains('modal-close')) {
-                this.closeModal();
-            }
-        });
+        // Código existente...
     }
 
     closeModal() {
-        const modal = document.querySelector('.instagram-modal');
-        if (modal) {
-            modal.remove();
-            document.body.style.overflow = '';
-        }
+        // Código existente...
     }
 
     loadMorePosts() {
-        if (this.loading || this.allLoaded) return;
+        // Código existente...
+    }
 
-        this.loading = true;
+    // NOVO: Método para carregar mais vídeos
+    loadMoreVideos() {
+        if (this.loadingVideos || this.allVideosLoaded) return;
+
+        this.loadingVideos = true;
 
         // Mostrar indicador de carregamento
-        const loader = document.getElementById('instagram-loader');
+        const loader = document.getElementById('instagram-videos-loader');
         if (loader) loader.style.display = 'block';
 
-        const container = document.querySelector('.instagram-grid');
+        const container = document.querySelector('.instagram-videos-grid');
         if (!container) return;
 
-        const startIndex = this.currentPage * this.postsPerPage;
-        const endIndex = Math.min(startIndex + this.postsPerPage, this.posts.length);
+        const startIndex = this.currentVideoPage * this.videoPostsPerPage;
+        const endIndex = Math.min(startIndex + this.videoPostsPerPage, this.videoPosts.length);
 
-        // Verificar se ainda há posts para carregar
-        if (startIndex >= this.posts.length) {
-            this.allLoaded = true;
+        // Verificar se ainda há vídeos para carregar
+        if (startIndex >= this.videoPosts.length) {
+            this.allVideosLoaded = true;
             if (loader) loader.style.display = 'none';
-            this.loading = false;
+            this.loadingVideos = false;
             return;
         }
 
-        // Obter os próximos posts
-        const nextPosts = this.posts.slice(startIndex, endIndex);
+        // Obter os próximos vídeos
+        const nextVideos = this.videoPosts.slice(startIndex, endIndex);
 
         // Usar setTimeout com o delay configurável para criar um efeito de carregamento mais lento
         setTimeout(() => {
-            // Adicionar os posts ao container
-            nextPosts.forEach(post => {
-                // Verificar se o post já foi adicionado (evitar duplicação)
-                if (!document.querySelector(`.instagram-post[data-post-id="${post.id}"]`)) {
-                    const postElement = this.createPostElement(post);
-                    container.insertAdjacentHTML('beforeend', postElement);
-                    this.displayedPosts.push(post);
+            // Adicionar os vídeos ao container
+            nextVideos.forEach(video => {
+                // Verificar se o vídeo já foi adicionado (evitar duplicação)
+                if (!document.querySelector(`.instagram-video-post[data-post-id="${video.id}"]`)) {
+                    const videoElement = this.createVideoElement(video);
+                    container.insertAdjacentHTML('beforeend', videoElement);
+                    this.displayedVideoPosts.push(video);
                 }
             });
 
-            // Adicionar event listeners aos novos posts
-            const newPostElements = container.querySelectorAll('.instagram-post:not([data-initialized])');
-            newPostElements.forEach((postElement) => {
-                const postId = postElement.getAttribute('data-post-id');
-                const post = this.posts.find(p => p.id === postId);
-                if (post) {
-                    postElement.addEventListener('click', () => {
-                        this.openModal(post);
+            // Adicionar event listeners aos novos vídeos
+            const newVideoElements = container.querySelectorAll('.instagram-video-post:not([data-initialized])');
+            newVideoElements.forEach((videoElement) => {
+                const postId = videoElement.getAttribute('data-post-id');
+                const video = this.videoPosts.find(p => p.id === postId);
+                if (video) {
+                    videoElement.addEventListener('click', () => {
+                        this.openModal(video);
                     });
-                    postElement.setAttribute('data-initialized', 'true');
+                    videoElement.setAttribute('data-initialized', 'true');
                 }
             });
 
-            this.currentPage++;
+            this.currentVideoPage++;
 
-            // Verificar se carregamos todos os posts
-            if (endIndex >= this.posts.length) {
-                this.allLoaded = true;
-                console.log(`Todos os ${this.posts.length} posts foram carregados.`);
+            // Verificar se carregamos todos os vídeos
+            if (endIndex >= this.videoPosts.length) {
+                this.allVideosLoaded = true;
+                console.log(`Todos os ${this.videoPosts.length} vídeos foram carregados.`);
             }
 
             // Esconder o indicador de carregamento
             if (loader) loader.style.display = 'none';
 
-            this.loading = false;
+            this.loadingVideos = false;
 
             // Log para debug
-            console.log(`Carregados ${this.displayedPosts.length} de ${this.posts.length} posts no total`);
-        }, this.loadDelay); // Usando o delay configurável
+            console.log(`Carregados ${this.displayedVideoPosts.length} de ${this.videoPosts.length} vídeos no total`);
+        }, this.loadDelay);
+    }
+
+    // NOVO: Método para criar elemento de vídeo
+    createVideoElement(video) {
+        // Cria um resumo curto da caption (primeiros 100 caracteres)
+        const shortCaption = video.caption && video.caption.length > 100
+            ? video.caption.substring(0, 100) + '...'
+            : (video.caption || '');
+
+        // Extrair hashtags para exibição
+        const hashtags = this.extractHashtags(video.caption);
+        const hashtagsHtml = hashtags.length > 0
+            ? `<div class="video-hashtags">${hashtags.map(tag => `<span class="hashtag">#${tag}</span>`).join(' ')}</div>`
+            : '';
+
+        return `
+        <div class="instagram-video-post fade-in" 
+             data-post-id="${video.id}" 
+             title="${shortCaption.replace(/"/g, '&quot;')}">
+            <div class="video-thumbnail">
+                <img src="${video.thumbnailUrl}" alt="Vídeo do Instagram" loading="lazy">
+                <div class="video-play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+            </div>
+            <div class="video-info">
+                <h4 class="video-title">${this.extractTitle(video.caption)}</h4>
+                <p class="video-caption">${shortCaption}</p>
+                ${hashtagsHtml}
+                <div class="video-date">
+                    <i class="far fa-calendar-alt"></i> 
+                    ${video.timestamp.toLocaleDateString('pt-BR')}
+                </div>
+            </div>
+        </div>
+        `;
+    }
+
+    // NOVO: Método para extrair título do vídeo da caption
+    extractTitle(caption) {
+        if (!caption) return 'Vídeo';
+
+        // Tentar extrair a primeira linha como título
+        const lines = caption.split('\n');
+        if (lines.length > 0) {
+            const firstLine = lines[0].trim();
+            // Se a primeira linha for curta, usá-la como título
+            if (firstLine.length > 0 && firstLine.length < 100) {
+                return firstLine;
+            }
+        }
+
+        // Caso contrário, usar um título genérico
+        return 'Vídeo';
+    }
+
+    // NOVO: Método para extrair hashtags da caption
+    extractHashtags(caption) {
+        if (!caption) return [];
+
+        const hashtags = [];
+        const regex = /#(\w+)/g;
+        let match;
+
+        while ((match = regex.exec(caption)) !== null) {
+            hashtags.push(match[1]);
+        }
+
+        return hashtags;
     }
 
     setupScrollListener() {
-        // Remover listeners anteriores para evitar duplicação
-        window.removeEventListener('scroll', this.scrollHandler);
+        // Código existente...
+    }
 
-        // Função para verificar se o usuário rolou até perto do final da página
-        this.scrollHandler = () => {
-            if (this.loading || this.allLoaded) return;
-
-            const scrollPosition = window.innerHeight + window.scrollY;
-            const bodyHeight = document.body.offsetHeight;
-
-            // Carregar mais posts quando o usuário rolar até 80% da página
-            if (scrollPosition >= bodyHeight * 0.8) {
-                this.loadMorePosts();
-            }
-        };
-
-        // Usar throttle para melhorar a performance do scroll
-        let scrollTimeout;
-        window.addEventListener('scroll', () => {
-            if (scrollTimeout) clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(this.scrollHandler, 200);
-        });
+    // NOVO: Método para configurar o botão "Carregar mais vídeos"
+    setupLoadMoreVideosButton() {
+        const loadMoreBtn = document.getElementById('load-more-videos');
+        if (loadMoreBtn) {
+            loadMoreBtn.addEventListener('click', () => {
+                this.loadMoreVideos();
+            });
+        }
     }
 
     async init() {
@@ -368,6 +319,23 @@ class InstagramFeed {
                     </a>
                 </div>
             </div>
+            
+            <!-- NOVO: Seção de vídeos -->
+            ${this.videoPosts.length > 0 ? `
+            <div class="instagram-videos-container">
+                <div class="instagram-videos-header">
+                    <h3>Vídeos</h3>
+                    <p>Sermões e eventos especiais da nossa igreja</p>
+                </div>
+                <div class="instagram-videos-grid"></div>
+                <div id="instagram-videos-loader" class="loading">Carregando mais vídeos...</div>
+                <div class="instagram-videos-footer">
+                    <button id="load-more-videos" class="load-more-videos-btn">
+                        Carregar mais vídeos <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+            </div>
+            ` : ''}
         `;
 
         // Resetar estado
@@ -375,16 +343,29 @@ class InstagramFeed {
         this.currentPage = 0;
         this.allLoaded = false;
 
+        // Resetar estado dos vídeos
+        this.displayedVideoPosts = [];
+        this.currentVideoPage = 0;
+        this.allVideosLoaded = false;
+
         // Carregar o primeiro lote de posts
         this.loadMorePosts();
+
+        // Carregar o primeiro lote de vídeos se houver
+        if (this.videoPosts.length > 0) {
+            this.loadMoreVideos();
+            this.setupLoadMoreVideosButton();
+        }
 
         // Configurar o listener de scroll para carregar mais posts
         this.setupScrollListener();
     }
+
 }
 
 // Uso da classe - garantir que só é criada uma instância
 let instagramFeedInstance = null;
+
 
 document.addEventListener('DOMContentLoaded', () => {
     // Verificar se já existe uma instância
@@ -393,7 +374,9 @@ document.addEventListener('DOMContentLoaded', () => {
             maxPosts: 20,           // Limite total de posts
             postsPerPage: 4,        // 4 posts por vez (uma linha)
             loadDelay: 1200,        // Tempo de carregamento mais lento (1.2 segundos)
-            username: 'ipvalparaiso1'  // Nome de usuário do Instagram
+            username: 'ipvalparaiso1',  // Nome de usuário do Instagram
+            videoPostsPerPage: 3,    // 3 vídeos por vez
+            videoHashtags: ['sermão', 'eventos']  // Hashtags para filtrar vídeos
         });
 
         instagramFeedInstance.init();

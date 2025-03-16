@@ -1,0 +1,476 @@
+/* instagram_videos.css - Modelo com thumbnail ocupando todo o card */
+
+/* Container principal de vídeos */
+.videos-section {
+    padding: 60px 0;
+    background-color: var(--color-background);
+}
+
+.videos-section .section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.videos-section .section-header h2 {
+    color: var(--color-primary);
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.videos-section .section-divider {
+    width: 80px;
+    height: 4px;
+    background-color: var(--color-primary);
+    margin: 0 auto 20px;
+}
+
+.videos-section .section-subtitle {
+    color: var(--color-text-light);
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Container de vídeos */
+.instagram-videos-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Grade de vídeos */
+.instagram-videos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+/* Card de vídeo - thumbnail ocupando todo o espaço */
+.instagram-video-post {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Container da thumbnail */
+.video-thumbnail-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 75%; /* Proporção 4:3 */
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.video-thumbnail-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(11, 102, 54, 0.1);
+}
+
+/* Thumbnail do vídeo - ajustes para melhor enquadramento */
+.video-thumbnail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.video-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%; /* Ajuste para focar mais na parte superior da imagem onde geralmente estão os rostos */
+    transition: transform 0.3s ease;
+}
+
+.video-thumbnail-container:hover .video-thumbnail img {
+    transform: scale(1.05);
+}
+
+/* Data do vídeo */
+.video-date {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.video-date-day {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-weight: 700;
+    padding: 5px 10px;
+    font-size: 1rem;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.video-date-month {
+    color: var(--color-text);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+/* Botão de play */
+.video-play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background-color: rgba(11, 102, 54, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    z-index: 2;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.video-thumbnail-container:hover .video-play-button {
+    background-color: var(--color-primary);
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Informações do vídeo - agora fora do card */
+.video-info {
+    padding: 15px 0;
+}
+
+/* Título do vídeo */
+.video-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 8px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center; /* Centralizar o título */
+}
+
+/* Descrição do vídeo */
+.video-caption {
+    color: var(--color-text-light);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+/* Botão "Assistir" */
+.video-read-btn {
+    display: inline-block;
+    background-color: var(--color-primary);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    border: 1px solid var(--color-primary);
+    text-decoration: none;
+}
+
+.video-read-btn:hover {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+}
+
+/* Rodapé da seção de vídeos */
+.instagram-videos-footer {
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* Botão "Ver todos os vídeos" */
+.btn-ver-todos {
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-primary);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.btn-ver-todos i {
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+}
+
+.btn-ver-todos:hover {
+    color: var(--color-accent);
+}
+
+.btn-ver-todos:hover i {
+    transform: translateX(3px);
+}
+
+/* Loader */
+#instagram-videos-loader {
+    text-align: center;
+    padding: 20px;
+    display: none;
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .instagram-videos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .instagram-videos-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    .video-play-button {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+
+    .video-title {
+        font-size: 1rem;
+    }
+
+    .video-caption {
+        font-size: 0.9rem;
+        -webkit-line-clamp: 2;
+    }
+}
+
+@media (max-width: 576px) {
+    .instagram-videos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .video-thumbnail-container {
+        padding-bottom: 65%; /* Proporção um pouco menor em telas pequenas */
+    }
+}
+/* Estilos para o modal de vídeo */
+.instagram-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 10px;
+    max-width: 1000px;
+    width: 100%;
+    max-height: 90vh;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    background-color: var(--color-primary);
+    transform: scale(1.1);
+}
+
+.modal-grid {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    height: 100%;
+}
+
+.modal-media {
+    background-color: #000;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Container específico para o vídeo */
+.video-container {
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%; /* Proporção 1:1 */
+    position: relative;
+    background-color: #000;
+}
+
+.video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Isso garante que o vídeo seja exibido completamente */
+}
+
+.modal-info {
+    padding: 25px;
+    overflow-y: auto;
+    max-height: 90vh;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+    object-fit: cover;
+}
+
+.header-text h4 {
+    font-size: 1rem;
+    margin: 0;
+    color: var(--color-text);
+}
+
+.post-date {
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+}
+
+.modal-caption {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    margin-bottom: 20px;
+    word-break: break-word;
+}
+
+.modal-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.instagram-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #e1306c;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.instagram-link:hover {
+    background-color: #c13584;
+    transform: translateY(-2px);
+}
+
+/* Mensagem de erro de vídeo */
+.video-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 30px;
+    text-align: center;
+    color: white;
+}
+
+.video-error i {
+    font-size: 3rem;
+    color: #e74c3c;
+    margin-bottom: 15px;
+}
+
+.video-error p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+/* Responsividade do modal */
+@media (max-width: 992px) {
+    .modal-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+    }
+
+    .video-container {
+        padding-bottom: 56.25%; /* Proporção 16:9 */
+    }
+}
+
+@media (max-width: 576px) {
+    .modal-content {
+        max-height: 100vh;
+        border-radius: 0;
+    }
+
+    .modal-info {
+        padding: 15px;
+    }
+}

@@ -1,0 +1,292 @@
+/* igreja.css */
+
+/* Import global styles - IMPORTANT: Link global.css in your HTML before igreja.css */
+/* Ensure global.css is linked in the <head> of your igreja.html */
+/* Example:
+   <link rel="stylesheet" href="../assets/css/global.css">
+   <link rel="stylesheet" href="../assets/css/igreja.css">
+*/
+
+/* --- Estilos Gerais (Herdados e complementados de global.css) --- */
+/* These are intentionally left empty as they inherit from global.css */
+
+/* --- Page Title Section --- */
+.page-title-section {
+    padding: 60px 0 30px; /* Adjusted padding from previous version, more compact */
+    background-color: var(--color-background);
+    text-align: center;
+}
+
+.page-title {
+    font-family: var(--font-primary);
+    font-size: clamp(2.2rem, 5vw, 3.5rem); /* Slightly smaller and more responsive title */
+    color: var(--color-primary);
+    font-weight: 700;
+    margin-bottom: 15px; /* Reduced margin bottom */
+}
+
+/* --- Estilo Card - MODERNIZADO (Specific to igreja.css layout) --- */
+.method-card {
+    background: var(--color-white);
+    border-radius: var(--border-radius);
+    padding: 1.75rem; /* Slightly reduced padding */
+    box-shadow: var(--shadow-medium); /* Using shadow from global.css */
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(0, 0, 0, 0.03); /* Very subtle border for definition */
+}
+
+.method-card:hover {
+    box-shadow: var(--shadow-hover); /* Using hover shadow from global.css */
+    transform: translateY(-3px);
+}
+
+.method-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; /* Slightly reduced gap */
+    margin-bottom: 1.25rem; /* Slightly reduced margin bottom */
+}
+
+.method-header i {
+    font-size: 1.75rem; /* Slightly smaller icon */
+    color: var(--color-primary);
+    opacity: 0.9; /* Slightly less intense icon color */
+}
+
+/* --- Melhorando o Título do Card (.method-header h2) --- */
+.method-header h2 {
+    margin: 0;
+    color: var(--color-text); /* Using text color from global.css */
+    font-size: 1.75rem; /* Slightly smaller title */
+    font-family: var(--font-primary);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+h2{
+    padding-bottom: 5px;
+}
+
+.method-content {
+    color: var(--color-text-light); /* Using light text color from global.css */
+    font-family: var(--font-secondary);
+    font-size: 1rem; /* Slightly smaller text size */
+    line-height: 1.7; /* Slightly reduced line height */
+}
+
+.method-content p {
+    margin-bottom: 1rem; /* Reduced margin bottom for paragraphs */
+    text-align: justify;
+    font-weight: 400;
+    opacity: 0.85; /* Slightly less intense text color */
+}
+
+/* --- Layout Grid Modernizado para Seções "Sobre" e "História" --- */
+.card-layout-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Equal columns for image and content */
+    gap: 2rem;
+    align-items: center;
+}
+
+.card-layout-image {
+    border-radius: var(--border-radius); /* Using border-radius from global.css */
+    overflow: hidden;
+}
+
+.card-layout-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.4s ease-out;
+}
+
+.card-layout-image:hover img {
+    transform: scale(1.05);
+}
+
+.card-layout-content {
+    /* Content styling is already in .method-content */
+}
+
+/* --- About Section (Específico) --- */
+.about-section {
+    /* Inherits from .method-card */
+}
+
+.about-grid {
+    /* Uses .card-layout-grid now */
+}
+
+.about-image {
+    /* Uses .card-layout-image now */
+    order: 1; /* Image on the left by default for About */
+}
+
+.about-content {
+    /* Uses .card-layout-content and .method-content */
+    order: 2; /* Content on the right by default for About */
+}
+
+/* --- History Section (Específico) --- */
+.history-section {
+    text-align: center;
+}
+
+.history-grid {
+    /* Uses .card-layout-grid */
+    grid-template-columns: 1fr 1fr;
+    flex-direction: row;
+}
+
+.history-image {
+    /* Uses .card-layout-image */
+    order: 2; /* Image on the right for History */
+}
+
+.history-content {
+    /* Uses .card-layout-content and .method-content */
+    order: 1; /* Content on the left for History */
+    text-align: left;
+    max-width: 100%;
+    margin: 0;
+}
+
+.history-page-content {
+    max-width: 85%;
+    margin-left: 0;
+}
+
+/* --- Equipe: Presbíteros e Pastores (Específico) --- */
+.elders-section, .pastors-section {
+    text-align: center;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.75rem; /* Slightly reduced gap */
+    justify-items: center;
+    margin-top: 1.75rem; /* Slightly reduced top margin */
+}
+
+.team-member {
+    background-color: var(--color-white);
+    border-radius: var(--border-radius); /* Using border-radius from global.css */
+    padding: 1.25rem; /* Further reduced padding */
+    box-shadow: var(--shadow-light); /* Using light shadow from global.css */
+    text-align: center;
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease; /* Using transition speed from global.css */
+    border: 1px solid rgba(0, 0, 0, 0.02); /* Even more subtle border */
+}
+
+.team-member:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium); /* Using medium shadow from global.css */
+}
+
+.team-member img {
+    width: 100px; /* Further reduced image size */
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 0.8rem; /* Reduced margin bottom */
+    border: 1.5px solid var(--color-primary); /* Using primary color from global.css */
+    transition: transform var(--transition-speed) ease; /* Using transition speed from global.css */
+    opacity: 0.95; /* Slightly less intense image color */
+}
+
+.team-member img:hover {
+    transform: scale(1.03);
+}
+
+.team-member h3 {
+    font-family: var(--font-primary);
+    font-size: 1.15rem; /* Further reduced title size */
+    color: var(--color-text); /* Using text color from global.css */
+    font-weight: 600;
+    margin-bottom: 0.1rem; /* Even less margin bottom */
+}
+
+.team-member p { /* Para a descrição */
+    font-family: var(--font-secondary);
+    font-size: 0.9rem; /* Reduced description size */
+    line-height: 1.4; /* Reduced line height */
+    color: var(--color-text-light); /* Using light text color from global.css */
+    text-align: center;
+    opacity: 0.8; /* Slightly less intense description color */
+}
+
+.member-role { /* Para o cargo (Presbítero, Pastor) */
+    font-family: var(--font-secondary);
+    font-size: 0.85rem; /* Reduced role size */
+    color: var(--color-primary); /* Using primary color from global.css */
+    font-weight: 600;
+    margin-bottom: 0.4rem; /* Reduced margin bottom */
+    text-align: center;
+    opacity: 0.9; /* Slightly less intense role color */
+}
+
+/* --- Responsividade (Ajustes Finais) --- */
+@media (max-width: 992px) {
+    .card-layout-grid {
+        grid-template-columns: 1fr; /* Stack image and content vertically */
+    }
+    .history-grid {
+        grid-template-columns: 1fr; /* Stack image and content vertically for history too */
+    }
+    .card-layout-image {
+        order: 1; /* Image first on smaller screens */
+    }
+    .card-layout-content {
+        order: 2; /* Content second on smaller screens */
+    }
+    .history-image {
+        order: 1; /* Image first for history on smaller screens */
+    }
+    .history-content {
+        order: 2; /* Content second for history on smaller screens */
+        text-align: justify; /* Revert text alignment to justify on stack */
+        max-width: 100%; /* Allow full width when stacked */
+        margin: 0 auto; /* Center text when stacked */
+    }
+    .history-page-content {
+        max-width: 100%; /* Full width for history text on smaller screens */
+        margin-left: auto; /* Center history text when stacked */
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .method-card {
+        padding: 1.25rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .method-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .method-header i {
+        font-size: 1.5rem;
+    }
+
+    .method-content {
+        font-size: 0.95rem;
+    }
+
+    .team-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1.25rem;
+    }
+
+    .team-member {
+        padding: 1rem;
+    }
+
+    .team-member img {
+        width: 80px;
+        height: 80px;
+    }
+}

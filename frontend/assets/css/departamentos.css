@@ -1,55 +1,35 @@
-:root {
-    --color-primary: #4A8B4A;
-    --color-secondary: #F0F7F0;
-    --color-text: #2C3E50;
-    --color-text-light: #607D8B;
-    --shadow-soft: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+/* departamentos.css */
 
-body {
-    font-family: 'Open Sans', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f8f9fa;
-}
+/* Import global styles - IMPORTANT: Link global.css in your HTML before departamentos.css */
+/* Ensure global.css is linked in the <head> of your departamentos.html */
 
-.main-content {
-    padding: 40px 20px;
-}
+/* NOTE: This CSS should contain ONLY page-specific styles for departamentos.html */
+
+/* Removed redundant :root block - using variables from global.css */
+/* Removed redundant body styles - using body styles from global.css */
+
+
 
 .departamentos-container {
     max-width: 1200px;
     margin: 0 auto;
 }
 
-.page-title {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.page-title h1 {
-    font-family: 'Montserrat', sans-serif;
-    color: var(--color-primary);
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-}
-
-.page-title p {
-    color: var(--color-text-light);
-}
 
 .departamentos-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
+    margin: 20px;
+
 }
 
 .departamento-card {
-    background: white;
-    border-radius: 12px;
+    background: var(--color-white); /* Using global color variable */
+    border-radius: var(--border-radius); /* Using global border-radius variable */
     overflow: hidden;
-    box-shadow: var(--shadow-soft);
-    transition: transform 0.3s ease;
+    box-shadow: var(--shadow-soft); /* Using global shadow variable */
+    transition: transform var(--transition-speed) ease; /* Using global transition-speed variable */
 }
 
 .departamento-card:hover {
@@ -57,8 +37,8 @@ body {
 }
 
 .departamento-header {
-    background: var(--color-primary);
-    color: white;
+    background: var(--color-primary); /* Using global color variable */
+    color: var(--color-white); /* Using global color variable */
     padding: 20px;
     text-align: center;
 }
@@ -70,7 +50,7 @@ body {
 
 .departamento-header h3 {
     margin: 0;
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-primary); /* Using global font variable */
 }
 
 .departamento-content {
@@ -79,14 +59,14 @@ body {
 
 .departamento-content p {
     margin: 0 0 15px 0;
-    color: var(--color-text);
+    color: var(--color-text); /* Using global color variable */
 }
 
 .horario, .lideranca {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: var(--color-text-light);
+    color: var(--color-text-light); /* Using global color variable */
     font-size: 0.9rem;
 }
 
@@ -95,7 +75,7 @@ body {
 }
 
 .atividades h4 {
-    color: var(--color-primary);
+    color: var(--color-primary); /* Using global color variable */
     margin-bottom: 10px;
 }
 
@@ -107,31 +87,18 @@ body {
 
 .atividades li {
     padding: 8px 0;
-    border-bottom: 1px solid var(--color-secondary);
-    color: var(--color-text);
+    border-bottom: 1px solid var(--color-secondary); /* Using global color variable */
+    color: var(--color-text); /* Using global color variable */
 }
 
 .atividades li:last-child {
     border-bottom: none;
 }
 
-@media (max-width: 768px) {
-    .main-content {
-        padding: 20px 10px;
-    }
-
-    .page-title h1 {
-        font-size: 2rem;
-    }
-
-    .departamentos-grid {
-        grid-template-columns: 1fr;
-    }
-}
 
 .gerar-ata-btn {
-    background-color: #4A8B4A;
-    color: white;
+    background-color: var(--color-primary); /* Using global color variable */
+    color: var(--color-white); /* Using global color variable */
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -140,13 +107,13 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    transition: background-color 0.3s ease;
+    transition: background-color var(--transition-speed) ease; /* Using global transition-speed variable */
     width: 100%;
     justify-content: center;
 }
 
 .gerar-ata-btn:hover {
-    background-color: #3a6f3a;
+    background-color: var(--color-accent); /* Consider using a more specific accent color variable from global.css if you have one */
 }
 
 .gerar-ata-btn i {
@@ -170,18 +137,18 @@ body {
 
 .form-group label {
     font-weight: bold;
-    color: #333;
+    color: #333; /* Keep if this color is specific and not defined in your global color scheme */
     text-align: left;
 }
 
 .swal2-input, .swal2-textarea {
-    margin: 5px 0 !important;
+    margin: 5px 0 !important; /* Keep if you need to override SweetAlert2 styles specifically for this page */
 }
 
 .swal2-textarea {
-    min-height: 100px !important;
+    min-height: 100px !important; /* Keep if you need to override SweetAlert2 styles specifically for this page */
 }
 
 .invalido {
-    border-color: red !important;
+    border-color: red !important; /* Keep if you need to override invalid input border color */
 }

@@ -1,3 +1,103 @@
+// Arquivo: assets/js/index.js
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Menu mobile
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navList = document.querySelector('.nav-list');
+
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navList.classList.toggle('active');
+        });
+    }
+
+    // Fechar menu ao clicar em um link
+    const navLinks = document.querySelectorAll('.nav-list a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navList.classList.remove('active');
+            if (mobileMenuBtn) mobileMenuBtn.classList.remove('active');
+        });
+    });
+
+    // Instagram Feed
+    if (typeof InstagramFeed !== 'undefined') {
+        const feed = new InstagramFeed();
+        feed.init();
+    }
+
+    // Botão Voltar ao Topo
+    const backToTopButton = document.getElementById('backToTop');
+    if (backToTopButton) {
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // Menu de navegação âncora - destacar item ativo ao rolar
+    const sections = document.querySelectorAll('section[id]');
+    const anchorLinks = document.querySelectorAll('.anchor-links a');
+
+    if (sections.length > 0 && anchorLinks.length > 0) {
+        window.addEventListener('scroll', () => {
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+
+                if (pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            anchorLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    }
+
+    // Carregar dados da igreja
+    carregarDadosIgreja();
+
+    // Carregar sobre nós
+    carregarSobreNos();
+
+    // Carregar notícias
+    carregarNoticias();
+
+    // Carregar configurações do footer
+    carregarConfiguracoesFooter();
+
+    // Configurar botão de logout se existir
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', async () => {
+            try {
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+                window.location.replace('./login.html');
+            } catch (error) {
+                console.error('Erro ao fazer logout:', error);
+                mostrarMensagem('Erro ao fazer logout', 'error');
+            }
+        });
+    }
+});
+
 // Funções de utilidade
 async function fazerRequisicao(url, options = {}) {
     try {
@@ -59,164 +159,104 @@ async function fazerRequisicao(url, options = {}) {
     }
 }
 
-
-        function mostrarMensagem(mensagem, tipo) {
-            // Se você estiver usando SweetAlert2
-            if (typeof Swal !== 'undefined') {
-                Swal.fire({
-                    text: mensagem,
-                    icon: tipo,
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000
-                });
-            } else {
-                // Fallback para alert normal
-                alert(mensagem);
-            }
-        }
+function mostrarMensagem(mensagem, tipo) {
+    // Se você estiver usando SweetAlert2
+    if (typeof Swal !== 'undefined') {
+        Swal.fire({
+            text: mensagem,
+            icon: tipo,
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+    } else {
+        // Fallback para alert normal
+        alert(mensagem);
+    }
+}
 
 // Função para carregar dados da igreja
-        async function carregarDadosIgreja() {
-            try {
-                const response = await fazerRequisicao(`${CONFIG.API_URL}/configuracoes`);
-                const config = await response.json();
+async function carregarDadosIgreja() {
+    try {
+        const response = await fazerRequisicao(`${CONFIG.API_URL}/configuracoes`);
+        const config = await response.json();
 
-                // Preencher horários dos cultos
-                const horariosCultosElement = document.getElementById('horariosCultos');
-                if (config.horarioCultos) {
-                    const horarios = config.horarioCultos.split('\n');
-                    horariosCultosElement.innerHTML = horarios.map(horario => `
+        // Preencher horários dos cultos
+        const horariosCultosElement = document.getElementById('horariosCultos');
+        if (horariosCultosElement && config.horarioCultos) {
+            const horarios = config.horarioCultos.split('\n');
+            horariosCultosElement.innerHTML = horarios.map(horario => `
                 <div class="programacao-item">
                     <span>${horario}</span>
                 </div>
             `).join('');
-                }
+        }
 
-                // Preencher endereço
-                const enderecoElement = document.getElementById('enderecoIgreja');
-                if (config.endereco) {
-                    enderecoElement.innerHTML = `
+        // Preencher endereço
+        const enderecoElement = document.getElementById('enderecoIgreja');
+        if (enderecoElement && config.endereco) {
+            enderecoElement.innerHTML = `
                 <p><i class="fas fa-map-marker-alt"></i> ${config.endereco}</p>
             `;
-                }
-
-                // Preencher informações de contato
-                const contatoElement = document.getElementById('contatoInfo');
-                contatoElement.innerHTML = `
-            ${config.telefone ? `
-                <div class="contato-item">
-                    <i class="fas fa-phone"></i>
-                    <span>${config.telefone}</span>
-                </div>
-            ` : ''}
-            ${config.whatsapp ? `
-                <div class="contato-item">
-                    <i class="fab fa-whatsapp"></i>
-                    <span>${config.whatsapp}</span>
-                </div>
-            ` : ''}
-            ${config.email ? `
-                <div class="contato-item">
-                    <i class="fas fa-envelope"></i>
-                    <span>${config.email}</span>
-                </div>
-            ` : ''}
-        `;
-
-            } catch (error) {
-                console.error('Erro ao carregar dados da igreja:', error);
-                mostrarMensagem('Erro ao carregar informações da igreja', 'error');
-            }
         }
 
-// Função para verificar se o usuário está logado
-        function getUsuarioLogado() {
-            try {
-                const userStr = localStorage.getItem('user');
-                if (!userStr) {
-                    console.warn('Nenhum usuário encontrado no localStorage');
-                    return null;
-                }
-
-                const user = JSON.parse(userStr);
-                console.log('Usuário recuperado:', user);
-
-                if (!user.idUsuario) {
-                    console.warn('Usuário sem idUsuario:', user);
-                }
-
-                return user;
-            } catch (error) {
-                console.error('Erro ao recuperar usuário:', error);
-                return null;
-            }
+        // Preencher informações de contato
+        const contatoElement = document.getElementById('contatoInfo');
+        if (contatoElement) {
+            contatoElement.innerHTML = `
+                ${config.telefone ? `
+                    <div class="contato-item">
+                        <i class="fas fa-phone"></i>
+                        <span>${config.telefone}</span>
+                    </div>
+                ` : ''}
+                ${config.whatsapp ? `
+                    <div class="contato-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>${config.whatsapp}</span>
+                    </div>
+                ` : ''}
+                ${config.email ? `
+                    <div class="contato-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>${config.email}</span>
+                    </div>
+                ` : ''}
+            `;
         }
 
-// Função para verificar se é pastor
-        function isPastor() {
-            try {
-                const user = JSON.parse(localStorage.getItem('user'));
-                return user && user.cargo === 'PASTOR';
-            } catch (error) {
-                console.error('Erro ao verificar cargo:', error);
-                return false;
-            }
+    } catch (error) {
+        console.error('Erro ao carregar dados da igreja:', error);
+        mostrarMensagem('Erro ao carregar informações da igreja', 'error');
+    }
+}
+
+// Função para carregar informações sobre a igreja
+async function carregarSobreNos() {
+    try {
+        const response = await fazerRequisicao(`${CONFIG.API_URL}/configuracoes`);
+        const config = await response.json();
+
+        const sobreIgrejaElement = document.getElementById('sobreIgrejaContent');
+        if (sobreIgrejaElement && config.sobreIgreja) {
+            // Dividir o texto em parágrafos e criar elementos HTML
+            const paragrafos = config.sobreIgreja.split('\n').filter(p => p.trim());
+            sobreIgrejaElement.innerHTML = paragrafos
+                .map(paragrafo => `<p>${paragrafo}</p>`)
+                .join('');
         }
-
-// Inicialização quando a página carregar
-        document.addEventListener('DOMContentLoaded', () => {
-            carregarDadosIgreja();
-
-            // Configurar botão de logout se existir
-            const logoutBtn = document.getElementById('logoutBtn');
-            if (logoutBtn) {
-                logoutBtn.addEventListener('click', async () => {
-                    try {
-                        localStorage.removeItem('token');
-                        localStorage.removeItem('user');
-                        window.location.replace('./login.html');
-                    } catch (error) {
-                        console.error('Erro ao fazer logout:', error);
-                        mostrarMensagem('Erro ao fazer logout', 'error');
-                    }
-                });
-            }
-        });
-
-// Adicione esta função junto com as outras funções de carregamento
-        async function carregarSobreNos() {
-            try {
-                const response = await fazerRequisicao(`${CONFIG.API_URL}/configuracoes`);
-                const config = await response.json();
-
-                const sobreIgrejaElement = document.getElementById('sobreIgrejaContent');
-                if (config.sobreIgreja) {
-                    // Dividir o texto em parágrafos e criar elementos HTML
-                    const paragrafos = config.sobreIgreja.split('\n').filter(p => p.trim());
-                    sobreIgrejaElement.innerHTML = paragrafos
-                        .map(paragrafo => `<p>${paragrafo}</p>`)
-                        .join('');
-                }
-            } catch (error) {
-                console.error('Erro ao carregar informações sobre a igreja:', error);
-                mostrarMensagem('Erro ao carregar informações sobre a igreja', 'error');
-            }
-        }
-
-// Adicione a chamada da função no DOMContentLoaded
-        document.addEventListener('DOMContentLoaded', () => {
-            carregarDadosIgreja();
-            carregarSobreNos(); // Adicione esta linha
-        });
+    } catch (error) {
+        console.error('Erro ao carregar informações sobre a igreja:', error);
+        mostrarMensagem('Erro ao carregar informações sobre a igreja', 'error');
+    }
+}
 
 // Funções para mostrar os modais com SweetAlert2
-
-        function mostrarIgrejaReformada() {
-            Swal.fire({
-                title: 'A Fé Reformada',
-                html: `
+function mostrarIgrejaReformada() {
+    Swal.fire({
+        title: 'A Fé Reformada',
+        html: `
             <div class="swal-content">
                 <h3 class="swal-subtitle">O que é a Fé Reformada?</h3>
                 <p>A Fé Reformada representa a verdadeira religião cristã, recuperada durante a Reforma Protestante dos séculos XVI e XVII. É um relacionamento com Deus, através da mediação de Jesus Cristo, baseado no Evangelho revelado nas Escrituras Sagradas.</p>
@@ -251,27 +291,26 @@ async function fazerRequisicao(url, options = {}) {
                 </ul>
             </div>
         `,
-                icon: 'info',
-                confirmButtonText: 'Entendi',
-                confirmButtonColor: '#4A8B4A',
-                width: '800px', // Aumentei a largura para melhor leitura
-                showCloseButton: true,
-                customClass: {
-                    container: 'swal-church-container',
-                    popup: 'swal-church-popup',
-                    content: 'swal-church-content'
-                }
-            });
+        icon: 'info',
+        confirmButtonText: 'Entendi',
+        confirmButtonColor: '#4A8B4A',
+        width: '800px',
+        showCloseButton: true,
+        customClass: {
+            container: 'swal-church-container',
+            popup: 'swal-church-popup',
+            content: 'swal-church-content'
         }
+    });
+}
 
-
-        function mostrarDoutrina() {
-            Swal.fire({
-                title: 'Nossa Doutrina',
-                html: `
+function mostrarDoutrina() {
+    Swal.fire({
+        title: 'Nossa Doutrina',
+        html: `
             <div class="swal-content">
                 <h3 class="swal-subtitle">Símbolos de Fé</h3>
-                <p>A Igreja Presbiteriana do Brasil fundamenta sua doutrina em três documentos históricos conhecidos como Símbolos de Fé de Westminster, elaborados entre 1643 e 1649. Estes documentos apresentam de forma sistemática as doutrinas fundamentais das Escrituras Sagradas.</p>
+                <p>A Igreja Presbiteriana do Brasil fundamenta-se nos Símbolos de Fé de Westminster, elaborados entre 1643 e 1649, que compreendem a Confissão de Fé e os Catecismos Maior e Breve. Junto a estes, o Manual Presbiteriano estabelece as normas e diretrizes para a vida e organização da igreja. Estes documentos em conjunto formam a base doutrinária e administrativa de nossa denominação.</p>
 
                 <div class="swal-document-section">
                     <h4 class="swal-document-title">
@@ -305,68 +344,101 @@ async function fazerRequisicao(url, options = {}) {
                         <i class="fas fa-file-pdf"></i> Download do Breve Catecismo
                     </a>
                 </div>
+                
+                <div class="swal-document-section">
+                    <h4 class="swal-document-title">
+                        <i class="fas fa-book-law"></i>
+                        Manual Presbiteriano
+                    </h4>
+                    <p>Documento oficial que reúne a Constituição da Igreja, normas administrativas, código de disciplina e princípios litúrgicos. Define a estrutura de governo, funções dos oficiais e orientações para a vida eclesiástica.</p>
+                    <a href="../assets/docs/Manual-Presbiteriano-2019.pdf" class="swal-download-btn" target="_blank">
+                        <i class="fas fa-file-pdf"></i> Download do Manual Presbiteriano
+                    </a>
+                </div>
 
                 <div class="swal-info-box">
                     <i class="fas fa-info-circle"></i>
-                    <p>Estes documentos históricos têm guiado a Igreja Presbiteriana por séculos, oferecendo uma compreensão profunda e sistemática das verdades bíblicas.</p>
+                    <p>Estes documentos formam a base doutrinária e administrativa da Igreja Presbiteriana, sendo essenciais para a compreensão de nossa fé e prática eclesiástica. Recomendamos seu estudo a todos os membros.</p>
                 </div>
             </div>
         `,
-                icon: 'info',
-                confirmButtonText: 'Fechar',
-                confirmButtonColor: '#4A8B4A',
-                width: '800px',
-                showCloseButton: true,
-                customClass: {
-                    container: 'swal-doctrine-container',
-                    popup: 'swal-doctrine-popup',
-                    content: 'swal-doctrine-content'
-                }
-            });
+        icon: 'info',
+        confirmButtonText: 'Fechar',
+        confirmButtonColor: '#4A8B4A',
+        width: '800px',
+        showCloseButton: true,
+        customClass: {
+            container: 'swal-doctrine-container',
+            popup: 'swal-doctrine-popup',
+            content: 'swal-doctrine-content'
         }
+    });
+}
 
 // Função principal para carregar notícias aprovadas
-        async function carregarNoticias() {
-            try {
-                const response = await fetch(`${CONFIG.API_URL}/noticias/aprovadas`);
-                if (!response.ok) {
-                    throw new Error('Erro ao carregar notícias');
-                }
-
-                const noticias = await response.json();
-                exibirNoticias(noticias);
-            } catch (error) {
-                console.error('Erro ao carregar notícias:', error);
-                mostrarErroNoticias();
-            }
+async function carregarNoticias() {
+    try {
+        const response = await fetch(`${CONFIG.API_URL}/noticias/aprovadas`);
+        if (!response.ok) {
+            throw new Error('Erro ao carregar notícias');
         }
 
-// Função para exibir notícias
-        function exibirNoticias(noticias) {
-            const grid = document.getElementById('newsGrid');
-            if (!grid) return;
+        const noticias = await response.json();
 
-            if (!noticias || noticias.length === 0) {
-                grid.innerHTML = `
-            <div class="no-news">
-                <i class="fas fa-newspaper"></i>
-                <p>Nenhuma notícia disponível no momento</p>
-            </div>
+        // Separar as notícias para os diferentes formatos
+        const noticiasDestaque = noticias.slice(0, 3); // 3 primeiras para os cards
+        const noticiasLista = noticias.slice(3, 8);    // próximas 5 para a lista
+
+        exibirNoticiasDestaque(noticiasDestaque);
+        exibirNoticiasLista(noticiasLista);
+    } catch (error) {
+        console.error('Erro ao carregar notícias:', error);
+        mostrarErroNoticias();
+    }
+}
+
+// Função para exibir notícias em destaque (cards)
+function exibirNoticiasDestaque(noticias) {
+    const cardsContainer = document.querySelector('.noticias-cards');
+    if (!cardsContainer) return;
+
+    if (!noticias || noticias.length === 0) {
+        cardsContainer.innerHTML = `
+           
         `;
-                return;
-            }
+        return;
+    }
 
-            grid.innerHTML = noticias.map((noticia, index) => criarCardNoticia(noticia, index)).join('');
-        }
+    cardsContainer.innerHTML = noticias.map((noticia, index) =>
+        criarCardNoticia(noticia, index)
+    ).join('');
+}
+
+// Função para exibir notícias em lista
+function exibirNoticiasLista(noticias) {
+    const listaContainer = document.querySelector('.noticias-lista-content');
+    if (!listaContainer) return;
+
+    if (!noticias || noticias.length === 0) {
+        listaContainer.innerHTML = `
+           
+        `;
+        return;
+    }
+
+    listaContainer.innerHTML = noticias.map(noticia =>
+        criarItemNoticiaLista(noticia)
+    ).join('');
+}
 
 // Função para criar card da notícia
-        function criarCardNoticia(noticia, index) {
-            const data = new Date(noticia.dataCriacao);
-            const dia = data.getDate();
-            const mes = data.toLocaleString('pt-BR', {month: 'short'}).replace('.', '');
-            const ano = data.getFullYear();
+function criarCardNoticia(noticia, index) {
+    const data = new Date(noticia.dataCriacao);
+    const dia = data.getDate();
+    const mes = data.toLocaleString('pt-BR', {month: 'short'}).replace('.', '');
+    const ano = data.getFullYear();
 
-            return `
+    return `
         <article class="news-card" style="animation-delay: ${index * 0.1}s; background-image: url('${noticia.imagemUrl || 'https://placehold.co/600x400/4A8B4A/ffffff'}')">
             <div class="news-overlay"></div>
             <div class="calendar-date">
@@ -383,41 +455,35 @@ async function fazerRequisicao(url, options = {}) {
             </div>
         </article>
     `;
-        }
+}
 
-// Função para carregar notícias
-        async function carregarNoticias() {
-            try {
-                const response = await fetch(`${CONFIG.API_URL}/noticias/aprovadas`);
-                if (!response.ok) {
-                    throw new Error('Erro ao carregar notícias');
-                }
+// Função para criar item de notícia na lista
+function criarItemNoticiaLista(noticia) {
+    const data = new Date(noticia.dataCriacao);
+    const dia = data.getDate();
+    const mes = data.toLocaleString('pt-BR', {month: 'short'}).replace('.', '');
 
-                const noticias = await response.json();
-                const grid = document.getElementById('newsGrid');
-
-                if (!noticias || noticias.length === 0) {
-                    grid.innerHTML = `
-                <div class="no-news">
-                    <i class="fas fa-newspaper"></i>
-                    <p>Nenhuma notícia disponível no momento</p>
-                </div>
-            `;
-                    return;
-                }
-
-                grid.innerHTML = noticias.map((noticia, index) => criarCardNoticia(noticia, index)).join('');
-            } catch (error) {
-                console.error('Erro ao carregar notícias:', error);
-                mostrarErroNoticias();
-            }
-        }
+    return `
+        <div class="noticia-item">
+            <div class="noticia-data">
+                <span class="noticia-data-dia">${dia}</span>
+                <span class="noticia-data-mes">${mes}</span>
+            </div>
+            <h4 class="noticia-titulo">
+                <a href="./pages/noticias.html?id=${noticia.id}">${noticia.titulo}</a>
+            </h4>
+            <p class="noticia-resumo">${noticia.conteudo.replace(/<[^>]*>/g, '').slice(0, 120)}...</p>
+        </div>
+    `;
+}
 
 // Função para mostrar erro ao carregar notícias
-        function mostrarErroNoticias() {
-            const grid = document.getElementById('newsGrid');
-            if (grid) {
-                grid.innerHTML = `
+function mostrarErroNoticias() {
+    const cardsContainer = document.querySelector('.noticias-cards');
+    const listaContainer = document.querySelector('.noticias-lista-content');
+
+    if (cardsContainer) {
+        cardsContainer.innerHTML = `
             <div class="error-news">
                 <i class="fas fa-exclamation-circle"></i>
                 <p>Não foi possível carregar as notícias</p>
@@ -426,98 +492,71 @@ async function fazerRequisicao(url, options = {}) {
                 </button>
             </div>
         `;
-            }
-        }
+    }
 
-// Função para compartilhar notícia
-        async function compartilharNoticia(titulo, url) {
-            try {
-                if (navigator.share) {
-                    await navigator.share({
-                        title: titulo,
-                        text: 'Confira esta notícia da Igreja Presbiteriana!',
-                        url: url
-                    });
-                } else {
-                    await navigator.clipboard.writeText(url);
-                    mostrarMensagem('Link copiado para a área de transferência!', 'success');
-                }
-            } catch (error) {
-                console.error('Erro ao compartilhar:', error);
-            }
-        }
-
-// Função para mostrar mensagens
-        function mostrarMensagem(texto, tipo) {
-            Swal.fire({
-                text: texto,
-                icon: tipo,
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000
-            });
-        }
-
-// Inicialização
-        document.addEventListener('DOMContentLoaded', () => {
-            carregarNoticias();
-        });
+    if (listaContainer) {
+        listaContainer.innerHTML = `
+            <div class="error-news-list">
+                <p>Não foi possível carregar as notícias</p>
+            </div>
+        `;
+    }
+}
 
 // Função para carregar as configurações do footer
-        async function carregarConfiguracoesFooter() {
-            try {
-                const response = await fetch(`${CONFIG.API_URL}/configuracoes`);
-                if (!response.ok) {
-                    throw new Error('Erro ao carregar configurações');
-                }
-
-                const config = await response.json();
-                atualizarFooter(config);
-            } catch (error) {
-                console.error('Erro ao carregar configurações do footer:', error);
-            }
+async function carregarConfiguracoesFooter() {
+    try {
+        const response = await fetch(`${CONFIG.API_URL}/configuracoes`);
+        if (!response.ok) {
+            throw new Error('Erro ao carregar configurações');
         }
 
+        const config = await response.json();
+        atualizarFooter(config);
+    } catch (error) {
+        console.error('Erro ao carregar configurações do footer:', error);
+    }
+}
+
 // Função para atualizar o conteúdo do footer
-        function atualizarFooter(config) {
-            // Atualizar informações da igreja
-            const footerInfo = document.querySelector('.footer-info');
-            if (footerInfo) {
-                footerInfo.innerHTML = `
+function atualizarFooter(config) {
+    // Atualizar informações da igreja
+    const footerInfo = document.querySelector('.footer-info');
+    if (footerInfo) {
+        footerInfo.innerHTML = `
             <h3>${config.nomeSite || 'Igreja Presbiteriana do Valparaíso 1'}</h3>
             <p>Nosso endereço:</p>
-           <p>${config.endereco || 'Endereço não disponível'}</p>
-           <br> 
+            <p>${config.endereco || 'Endereço não disponível'}</p>
+            <br> 
             <p>Nossa programação:</p>
-
             <p>${config.horarioCultos || 'Horário não disponível'}</p>
         `;
-            }
+    }
 
-            // Atualizar links sociais
-            const socialLinks = document.querySelector('.social-links');
-            if (socialLinks) {
-                socialLinks.innerHTML = `
+    // Atualizar links sociais
+    const socialLinks = document.querySelector('.social-links');
+    if (socialLinks) {
+        socialLinks.innerHTML = `
             ${config.facebookUrl ? `<a href="${config.facebookUrl}" target="_blank"><i class="fab fa-facebook"></i></a>` : ''}
             ${config.instagramUrl ? `<a href="${config.instagramUrl}" target="_blank"><i class="fab fa-instagram"></i></a>` : ''}
             ${config.youtubeUrl ? `<a href="${config.youtubeUrl}" target="_blank"><i class="fab fa-youtube"></i></a>` : ''}
         `;
-            }
+    }
 
-            // Atualizar informações de contato
-            const footerContact = document.querySelector('.footer-contact');
-            if (footerContact) {
-                footerContact.innerHTML = `
+    // Atualizar informações de contato
+    const footerContact = document.querySelector('.footer-contact');
+    if (footerContact) {
+        footerContact.innerHTML = `
             <h3>Contato</h3>
             ${config.telefone ? `<p>Tel: ${config.telefone}</p>` : ''}
             ${config.whatsapp ? `<p>WhatsApp: ${config.whatsapp}</p>` : ''}
             ${config.email ? `<p>Email: ${config.email}</p>` : ''}
         `;
-            }
-        }
+    }
 
-// Carregar configurações quando a página carregar
-        document.addEventListener('DOMContentLoaded', carregarConfiguracoesFooter);
-
-
+    // Atualizar ano atual no footer
+    const anoAtualElement = document.getElementById('ano-atual');
+    if (anoAtualElement) {
+        anoAtualElement.textContent = new Date().getFullYear();
+    }
+}

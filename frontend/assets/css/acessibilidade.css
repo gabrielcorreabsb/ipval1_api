@@ -1,0 +1,106 @@
+/* acessibilidade.css */
+.accessibility-menu {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000; /* Garante que o botão fique acima de outros elementos */
+    display: block; /* Certifica que o container não está oculto */
+}
+
+.accessibility-toggle {
+    background: var(--color-primary); /* Verde escuro do index.css */
+    color: var(--color-white);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    opacity: 1; /* Garante visibilidade inicial */
+    visibility: visible; /* Garante visibilidade inicial */
+}
+
+.accessibility-toggle:hover {
+    transform: scale(1.1);
+}
+
+.accessibility-options {
+    background: var(--color-white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+    padding: 15px;
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+    display: none; /* Inicialmente oculto, controlado por JS */
+    flex-direction: column;
+    gap: 10px;
+    width: 200px;
+    border: 1px solid rgba(11, 102, 54, 0.1);
+    z-index: 1000;
+}
+
+.accessibility-options button {
+    background: var(--color-background);
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: var(--font-secondary); /* Open Sans */
+    font-size: 1rem;
+    color: var(--color-text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.3s ease;
+}
+
+.accessibility-options button:hover {
+    background: rgba(11, 102, 54, 0.1);
+}
+
+.accessibility-options button i {
+    font-size: 1.2rem;
+}
+
+/* Estilo para alto contraste */
+.high-contrast {
+    background: #000 !important;
+    color: #fff !important;
+}
+
+.high-contrast * {
+    background: #000 !important;
+    color: #fff !important;
+    border-color: #fff !important;
+}
+
+.high-contrast .noticia-container,
+.high-contrast .accessibility-toggle,
+.high-contrast .accessibility-options,
+.high-contrast .accessibility-options button {
+    background: #000 !important;
+    color: #fff !important;
+    border-color: #fff !important;
+}
+
+.high-contrast .noticia-imagem-container img {
+    filter: brightness(0) invert(1);
+}
+
+.high-contrast .voltar-btn,
+.high-contrast .share-btn {
+    background: #fff !important;
+    color: #000 !important;
+    border-color: #fff !important;
+}
+
+.high-contrast .voltar-btn:hover,
+.high-contrast .share-btn:hover {
+    background: #666 !important;
+}

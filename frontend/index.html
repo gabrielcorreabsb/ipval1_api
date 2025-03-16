@@ -4,13 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Igreja Presbiteriana do Valparaíso 1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/global.css">
     <link rel="stylesheet" href="./assets/css/index.css">
-    <link rel="stylesheet" href="./assets/css/instagram.css">
-    <link rel="stylesheet" href="./assets/css/instagram_add.css">
-
+    <link rel="stylesheet" href="./assets/css/doutrina_igreja_modal.css">
+    <link rel="stylesheet" href="./assets/css/sobrenos.css">
+    <link rel="stylesheet" href="./assets/css/instagramvideo.css">
+    <link rel="stylesheet" href="./assets/css/whastapp_button.css">
+    <link rel="stylesheet" href="./assets/css/noticias_index.css">
 </head>
 <body>
 <!-- Header -->
@@ -25,7 +30,8 @@
             </button>
             <ul class="nav-list">
                 <li><a href="./index.html" data-page="departamentos">Inicio</a></li>
-                <li><a href="./pages/departamentos.html" data-page="departamentos">Departamentos</a></li>
+                <li><a href="./pages/igreja.html" data-page="departamentos">Quem somos</a></li>
+                <li><a href="./pages/departamentos.html" data-page="departamentos">Ministérios</a></li>
                 <li><a href="./pages/agenda.html" data-page="agenda">Agenda</a></li>
                 <li><a href="./pages/contribua.html" data-page="contribua">Contribua</a></li>
                 <li><a href="./pages/contato.html" class="active">Contato</a></li>
@@ -34,6 +40,10 @@
     </div>
 </header>
 
+
+
+
+<!-- 1. Welcome Section -->
 <section class="welcome-section">
     <div class="container">
         <div class="welcome-content">
@@ -44,60 +54,61 @@
     </div>
 </section>
 
-<section class="about-section" id="sobre">
+<!-- 2. Sobre Nossa Igreja -->
+<section class="sobre-section" id="sobre">
     <div class="container">
-        <div class="about-grid">
-            <div class="about-title">
-                <h2>Sobre Nós</h2>
-                <div class="title-divider"></div>
-            </div>
-            <div class="about-content">
-                <div id="sobreIgrejaContent">
-                    <!-- Será preenchido via JavaScript -->
+        <div class="section-header">
+            <h2>Sobre Nossa Igreja</h2>
+            <div class="section-divider"></div>
+            <p class="section-subtitle">Conheça nossa história, missão e valores</p>
+        </div>
+
+        <div class="sobre-cards">
+            <div class="sobre-card">
+                <div class="card-icon">
+                    <i class="fas fa-history"></i>
                 </div>
+                <h3>Nossa História</h3>
+                <p>Fundada em 2018, a Igreja Presbiteriana do Valparaíso 1 serve à comunidade com o evangelho há mais de 7 anos.</p>            </div>
+
+            <div class="sobre-card">
+                <div class="card-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h3>Nossa Missão</h3>
+                <p>Glorificar a Deus através da adoração, evangelização, discipulado e serviço, formando uma comunidade que reflete o amor de Cristo.</p>
             </div>
+
+            <div class="sobre-card">
+                <div class="card-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h3>Nossa Visão</h3>
+                <p>Ser uma igreja bíblica, acolhedora e relevante, que impacta positivamente a comunidade e forma discípulos comprometidos com Cristo.</p>
+            </div>
+
+            <div class="sobre-card">
+                <div class="card-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>Nossos Valores</h3>
+                <p>Fidelidade à Palavra, comunhão fraterna, excelência no serviço a Deus, compromisso com a família e responsabilidade social.</p>
+            </div>
+        </div>
+
+        <div class="sobre-cta">
+            <a href="./pages/igreja.html" class="btn-outline">Conheça mais sobre a nossa igreja!</a>
         </div>
     </div>
 </section>
 
-<section class="fundamentos">
-    <div class="container">
-        <h2>No Que Cremos</h2>
-        <div class="fundamentos-grid">
-            <div class="fundamento-card" onclick="mostrarIgrejaReformada()">
-                <i class="fas fa-church"></i>
-                <h3>Igreja Reformada</h3>
-                <p>Conheça nossa história e identidade</p>
-            </div>
-
-            <div class="fundamento-card" onclick="mostrarDoutrina()">
-                <i class="fas fa-book-bible"></i>
-                <h3>Nossa Doutrina</h3>
-                <p>Conheça os fundamentos da nossa fé</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="noticias">
-    <div class="container">
-        <div class="noticias-header">
-        </div>
-
-        <div id="newsGrid" class="noticias-feed">
-            <!-- As notícias serão inseridas aqui dinamicamente -->
-        </div>
-    </div>
-</section>
-
-<!-- Hero Section -->
-<!-- Hero Section com duas colunas -->
-<section class="hero">
+<!-- 3. Hero Section com Programação -->
+<section class="hero" id="programacao">
     <div class="hero-grid">
         <!-- Coluna 1: Slider/Banner -->
         <div class="hero-slider">
             <div class="slide active">
-                <div class="overlay"></div> <!-- Adicionando div para o overlay -->
+                <div class="overlay"></div>
                 <div class="slide-content">
                     <h1>Uma igreja para você e sua família experimentarem o amor de Deus</h1>
                     <a href="https://g.co/kgs/C2ByTBG" class="cta-button">Venha fazer parte da nossa família!</a>
@@ -127,18 +138,96 @@
     </div>
 </section>
 
+<!-- 4. No Que Cremos -->
+<section class="fundamentos" id="cremos">
+    <div class="container">
+        <h2>No Que Cremos</h2>
+        <div class="fundamentos-grid">
+            <div class="fundamento-card" onclick="mostrarIgrejaReformada()">
+                <i class="fas fa-church"></i>
+                <h3>Igreja Reformada</h3>
+                <p>Conheça nossa história e identidade</p>
+            </div>
+
+            <div class="fundamento-card" onclick="mostrarDoutrina()">
+                <i class="fas fa-book-bible"></i>
+                <h3>Nossa Doutrina</h3>
+                <p>Conheça os fundamentos da nossa fé</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 5. Notícias -->
+<section class="noticias" id="noticias">
+    <div class="container">
 
 
-<!-- Container para o feed -->
-<div id="instagram-feed"></div>
+        <div class="noticias-container">
+            <!-- Cards principais à esquerda -->
+            <div class="noticias-cards">
+                <!-- Os cards serão preenchidos dinamicamente pelo JavaScript -->
+            </div>
 
-<!-- Seu JavaScript -->
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const feed = new InstagramFeed();
-        feed.init();
-    });
-</script>
+            <!-- Lista de notícias à direita -->
+            <div class="noticias-lista">
+                <div class="noticias-lista-header">
+                    <h3>Últimas publicações</h3>
+                </div>
+                <div class="noticias-lista-content">
+                    <!-- As notícias em lista serão preenchidas dinamicamente pelo JavaScript -->
+                </div>
+                <div class="noticias-lista-footer">
+                    <a href="./pages/noticias.html" class="btn-ver-todas">Ver todas as publicações <i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="videos-section" id="videos">
+    <div class="container">
+        <div class="section-header">
+<!--            <h2>Vídeos</h2>-->
+<!--            <div class="section-divider"></div>-->
+<!--            <p class="section-subtitle">Assista aos sermões e eventos especiais da nossa igreja</p>-->
+        </div>
+
+        <div class="instagram-videos-container">
+            <div class="instagram-videos-grid">
+                <!-- Aqui serão inseridos os cards de vídeo -->
+            </div>
+            <div id="instagram-videos-loader" class="loading">Carregando vídeos...</div>
+            <div class="instagram-videos-footer">
+                <a href="#" class="btn-ver-todos">
+                    Ver todos os vídeos <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 6. Eventos Especiais -->
+<section class="eventos-especiais" id="eventos">
+    <div class="container">
+        <div class="section-header">
+            <h2>Próximos Eventos</h2>
+            <div class="section-divider"></div>
+            <p class="section-subtitle">Participe das nossas atividades especiais</p>
+        </div>
+
+        <!-- Esta div será preenchida dinamicamente pelo JavaScript -->
+        <div class="eventos-timeline">
+
+        </div>
+
+        <div class="eventos-cta">
+            <a href="./pages/agenda.html" class="btn-outline">Ver agenda completa</a>
+        </div>
+    </div>
+</section>
+
+
 
 <!-- Footer -->
 <footer class="footer">
@@ -163,11 +252,18 @@
     </div>
 </footer>
 
+<!-- Botão Voltar ao Topo -->
+<a href="#" class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+</a>
+
 <script src="./assets/js/config.js"></script>
-<script src="./assets/js/auth.js"></script>
+<script src="./assets/js/whatsapp-config.js" async></script>
+<script src="./assets/js/agenda_site.js"></script>
 <script src="./assets/js/index.js"></script>
-<script src="./assets/js/instagram.js"></script>
+<script src="./assets/js/instagramVideos.js"></script>
 <script src="./assets/js/footer.js"></script>
+
 
 </body>
 </html>

@@ -4,24 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe7ee837-3f70-4d99-9e20-e1d36c4ade36" name="Changes" comment="v2.6 - Adicionado o back end de notícias!">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/ipval1.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ipval1.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/assets/css/agenda_site.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/assets/css/contato.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/assets/css/contribua.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/assets/js/agenda_site.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/assets/js/contato.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/assets/js/contribua.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/assets/js/footer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/pages/agenda.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/pages/contato.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/pages/contribua.html" afterDir="false" />
+    <list default="true" id="fe7ee837-3f70-4d99-9e20-e1d36c4ade36" name="Changes" comment="v7.1 - Configurado já para o deploy e retirado o application.properties">
+      <change afterPath="$PROJECT_DIR$/target/api-teste-0.0.1-SNAPSHOT.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/api-teste-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/assets/css/departamentos.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/assets/css/departamentos.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/assets/js/departamentos.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/assets/js/departamentos.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/pages/departamentos.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/pages/departamentos.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ipval1.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +39,9 @@
     &quot;accountId&quot;: &quot;81af8af8-90ae-4bee-92f4-11cf4f80714d&quot;
   }
 }</component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -62,33 +53,51 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Spring Boot.ApiTesteApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Projetos/Igreja/api_site/backend/src/main/resources&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.import&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "Application.GenerateJwtKey.executor": "Run",
+    "Maven.api-teste [clean].executor": "Run",
+    "Maven.api-teste [package].executor": "Run",
+    "Maven.api-teste [validate].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.ApiTesteApplication.executor": "Run",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Projetos/Igreja/api_site/backend/src/main/resources",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.runner",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Projetos\Igreja\api_site\backend\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.ApiTesteApplication">
+    <configuration name="GenerateJwtKey" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.api_teste.util.GenerateJwtKey" />
+      <module name="api-teste" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.api_teste.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="backend" />
       <method v="2">
@@ -101,6 +110,7 @@
       <method v="2" />
     </configuration>
     <configuration name="ApiTesteApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ACTIVE_PROFILES" value="dev" />
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="api-teste" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.api_teste.ApiTesteApplication" />
@@ -108,6 +118,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.GenerateJwtKey" />
+      <item itemvalue="Spring Boot.ApiTesteApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.GenerateJwtKey" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -130,7 +149,15 @@
       <workItem from="1741204889568" duration="20109000" />
       <workItem from="1741458880160" duration="6072000" />
       <workItem from="1741485577370" duration="2483000" />
-      <workItem from="1741565089775" duration="3914000" />
+      <workItem from="1741565089775" duration="5386000" />
+      <workItem from="1741620941952" duration="1291000" />
+      <workItem from="1741622268537" duration="6000" />
+      <workItem from="1741622286663" duration="939000" />
+      <workItem from="1741623238661" duration="1843000" />
+      <workItem from="1741664325111" duration="4145000" />
+      <workItem from="1741752072882" duration="3601000" />
+      <workItem from="1742073903181" duration="7091000" />
+      <workItem from="1742136762321" duration="5957000" />
     </task>
     <task id="LOCAL-00001" summary="Corrigido o application.properties e SecurityConfig">
       <option name="closed" value="true" />
@@ -156,7 +183,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741152268119</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="v7.1 - Configurado já para o deploy e retirado o application.properties">
+      <option name="closed" value="true" />
+      <created>1741664909267</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1741664909267</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -177,7 +212,8 @@
     <MESSAGE value="Corrigido o application.properties e SecurityConfig" />
     <MESSAGE value="Adicionado CRUD nos Usuários (com roles a serem usadas futuramente)." />
     <MESSAGE value="v2.5 - Adicionado o back end de notícias!" />
-    <option name="LAST_COMMIT_MESSAGE" value="v2.5 - Adicionado o back end de notícias!" />
+    <MESSAGE value="v7.1 - Configurado já para o deploy e retirado o application.properties" />
+    <option name="LAST_COMMIT_MESSAGE" value="v7.1 - Configurado já para o deploy e retirado o application.properties" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

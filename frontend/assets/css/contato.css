@@ -1,6 +1,16 @@
+/* contato.css */
+
+/* Import global styles - IMPORTANT: Link global.css in your HTML before contato.css */
+/* Ensure global.css is linked in the <head> of your contato.html */
+
+/* NOTE: This CSS should contain ONLY page-specific styles for contato.html, leveraging global.css */
+
+/* Removed redundant :root block - using variables from global.css */
+/* Removed redundant body styles - using body styles from global.css */
+
 .contato-container {
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 1200px; /* Keep max-width if page-specific, otherwise consider global container */
+    margin: 0 auto; /* Keep margin auto if page-specific, otherwise consider global container */
     padding: 2rem;
 }
 
@@ -10,9 +20,10 @@
 }
 
 .page-title h1 {
-    color: #333;
+    color: var(--color-text); /* Using global color variable */
     font-size: 2.5rem;
-    font-weight: 700;
+    font-weight: 700; /* Keep font-weight: 700 if page titles should be bold, otherwise define in global.css */
+    font-family: var(--font-primary); /* Using global font variable */
 }
 
 .contact-grid {
@@ -22,11 +33,11 @@
 }
 
 .contact-card {
-    background: white;
-    border-radius: 10px;
+    background: var(--color-white); /* Using global color variable */
+    border-radius: var(--border-radius); /* Using global border-radius variable */
     padding: 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    box-shadow: var(--shadow-soft); /* Using global shadow variable */
+    transition: transform var(--transition-speed) ease; /* Using global transition-speed variable */
 }
 
 .contact-card:hover {
@@ -42,26 +53,28 @@
 
 .card-header i {
     font-size: 2rem;
-    color: #4A8B4A;
+    color: var(--color-primary); /* Using global color variable */
 }
 
 .card-header h2 {
     margin: 0;
-    color: #333;
+    color: var(--color-text); /* Using global color variable */
     font-size: 1.5rem;
+    font-family: var(--font-primary); /* Using global font variable */
+    font-weight: 600; /* Assuming card headers should be bold, if not, remove or adjust in global.css */
 }
 
 /* Estilos para o card pastoral */
 .pastoral .highlight-text {
     font-size: 1.1rem;
-    color: #4A8B4A;
+    color: var(--color-primary); /* Using global color variable */
     margin-bottom: 1.5rem;
 }
 
 .pastor-info {
-    background-color: #f8f9fa;
+    background-color: var(--color-card); /* Using global color variable */
     padding: 1.5rem;
-    border-radius: 8px;
+    border-radius: 8px; /* Keep hardcoded if 8px border-radius is specific, or define a smaller border-radius variable in global */
 }
 
 .contact-item {
@@ -72,13 +85,13 @@
 }
 
 .contact-item a {
-    color: #4A8B4A;
+    color: var(--color-primary); /* Using global color variable */
     text-decoration: none;
     font-weight: 600;
 }
 
 .contact-item a:hover {
-    text-decoration: underline;
+    text-decoration: underline; /* Keep if underline on hover is specific to contact links */
 }
 
 /* Estilos para o formulário */
@@ -94,7 +107,7 @@
 }
 
 .form-group label {
-    color: #333;
+    color: var(--color-text); /* Using global color variable */
     font-weight: 600;
 }
 
@@ -102,9 +115,10 @@
 .form-group select,
 .form-group textarea {
     padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    border: 1px solid #ddd; /* Keep hardcoded if #ddd is specific to form border, or define a border color variable in global */
+    border-radius: 5px; /* Keep hardcoded if 5px border-radius is specific, or define a smaller border-radius variable in global */
     font-size: 1rem;
+    font-family: var(--font-secondary); /* Using global font variable */
 }
 
 .form-group textarea {
@@ -113,36 +127,37 @@
 }
 
 .submit-btn {
-    background-color: #4A8B4A;
-    color: white;
+    background-color: var(--color-primary); /* Using global color variable */
+    color: var(--color-white); /* Using global color variable */
     border: none;
     padding: 1rem;
-    border-radius: 5px;
+    border-radius: 5px; /* Keep hardcoded if 5px border-radius is specific, or define a button border-radius variable in global */
     font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color var(--transition-speed) ease; /* Using global transition-speed variable */
 }
 
 .submit-btn:hover {
-    background-color: #3a6f3a;
+    background-color: var(--color-accent); /* Using global color variable - accent or choose a better hover color from global */
 }
 
 /* Estilos para localização */
 .map-container {
     margin-top: 1.5rem;
-    border-radius: 8px;
+    border-radius: 8px; /* Keep hardcoded if 8px border-radius is specific, or define a smaller border-radius variable in global */
     overflow: hidden;
 }
 
 .address-info {
     margin-bottom: 1.5rem;
+    color: var(--color-text); /* Using global color variable */
 }
 
 /* Estilos para horários */
 .schedule-item {
     margin-bottom: 1.5rem;
     padding-bottom: 1.5rem;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #eee; /* Keep hardcoded if #eee is specific to schedule item border, or define a border color variable in global */
 }
 
 .schedule-item:last-child {
@@ -152,8 +167,10 @@
 }
 
 .schedule-item h3 {
-    color: #4A8B4A;
+    color: var(--color-primary); /* Using global color variable */
     margin-bottom: 0.5rem;
+    font-family: var(--font-primary); /* Using global font variable */
+    font-weight: 600; /* Assuming schedule headers should be bold, if not, remove or adjust in global.css */
 }
 
 /* Responsividade */

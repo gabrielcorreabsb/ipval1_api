@@ -1,31 +1,29 @@
+/* contribua.css */
+
+/* Import global styles - IMPORTANT: Link global.css in your HTML before contribua.css */
+/* Ensure global.css is linked in the <head> of your contribua.html */
+
+/* NOTE: This CSS should contain ONLY page-specific styles for contribua.html, leveraging global.css */
+
+/* Removed redundant :root block - using variables from global.css */
+/* Removed redundant body styles - using body styles from global.css */
+
 .contribua-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-}
-
-.page-title {
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-.page-title h1 {
-    color: #333;
-    font-size: 2.5rem;
-    font-weight: 700;
+    max-width: 1200px; /* Keep max-width if page-specific, otherwise consider global container */
+    margin: 0 auto; /* Keep margin auto if page-specific, otherwise consider global container */
 }
 
 .verse-section {
     text-align: center;
     margin-bottom: 3rem;
-    padding: 2rem;
-    background-color: #f8f9fa;
-    border-radius: 10px;
+    /*padding: 2rem;*/
+    background-color: #f8f9fa; /* Using global color variable */
+    border-radius: var(--border-radius); /* Using global border-radius variable */
 }
 
 .verse-section blockquote {
     font-size: 1.5rem;
-    color: #4A8B4A;
+    color: var(--color-primary); /* Using global color variable */
     font-style: italic;
     margin: 0;
     padding: 0;
@@ -33,7 +31,7 @@
 
 .verse-section footer {
     margin-top: 1rem;
-    color: #666;
+    color: var(--color-text-light); /* Using global color variable */
     font-size: 1.1rem;
 }
 
@@ -45,11 +43,12 @@
 }
 
 .method-card {
-    background: white;
-    border-radius: 10px;
+    background: var(--color-white); /* Using global color variable */
+    border-radius: var(--border-radius); /* Using global border-radius variable */
     padding: 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-soft); /* Using global shadow variable */
+    transition: transform var(--transition-speed) ease; /* Using global transition-speed variable */
 }
 
 .method-card:hover {
@@ -65,17 +64,20 @@
 
 .method-header i {
     font-size: 2rem;
-    color: #4A8B4A;
+    color: var(--color-primary); /* Using global color variable */
 }
 
 .method-header h2 {
     margin: 0;
-    color: #333;
+    color: var(--color-text); /* Using global color variable */
     font-size: 1.5rem;
+    font-family: var(--font-primary); /* Using global font variable */
+    font-weight: 600; /* Assuming method headers should be bold, if not, remove or adjust in global.css */
 }
 
 .method-content {
-    color: #666;
+    color: var(--color-text-light); /* Using global color variable */
+    font-family: var(--font-secondary); /* Using global font variable */
 }
 
 .method-content p {
@@ -83,14 +85,15 @@
 }
 
 .bank-details {
-    background-color: #f8f9fa;
+    background-color: #f8f9fa; /* Using global color variable */
     padding: 1rem;
-    border-radius: 5px;
+    border-radius: 5px; /* Keep hardcoded if 5px border-radius is specific, or define a smaller border-radius variable in global */
     margin: 1rem 0;
 }
 
 .bank-details p {
     margin: 0.5rem 0;
+    color: var(--color-text); /* Using global color variable */
 }
 
 .copy-content {
@@ -102,36 +105,33 @@
 .copy-content input {
     flex: 1;
     padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f8f9fa;
+    border: 1px solid #ddd; /* Keep hardcoded if #ddd is specific to input border, or define a border color variable in global */
+    border-radius: 5px; /* Keep hardcoded if 5px border-radius is specific, or define a smaller border-radius variable in global */
+    background-color: #f8f9fa; /* Using global color variable */
     font-size: 0.9rem;
-    color: #333;
+    color: var(--color-text); /* Using global color variable */
     cursor: text;
+    font-family: var(--font-secondary); /* Using global font variable */
 }
 
 .copy-btn {
-    background-color: #4A8B4A;
-    color: white;
+    background-color: var(--color-primary); /* Using global color variable */
+    color: var(--color-white); /* Using global color variable */
     border: none;
-    border-radius: 5px;
+    border-radius: 5px; /* Keep hardcoded if 5px border-radius is specific, or define a button border-radius variable in global */
     padding: 0.75rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color var(--transition-speed) ease; /* Using global transition-speed variable */
 }
 
 .copy-btn:hover {
-    background-color: #3a6f3a;
+    background-color: var(--color-accent); /* Using global color variable - accent or choose a better hover color from global */
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
     .contribua-container {
         padding: 1rem;
-    }
-
-    .page-title h1 {
-        font-size: 2rem;
     }
 
     .verse-section blockquote {

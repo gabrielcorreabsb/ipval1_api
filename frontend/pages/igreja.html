@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quem Somos - Igreja Presbiteriana do Valparaíso 1</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/igreja.css">
+</head>
+<body>
+<!-- Header -->
+<header class="header">
+    <div class="header-container">
+        <div class="logo">
+            <img src="../assets/imgs/logo.png" alt="Logo Igreja Presbiteriana do Brasil">
+        </div>
+        <nav class="main-nav">
+            <button class="mobile-menu-btn">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-list">
+                <li><a href="../index.html" data-page="inicio">Início</a></li>
+                <li><a href="./igreja.html" data-page="departamentos">Quem somos</a></li>
+                <li><a href="./departamentos.html" data-page="departamentos">Ministérios</a></li>
+                <li><a href="./agenda.html" data-page="agenda">Agenda</a></li>
+                <li><a href="./contribua.html" data-page="contribua">Contribua</a></li>
+                <li><a href="./contato.html">Contato</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main class="main-content">
+    <!-- Seção Sobre a Igreja (Estilo Card - Layout Melhorado) -->
+    <section class="about-section method-card" id="sobre-nos">
+        <div class="container">
+            <div class="about-grid card-layout-grid"> <!-- Adicionada classe card-layout-grid -->
+                <div class="card-layout-image about-image"> <!-- Envolvido a imagem com card-layout-image -->
+                    <img src="../assets/imgs/ipv1_familia.jpg" alt="Sobre a Igreja" class="responsive-image">
+                </div>
+                <div class="card-layout-content about-content method-content"> <!-- Envolvido o conteúdo com card-layout-content -->
+                    <h2 class="section-title method-header">
+                        <i class="fas fa-church"></i> <h2>Sobre a Igreja</h2>
+                    </h2>
+                    <div id="sobreIgrejaContent">
+                        <!-- Conteúdo carregado via JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção História Completa (Estilo Card - Layout Melhorado) -->
+    <section class="history-section method-card">
+        <div class="container">
+            <div class="history-grid card-layout-grid"> <!-- Adicionada classe card-layout-grid -->
+                <div class="card-layout-image history-image"> <!-- Envolvido a imagem com card-layout-image -->
+                    <img src="../assets/imgs/ipv1_familia_old.jpg" alt="História da Igreja" class="responsive-image">
+                </div>
+                <div class="card-layout-content history-content method-content"> <!-- Envolvido o conteúdo com card-layout-content -->
+                    <h2 class="section-title method-header">
+                        <i class="fas fa-history"></i> <h2>História da IPV1</h2>
+                    </h2>
+                    <div class="history-page-content">  <!-- Adicionada div history-page-content para o texto da história -->
+                        <p>
+                            O desejo de plantar uma nova Congregação surgiu através da iniciativa do Rev. Roberto Branquinho juntamente
+                            com o Conselho da IPV em 2016. O Conselho da igreja percebia a necessidade da presença da Igreja
+                            Presbiteriana em Valparaíso 1, inclusive boa parte dos presbíteros e outros irmãos da IPV moram nessa
+                            região.
+                        </p>
+                        <p>
+                            Algumas reuniões nos lares começaram a acontecer em 2017 e em 2018 sob a liderança do Sem. Naasson juntamente
+                            com os presbíteros Francisco, Lázaro e José Dartalian e suas respectivas famílias. No dia 26 de Fevereiro de
+                            2018, após a aquisição de um terreno e a construção de um espaço provisório, foi organizada de maneira
+                            definitiva a Congregação Presbiteriana do Valparaíso 1.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Presbíteros (Estilo Card) -->
+    <section class="elders-section method-card"> <div class="container">
+        <h2 class="section-title method-header"> <i class="fas fa-users"></i> <h2>Nossos Presbíteros</h2> </h2>
+        <div class="team-grid method-content">
+            <div class="team-member">
+                <img src="../assets/imgs/presbitero-lazaro.jpg" alt="Presb. Lázaro Mendes">
+                <h3>Presb. Lázaro Mendes</h3>
+                <p class="member-role">Presbítero</p>
+                <p>Responsável pela organização inicial dos cultos e pelo apoio às famílias nos primeiros anos da congregação.</p>
+            </div>
+            <div class="team-member">
+                <img src="../assets/imgs/presbitero-jose.jpg" alt="Presb. José Dartalian">
+                <h3>Presb. José Dartalian</h3>
+                <p class="member-role">Presbítero</p>
+                <p>Coordenador de ensino e discipulado, focado na formação espiritual dos membros da IPV1.</p>
+            </div>
+        </div>
+    </div> </section>
+
+    <!-- Seção Pastores (Estilo Card) -->
+    <section class="pastors-section method-card"> <div class="container">
+        <h2 class="section-title method-header"> <i class="fas fa-praying-hands"></i> <h2>Nossos Pastores</h2> </h2>
+        <div class="team-grid method-content">
+            <div class="team-member">
+                <img src="../assets/imgs/pastor_lucas.jpg" alt="Pr. Lucas Souza">
+                <h3>Pr. Lucas Sousa</h3>
+                <p class="member-role">Pastor</p>
+                <p>Conhecer a Deus e fazê-lo conhecido.</p>
+            </div>
+        </div>
+    </div> </section>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-info">
+                <!-- Dados institucionais (preenchidos dinamicamente) -->
+            </div>
+            <div class="footer-social">
+                <h3>Redes Sociais</h3>
+                <div class="social-links">
+                    <!-- Links para redes sociais (preenchidos dinamicamente) -->
+                </div>
+            </div>
+            <div class="footer-contact">
+                <!-- Contatos (preenchidos dinamicamente) -->
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© <span id="ano-atual">2024</span> Igreja Presbiteriana do Valparaíso 1. Todos os direitos reservados.</p>
+        </div>
+    </div>
+</footer>
+<a href="#" class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+</a>
+
+<!-- Scripts -->
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/menu_site.js"></script>
+<script src="../assets/js/igreja.js"></script>
+<script src="../assets/js/footer.js"></script>
+</body>
+</html>
