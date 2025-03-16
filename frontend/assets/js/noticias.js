@@ -53,30 +53,57 @@ function initTinyMCE(selector) {
     return tinymce.init({
         selector: selector,
         height: 400,
-        menubar: false,
         language: 'pt_BR',
+        referrerpolicy: "origin", // Adiciona política de referrer
+        promotion: false, // Remove a promoção do TinyMCE
+        branding: false, // Remove a marca TinyMCE
         plugins: [
-            'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
-            'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-            'insertdatetime', 'media', 'table', 'help', 'wordcount'
+            'anchor', 'autolink', 'charmap', 'codesample', 'emoticons',
+            'image', 'link', 'lists', 'media', 'searchreplace', 'table',
+            'visualblocks', 'wordcount', 'checklist', 'mediaembed'
         ],
-        toolbar: 'undo redo | blocks | ' +
-            'bold italic forecolor | alignleft aligncenter ' +
-            'alignright alignjustify | bullist numlist outdent indent | ' +
-            'removeformat | help',
+        toolbar: [
+            'undo redo | formatselect | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist',
+            'forecolor backcolor | link image media | removeformat help'
+        ].join(' | '),
         content_style: `
             body {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
                 font-size: 16px;
-                color: #ffffff;
-                background-color: #2b2b2b;
+                color: #333;
+                max-width: 100%;
             }
         `,
-        skin: 'oxide-dark',
-        content_css: 'dark'
-    }).then(editors => {
-        console.log('Editor inicializado com sucesso');
-        return editors[0];
+        image_advtab: true,
+        image_caption: true,
+        automatic_uploads: true,
+        file_picker_types: 'image',
+        images_upload_handler: async function (blobInfo, progress) {
+            try {
+                const formData = new FormData();
+                formData.append('file', blobInfo.blob(), blobInfo.filename());
+
+                const response = await fetch(`${CONFIG.API_URL}/upload`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: formData
+                });
+
+                if (!response.ok) throw new Error('Upload failed');
+                const json = await response.json();
+                return json.location;
+            } catch (err) {
+                console.error('Erro no upload:', err);
+                throw new Error('Falha no upload da imagem');
+            }
+        },
+        setup: function(editor) {
+            editor.on('init', function() {
+                console.log('Editor inicializado com sucesso');
+            });
+        }
     }).catch(err => {
         console.error('Erro ao inicializar o editor:', err);
         mostrarMensagem('Erro ao inicializar o editor', 'error');

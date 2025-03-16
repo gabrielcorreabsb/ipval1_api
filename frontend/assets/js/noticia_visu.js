@@ -16,40 +16,47 @@ async function carregarNoticia() {
 
         // Atualiza a imagem
         const imagemContainer = document.querySelector('.noticia-imagem');
-        imagemContainer.innerHTML = `
-            <img src="${noticia.imagemUrl || 'https://placehold.co/1200x600'}" 
-                 alt="${noticia.titulo}">
-        `;
+        if (imagemContainer) {
+            imagemContainer.innerHTML = `
+                <img src="${noticia.imagemUrl || 'https://placehold.co/1200x600'}" 
+                     alt="${noticia.titulo}">
+            `;
+        }
 
         // Atualiza as informações
         const infoContainer = document.querySelector('.noticia-info');
-        infoContainer.innerHTML = `
-            <h1>${noticia.titulo}</h1>
-            <div class="noticia-metadata">
-                <span class="data">
-                    <i class="far fa-calendar"></i>
-                    ${new Date(noticia.dataCriacao).toLocaleDateString('pt-BR')}
-                </span>
-                <span class="autor">
-                    <i class="far fa-user"></i>
-                    ${noticia.autorNome || 'Igreja Presbiteriana'}
-                </span>
-            </div>
-            <div class="noticia-texto">
-                ${noticia.conteudo}
-            </div>
-        `;
+        if (infoContainer) {
+            infoContainer.innerHTML = `
+                <h1>${noticia.titulo}</h1>
+                <div class="noticia-metadata">
+                    <span class="data">
+                        <i class="far fa-calendar"></i>
+                        ${new Date(noticia.dataCriacao).toLocaleDateString('pt-BR')}
+                    </span>
+                    <span class="autor">
+                        <i class="far fa-user"></i>
+                        ${noticia.autorNome || 'Igreja Presbiteriana'}
+                    </span>
+                </div>
+                <div class="noticia-texto">
+                    ${noticia.conteudo}
+                </div>
+            `;
+        }
 
     } catch (error) {
         console.error('Erro ao carregar notícia:', error);
-        document.querySelector('.noticia-content').innerHTML = `
-            <div class="noticia-erro">
-                <i class="fas fa-exclamation-circle"></i>
-                <h2>Notícia não encontrada</h2>
-                <p>Desculpe, não foi possível encontrar a notícia solicitada.</p>
-                <a href="index.html#noticias" class="btn-primary">Voltar para Notícias</a>
-            </div>
-        `;
+        const noticiaContent = document.querySelector('.noticia-content');
+        if (noticiaContent) {
+            noticiaContent.innerHTML = `
+                <div class="noticia-erro">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <h2>Notícia não encontrada</h2>
+                    <p>Desculpe, não foi possível encontrar a notícia solicitada.</p>
+                    <a href="index.html#noticias" class="btn-primary">Voltar para Notícias</a>
+                </div>
+            `;
+        }
     }
 }
 
@@ -99,7 +106,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const container = noticiaImagem.parentElement;
         const imageRatio = this.naturalWidth / this.naturalHeight;
 
-        // Ajusta o container para acomodar a imagem adequadamente
         if (imageRatio > 2 || imageRatio < 0.5) {
             container.style.height = 'auto';
             container.style.paddingTop = '0';

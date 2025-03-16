@@ -1,25 +1,35 @@
+/* noticia_site.css */
+
+/* Import global styles - IMPORTANT: Link global.css in your HTML before noticia_site.css */
+/* Ensure global.css is linked in the <head> of your noticia.html */
+
+/* NOTE: This CSS should contain ONLY page-specific styles for noticia_site.html, leveraging global.css */
+
+/* Removed redundant :root block - using variables from global.css */
+/* Removed redundant body styles - using body styles from global.css */
+
 /* Estilos para a página de notícia */
 .noticia-container {
     padding: 60px 0;
-    min-height: calc(100vh - 400px);
-    background-color: var(--color-background);
+    min-height: calc(100vh - 400px); /* Keep if page-specific min-height is needed */
+    background-color: var(--color-background); /* Using global color variable */
 }
 
 .noticia-navegacao {
     margin-bottom: 30px;
-    max-width: 1200px;
-    margin: 0 auto 30px;
-    padding: 0 20px;
+    max-width: 1200px; /* Keep max-width if page-specific, otherwise consider global container */
+    margin: 0 auto 30px; /* Keep margin auto and bottom if page-specific, otherwise consider global container */
+    padding: 0 20px; /* Keep padding if page-specific, otherwise consider global container padding */
 }
 
 .voltar-btn {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    color: var(--color-primary);
+    color: var(--color-primary); /* Using global color variable */
     text-decoration: none;
     font-weight: 500;
-    transition: transform 0.3s ease;
+    transition: transform var(--transition-speed) ease; /* Using global transition-speed variable */
 }
 
 .voltar-btn:hover {
@@ -27,21 +37,27 @@
 }
 
 .noticia-content {
-    background: white;
-    border-radius: 15px;
+    background: var(--color-white); /* Using global color variable */
+    border-radius: var(--border-radius); /* Using global border-radius variable */
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    max-width: 1200px;
-    margin: 0 auto;
+    box-shadow: var(--shadow-soft); /* Using global shadow variable */
+    max-width: 1200px; /* Keep max-width if page-specific, otherwise consider global container */
+    margin: 0 auto; /* Keep margin auto if page-specific, otherwise consider global container */
+}
+
+.noticia-info {
+    padding: 40px;
+    max-width: 800px; /* Keep max-width if page-specific, adjust as needed */
+    margin: 0 auto; /* Keep margin auto if page-specific, adjust as needed */
 }
 
 /* Container da imagem */
 .noticia-imagem-container {
     position: relative;
     width: 100%;
-    max-height: 600px;
-    min-height: 300px;
-    background-color: var(--color-background);
+    max-height: 600px; /* Keep max-height if page-specific, adjust as needed */
+    min-height: 300px; /* Keep min-height if page-specific, adjust as needed */
+    background-color: var(--color-background); /* Using global color variable */
     overflow: hidden;
 }
 
@@ -58,10 +74,10 @@
 .noticia-imagem img {
     width: 100%;
     height: auto;
-    max-height: 600px;
+    max-height: 600px; /* Keep max-height if page-specific, adjust as needed */
     object-fit: contain;
     object-position: center;
-    transition: transform 0.3s ease;
+    transition: transform var(--transition-speed) ease; /* Using global transition-speed variable */
 }
 
 /* Zoom da imagem */
@@ -75,14 +91,14 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.9); /* Keep hardcoded if rgba(0, 0, 0, 0.9) is specific to zoom overlay */
     z-index: 1000;
     cursor: zoom-out;
 }
 
 .noticia-imagem.zoomed img {
-    max-width: 90%;
-    max-height: 90vh;
+    max-width: 90%; /* Keep max-width if 90% is specific to zoomed image */
+    max-height: 90vh; /* Keep max-height if 90vh is specific to zoomed image */
     object-fit: contain;
     margin: auto;
 }
@@ -94,7 +110,7 @@
     right: 20px;
     width: 40px;
     height: 40px;
-    background: white;
+    background: var(--color-white); /* Using global color variable */
     border: none;
     border-radius: 50%;
     font-size: 24px;
@@ -103,11 +119,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    transition: all var(--transition-speed) ease; /* Using global transition-speed variable */
 }
 
 .zoom-close-btn:hover {
-    background: #f0f0f0;
+    background: #f0f0f0; /* Keep hardcoded if #f0f0f0 is specific to zoom button hover */
     transform: scale(1.1);
 }
 
@@ -119,7 +135,7 @@
     left: 50%;
     width: 40px;
     height: 40px;
-    border: 3px solid var(--color-primary);
+    border: 3px solid var(--color-primary); /* Using global color variable */
     border-top-color: transparent;
     border-radius: 50%;
     animation: spin 1s linear infinite;
@@ -137,18 +153,147 @@
     }
 }
 
+/* Botões de Acessibilidade e Compartilhamento */
+.noticia-actions {
+    max-width: 800px; /* Keep max-width if page-specific, adjust as needed */
+    margin: 0 auto; /* Keep margin auto if page-specific, adjust as needed */
+    padding: 15px 40px; /* Keep padding if page-specific, adjust as needed */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid rgba(11, 102, 54, 0.1); /* Keep hardcoded rgba if specific to this border, or define a border color variable in global */
+}
+
+.accessibility-options {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.accessibility-options button {
+    background: var(--color-white); /* Using global color variable */
+    border: 1px solid var(--color-primary); /* Using global color variable */
+    padding: 6px 12px; /* Reduzido o padding */
+    border-radius: var(--border-radius); /* Using global border-radius variable */
+    font-family: var(--font-secondary); /* Using global font variable */
+    font-size: 0.8rem; /* Reduzido o tamanho da fonte */
+    color: var(--color-primary); /* Using global color variable */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px; /* Reduzido o gap entre ícone e texto */
+    transition: all var(--transition-speed) ease; /* Using global transition-speed variable */
+    position: relative;
+    overflow: hidden;
+    height: 32px; /* Altura fixa para todos os botões */
+}
+
+.accessibility-options button i {
+    font-size: 0.8rem; /* Reduzido o tamanho do ícone */
+}
+
+.share-btn {
+    background: var(--color-primary); /* Using global color variable */
+    color: var(--color-white); /* Using global color variable */
+    border: none;
+    padding: 6px 12px; /* Mesmo padding dos outros botões */
+    border-radius: var(--border-radius); /* Using global border-radius variable */
+    font-size: 0.8rem; /* Mesmo tamanho de fonte */
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease; /* Using global transition-speed variable */
+    box-shadow: 0 2px 8px rgba(11, 102, 54, 0.15); /* Keep hardcoded shadow if specific to share button, or define a button shadow variable in global */
+    height: 32px; /* Mesma altura dos outros botões */
+}
+
+.share-btn i {
+    font-size: 0.8rem; /* Mesmo tamanho de ícone */
+}
+
+/* Mantendo os outros estilos de hover e interação */
+.accessibility-options button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-primary); /* Using global color variable */
+    transform: translateX(-100%);
+    transition: transform var(--transition-speed) ease; /* Using global transition-speed variable */
+    z-index: 0;
+}
+
+.accessibility-options button:hover::before {
+    transform: translateX(0);
+}
+
+.accessibility-options button i,
+.accessibility-options button span {
+    position: relative;
+    z-index: 1;
+    transition: color var(--transition-speed) ease; /* Using global transition-speed variable */
+}
+
+.accessibility-options button:hover i,
+.accessibility-options button:hover span {
+    color: var(--color-white); /* Using global color variable */
+}
+
+.share-btn:hover {
+    background: var(--color-primary-dark); /* Using global color variable */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(11, 102, 54, 0.2); /* Keep hardcoded shadow if specific to share button hover, or define a button hover shadow variable in global */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .noticia-actions {
+        padding: 10px 20px;
+    }
+
+    .accessibility-options {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .accessibility-options button,
+    .share-btn {
+        padding: 4px 10px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .accessibility-options button,
+    .share-btn {
+        padding: 4px 8px;
+        font-size: 0.7rem;
+    }
+
+    .accessibility-options button i,
+    .share-btn i {
+        font-size: 0.7rem;
+    }
+}
+
+/* Título e metadados */
 .noticia-info h1 {
     font-size: 2.5rem;
-    color: var(--color-text);
+    color: var(--color-text); /* Using global color variable */
     margin-bottom: 20px;
-    font-family: var(--font-primary);
+    font-family: var(--font-primary); /* Using global font variable */
     line-height: 1.3;
 }
 
 .noticia-metadata {
     display: flex;
     gap: 20px;
-    color: var(--color-text-light);
+    color: var(--color-text-light); /* Using global color variable */
     margin-bottom: 30px;
     font-size: 0.9rem;
 }
@@ -160,37 +305,38 @@
 }
 
 .noticia-metadata i {
-    color: var(--color-primary);
+    color: var(--color-primary); /* Using global color variable */
 }
 
-.share-btn {
-    background: var(--color-primary);
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 25px;
-    font-size: 1rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+/* Estilo para alto contraste */
+.high-contrast {
+    background: #000 !important; /* Keep hardcoded if #000 is specific to high-contrast mode */
+    color: #fff !important; /* Keep hardcoded if #fff is specific to high-contrast mode */
 }
 
-.share-btn:hover {
-    background: var(--color-primary-dark);
-    transform: translateY(-2px);
+.high-contrast * {
+    background: #000 !important; /* Keep hardcoded if #000 is specific to high-contrast mode */
+    color: #fff !important; /* Keep hardcoded if #fff is specific to high-contrast mode */
+    border-color: #fff !important; /* Keep hardcoded if #fff is specific to high-contrast mode */
 }
 
-.share-btn i {
-    font-size: 1.1em;
+.high-contrast .accessibility-options button,
+.high-contrast .share-btn {
+    border: 2px solid var(--color-white) !important; /* Using global color variable for border color */
 }
 
-/* Conteúdo da notícia */
-.noticia-info {
-    padding: 40px;
-    max-width: 800px;
-    margin: 0 auto;
+.high-contrast .accessibility-options button:hover,
+.high-contrast .share-btn:hover {
+    background: var(--color-white) !important; /* Using global color variable */
+    color: #000 !important; /* Keep hardcoded if #000 is specific to high-contrast mode */
+}
+
+/* Foco acessível */
+.accessibility-options button:focus-visible,
+.share-btn:focus-visible,
+.voltar-btn:focus-visible {
+    outline: 3px solid var(--color-accent); /* Using global color variable */
+    outline-offset: 2px;
 }
 
 /* Responsividade */
@@ -217,13 +363,32 @@
         font-size: 1.8rem;
     }
 
+    .noticia-actions {
+        padding: 20px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .accessibility-options {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .accessibility-options button {
+        flex: 1;
+        justify-content: center;
+        min-width: 140px;
+        font-size: 0.9rem;
+    }
+
+    .share-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
     .noticia-metadata {
         flex-direction: column;
         gap: 10px;
-    }
-
-    .noticia-texto {
-        font-size: 1rem;
     }
 }
 
@@ -240,8 +405,16 @@
         font-size: 1.5rem;
     }
 
-    .share-btn {
-        width: 100%;
-        justify-content: center;
+    .accessibility-options button {
+        font-size: 0.8rem;
+        padding: 10px 15px;
+    }
+}
+
+/* Suporte para preferência de redução de movimento */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
     }
 }

@@ -1,0 +1,154 @@
+/* Adicione ao seu arquivo de estilos */
+
+/* Botão de WhatsApp */
+.btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    background-color: #25D366;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-whatsapp:hover {
+    background-color: #128C7E;
+}
+
+.btn-whatsapp i {
+    margin-right: 5px;
+}
+
+/* Botão de compartilhamento */
+.btn-compartilhar {
+    display: inline-flex;
+    align-items: center;
+    background-color: #0b6636;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-compartilhar:hover {
+    background-color: #084a27;
+}
+
+.btn-compartilhar i {
+    margin-right: 5px;
+}
+
+/* Container de ações do evento */
+.evento-acoes {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Estilos para o modal de detalhes do evento */
+.event-details-modal {
+    text-align: left;
+    padding: 10px;
+}
+
+.event-modal-actions {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Estilo para o link de WhatsApp dentro da info do evento */
+.evento-whatsapp-link {
+    display: inline-flex;
+    align-items: center;
+    color: #25D366;
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 15px;
+    transition: all 0.3s ease;
+}
+
+.evento-whatsapp-link:hover {
+    color: #128C7E;
+    text-decoration: underline;
+}
+
+.evento-whatsapp-link i {
+    margin-right: 5px;
+    font-size: 1.1em;
+}
+
+/* Ajuste para dispositivos móveis */
+@media (max-width: 576px) {
+    .evento-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .evento-whatsapp-link {
+        margin-left: 0;
+        margin-top: 8px;
+    }
+}
+/* Estilo para o botão de WhatsApp dentro do modal */
+.modal-whatsapp-btn {
+    background-color: #25D366;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(37, 211, 102, 0.3);
+}
+
+.modal-whatsapp-btn:hover {
+    background-color: #128C7E;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(37, 211, 102, 0.4);
+}
+
+.modal-whatsapp-btn i {
+    margin-right: 8px;
+    font-size: 1.2em;
+}
+
+.modal-whatsapp-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .evento-acoes {
+        flex-direction: column;
+    }
+
+    .btn-whatsapp, .btn-compartilhar {
+        width: 100%;
+        justify-content: center;
+        margin-right: 0;
+        margin-bottom: 8px;
+    }
+
+    .event-modal-actions {
+        flex-direction: column;
+    }
+}

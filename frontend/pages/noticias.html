@@ -5,10 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Notícia - Igreja Presbiteriana do Valparaíso 1</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/global.css">
   <link rel="stylesheet" href="../assets/css/index.css">
   <link rel="stylesheet" href="../assets/css/noticia_visu.css">
+  <!-- Removido o link para acessibilidade.css, já que os estilos foram movidos para noticia_visu.css -->
 </head>
 <body>
 <!-- Header -->
@@ -22,40 +24,62 @@
         <span class="hamburger"></span>
       </button>
       <ul class="nav-list">
-        <li><a href="../index.html" data-page="departamentos">Inicio</a></li>
-        <li><a href="./departamentos.html" data-page="departamentos">Departamentos</a></li>
+        <li><a href="../index.html" data-page="inicio">Início</a></li>
+        <li><a href="./igreja.html" data-page="departamentos">Quem somos</a></li>
+        <li><a href="./departamentos.html" data-page="departamentos">Ministérios</a></li>
         <li><a href="./agenda.html" data-page="agenda">Agenda</a></li>
         <li><a href="./contribua.html" data-page="contribua">Contribua</a></li>
-        <li><a href="./contato.html" class="active">Contato</a></li>
+        <li><a href="./contato.html">Contato</a></li>
       </ul>
     </nav>
   </div>
 </header>
-
 <!-- Conteúdo da Notícia -->
 <main class="noticia-container">
   <div class="container">
-    <div class="noticia-navegacao">
-      <a href="../index.html#noticias" class="voltar-btn">
-        <i class="fas fa-arrow-left"></i> Voltar para Notícias
-      </a>
-    </div>
 
-    <article class="noticia-content">
+
+    <div class="noticia-content">
       <div class="noticia-imagem-container">
         <div class="noticia-imagem">
           <!-- A imagem será inserida aqui via JavaScript -->
         </div>
       </div>
-      <div class="noticia-info">
-        <!-- O conteúdo será inserido aqui via JavaScript -->
+      <!-- Mover os botões para fora de .noticia-info -->
+      <div class="noticia-actions">
+        <div class="accessibility-options">
+          <button id="increaseFont" aria-label="Aumentar tamanho da fonte">
+            <i class="fas fa-plus" aria-hidden="true"></i>
+            <span>Aumentar Fonte</span>
+          </button>
+          <button id="decreaseFont" aria-label="Diminuir tamanho da fonte">
+            <i class="fas fa-minus" aria-hidden="true"></i>
+            <span>Diminuir Fonte</span>
+          </button>
+          <button id="highContrast" aria-label="Alternar modo de alto contraste">
+            <i class="fas fa-adjust" aria-hidden="true"></i>
+            <span>Alto Contraste</span>
+          </button>
+          <button id="readText" aria-label="Ler texto em voz alta">
+            <i class="fas fa-volume-up" aria-hidden="true"></i>
+            <span>Ler Texto</span>
+          </button>
+        </div>
+        <button onclick="compartilharNoticia()" class="share-btn" aria-label="Compartilhar notícia">
+          <i class="fas fa-share-alt" aria-hidden="true"></i>
+          <span>Compartilhar</span>
+        </button>
       </div>
-    </article>
-
-    <div class="noticia-acoes">
-      <button onclick="compartilharNoticia()" class="share-btn">
-        <i class="fas fa-share-alt"></i> Compartilhar
-      </button>
+      <div class="noticia-info">
+        <h1>Título da Notícia</h1>
+        <div class="noticia-metadata">
+          <span><i class="fas fa-calendar-alt"></i> 15 de Março de 2025</span>
+          <span><i class="fas fa-user"></i> Autor da Notícia</span>
+        </div>
+        <div class="noticia-texto">
+          <!-- O conteúdo será inserido aqui via JavaScript -->
+        </div>
+      </div>
     </div>
   </div>
 </main>
@@ -85,15 +109,16 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2024 Igreja Presbiteriana do Valparaíso 1. Todos os direitos reservados.</p>
+      <p>© 2024 Igreja Presbiteriana do Valparaíso 1. Todos os direitos reservados.</p>
     </div>
   </div>
 </footer>
 
 <script src="../assets/js/config.js"></script>
+<script src="../assets/js/menu_site.js"></script>
+<script src="../assets/js/acessibilidade.js"></script>
 <script src="../assets/js/noticia_visu.js"></script>
 <script src="../assets/js/footer.js"></script>
-
 
 </body>
 </html>
