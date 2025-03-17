@@ -60,6 +60,9 @@ public class SecurityConfig {
                                 .requestMatchers("/api/auth/login").permitAll()
                                 .requestMatchers("/api/auth/**").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/api/projetos").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/api/public/default-token").permitAll()
+
+
 
 
 // Permissões para endpoints de usuários

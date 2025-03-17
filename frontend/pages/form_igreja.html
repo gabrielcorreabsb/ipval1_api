@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualização de Cadastro de Membro - Igreja Presbiteriana do Valparaíso 1</title>
+
+    <!-- Font Awesome e Google Fonts -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Estilos próprios -->
+    <link rel="stylesheet" href="../assets/css/cadastro_membro.css">
+</head>
+<body>
+
+<div class="logo-container"> <!-- Logo Container Added -->
+    <img src="../assets/imgs/logo.png" alt="Logo Igreja Presbiteriana" class="form-logo">
+</div>
+
+<main class="main-content">
+    <div class="contato-container form-page-container">
+        <div class="page-title form-page-title">
+            <h1>Atualização de Cadastro de Membro</h1>
+            <p>Mantenha seus dados sempre atualizados! Preencha o formulário abaixo para atualizar suas informações de membro em nossa igreja.</p>
+        </div>
+
+        <div class="contact-card form-section form-card">
+            <div class="card-header form-card-header">
+                <i class="fas fa-user-edit"></i> <!-- Changed icon to user-edit for 'update' context -->
+                <h2>Formulário de Atualização de Cadastro</h2> <!-- More specific header -->
+            </div>
+            <form id="formNovoMembroPublico" class="contact-form form-cadastro">
+                <div class="form-group">
+                    <label for="nomeMembro">Nome Completo:</label>
+                    <input type="text" id="nomeMembro" name="nome" class="form-control" placeholder="Ex: João da Silva" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefoneMembro">Telefone (com DDD):</label>
+                    <input type="tel" id="telefoneMembro" name="telefone" class="form-control" placeholder="Ex: (11) 99999-9999" required>
+                </div>
+                <div class="form-group">
+                    <label for="enderecoMembro">Endereço Completo:</label>
+                    <input type="text" placeholder="Ex: Rua das Flores, 123, Apto 101, Bairro, Cidade-ESTADO" id="enderecoMembro" name="endereco" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="dataNascimentoMembro">Data de Nascimento:</label>
+                    <input type="text" placeholder="DD/MM/AAAA" id="dataNascimentoMembro" name="dataNascimento" class="form-control" required>
+                </div>
+                <button type="submit" class="submit-btn form-submit-btn">Atualizar Cadastro</button> <!-- Improved button text -->
+            </form>
+        </div>
+    </div>
+</main>
+
+<!-- Simplified Footer -->
+<footer class="footer form-footer"> <!-- Added form-footer class -->
+    <div class="container">
+        <div class="footer-bottom form-footer-bottom"> <!-- Added form-footer-bottom class -->
+            <p>© <span id="ano-atual">2024</span> Igreja Presbiteriana do Valparaíso 1. Todos os direitos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/vanilla-masker@1.2.0/build/vanilla-masker.min.js"></script>
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/footer.js"></script>
+<script src="../assets/js/form_membros.js" type="module"></script>
+</body>
+</html>

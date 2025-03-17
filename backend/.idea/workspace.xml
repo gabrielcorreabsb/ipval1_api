@@ -4,12 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe7ee837-3f70-4d99-9e20-e1d36c4ade36" name="Changes" comment="v7.1 - Configurado já para o deploy e retirado o application.properties">
+    <list default="true" id="fe7ee837-3f70-4d99-9e20-e1d36c4ade36" name="Changes" comment="v10.0.1 - Vários updates">
       <change afterPath="$PROJECT_DIR$/target/api-teste-0.0.1-SNAPSHOT.jar" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/api-teste-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/application.properties.example" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/assets/css/cadastro_membro.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/assets/js/form_membros.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/pages/form_igreja.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ipval1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/api_teste/securingweb/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/api_teste/securingweb/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/api_teste/securingweb/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/api_teste/securingweb/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/assets/js/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/assets/js/config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +28,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="package.json" />
         <option value="Class" />
       </list>
     </option>
@@ -53,32 +62,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "Application.GenerateJwtKey.executor": "Run",
-    "Maven.api-teste [clean].executor": "Run",
-    "Maven.api-teste [package].executor": "Run",
-    "Maven.api-teste [validate].executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Spring Boot.ApiTesteApplication.executor": "Run",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Projetos/Igreja/api_site/backend/src/main/resources",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.runner",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;Application.GenerateJwtKey.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.api-teste [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.api-teste [package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.api-teste [validate].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.ApiTesteApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Projetos/Igreja/api_site/backend/src/main/resources&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.runner&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Projetos\Igreja\api_site\backend\src\main\resources" />
@@ -157,7 +166,9 @@
       <workItem from="1741664325111" duration="4145000" />
       <workItem from="1741752072882" duration="3601000" />
       <workItem from="1742073903181" duration="7091000" />
-      <workItem from="1742136762321" duration="5957000" />
+      <workItem from="1742136762321" duration="6379000" />
+      <workItem from="1742153662451" duration="1697000" />
+      <workItem from="1742165869092" duration="6714000" />
     </task>
     <task id="LOCAL-00001" summary="Corrigido o application.properties e SecurityConfig">
       <option name="closed" value="true" />
@@ -191,7 +202,23 @@
       <option name="project" value="LOCAL" />
       <updated>1741664909267</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="v10.0 - Vários updates">
+      <option name="closed" value="true" />
+      <created>1742152828433</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1742152828433</updated>
+    </task>
+    <task id="LOCAL-00006" summary="v10.0.1 - Vários updates">
+      <option name="closed" value="true" />
+      <created>1742152866353</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1742152866353</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -213,7 +240,9 @@
     <MESSAGE value="Adicionado CRUD nos Usuários (com roles a serem usadas futuramente)." />
     <MESSAGE value="v2.5 - Adicionado o back end de notícias!" />
     <MESSAGE value="v7.1 - Configurado já para o deploy e retirado o application.properties" />
-    <option name="LAST_COMMIT_MESSAGE" value="v7.1 - Configurado já para o deploy e retirado o application.properties" />
+    <MESSAGE value="v10.0 - Vários updates" />
+    <MESSAGE value="v10.0.1 - Vários updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="v10.0.1 - Vários updates" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

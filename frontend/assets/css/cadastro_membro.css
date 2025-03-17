@@ -1,0 +1,259 @@
+/* cadastro_membro.css */
+
+/* --- Logo Container Styles --- */
+.logo-container {
+    text-align: center; /* Keep this to center the image inside */
+    padding: 40px 0 30px;
+    /* Remove any width constraints if present, let it be determined by content */
+    width: auto; /* or width: fit-content; if needed, but 'auto' should be fine */
+    display: block; /* Ensure it's a block element to take available width */
+    margin: 0 auto; /* Add auto margins to center the container itself if needed - but flexbox should handle this now */
+}
+
+
+
+.form-logo {
+    height: 120px; /* Increased logo height significantly */
+    max-width: 100%;
+}
+
+/* --- General Page Adjustments for Form-Only --- */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+    padding-top: 20px; /* Reduced padding-top as logo is above */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-page-container { /* Renamed container class */
+    max-width: 800px; /* Slightly wider container */
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+
+.form-page-title { /* Renamed page-title class */
+    text-align: center;
+    margin-bottom: 30px; /* Increased margin for title */
+}
+
+.form-page-title h1 {
+    font-size: 3rem; /* Slightly larger title */
+    color: var(--color-primary);
+    margin-bottom: 10px;
+}
+
+.form-page-title p {
+    font-size: 1.2rem; /* Slightly larger subtitle */
+    color: var(--color-text-light);
+    max-width: 750px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* --- Form Card Styles --- */
+.form-card { /* Renamed form card class */
+    margin-top: 20px;
+    width: 100%;
+    max-width: 750px; /* Slightly wider card */
+    border-radius: var(--border-radius);
+    overflow: hidden; /* Ensure rounded corners for header too */
+    box-shadow: var(--shadow-medium); /* More pronounced shadow */
+    background-color: var(--color-card); /* Use card background color */
+}
+
+.form-card-header { /* Renamed card header class */
+    background-color: var(--color-secondary); /* Use secondary color for header */
+    color: var(--color-primary); /* Primary color for header text */
+    padding: 25px 30px; /* Increased header padding */
+    text-align: left;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid var(--color-accent); /* Accent color border */
+}
+
+.form-card-header i {
+    margin-right: 15px;
+    font-size: 1.8rem;
+}
+
+.form-card-header h2 {
+    font-size: 1.7rem; /* Larger header text */
+    font-weight: 700;
+    margin: 0;
+}
+
+/* --- Form Styles --- */
+.form-cadastro { /* Renamed form class */
+    padding: 30px; /* Increased form padding */
+    display: grid;
+    gap: 20px; /* Increased gap between form groups */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--color-text); /* Ensure label color */
+    font-size: 1.1rem;
+}
+
+.form-group input.form-control,
+.form-group select.form-control,
+.form-group textarea.form-control {
+    padding: 12px 15px; /* Increased input padding */
+    border: 1px solid #ccc; /* Lighter border */
+    border-radius: 8px; /* More rounded inputs */
+    font-size: 1rem;
+    font-family: var(--font-secondary);
+    transition: border-color 0.3s ease;
+}
+
+.form-group input.form-control:focus,
+.form-group select.form-control:focus,
+.form-group textarea.form-control:focus {
+    border-color: var(--color-primary); /* Primary color on focus */
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb), 0.2); /* Subtle focus shadow, assuming you have --color-primary-rgb */
+}
+
+.form-group textarea.form-control {
+    min-height: 180px; /* Increased textarea height */
+    resize: vertical;
+}
+
+/* --- Submit Button Styles --- */
+.form-submit-btn { /* Renamed submit button class */
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    padding: 14px 30px; /* Increased button padding */
+    border-radius: 8px; /* Rounded button corners */
+    font-size: 1.2rem; /* Larger button font */
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease, transform 0.2s ease;
+    box-shadow: var(--shadow-light);
+    font-weight: 600;
+    display: inline-block; /* Adjust display to inline-block */
+    margin-top: 20px; /* Add top margin */
+    align-self: center; /* Center align button in the form */
+}
+
+.form-submit-btn:hover {
+    background-color: var(--color-accent);
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-2px);
+}
+
+.form-submit-btn:active {
+    transform: translateY(0); /* Reset transform on active */
+    box-shadow: var(--shadow-light); /* Reset shadow on active */
+}
+
+/* --- Simplified Footer Styles --- */
+.form-footer { /* Styles for the simplified footer */
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 30px 0; /* Adjust padding as needed */
+    text-align: center;
+}
+
+.form-footer-bottom { /* Styles for the bottom section of the footer */
+    padding-top: 0; /* Remove extra top padding */
+    border-top: none; /* Remove border-top if present */
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .logo-container {
+        padding: 30px 0 20px;
+    }
+    .form-logo {
+        height: 100px;
+    }
+    .main-content {
+        padding-top: 10px;
+    }
+    .form-page-container {
+        max-width: 95%; /* Take up more width on smaller screens */
+    }
+    .form-page-title h1 {
+        font-size: 2.6rem;
+    }
+    .form-page-title p {
+        font-size: 1.1rem;
+    }
+    .form-card-header {
+        padding: 20px 25px;
+    }
+    .form-card-header h2 {
+        font-size: 1.5rem;
+    }
+    .form-cadastro {
+        padding: 25px;
+        gap: 18px;
+    }
+    .form-group label {
+        font-size: 1rem;
+    }
+    .form-group input.form-control,
+    .form-group select.form-control,
+    .form-group textarea.form-control {
+        padding: 10px 12px;
+        font-size: 0.95rem;
+    }
+    .form-submit-btn {
+        font-size: 1.1rem;
+        padding: 12px 25px;
+    }
+    .form-footer {
+        padding: 25px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-container {
+        padding: 20px 0 15px;
+    }
+    .form-logo {
+        height: 80px;
+    }
+    .main-content {
+        padding-top: 5px;
+    }
+    .form-page-title h1 {
+        font-size: 2.2rem;
+    }
+    .form-page-title p {
+        font-size: 0.95rem;
+    }
+    .form-card-header {
+        padding: 15px 20px;
+    }
+    .form-card-header h2 {
+        font-size: 1.3rem;
+    }
+    .form-cadastro {
+        padding: 20px;
+        gap: 15px;
+    }
+    .form-submit-btn {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+    .form-footer {
+        padding: 20px 0;
+    }
+}
