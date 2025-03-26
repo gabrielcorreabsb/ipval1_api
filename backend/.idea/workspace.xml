@@ -8,16 +8,27 @@
       <change afterPath="$PROJECT_DIR$/target/api-teste-0.0.1-SNAPSHOT.jar" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/api-teste-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/application.properties.example" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/assets/css/cadastro_membro.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/assets/js/form_membros.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/pages/form_igreja.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/assets/css/gerador.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/assets/css/midia.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/assets/js/midia.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/pages/gerador.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/pages/midia.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/pages/midia_teste.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/api_teste/securingweb/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/api_teste/securingweb/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/api_teste/securingweb/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/api_teste/securingweb/SecurityConfig.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/assets/css/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/assets/css/global.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/assets/js/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/assets/js/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/assets/js/departamentos.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/assets/js/departamentos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/assets/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/assets/js/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/assets/js/menu_site.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/assets/js/menu_site.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/pages/agenda.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/pages/agenda.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/pages/contato.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/pages/contato.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/pages/contribua.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/pages/contribua.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/pages/departamentos.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/pages/departamentos.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/pages/igreja.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/pages/igreja.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +179,9 @@
       <workItem from="1742073903181" duration="7091000" />
       <workItem from="1742136762321" duration="6379000" />
       <workItem from="1742153662451" duration="1697000" />
-      <workItem from="1742165869092" duration="6714000" />
+      <workItem from="1742165869092" duration="7218000" />
+      <workItem from="1742362853004" duration="69000" />
+      <workItem from="1742962351202" duration="6297000" />
     </task>
     <task id="LOCAL-00001" summary="Corrigido o application.properties e SecurityConfig">
       <option name="closed" value="true" />

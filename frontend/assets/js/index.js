@@ -1,27 +1,4 @@
-// Arquivo: assets/js/index.js
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Menu mobile
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const navList = document.querySelector('.nav-list');
-
-    if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', function() {
-            this.classList.toggle('active');
-            navList.classList.toggle('active');
-        });
-    }
-
-    // Fechar menu ao clicar em um link
-    const navLinks = document.querySelectorAll('.nav-list a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            navList.classList.remove('active');
-            if (mobileMenuBtn) mobileMenuBtn.classList.remove('active');
-        });
-    });
-
-    // Instagram Feed
+ // Instagram Feed
     if (typeof InstagramFeed !== 'undefined') {
         const feed = new InstagramFeed();
         feed.init();
@@ -82,21 +59,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Carregar configurações do footer
     carregarConfiguracoesFooter();
 
-    // Configurar botão de logout se existir
-    const logoutBtn = document.getElementById('logoutBtn');
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', async () => {
-            try {
-                localStorage.removeItem('token');
-                localStorage.removeItem('user');
-                window.location.replace('./login.html');
-            } catch (error) {
-                console.error('Erro ao fazer logout:', error);
-                mostrarMensagem('Erro ao fazer logout', 'error');
-            }
-        });
-    }
-});
 
 // Funções de utilidade
 async function fazerRequisicao(url, options = {}) {

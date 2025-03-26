@@ -106,6 +106,132 @@ body {
     transform: scale(1.03);
 }
 
+/* --- Menu Dropdown Styles --- */
+.menu-item-has-children {
+    position: relative; /* Importante para posicionar o sub-menu corretamente */
+}
+
+.menu-item-has-children > a {
+    display: flex; /* Para alinhar o texto e o ícone */
+    align-items: center;
+    gap: 5px; /* Espaço entre o texto e o ícone */
+}
+
+.dropdown-icon {
+    font-size: 0.8rem; /* Tamanho do ícone */
+}
+
+.sub-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute; /* Posiciona o sub-menu relativo ao .menu-item-has-children */
+    top: 100%; /* Posiciona abaixo do link "Igreja" */
+    left: 0;
+    background-color: var(--color-white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-medium);
+    width: 200px; /* Largura do sub-menu - ajuste conforme necessário */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px); /* Pequeno deslocamento para baixo para a animação */
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    z-index: 100; /* Garante que o sub-menu fique acima de outros conteúdos */
+}
+
+.sub-menu li {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Separador entre os itens do sub-menu */
+}
+
+.sub-menu li:last-child {
+    border-bottom: none; /* Remove a borda inferior do último item */
+}
+
+.sub-menu a {
+    display: block;
+    padding: 12px 20px;
+    color: var(--color-text);
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-width: auto; /* Remove min-width para ajustar à largura do sub-menu */
+    min-height: auto; /* Remove min-height, o padding define a altura */
+    text-align: left; /* Alinha o texto à esquerda no sub-menu */
+}
+
+.sub-menu a:hover, .sub-menu a.active {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    box-shadow: none; /* Remove box-shadow no hover do sub-menu, se desejar */
+}
+
+/* Mostrar o sub-menu no hover do item "Igreja" (Desktop) */
+.menu-item-has-children:hover > .sub-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0); /* Remove o deslocamento para cima na animação */
+}
+
+.nav-list .menu-item-has-children:last-child > .sub-menu {
+    left: auto;      /* Remover o 'left: 0;' padrão */
+    right: 0;       /* Alinhar a borda direita do submenu com a borda direita do item pai */
+    transform: translateX(0%); /* Remover a translação horizontal que poderia ter sobrado */
+}
+
+/* --- Media Query para Mobile Menu Dropdown --- */
+@media (max-width: 768px) {
+
+    .nav-list {
+        display: none; /* Manter inicialmente escondido */
+        position: static; /* Alteração importante: remove o posicionamento absoluto */
+        top: auto; /* Não é mais necessário */
+        left: auto; /* Não é mais necessário */
+        width: 100%;
+        background: var(--color-white);
+        flex-direction: column;
+        padding: 15px;
+        box-shadow: var(--shadow-light);
+    }
+
+    .nav-list.active {
+        display: flex; /* Mostrar nav list quando ativo */
+    }
+
+    .menu-item-has-children {
+        display: block; /* Item "Igreja" ocupa largura total - já estava assim */
+    }
+
+    .sub-menu {
+        /* display: none;  Remova esta linha, pois vamos controlar com max-height e overflow */
+        position: relative; /* Importante: Posicionamento relativo para ocupar espaço no fluxo */
+        top: auto; /* Remova ou defina como auto */
+        left: auto; /* Remova ou defina como auto */
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 100%; /* Ocupar largura total do menu */
+        overflow: hidden; /* Esconde o conteúdo que ultrapassa a altura */
+        max-height: 0; /* Começa com altura zero para a animação */
+        transition: max-height 0.3s ease, opacity 0.3s ease, visibility 0.3s ease; /* Inclui max-height na transição */
+        opacity: 0; /* Manter para transição de opacidade */
+        visibility: hidden; /* Manter para transição de visibilidade */
+        box-shadow: none; /* Remova ou ajuste a sombra se precisar */
+    }
+
+    .sub-menu.active {
+        /* display: block; Remova, pois não precisamos mais mudar o display */
+        max-height: 500px; /* Altura máxima para expandir - ajuste conforme necessário ou use um valor grande como 1000px */
+        opacity: 1;
+        visibility: visible;
+        box-shadow: var(--shadow-medium); /* Restaure ou ajuste a sombra se desejar ao abrir */
+    }
+
+    .sub-menu li a {
+        display: block; /* Links ocupam largura total - já estava assim */
+        padding: 10px 20px;
+        text-decoration: none;
+        color: var(--color-text); /* Usando sua variável de cor */
+    }
+}
 .nav-list {
     display: flex;
     list-style: none;
@@ -344,19 +470,20 @@ body {
     background: none;
     border: none;
     cursor: pointer;
-    width: 28px; /* Slightly smaller button */
+    width: 28px;
     height: 28px;
     position: relative;
-    z-index: 1001; /* Ensure it's above the nav-list when active */
+    z-index: 1001;
 }
 
 .hamburger, .hamburger::before, .hamburger::after {
     content: '';
     position: absolute;
-    height: 2.5px; /* Thinner lines */
+    height: 2.5px;
     width: 100%;
     background: var(--color-primary);
     transition: all 0.3s ease;
+    display: none; /* Adicionado: Esconde as linhas padrão do hambúrguer */
 }
 
 .hamburger {
@@ -365,25 +492,45 @@ body {
 }
 
 .hamburger::before {
-    top: -7px; /* Adjusted position */
+    top: -7px;
 }
 
 .hamburger::after {
-    bottom: -7px; /* Adjusted position */
+    bottom: -7px;
+}
+
+.mobile-menu-btn::before {
+    content: '\f0c9'; /* Unicode para fa-bars */
+    font-family: 'Font Awesome 5 Free'; /* Ou 'Font Awesome 6 Free', etc. - VERIFIQUE A SUA FAMÍLIA DE FONTES FONT AWESOME */
+    font-weight: 900; /* Ajuste o peso se necessário */
+    position: absolute; /* Posiciona o ícone em cima do botão */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centraliza o ícone */
+    color: var(--color-primary); /* Cor do ícone - usa a cor primária do site */
+    font-size: 1.4rem; /* Tamanho do ícone - ajuste conforme necessário */
+    display: block; /* Garante que o ::before seja exibido */
 }
 
 .mobile-menu-btn.active .hamburger {
     background: transparent;
 }
 
-.mobile-menu-btn.active .hamburger::before {
-    top: 0;
-    transform: rotate(45deg);
+.mobile-menu-btn.active .hamburger::before,
+.mobile-menu-btn.active .hamburger::after {
+    display: none;
 }
 
-.mobile-menu-btn.active .hamburger::after {
-    bottom: 0;
-    transform: rotate(-45deg);
+.mobile-menu-btn.active::before {
+    content: '\f05c'; /* Unicode para fa-times-circle (ícone de "X" quando ativo) */
+    font-family: 'Font Awesome 5 Free'; /* ... mesma família de fontes ... */
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--color-primary);
+    font-size: 1.4rem;
 }
 
 /* --- Image Responsiveness - Global Style --- */
@@ -421,8 +568,47 @@ img {
     }
 
     .mobile-menu-btn {
-        display: block; /* Show mobile menu button on mobile */
+        display: block; /* Mostrar mobile menu button on mobile - já existia */
+        display: flex; /* Adicionado: Para alinhar ícone e texto verticalmente */
+        flex-direction: column; /* Adicionado: Para colocar ícone e texto em coluna */
+        align-items: center; /* Adicionado: Centralizar itens horizontalmente */
     }
+
+    .mobile-menu-btn::before {
+        content: '\f0c9'; /* Unicode para fa-bars */
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: var(--color-primary);
+        font-size: 1.6rem; /* Aumentei um pouco o tamanho do ícone também, se desejar */
+        display: block;
+    }
+
+    .mobile-menu-btn.active::before {
+        content: '\f05c'; /* Unicode para fa-times-circle (ícone de "X" quando ativo) */
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: var(--color-primary);
+        font-size: 1.6rem; /* Aumentei o tamanho do ícone ativo também, se desejar */
+    }
+
+    .mobile-menu-btn .menu-text { /* Estilizando o span .menu-text */
+        font-size: 0.9rem; /* Tamanho do texto "Menu" */
+        color: var(--color-primary); /* Cor do texto */
+        margin-top: 3px; /* Espaçamento entre ícone e texto */
+        font-weight: 500; /* Peso da fonte */
+        text-transform: uppercase; /* Opcional: Texto em maiúsculas */
+        letter-spacing: 0.5px; /* Opcional: Espaçamento entre letras */
+    }
+
+
 }
 
 /* --- Touch Target Responsiveness Example - Media Query for smaller screens --- */

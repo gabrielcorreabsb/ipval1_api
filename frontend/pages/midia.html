@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mídia - Igreja Presbiteriana do Valparaíso 1</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/midia.css">
+  <link rel="stylesheet" href="../assets/css/agenda_site.css">
+</head>
+<body>
+<!-- Header -->
+<header class="header">
+  <div class="header-container">
+    <div class="logo">
+      <img src="../assets/imgs/logo.png" alt="Logo Igreja Presbiteriana">
+    </div>
+    <nav class="main-nav">
+      <button class="mobile-menu-btn">
+        <span class="hamburger"></span>
+      </button>
+      <ul class="nav-list">
+        <li><a href="../index.html">Início</a></li>
+        <li class="menu-item-has-children">
+          <a href="#">Igreja<i class="fas fa-chevron-down dropdown-icon"></i></a>
+          <ul class="sub-menu">
+            <li><a href="../pages/igreja.html">Quem Somos</a></li>
+            <li><a href="../pages/departamentos.html">Ministérios</a></li>
+          </ul>
+        </li>
+        <li><a href="../pages/agenda.html">Agenda</a></li>
+        <li><a href="../pages/contribua.html">Contribua</a></li>
+        <li><a href="../pages/contato.html">Contato</a></li>
+        <li class="menu-item-has-children">
+          <a href="#">Recursos<i class="fas fa-chevron-down dropdown-icon"></i></a>
+          <ul class="sub-menu">
+            <li><a href="../pages/gerador.html">Gerador de Ata UPH/SAF</a></li>
+            <li><a href="../pages/midia.html">Mídia</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="main-content">
+  <div class="midia-container container">
+    <div class="page-title">
+      <h1>Mídia da Igreja</h1>
+      <p>Acompanhe os eventos, sermões e novidades da nossa comunidade.</p>
+    </div>
+
+    <div class="midia-navigation">
+      <button class="midia-nav-button" data-section="eventos">Eventos</button>
+      <button class="midia-nav-button" data-section="sermoes">Sermões</button>
+      <button class="midia-nav-button active" data-section="geral">Geral</button>
+    </div>
+
+    <section id="eventos" class="midia-section">
+      <h2>Eventos</h2>
+      <p>Fique por dentro dos nossos próximos eventos e veja os melhores momentos dos eventos passados.</p>
+      <div class="eventos-content">
+        <div class="instagram-feed eventos-feed videos-section" style="display: none;"> <!-- Ocultar Feed de Eventos -->
+          <div class="section-header">
+            <h2 class="section-title">Vídeos e Imagens de Eventos</h2>
+            <div class="section-divider"></div>
+          </div>
+          <div class="instagram-videos-container">
+            <div class="instagram-videos-grid eventos-instagram-grid">
+              <div class="loader-container loading-message">
+                <div class="spinner"></div>
+              </div>
+            </div>
+            <div id="instagram-videos-loader" class="loader-container" style="display: none;">
+              <div class="spinner"></div>
+            </div>
+            <div class="instagram-videos-footer">
+              <button class="load-more-videos-btn cta-button">Carregar mais vídeos e imagens</button>
+            </div>
+          </div>
+        </div>
+        <div class="event-calendar-agenda">
+          <div class="event-calendar">
+            <div id="calendar" class="agenda-calendar">
+              <div class="loader-container loading-message">
+                <div class="spinner"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sermoes" class="midia-section">
+      <h2>Sermões</h2>
+      <p>Assista ou ouça as mensagens inspiradoras dos nossos pastores e pregadores.</p>
+      <div class="sermoes-content">
+        <div class="instagram-feed sermoes-feed videos-section">
+          <div class="section-header">
+            <h2 class="section-title">Vídeos de Sermões</h2>
+            <div class="section-divider"></div>
+          </div>
+          <div class="instagram-videos-container">
+            <div class="instagram-videos-grid sermoes-instagram-grid">
+              <div class="loader-container loading-message">
+                <div class="spinner"></div>
+              </div>
+            </div>
+            <div id="instagram-videos-loader" class="loader-container" style="display: none;">
+              <div class="spinner"></div>
+            </div>
+            <div class="instagram-videos-footer">
+              <button class="load-more-videos-btn cta-button">Carregar mais vídeos de sermões</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="geral" class="midia-section active">
+      <h2>Feed Geral do Instagram</h2>
+      <p>Acompanhe as novidades, mensagens inspiradoras e o dia a dia da nossa igreja.</p>
+      <div class="instagram-feed geral-feed videos-section">
+        <div class="section-header">
+          <h2 class="section-title">Feed Geral</h2>
+          <div class="section-divider"></div>
+        </div>
+        <div class="instagram-videos-container">
+          <div class="instagram-videos-grid geral-instagram-grid">
+            <div class="loader-container loading-message">
+              <div class="spinner"></div>
+            </div>
+            <div id="instagram-videos-loader" class="loader-container" style="display: none;">
+              <div class="spinner"></div>
+            </div>
+            <div class="instagram-videos-footer">
+              <button class="load-more-videos-btn cta-button">Carregar mais posts do feed geral</button>
+            </div>
+          </div>
+        </div>
+        <div class="blog-preview">
+          <h3>Últimas Notícias e Artigos (Blog Opcional)</h3>
+          <p>Confira nossos artigos e reflexões mais recentes.</p>
+          <p>Blog (Opcional - Substituir por Prévia do Blog)</p>
+        </div>
+      </div>
+    </section>
+
+  </div> <!-- midia-container -->
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-info">
+        <!-- Será preenchido dinamicamente -->
+      </div>
+      <div class="footer-social">
+        <h3>Redes Sociais</h3>
+        <div class="social-links">
+          <!-- Será preenchido dinamicamente -->
+        </div>
+      </div>
+      <div class="footer-contact">
+        <!-- Será preenchido dinamicamente -->
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>©<span id="anoRodape"></span> Igreja Presbiteriana do Valparaíso. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/menu_site.js"></script>
+<script src="../assets/js/midia.js"></script> <!-- JS específico para a página de mídia -->
+<script src="../assets/js/footer.js"></script>
+<script src="../assets/js/agenda_site.js"></script> <!-- JS da agenda -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css"> <!-- CSS do FullCalendar -->
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js"></script> <!-- JS do FullCalendar -->
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/locales-all.min.js"></script> <!-- Localização do FullCalendar -->
+
+</body>
+</html>

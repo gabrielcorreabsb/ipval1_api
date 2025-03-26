@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "Trabalhos Manuais",
                 "Visitas"
             ],
-            lideranca: "Maria Silva",
+            lideranca: "Stefanie",
             gerarAta: true // Indica que este departamento tem botão de gerar ata
         },
         {
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "Atividades Recreativas",
                 "Momentos de Comunhão"
             ],
-            lideranca: "Pr. Lucas Souza"
+            lideranca: "Pr. Lucas Souza e Stefanie"
         },
         {
             nome: "UPA",
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "Atividades Recreativas",
                 "Momentos de Comunhão"
             ],
-            lideranca: "Pr. Lucas Souza"
+            lideranca: "Pr. Lucas Souza e Stefanie"
         },
         {
             nome: "Departamento Infantil",
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "Culto Infantil",
                 "Atividades Especiais"
             ],
-            lideranca: "A colocar"
+            lideranca: "Patrícia"
         },
     ];
 

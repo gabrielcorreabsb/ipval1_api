@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Teste Mídia</title>
+  <style>
+    .midia-section { display: none; }
+    .midia-section.active { display: block; }
+  </style>
+</head>
+<body>
+<div class="midia-navigation">
+  <button class="midia-nav-button active" data-section="eventos">Eventos</button>
+  <button class="midia-nav-button" data-section="sermoes">Sermões</button>
+  <button class="midia-nav-button" data-section="geral">Geral</button>
+</div>
+
+<section id="eventos" class="midia-section active">
+  <h2>Eventos - Conteúdo de Teste</h2>
+  <p>Esta é a seção de eventos.</p>
+</section>
+
+<section id="sermoes" class="midia-section">
+  <h2>Sermões - Conteúdo de Teste</h2>
+  <p>Esta é a seção de sermões.</p>
+</section>
+
+<section id="geral" class="midia-section">
+  <h2>Geral - Conteúdo de Teste</h2>
+  <p>Esta é a seção geral.</p>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const navButtons = document.querySelectorAll('.midia-nav-button');
+    const sections = document.querySelectorAll('.midia-section');
+
+    const showSection = (sectionId) => {
+      sections.forEach(section => section.classList.remove('active'));
+      navButtons.forEach(button => button.classList.remove('active'));
+
+      const sectionToShow = document.getElementById(sectionId);
+      const buttonToActivate = document.querySelector(`.midia-nav-button[data-section="${sectionId}"]`);
+
+      if (sectionToShow) sectionToShow.classList.add('active');
+      if (buttonToActivate) buttonToActivate.classList.add('active');
+    };
+
+    navButtons.forEach(button => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        showSection(button.dataset.section);
+      });
+    });
+
+    showSection('eventos'); // Mostrar eventos por padrão
+  });
+</script>
+</body>
+</html>
