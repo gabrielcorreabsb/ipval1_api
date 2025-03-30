@@ -5,6 +5,7 @@
 
 /* NOTE: This CSS should contain ONLY page-specific styles for agenda_site.html, leveraging global.css */
 
+
 /* Estilos do Container da Agenda */
 .agenda-container {
     max-width: 1200px; /* Keep max-width if page-specific, otherwise consider global container */

@@ -1,0 +1,258 @@
+/* eventos-mini.css - Versão unificada e otimizada */
+
+/* Container principal de eventos */
+.eventos-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.instagram-videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 0;
+}
+
+/* Ajusta o feed para seguir o padrão das outras abas */
+#eventos-feed {
+    margin-bottom: 40px; /* Espaço entre o feed e a seção de próximos eventos */
+}
+
+/* Feed do Instagram */
+.eventos-instagram {
+    background: var(--color-white);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+    width: 100%;
+}
+
+.eventos-instagram-header {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--color-secondary);
+}
+
+.eventos-instagram-title {
+    font-size: 1.4rem;
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Container de Eventos Mini */
+.eventos-agenda {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.eventos-mini-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--color-white);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+}
+
+.eventos-mini-header {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--color-secondary);
+    position: relative;
+    z-index: 1;
+}
+
+.eventos-mini-title {
+    font-size: 1.4rem;
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Cards de Eventos */
+.evento-mini-card {
+    display: flex;
+    margin-bottom: 30px;
+    position: relative;
+    background: var(--color-white);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s ease;
+}
+
+.evento-mini-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* Data do Evento */
+.evento-mini-data {
+    width: 100px;
+    height: 100px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-white);
+    margin-right: 40px;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 5px 15px rgba(11, 102, 54, 0.2);
+    flex-shrink: 0;
+}
+
+.evento-mini-dia {
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.evento-mini-mes {
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* Informações do Evento */
+.evento-mini-info {
+    background-color: var(--color-white);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(11, 102, 54, 0.1);
+    flex-grow: 1;
+}
+
+.evento-mini-titulo {
+    font-size: 1.3rem;
+    color: var(--color-primary);
+    margin-bottom: 10px;
+}
+
+.evento-mini-detalhes {
+    display: flex;
+    gap: 20px;
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.evento-mini-hora,
+.evento-mini-local {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.evento-mini-hora i,
+.evento-mini-local i {
+    color: var(--color-primary);
+}
+
+/* Botão de Ação */
+.evento-mini-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+
+.evento-mini-btn.mais-detalhes {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--color-primary);
+    color: var(--color-white);
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-soft);
+}
+
+.evento-mini-btn.mais-detalhes:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+    background: var(--color-accent);
+}
+
+/* Estado sem eventos */
+.no-eventos-mini {
+    text-align: center;
+    padding: 40px 20px;
+    background: var(--color-white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+    margin: 20px 0;
+}
+
+.no-eventos-mini i {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    margin-bottom: 15px;
+}
+
+.no-eventos-mini p {
+    color: var(--color-text);
+    font-size: 1.1rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .eventos-content {
+        gap: 30px;
+    }
+
+    .eventos-instagram,
+    .eventos-mini-container {
+        padding: 15px;
+    }
+
+    .eventos-instagram-title,
+    .eventos-mini-title {
+        font-size: 1.2rem;
+    }
+
+    .evento-mini-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .evento-mini-data {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 20px;
+    }
+
+    .evento-mini-dia {
+        font-size: 1.8rem;
+    }
+
+    .evento-mini-mes {
+        font-size: 0.8rem;
+    }
+
+    .evento-mini-detalhes {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .evento-mini-actions {
+        justify-content: center;
+    }
+
+    .evento-mini-btn.mais-detalhes {
+        width: 100%;
+        justify-content: center;
+    }
+}

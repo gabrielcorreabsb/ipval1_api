@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Permitir indexação de conteúdo principal
+Allow: /pages/
+Allow: /assets/imgs/
+
+# Bloquear arquivos e diretórios técnicos
+Disallow: /assets/js/
+Disallow: /assets/css/
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /api/
+Disallow: /admin/
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /*.txt$
+
+# Sitemap
+Sitemap: https://ipv1.org.br/sitemap.xml
+
+# Taxas de rastreamento
+Crawl-delay: 10

@@ -1,9 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5VWQKZS4');</script>
+  <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Notícia - Igreja Presbiteriana do Valparaíso 1</title>
+
+  <meta name="description" content="Igreja Presbiteriana do Valparaíso 1 - Comunidade cristã comprometida com o evangelho e a transformação de vidas através da fé e do amor ao próximo.">
+  <meta name="keywords" content="igreja presbiteriana, valparaíso, cristianismo, evangelho, cultos, ipv1">
+
+  <!-- Open Graph (para compartilhamento) -->
+  <meta property="og:title" content="Igreja Presbiteriana do Valparaíso 1">
+  <meta property="og:description" content="Comunidade cristã comprometida com o evangelho">
+  <meta property="og:image" content="https://ipv1.org.br/assets/imgs/logo.png">
+  <meta property="og:url" content="https://ipv1.org.br">
+
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
@@ -11,25 +28,49 @@
   <link rel="stylesheet" href="../assets/css/index.css">
   <link rel="stylesheet" href="../assets/css/noticia_visu.css">
   <!-- Removido o link para acessibilidade.css, já que os estilos foram movidos para noticia_visu.css -->
+
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg" />
+  <link rel="shortcut icon" href="/assets/favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="/assets/favicon/site.webmanifest" />
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VWQKZS4"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<!-- Header -->
 <!-- Header -->
 <header class="header">
   <div class="header-container">
     <div class="logo">
-      <img src="../assets/imgs/logo.png" alt="Logo Igreja Presbiteriana">
-    </div>
+      <a href="../index.html">
+        <img src="../assets/imgs/logo.png" alt="Logo Igreja Presbiteriana">
+      </a>    </div>
     <nav class="main-nav">
       <button class="mobile-menu-btn">
         <span class="hamburger"></span>
       </button>
       <ul class="nav-list">
-        <li><a href="../index.html" data-page="inicio">Início</a></li>
-        <li><a href="./igreja.html" data-page="departamentos">Quem somos</a></li>
-        <li><a href="./departamentos.html" data-page="departamentos">Ministérios</a></li>
-        <li><a href="./agenda.html" data-page="agenda">Agenda</a></li>
-        <li><a href="./contribua.html" data-page="contribua">Contribua</a></li>
-        <li><a href="./contato.html">Contato</a></li>
+        <li><a href="../index.html">Início</a></li>
+        <li class="menu-item-has-children">
+          <a href="#">Igreja<i class="fas fa-chevron-down dropdown-icon"></i></a>
+          <ul class="sub-menu">
+            <li><a href="../pages/igreja.html">Quem Somos</a></li>
+            <li><a href="../pages/departamentos.html">Ministérios</a></li>
+          </ul>
+        </li>
+        <li><a href="../pages/agenda.html">Agenda</a></li>
+        <li><a href="../pages/midia.html">Midia</a></li>
+        <li><a href="../pages/contribua.html">Contribua</a></li>
+        <li><a href="../pages/contato.html">Contato</a></li>
+        <li class="menu-item-has-children">
+          <a href="#">Recursos<i class="fas fa-chevron-down dropdown-icon"></i></a>
+          <ul class="sub-menu">
+            <li><a href="../pages/gerador.html">Gerador de Ata UPH/SAF</a></li>
+          </ul>
+        </li>
       </ul>
     </nav>
   </div>
@@ -85,27 +126,21 @@
 </main>
 
 <!-- Footer -->
+<!-- Footer -->
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-info">
-        <h3>Igreja Presbiteriana do Valparaíso 1</h3>
-        <p>Endereço da Igreja, 123</p>
-        <p>Valparaíso - GO</p>
-        <p>CEP: 12345-678</p>
+        <!-- Será preenchido dinamicamente -->
       </div>
       <div class="footer-social">
         <h3>Redes Sociais</h3>
         <div class="social-links">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
+          <!-- Será preenchido dinamicamente -->
         </div>
       </div>
       <div class="footer-contact">
-        <h3>Contato</h3>
-        <p>Tel: (61) 1234-5678</p>
-        <p>Email: contato@igrejapresbiteriana.com.br</p>
+        <!-- Será preenchido dinamicamente -->
       </div>
     </div>
     <div class="footer-bottom">

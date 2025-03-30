@@ -49,8 +49,67 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             themeSystem: 'standard',
             height: 'auto',
-            firstDay: 0, // Domingo como primeiro dia
-            dayMaxEvents: true, // Permite "more" link quando há muitos eventos
+            firstDay: 0,
+            dayMaxEvents: true,
+            eventTimeFormat: {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            },
+            eventDisplay: 'block',
+            displayEventTime: true,
+            displayEventEnd: true,
+            slotMinTime: '06:00:00', // Início do dia às 6h
+            slotMaxTime: '23:00:00', // Fim do dia às 23h
+            slotDuration: '00:30:00', // Intervalos de 30 minutos
+            eventDidMount: function(info) {
+                // Adiciona tooltip com informações detalhadas
+                const evento = info.event;
+                const dataInicio = evento.start.toLocaleTimeString('pt-BR', {
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+
+                // Cria um elemento personalizado para o tooltip
+                const tooltip = document.createElement('div');
+                tooltip.className = 'evento-tooltip';
+                tooltip.innerHTML = `
+                <div class="evento-tooltip-content">
+                    <div class="evento-tooltip-header">
+                        <i class="fas fa-calendar-alt"></i>
+                        <strong>${evento.title}</strong>
+                    </div>
+                    <div class="evento-tooltip-body">
+                        <p><i class="fas fa-clock"></i> ${dataInicio}</p>
+                        ${evento.extendedProps.location ?
+                    `<p><i class="fas fa-map-marker-alt"></i> ${evento.extendedProps.location}</p>` : ''}
+                        ${evento.extendedProps.description ?
+                    `<p><i class="fas fa-info-circle"></i> ${evento.extendedProps.description}</p>` : ''}
+                    </div>
+                </div>
+            `;
+
+                // Aplica estilos personalizados ao evento
+                info.el.style.backgroundColor = 'var(--color-accent)';
+                info.el.style.borderRadius = '4px';
+                info.el.style.border = 'none';
+
+                // Adiciona classes para hover effect
+                info.el.classList.add('calendar-event');
+
+                // Configura o tooltip usando Tippy.js (se disponível) ou title padrão
+                if (window.tippy) {
+                    tippy(info.el, {
+                        content: tooltip,
+                        allowHTML: true,
+                        placement: 'top',
+                        interactive: true,
+                        theme: 'custom'
+                    });
+                } else {
+                    info.el.title = `${evento.title} - ${dataInicio}${evento.extendedProps.location ? ` - ${evento.extendedProps.location}` : ''}`;
+                }
+            },
             eventClick: function(info) {
                 mostrarDetalhesEvento(info.event);
             },
@@ -58,6 +117,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 carregarEventos(info.start, info.end)
                     .then(eventos => successCallback(eventos))
                     .catch(error => failureCallback(error));
+            },
+            // Personalização das visualizações
+            views: {
+                dayGridMonth: {
+                    dayMaxEvents: 3, // Limita o número de eventos visíveis por dia
+                    moreLinkText: 'mais', // Texto para o link "mais"
+                    moreLinkClick: 'popover' // Abre um popover com todos os eventos
+                },
+                timeGridWeek: {
+                    dayHeaderFormat: { weekday: 'short', day: 'numeric', month: 'numeric' }
+                },
+                timeGridDay: {
+                    dayHeaderFormat: { weekday: 'long', day: 'numeric', month: 'long' }
+                }
             }
         });
 
@@ -143,36 +216,47 @@ document.addEventListener('DOMContentLoaded', function() {
      */
     async function carregarProximosEventos() {
         try {
-            // Obter data atual
             const hoje = new Date();
-            const dataInicio = hoje.toISOString().split('T')[0];
+            hoje.setHours(0, 0, 0, 0); // Reseta o horário para início do dia
 
-            // Obter data 3 meses à frente (para mostrar eventos próximos)
-            const dataFim = new Date(hoje.setMonth(hoje.getMonth() + 3)).toISOString().split('T')[0];
+            const dataLimite = new Date();
+            dataLimite.setMonth(dataLimite.getMonth() + 3); // 3 meses à frente
 
             // Construir URL com parâmetros de data
             const url = new URL(`${CONFIG.API_URL}/agenda`);
-            url.searchParams.append('dataInicio', dataInicio);
-            url.searchParams.append('dataFim', dataFim);
+            url.searchParams.append('dataInicio', hoje.toISOString().split('T')[0]);
+            url.searchParams.append('dataFim', dataLimite.toISOString().split('T')[0]);
 
             const response = await fetch(url.toString());
-
-            if (!response.ok) {
-                throw new Error(`Erro ao carregar eventos: ${response.status}`);
-            }
+            if (!response.ok) throw new Error(`Erro ao carregar eventos: ${response.status}`);
 
             const eventos = await response.json();
 
-            // Ordenar eventos por data (mais próximos primeiro)
-            eventos.sort((a, b) => new Date(a.dataInicio) - new Date(b.dataInicio));
+            // Filtra apenas eventos futuros e ordena por data
+            const eventosFuturos = eventos
+                .filter(evento => {
+                    const dataEvento = new Date(evento.dataInicio);
+                    return dataEvento >= hoje;
+                })
+                .sort((a, b) => new Date(a.dataInicio) - new Date(b.dataInicio))
+                .slice(0, 3); // Limita a 3 eventos
 
-            // Pegar apenas os 3 primeiros eventos
-            const proximosEventos = eventos.slice(0, 3);
+            if (!eventosFuturos || eventosFuturos.length === 0) {
+                const eventosTimeline = document.querySelector('.eventos-timeline');
+                if (eventosTimeline) {
+                    eventosTimeline.innerHTML = `
+                    <div class="no-eventos">
+                        <i class="fas fa-calendar-times"></i>
+                        <p>Não há eventos programados para os próximos meses.</p>
+                    </div>
+                `;
+                }
+                return;
+            }
 
-            atualizarTimelineEventos(proximosEventos);
+            atualizarTimelineEventos(eventosFuturos);
+            adicionarBotoesWhatsappEventos(eventosFuturos);
 
-            // Adicionar botões de WhatsApp para cada evento
-            adicionarBotoesWhatsappEventos(proximosEventos);
         } catch (error) {
             console.error('Erro ao carregar próximos eventos:', error);
             mostrarEventosDefault();
@@ -257,46 +341,70 @@ document.addEventListener('DOMContentLoaded', function() {
         const eventosTimeline = document.querySelector('.eventos-timeline');
         if (!eventosTimeline) return;
 
-        // Se não houver eventos, mostrar mensagem padrão
-        if (!eventos || eventos.length === 0) {
-            eventosTimeline.innerHTML = `
-                <div class="no-eventos">
-                    <i class="fas fa-calendar-times"></i>
-                    <p>Não há eventos programados para os próximos meses.</p>
-                </div>
-            `;
-            return;
-        }
+        const hoje = new Date();
+        hoje.setHours(0, 0, 0, 0);
 
-        // Criar HTML para cada evento
         const eventosHTML = eventos.map(evento => {
-            // Formatar data
             const data = new Date(evento.dataInicio);
             const dia = data.getDate();
             const mes = data.toLocaleString('pt-BR', {month: 'short'}).toUpperCase().replace('.', '');
-
-            // Formatar hora
             const hora = data.toLocaleTimeString('pt-BR', {hour: '2-digit', minute: '2-digit'});
 
+            // Verifica se o evento é hoje
+            const isHoje = data.toDateString() === hoje.toDateString();
+            const dataClass = isHoje ? 'evento-data hoje' : 'evento-data';
+
             return `
-                <div class="evento-item">
-                    <div class="evento-data">
-                        <span class="evento-dia">${dia}</span>
-                        <span class="evento-mes">${mes}</span>
-                    </div>
-                    <div class="evento-conteudo">
-                        <h3 class="evento-titulo">${evento.titulo}</h3>
-                        <p class="evento-descricao">${evento.descricao || 'Sem descrição disponível'}</p>
-                        <div class="evento-info">
-                            <span><i class="fas fa-clock"></i> ${hora}</span>
-                            <span><i class="fas fa-map-marker-alt"></i> ${evento.localEvento || 'Local a definir'}</span>
-                        </div>
+            <div class="evento-item">
+                <div class="${dataClass}">
+                    <span class="evento-dia">${dia}</span>
+                    <span class="evento-mes">${mes}</span>
+                    ${isHoje ? '<span class="evento-badge-hoje">HOJE</span>' : ''}
+                </div>
+                <div class="evento-conteudo">
+                    <h3 class="evento-titulo">${evento.titulo}</h3>
+                    <p class="evento-descricao">${evento.descricao || 'Sem descrição disponível'}</p>
+                    <div class="evento-info">
+                        <span><i class="fas fa-clock"></i> ${hora}</span>
+                        <span><i class="fas fa-map-marker-alt"></i> ${evento.localEvento || 'Local a definir'}</span>
                     </div>
                 </div>
-            `;
+            </div>
+        `;
         }).join('');
 
         eventosTimeline.innerHTML = eventosHTML;
+
+        // Adicionar estilo especial para eventos do dia
+        if (document.querySelector('.evento-data.hoje')) {
+            const style = document.createElement('style');
+            style.textContent = `
+            .evento-data.hoje {
+                background-color: var(--color-accent);
+                position: relative;
+            }
+            .evento-badge-hoje {
+                position: absolute;
+                top: -10px;
+                right: -10px;
+                background: var(--color-accent);
+                color: var(--color-white);
+                font-size: 0.7rem;
+                padding: 2px 6px;
+                border-radius: 10px;
+                font-weight: bold;
+            }
+            @keyframes pulse {
+                0% { box-shadow: 0 0 0 0 rgba(11, 102, 54, 0.4); }
+                70% { box-shadow: 0 0 0 10px rgba(11, 102, 54, 0); }
+                100% { box-shadow: 0 0 0 0 rgba(11, 102, 54, 0); }
+            }
+            .evento-data.hoje {
+                animation: pulse 2s infinite;
+            }
+        `;
+            document.head.appendChild(style);
+        }
     }
 
     /**
@@ -328,16 +436,12 @@ document.addEventListener('DOMContentLoaded', function() {
      */
     async function carregarEventos(inicio, fim) {
         try {
-            // Formatar datas para a API
             const dataInicio = inicio.toISOString().split('T')[0];
             const dataFim = fim.toISOString().split('T')[0];
 
-            // Construir URL com parâmetros de data
             const url = new URL(`${CONFIG.API_URL}/agenda`);
             url.searchParams.append('dataInicio', dataInicio);
             url.searchParams.append('dataFim', dataFim);
-
-            // console.log('Fazendo requisição para:', url.toString());
 
             const response = await fetch(url.toString());
 
@@ -348,23 +452,34 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             eventos = await response.json();
-            // console.log('Eventos recebidos:', eventos);
-
-            // Compartilhar eventos com a página inicial se estiver na mesma sessão
             window.eventosAgenda = eventos;
 
-            return eventos.map(evento => ({
-                id: evento.id,
-                title: evento.titulo,
-                start: new Date(evento.dataInicio),
-                end: new Date(evento.dataFim),
-                description: evento.descricao,
-                location: evento.localEvento,
-                extendedProps: {
+            return eventos.map(evento => {
+                const dataInicio = new Date(evento.dataInicio);
+                const dataFim = new Date(evento.dataFim);
+
+                // Formatação correta das horas
+                const horaInicio = dataInicio.getHours().toString().padStart(2, '0') + ':' +
+                    dataInicio.getMinutes().toString().padStart(2, '0');
+
+                // Formatar o título incluindo a hora
+                const tituloFormatado = `${evento.titulo}`;
+
+                return {
+                    id: evento.id,
+                    title: tituloFormatado, // Usar o título formatado com a hora
+                    start: dataInicio,
+                    end: dataFim,
                     description: evento.descricao,
-                    location: evento.localEvento
-                }
-            }));
+                    location: evento.localEvento,
+                    extendedProps: {
+                        description: evento.descricao,
+                        location: evento.localEvento,
+                        horaInicio: horaInicio,
+                        horaOriginal: evento.titulo // Mantém o título original sem a hora
+                    }
+                };
+            });
         } catch (error) {
             console.error('Erro ao carregar eventos:', error);
             mostrarMensagem('Erro ao carregar eventos', 'error');
@@ -568,9 +683,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Exportar funções para uso global
     window.eventosJS = {
-        carregarEventos,
         mostrarDetalhesEvento,
-        carregarProximosEventos
     };
 });
 
