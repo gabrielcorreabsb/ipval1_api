@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "Ações Sociais"
             ],
             lideranca: "Presb. Dartalian",
-            gerarAta: true // Indica que este departamento tem botão de gerar ata
+            gerarAta: false // Indica que este departamento tem botão de gerar ata
         },
         {
             nome: "SAF",
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "Visitas"
             ],
             lideranca: "Stefanie",
-            gerarAta: true // Indica que este departamento tem botão de gerar ata
+            gerarAta: false // Indica que este departamento tem botão de gerar ata
         },
         {
             nome: "UMP",

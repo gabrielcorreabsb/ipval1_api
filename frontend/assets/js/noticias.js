@@ -54,18 +54,21 @@ function initTinyMCE(selector) {
         selector: selector,
         height: 400,
         language: 'pt_BR',
-        referrerpolicy: "origin", // Adiciona política de referrer
-        promotion: false, // Remove a promoção do TinyMCE
-        branding: false, // Remove a marca TinyMCE
+        referrerpolicy: "origin",
+        promotion: false,
+        branding: false,
         plugins: [
-            'anchor', 'autolink', 'charmap', 'codesample', 'emoticons',
-            'image', 'link', 'lists', 'media', 'searchreplace', 'table',
-            'visualblocks', 'wordcount', 'checklist', 'mediaembed'
+            'advlist', 'autolink', 'lists', 'link', 'image', 'charmap',
+            'preview', 'anchor', 'searchreplace', 'visualblocks',
+            'fullscreen', 'insertdatetime', 'media', 'table',
+            'help', 'wordcount'
         ],
         toolbar: [
-            'undo redo | formatselect | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist',
-            'forecolor backcolor | link image media | removeformat help'
-        ].join(' | '),
+            'undo redo | blocks | ' +
+            'bold italic forecolor | alignleft aligncenter ' +
+            'alignright alignjustify | bullist numlist outdent indent | ' +
+            'removeformat | link image media | help'
+        ],
         content_style: `
             body {
                 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;

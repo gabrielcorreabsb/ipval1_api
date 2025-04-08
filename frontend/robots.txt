@@ -12,12 +12,6 @@ Disallow: /.git/
 Disallow: /node_modules/
 Disallow: /api/
 Disallow: /admin/
-Disallow: /*.json$
-Disallow: /*.xml$
-Disallow: /*.txt$
 
 # Sitemap
 Sitemap: https://ipv1.org.br/sitemap.xml
-
-# Taxas de rastreamento
-Crawl-delay: 10
