@@ -8,6 +8,14 @@
         <priority>1.0</priority>
     </url>
 
+    <url>
+        <loc>https://ipv1.org.br/index.html</loc>
+        <lastmod>2025-04-23</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+
     <!-- Páginas Principais -->
     <url>
         <loc>https://ipv1.org.br/pages/igreja.html</loc>

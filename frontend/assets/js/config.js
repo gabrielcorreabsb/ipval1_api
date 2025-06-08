@@ -1,9 +1,9 @@
 // Configurações globais da aplicação
 const CONFIG = {
-    API_URL: 'http://localhost:8080/api',
-    //  API_URL: 'https://ipv1.org.br/api',
+    //API_URL: 'http://localhost:8080/api',
+      API_URL: 'https://ipv1.org.br/api',
     INSTAGRAM: {
-        ACCESS_TOKEN: 'IGAAQFNP5w71lBZAE5HWHFpU3NhcmV2UmgwZAy1KcTRYSkh0aXZAzdVpkWkptQk5IS1RHcHc3VlBMekJtNUh4dkFRVEdQekpFWEpkbk84VU8xRzJnSXRXWVRaM2FDWEhwdEcyMl9teEhhelVKbzZAmQzRXbTZAwcV94WWM3Ymp2U2piYwZDZD'
+        ACCESS_TOKEN: 'IGAAQFNP5w71lBZAFA2a3F3ZAU5Pc21SMkVxMEhyTDVPYmJvWEQwUkZAKMWdMRVBaRmp2c09yaGxZAR1pkTHFlR2M2WUYzeTMxUmdkSFpEUm5maFdyQU11UlZA2ZAHM4bzk5dXNlY0NtcGdWTWxORnBxLVM1cHZAZAakprZA3d1MDBmUTFmVQZDZD'
     },
     DEBUG: false // Controle de logs
 };

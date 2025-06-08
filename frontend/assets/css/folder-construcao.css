@@ -1,0 +1,815 @@
+/* ./assets/css/folder-construcao.css */
+
+/* === Minimal Header === */
+.fc-minimal-header {
+    background-color: var(--color-primary);
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: var(--shadow-medium);
+}
+
+.fc-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fc-logo-header a {
+    display: flex;
+    align-items: center;
+    color: var(--color-white);
+    font-family: var(--font-primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.fc-logo-header img {
+    height: 40px;
+    margin-right: 12px;
+}
+
+.fc-logo-header span strong {
+    font-weight: 800;
+}
+
+.fc-btn-outline-light {
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    color: var(--color-white);
+    padding: 8px 18px;
+    font-size: 0.9rem;
+    border-radius: var(--border-radius-main);
+}
+
+.fc-btn-outline-light:hover {
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    border-color: var(--color-white);
+}
+
+.fc-btn-outline-light i {
+    margin-right: 8px;
+}
+
+.fc-main-content-wrapper {
+    padding-top: 70px;
+}
+
+/* === Hero Section === */
+.fc-hero-section {
+    background: linear-gradient(to bottom, rgba(11, 102, 54, 0.85), rgba(8, 74, 39, 0.95)), url('./assets/imgs/background-construcao-inspiradora.jpg') no-repeat center center;
+    background-size: cover;
+    color: var(--color-white);
+    padding: 100px 20px 120px;
+    text-align: center;
+    position: relative;
+    clip-path: ellipse(150% 100% at 50% 0%);
+    margin-bottom: -40px; /* Reduzido para uma transição mais suave */
+    z-index: 1;
+}
+
+.fc-hero-icon {
+    width: 70px;
+    margin-bottom: 25px;
+    opacity: 0.9;
+}
+
+.fc-hero-content h1 {
+    font-family: var(--font-primary);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1.15;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    color: var(--color-white);
+}
+
+.fc-hero-content .fc-subtitle {
+    font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+    font-weight: 400;
+    line-height: 1.7;
+    max-width: 750px;
+    margin: 0 auto 40px auto;
+    opacity: 0.95;
+}
+
+.fc-btn-primary {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    padding: 16px 45px;
+    font-size: 1.15rem;
+    border-radius: var(--border-radius-main);
+    box-shadow: var(--shadow-strong);
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.fc-btn-primary:hover {
+    background-color: #fcecb0;
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+.fc-btn-primary i {
+    margin-right: 10px;
+}
+
+/* === Section Header Genérico === */
+.fc-section-header {
+    text-align: center;
+}
+
+.fc-section-header h2 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    color: var(--color-primary);
+    margin-bottom: 25px;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.fc-section-header h2::after {
+    content: '';
+    display: block;
+    width: 70px;
+    height: 4px;
+    background-color: var(--color-secondary);
+    border-radius: 2px;
+    margin: 15px auto 0;
+}
+
+.fc-section-header p {
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    color: var(--color-text-light);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+.fc-history-summary {
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    color: var(--color-text-light);
+    max-width: 750px;
+    margin: 0 auto 30px auto;
+    line-height: 1.7;
+    text-align: left;
+}
+
+.fc-history-summary p {
+    margin-bottom: 15px;
+}
+
+.fc-history-summary p:last-child {
+    margin-bottom: 0;
+}
+
+.fc-history-summary strong {
+    color: var(--color-text);
+    font-weight: 600;
+}
+
+/* === Video Intro Section === */
+.fc-video-intro-section {
+    padding: 120px 0 80px;
+    background-color: var(--color-background-page);
+    position: relative;
+    z-index: 0;
+}
+
+.fc-video-intro-section .container {
+    padding-top: 20px;
+}
+
+.fc-video-wrapper {
+    max-width: 460px;
+    margin: 0 auto;
+    border-radius: var(--border-radius-main);
+    overflow: hidden; /* Remova se o iframe estiver cortado */
+    box-shadow: var(--shadow-strong);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e9ecef;
+    /* Remova min-height fixo e use aspect-ratio */
+    position: relative;
+    padding-bottom: 65%; /* Proporção 16:9 */
+    height: 0;
+}
+
+.fc-video-wrapper .instagram-media {
+    width: 100% !important;
+    height: 100% !important; /* Garante que o iframe ocupe o contêiner */
+    margin: 0 !important;
+    border-radius: var(--border-radius-main) !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Garante que o iframe interno do Instagram respeite o contêiner */
+.fc-video-wrapper iframe {
+    width: 100% !important;
+    height: 100% !important;
+    border: none;
+    border-radius: var(--border-radius-main);
+}
+
+/* === Verse Section === */
+.fc-verse-section {
+    padding: 80px 20px;
+    background-color: var(--color-background-section-alt);
+    text-align: center;
+}
+
+.fc-quote-icon {
+    font-size: 5rem;
+    color: var(--color-secondary);
+    opacity: 0.8;
+    font-family: 'Georgia', serif;
+    line-height: 0.5;
+    display: block;
+}
+
+.fc-verse-section blockquote {
+    font-family: var(--font-secondary);
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    font-style: italic;
+    color: var(--color-text);
+    max-width: 750px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+.fc-verse-section blockquote p {
+    margin-bottom: 20px;
+}
+
+.fc-verse-section blockquote footer {
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    font-style: normal;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-top: 25px;
+    display: block;
+}
+
+/* === Progress/Impact Section === */
+.fc-progress-impact-section {
+    padding: 80px 20px;
+    background-color: var(--color-background-page);
+}
+
+.fc-impact-points {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.fc-impact-item {
+    text-align: center;
+    padding: 25px 20px;
+    background-color: var(--color-background-section-alt);
+    border-radius: var(--border-radius-main);
+    box-shadow: var(--shadow-soft);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.fc-impact-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+
+.fc-impact-item i {
+    font-size: 2.8rem;
+    color: var(--color-primary);
+    margin-bottom: 20px;
+    display: inline-block;
+    background-color: rgba(254, 240, 189, 0.3);
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    border-radius: 50%;
+}
+
+.fc-impact-item h4 {
+    font-size: 1.25rem;
+    color: var(--color-text);
+    margin-bottom: 10px;
+}
+
+.fc-impact-item p {
+    font-size: 0.95rem;
+    color: var(--color-text-light);
+    line-height: 1.6;
+}
+
+/* Estilo para o callout da doação especial (antes do vídeo) */
+.fc-donation-callout {
+    background-color: rgba(254, 240, 189, 0.35);
+    border: 1px solid rgba(240, 228, 176, 0.6);
+    border-left: 5px solid var(--color-primary);
+    padding: 20px 25px;
+    margin: 0 auto 40px auto;
+    border-radius: var(--border-radius-small);
+    max-width: 760px;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    box-shadow: var(--shadow-soft);
+}
+
+.fc-donation-callout i {
+    color: var(--color-primary);
+    font-size: 1.8rem;
+    margin-top: 0.1em;
+    flex-shrink: 0;
+}
+
+.fc-donation-callout div h4 {
+    font-size: 1.15rem;
+    color: var(--color-primary);
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.fc-donation-callout div p {
+    font-size: 0.95rem;
+    color: var(--color-text);
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+.fc-donation-callout div p strong {
+    font-weight: 700;
+}
+
+/* === Donation Methods Section === */
+.fc-donation-methods-section {
+    padding: 80px 20px;
+    background-color: var(--color-background-section-alt);
+}
+
+.fc-donation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.fc-donation-card {
+    background-color: var(--color-white);
+    border: 1px solid #e9ecef;
+    border-radius: var(--border-radius-main);
+    padding: 35px 30px;
+    box-shadow: var(--shadow-medium);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.fc-donation-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: var(--shadow-strong);
+}
+
+.fc-card-icon {
+    font-size: 3rem;
+    color: var(--color-primary);
+    margin-bottom: 20px;
+}
+
+.fc-donation-card h3 {
+    font-size: 1.6rem;
+    color: var(--color-text);
+    margin-bottom: 12px;
+}
+
+.fc-donation-card .fc-card-description {
+    font-size: 1rem;
+    color: var(--color-text-light);
+    margin-bottom: 30px;
+    line-height: 1.7;
+    min-height: 55px;
+}
+
+.fc-qr-code-image {
+    max-width: 220px;
+    margin: 0 auto 15px auto;
+    border: 6px solid var(--color-white);
+    box-shadow: var(--shadow-soft);
+    border-radius: var(--border-radius-small);
+}
+
+.fc-donation-tip {
+    background-color: rgba(254, 240, 189, 0.25);
+    border: 1px solid rgba(240, 228, 176, 0.5);
+    padding: 12px 15px;
+    margin: 15px 0;
+    border-radius: var(--border-radius-small);
+    text-align: left;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+    max-width: 340px;
+}
+
+.fc-donation-tip i {
+    color: var(--color-primary);
+    font-size: 1.25em;
+    margin-top: 0.15em;
+    flex-shrink: 0;
+}
+
+.fc-donation-tip p {
+    margin-bottom: 0;
+    color: var(--color-text);
+    line-height: 1.5;
+}
+
+.fc-donation-tip p strong {
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+.fc-copy-field {
+    display: flex;
+    width: 100%;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+
+.fc-copy-field input[type="text"] {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border: 1px solid #ced4da;
+    border-right: none;
+    border-radius: var(--border-radius-small) 0 0 var(--border-radius-small);
+    font-size: 0.95rem;
+    background-color: #f8f9fa;
+    color: var(--color-text);
+    outline: none;
+    transition: border-color var(--transition-speed);
+}
+
+.fc-copy-field input[type="text"]:focus {
+    border-color: var(--color-primary);
+    z-index: 2;
+}
+
+.fc-copy-btn {
+    background-color: var(--color-primary);
+    color: white;
+    border: 1px solid var(--color-primary);
+    padding: 12px 18px;
+    font-size: 1rem;
+    border-radius: 0 var(--border-radius-small) var(--border-radius-small) 0;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fc-copy-btn:hover {
+    background-color: var(--color-accent);
+}
+
+.fc-copy-btn.copied {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.fc-copied-feedback {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--color-primary);
+    height: 18px;
+    margin-top: 8px;
+    font-weight: 600;
+}
+
+.fc-bank-details {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.fc-bank-details li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px dashed #e0e0e0;
+    position: relative;
+}
+
+.fc-bank-details li:last-child {
+    border-bottom: none;
+}
+
+.fc-bank-details span {
+    color: var(--color-text-light);
+    margin-right: 10px;
+    white-space: nowrap;
+}
+
+.fc-bank-details strong {
+    color: var(--color-text);
+    font-weight: 600;
+    text-align: right;
+    flex-grow: 1;
+    word-break: break-all;
+}
+
+.fc-copy-btn-small {
+    background: none;
+    border: none;
+    color: var(--color-primary);
+    cursor: pointer;
+    padding: 0 0 0 8px;
+    font-size: 1em;
+    opacity: 0.7;
+    transition: opacity var(--transition-speed), color var(--transition-speed);
+}
+
+.fc-copy-btn-small:hover {
+    opacity: 1;
+}
+
+.fc-copy-btn-small.copied {
+    color: #28a745;
+    opacity: 1;
+}
+
+.fc-copied-feedback-item {
+    font-size: 0.75em;
+    font-weight: bold;
+    color: var(--color-primary);
+    margin-left: 5px;
+    display: inline-block;
+}
+
+.fc-confirmation-note {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    margin-top: 25px;
+    line-height: 1.6;
+}
+
+.fc-confirmation-note a {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+/* === Final CTA Section === */
+.fc-final-cta-section {
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.fc-cta-icon {
+    font-size: 3.5rem;
+    margin-bottom: 25px;
+    opacity: 0.6;
+    color: var(--color-secondary);
+}
+
+.fc-final-cta-section h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--color-white);
+    margin-bottom: 20px;
+}
+
+.fc-final-cta-section p {
+    font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+    line-height: 1.7;
+    opacity: 0.95;
+}
+
+.fc-final-cta-section .fc-btn-secondary {
+    border-color: var(--color-secondary);
+    color: var(--color-secondary);
+    padding: 15px 40px;
+    font-size: 1.1rem;
+}
+
+.fc-final-cta-section .fc-btn-secondary:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-accent);
+}
+
+.fc-final-cta-section .fc-btn-secondary i {
+    margin-right: 8px;
+}
+
+/* === Minimal Footer === */
+.fc-minimal-footer {
+    background-color: var(--color-black);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 30px 20px;
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+.fc-minimal-footer p {
+    margin-bottom: 5px;
+}
+
+.fc-minimal-footer p:last-child {
+    margin-bottom: 0;
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+
+/* Animações (a classe 'in-view' é adicionada via JS com IntersectionObserver) */
+.fc-hero-content,
+.fc-section-header,
+.fc-video-wrapper,
+.fc-verse-section .container,
+.fc-impact-item,
+.fc-donation-card,
+.fc-final-cta-section .container,
+.fc-progress-impact-section .fc-progress-bar-container {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.fc-hero-content.in-view,
+.fc-section-header.in-view,
+.fc-video-wrapper.in-view,
+.fc-verse-section .container.in-view,
+.fc-impact-item.in-view,
+.fc-donation-card.in-view,
+.fc-final-cta-section .container.in-view,
+.fc-progress-impact-section .fc-progress-bar-container.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger (atraso) para animações de itens em grupo */
+.fc-impact-points.in-view .fc-impact-item:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.fc-impact-points.in-view .fc-impact-item:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.fc-impact-points.in-view .fc-impact-item:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.fc-donation-grid.in-view .fc-donation-card:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.fc-donation-grid.in-view .fc-donation-card:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+@media (max-width: 992px) {
+    .fc-video-wrapper {
+        padding-bottom: 145%;
+    }
+    .fc-hero-section {
+        padding: 80px 20px 100px;
+        margin-bottom: -40px;
+    }
+
+    .fc-video-intro-section {
+        padding-top: 100px;
+    }
+    .fc-video-wrapper {
+        padding-bottom: 65%;
+    }
+}
+
+@media (max-width: 768px) {
+    .fc-video-wrapper {
+        padding-bottom: 145%;
+    }
+        .fc-minimal-header {
+            padding: 12px 0;
+        }
+
+        .fc-logo-header img {
+            height: 35px;
+        }
+
+        .fc-logo-header span {
+            font-size: 1rem;
+        }
+
+        .fc-btn-outline-light {
+            padding: 7px 15px;
+            font-size: 0.85rem;
+        }
+
+        .fc-main-content-wrapper {
+            padding-top: 60px;
+        }
+
+        .fc-hero-section {
+            padding: 70px 20px 90px;
+            margin-bottom: -30px;
+            clip-path: ellipse(180% 100% at 50% 0%);
+        }
+
+        .fc-video-intro-section {
+            padding-top: 90px;
+        }
+
+        .fc-section-header h2 {
+            font-size: clamp(1.8rem, 6vw, 2.4rem);
+        }
+
+        .fc-section-header p {
+            font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+        }
+
+        .fc-impact-points {
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+
+        .fc-donation-grid {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .fc-donation-card {
+            padding: 30px 25px;
+        }
+
+        .fc-final-cta-section p {
+            font-size: clamp(1rem, 3vw, 1.15rem);
+        }
+    }
+
+    @media (max-width: 480px) {
+        .fc-video-wrapper {
+            padding-bottom: 145%;
+        }
+        .fc-logo-header span {
+            display: none;
+        }
+
+        .fc-btn-primary {
+            padding: 14px 35px;
+            font-size: 1.05rem;
+        }
+
+        .fc-hero-content .fc-subtitle {
+            font-size: clamp(0.95rem, 3vw, 1.1rem);
+        }
+
+        .fc-video-wrapper .instagram-media {
+            min-height: 300px;
+        }
+
+        .fc-bank-details li {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 5px;
+        }
+
+        .fc-bank-details strong {
+            text-align: left;
+            margin-left: 0;
+        }
+
+        .fc-copy-btn-small {
+            align-self: flex-start;
+            padding-left: 0;
+            margin-top: 4px;
+        }
+
+        .fc-donation-tip {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .fc-donation-tip i {
+            margin-bottom: 5px;
+        }
+    }

@@ -625,3 +625,123 @@ img {
         padding: 10px 15px; /* Adjust nav link padding - keep it smaller than buttons if desired */
     }
 }
+
+
+
+
+
+/* Estilo para o Banner de CTA da Construção */
+.construction-cta-banner {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 12px 0;
+    text-align: center;
+    position: sticky; /* <<< MUDANÇA IMPORTANTE */
+    top: 0;           /* <<< MUDANÇA IMPORTANTE */
+    width: 100%;      /* <<< MUDANÇA IMPORTANTE */
+    z-index: 1001;    /* <<< MUDANÇA IMPORTANTE (acima do header principal) */
+    font-family: var(--font-secondary);
+    text-decoration: none !important;
+    display: none; /* Começa escondido, JS mostra */
+    /* Adicione uma transição se quiser que ele "deslize" ao fechar/abrir */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.construction-cta-banner.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none; /* Para não interferir com cliques após desaparecer */
+}
+
+.construction-cta-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    position: relative; /* Para o botão de fechar se posicionar dentro dele */
+}
+
+/* Dentro dos estilos do banner em global.css ou index.css */
+
+.cta-button-banner {
+    /* Estilos para parecer um botão */
+    background-color: var(--color-secondary); /* Fundo Bege */
+    color: var(--color-primary);             /* Texto Verde */
+    padding: 8px 18px;                       /* Espaçamento interno */
+    border-radius: 20px;                     /* Bordas arredondadas */
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: 1px solid var(--color-secondary); /* Borda sutil da cor do fundo */
+
+    /* ESSENCIAIS PARA REMOVER ESTILO PADRÃO DE LINK */
+    text-decoration: none !important;        /* Remove o sublinhado */
+
+    /* Para bom comportamento e alinhamento */
+    display: inline-flex; /* Permite padding e alinhamento vertical do conteúdo */
+    align-items: center;  /* Alinha ícone e texto verticalmente */
+    justify-content: center; /* Centraliza conteúdo se o botão for mais largo */
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cta-button-banner:hover {
+    background-color: #f0e4b0;           /* Bege um pouco mais escuro no hover */
+    color: var(--color-primary);          /* Mantém texto verde */
+    text-decoration: none !important;     /* Garante que não volte o sublinhado no hover */
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+    border-color: #f0e4b0; /* Atualiza a cor da borda no hover */
+}
+
+.cta-button-banner i {
+    margin-left: 6px;
+    font-size: 0.85em;
+    color: var(--color-primary); /* Garante que o ícone também seja verde */
+}
+
+.close-cta-banner {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0 5px; /* Reduzido padding para não ocupar tanto espaço */
+    line-height: 1;
+    /* Posicionamento absoluto dentro do .construction-cta-content */
+    position: absolute;
+    top: 50%;
+    right: 10px; /* Ajuste conforme necessário */
+    transform: translateY(-50%);
+}
+.close-cta-banner:hover {
+    color: var(--color-white);
+}
+
+/* Ajuste no header principal do site */
+.header {
+    /* Seu header já tem position: fixed; top: 0; etc. no seu global.css */
+    /* Precisaremos ajustar o 'top' dele via JavaScript */
+    transition: top 0.3s ease-in-out; /* Para uma transição suave */
+}
+
+
+/* Responsividade para o banner */
+@media (max-width: 768px) {
+    .construction-cta-content {
+        flex-direction: column;
+        gap: 10px;
+        padding: 0 30px; /* Espaço para o botão de fechar */
+    }
+    .cta-button-banner {
+        width: auto;
+        margin-top: 5px;
+    }
+    .close-cta-banner {
+        top: 10px; /* Ajuste para o topo */
+        right: 5px;
+        transform: none;
+    }
+}
