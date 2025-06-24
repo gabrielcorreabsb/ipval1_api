@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciamento de Liturgias</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="./assets/css/liturgias.css">
+  <link rel="stylesheet" href="./assets/css/menu.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-container">
+    <div class="hamburger">
+      <div class="line1"></div>
+      <div class="line2"></div>
+      <div class="line3"></div>
+    </div>
+    <ul class="nav-menu">
+      <li><a href="./home.html">Início</a></li>
+      <li><a href="./membros.html">Membros</a></li>
+      <li><a href="./usuarios.html">Usuários</a></li>
+      <li><a href="./agenda.html">Eventos</a></li>
+      <li><a href="./liturgias.html" class="active">Liturgias</a></li> <!-- Link para Liturgias -->
+      <li><a href="./noticia.html">Notícias</a></li>
+      <li><a href="./configuracoes.html">Outros</a></li>
+      <div class="mobile-user-section">
+        <!-- Botões específicos para liturgias aqui -->
+        <button onclick="abrirModalNovaLiturgia()" class="btn btn-primary">
+          Nova Liturgia
+        </button>
+        <button id="logoutBtnMobile" class="logout-btn">
+          Sair
+        </button>
+      </div>
+    </ul>
+    <div class="user-section desktop-user-section">
+      <!-- Botões específicos para liturgias aqui -->
+      <button onclick="abrirModalNovaLiturgia()" class="btn btn-primary">
+        Nova Liturgia
+      </button>
+      <button id="logoutBtn" class="logout-btn">
+        Sair
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <header class="content-header">
+    <h1>Gerenciamento de Liturgias</h1>
+  </header>
+
+  <div class="search-bar">
+    <input type="text" id="searchInputLiturgy" placeholder="Buscar por título ou data...">
+  </div>
+
+  <div class="liturgies-grid" id="liturgiesGrid">
+    <!-- Os cards das liturgias serão inseridos aqui dinamicamente -->
+  </div>
+</div>
+
+<!-- Modal para Criar/Editar Liturgia (será mais complexo) -->
+<!-- Poderíamos usar SweetAlert2 para o formulário principal da liturgia (título, data, versão) -->
+<!-- E uma interface mais dinâmica para adicionar/editar/reordenar os itens da liturgia -->
+
+<div id="liturgyItemModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span class="close-button" onclick="fecharModalItemLiturgia()">×</span>
+    <h2>Adicionar/Editar Item da Liturgia</h2>
+    <form id="liturgyItemForm">
+      <input type="hidden" id="itemLiturgiaId">
+      <input type="hidden" id="itemLiturgiaOrdemAtual"> <!-- Para reordenar -->
+
+      <div>
+        <label for="itemTipo">Tipo do Item:</label>
+        <select id="itemTipo" required>
+          <option value="">Selecione o Tipo</option>
+          <option value="TITULO_SECAO">Título da Seção</option>
+          <option value="TEXTO_SIMPLES">Texto Simples</option>
+          <option value="REFERENCIA_BIBLICA">Referência Bíblica</option>
+          <option value="HINO">Hino</option>
+          <option value="ANUNCIO">Anúncio</option>
+          <option value="ORACAO_COMUNITARIA">Oração Comunitária</option>
+        </select>
+      </div>
+
+      <div id="itemConteudoTextualDiv" style="display:none;">
+        <label for="itemConteudoTextual">Conteúdo Textual:</label>
+        <textarea id="itemConteudoTextual" rows="4"></textarea>
+      </div>
+
+      <div id="itemReferenciaBiblicaDiv" style="display:none;">
+        <label for="itemLivroBiblia">Livro:</label>
+        <select id="itemLivroBiblia">
+          <!-- Options preenchidas por JS -->
+        </select>
+        <label for="itemCapituloBiblia">Capítulo:</label>
+        <input type="number" id="itemCapituloBiblia" min="1">
+        <label for="itemVersiculoInicioBiblia">Versículo Início:</label>
+        <input type="number" id="itemVersiculoInicioBiblia" min="1">
+        <label for="itemVersiculoFimBiblia">Versículo Fim (opcional):</label>
+        <input type="number" id="itemVersiculoFimBiblia" min="1">
+        <label for="itemReferenciaDisplay">Referência (Ex: João 3:16-18):</label>
+        <input type="text" id="itemReferenciaDisplay" placeholder="Será gerado ou digite manualmente">
+      </div>
+
+      <div id="itemHinoDiv" style="display:none;">
+        <label for="itemHinoConteudo">Título/Número do Hino:</label>
+        <input type="text" id="itemHinoConteudo">
+        <!-- Poderia adicionar campo para link do hino, etc. -->
+      </div>
+
+      <button type="submit" class="btn btn-primary">Salvar Item</button>
+    </form>
+  </div>
+</div>
+
+
+<script src="./assets/js/config.js"></script>
+<script src="./assets/js/auth.js"></script>
+<script src="./assets/js/liturgia_api.js"></script>
+<script src="./assets/js/liturgias.js"></script>
+<script src="./assets/js/menu.js"></script>
+</body>
+</html>

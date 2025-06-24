@@ -1,0 +1,208 @@
+/* assets/css/liturgias.css */
+
+/* Grid de Liturgias (similar ao members-grid) */
+.liturgies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* Um pouco mais largo para liturgias */
+    gap: 1.5rem;
+    padding: 1rem 0;
+}
+
+/* Card de Liturgia (similar ao member-card) */
+.liturgy-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column; /* Para organizar itens internos */
+}
+
+.liturgy-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+}
+
+.liturgy-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-color: var(--primary);
+}
+
+.liturgy-info h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.liturgy-info p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0.3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.liturgy-info p i {
+    width: 18px; /* Ajuste se necessário */
+}
+
+
+.liturgy-actions {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    justify-content: flex-end;
+}
+
+/* Itens da Liturgia dentro do card ou modal */
+.liturgy-items-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+    max-height: 200px; /* Exemplo, para evitar cards muito longos */
+    overflow-y: auto;
+    border-top: 1px dashed var(--border);
+    padding-top: 0.5rem;
+}
+
+.liturgy-items-list li {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 0.5rem;
+    margin-bottom: 0.3rem;
+    border-radius: 5px;
+    font-size: 0.85rem;
+}
+
+.liturgy-items-list .item-type-badge {
+    font-weight: bold;
+    color: var(--primary);
+    margin-right: 5px;
+}
+
+/* Estilos para o Modal de Itens da Liturgia (muito básico) */
+.modal {
+    position: fixed;
+    z-index: 1001; /* Acima do menu */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+    display: flex; /* Para centralizar */
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: var(--background); /* Usando variável do seu tema */
+    color: var(--text);
+    margin: auto;
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal-content h2 {
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.modal-content label {
+    display: block;
+    margin-top: 0.8rem;
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="number"],
+.modal-content input[type="date"], /* Para a data da liturgia principal */
+.modal-content select,
+.modal-content textarea {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    background: var(--card-bg);
+    color: var(--text);
+    font-size: 0.95rem;
+}
+
+.modal-content input:focus,
+.modal-content select:focus,
+.modal-content textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+    outline: none;
+}
+
+
+.modal-content button[type="submit"] {
+    margin-top: 1.5rem;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--text);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Para a lista de itens editáveis no formulário principal da liturgia */
+#itemsContainer {
+    margin-top: 1rem;
+    border: 1px solid var(--border);
+    padding: 1rem;
+    border-radius: 5px;
+}
+#itemsContainer h3 {
+    margin-bottom: 0.5rem;
+}
+.editable-item {
+    background: rgba(255,255,255,0.05);
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.editable-item span {
+    flex-grow: 1;
+}
+.item-actions button {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.3rem 0.6rem;
+    margin-left: 0.3rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+.item-actions button.edit-item-btn { color: var(--primary); border-color: var(--primary); }
+.item-actions button.delete-item-btn { color: var(--error); border-color: var(--error); }
+.item-actions button:hover { opacity: 0.8; }

@@ -54,15 +54,13 @@ public class SecurityConfig {
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        // Primeiro, permitir OPTIONS para CORS preflight
-                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                        // Endpoints públicos da API
+                                // Primeiro, permitir OPTIONS para CORS preflight
+                                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                                // Endpoints públicos da API
                                 .requestMatchers("/api/auth/login").permitAll()
                                 .requestMatchers("/api/auth/**").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/api/projetos").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/api/public/default-token").permitAll()
-
-
 
 
 // Permissões para endpoints de usuários
@@ -95,26 +93,33 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.PUT, "/api/configuracoes/**").hasAnyRole("PASTOR")
                                 .requestMatchers(HttpMethod.DELETE, "/api/configuracoes/**").hasRole("PASTOR")
 
+//                        Permissões para endpoints da Liturgia
+                                .requestMatchers(HttpMethod.GET, "/api/bibliainfo/**").permitAll() //
+                                .requestMatchers(HttpMethod.GET, "/api/liturgias/**").permitAll() // Qualquer um pode ver
+                                .requestMatchers(HttpMethod.POST, "/api/liturgias").hasRole("PASTOR")    // Apenas PASTOR pode criar
+                                .requestMatchers(HttpMethod.PUT, "/api/liturgias/**").hasRole("PASTOR") // Apenas PASTOR pode atualizar
+                                .requestMatchers(HttpMethod.DELETE, "/api/liturgias/**").hasRole("PASTOR") //
 
-                        // Recursos estáticos
-                        .requestMatchers(
-                                "/",
-                                "/index.html",
-                                "/login.html",
-                                "/home.html",
-                                "/novo_projeto.html",
-                                "/agenda.html",
-                                "/usuarios.html",
 
-                                "/assets/**",
-                                "/css/**",
-                                "/js/**",
-                                "/favicon.ico"
-                        ).permitAll()
-                        .requestMatchers("/error").permitAll()
-                        // Endpoints protegidos
-                        .requestMatchers("/api/projetos/**").authenticated()
-                        .anyRequest().authenticated()
+                                // Recursos estáticos
+                                .requestMatchers(
+                                        "/",
+                                        "/index.html",
+                                        "/login.html",
+                                        "/home.html",
+                                        "/novo_projeto.html",
+                                        "/agenda.html",
+                                        "/usuarios.html",
+
+                                        "/assets/**",
+                                        "/css/**",
+                                        "/js/**",
+                                        "/favicon.ico"
+                                ).permitAll()
+                                .requestMatchers("/error").permitAll()
+                                // Endpoints protegidos
+                                .requestMatchers("/api/projetos/**").authenticated()
+                                .anyRequest().authenticated()
                 )
                 .authenticationProvider(customAuthenticationProvider)
                 .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
