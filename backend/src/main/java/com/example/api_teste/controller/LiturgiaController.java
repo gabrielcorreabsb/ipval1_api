@@ -66,7 +66,6 @@ public class LiturgiaController {
     public ResponseEntity<LiturgiaDTO> atualizar(@PathVariable Long id,
                                                  @Valid @RequestBody LiturgiaDTO liturgiaDTO) {
         LiturgiaDTO liturgiaAtualizada = liturgiaService.atualizar(id, liturgiaDTO);
-        // EntityNotFoundException será tratada globalmente
         return ResponseEntity.ok(liturgiaAtualizada); // Retorna 200 OK
     }
 

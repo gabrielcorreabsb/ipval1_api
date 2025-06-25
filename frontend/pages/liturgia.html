@@ -66,13 +66,13 @@
 <header class="header" id="mainHeader">
     <div class="header-container">
         <div class="logo">
-            <a href="../index.html"> <!-- Ajuste o caminho se necessário -->
+            <a href="../index.html">
                 <img src="../assets/imgs/logo.png" alt="Logo Igreja Presbiteriana">
             </a>
         </div>
         <nav class="main-nav">
             <button class="mobile-menu-btn">
-                <span class="menu-text"></span> <!-- Texto do menu mobile -->
+                <span class="menu-text"></span>
             </button>
             <ul class="nav-list">
                 <li><a href="../index.html">Início</a></li>
@@ -85,77 +85,84 @@
                 </li>
                 <li><a href="./agenda.html">Agenda</a></li>
                 <li><a href="./midia.html">Midia</a></li>
-                <li><a href="./contribua.html">Contribua</a></li>
-                <li><a href="./contato.html">Contato</a></li>
                 <li class="menu-item-has-children">
                     <a href="#">Recursos<i class="fas fa-chevron-down dropdown-icon"></i></a>
                     <ul class="sub-menu">
-                        <li><a href="./visualizar-liturgia.html">Liturgia</a></li> <!-- Link para a liturgia atual -->
+                        <li><a href="./visualizar-liturgia.html" class="active">Liturgias</a></li> <!-- APONTA PARA ESTA PÁGINA -->
                         <li><a href="./gerador.html">Gerador de Ata UPH/SAF</a></li>
                     </ul>
                 </li>
+                <li><a href="./contribua.html">Contribua</a></li>
+                <li><a href="./contato.html">Contato</a></li>
             </ul>
         </nav>
     </div>
 </header>
 
-<!-- Conteúdo Principal da Liturgia -->
-<main class="main-content liturgy-view-page">
+<main class="main-content liturgy-public-page">
     <div class="container">
-        <div id="liturgy-loading" class="loading-indicator">
-            <p>Carregando liturgia...</p>
-            <!-- Você pode adicionar um spinner CSS aqui -->
+        <header class="page-title-section">
+            <div class="page-title">
+                <h1 id="main-page-title">Liturgias/Estudos EBD IPV1</h1>
+                <p id="main-page-subtitle">Navegue pelas nossas liturgias de culto e estudos da escola bíblica dominical.</p>
+            </div>
+        </header>
+
+        <div id="public-liturgy-loading" class="loading-indicator">
+            <p>Carregando...</p>
         </div>
 
-        <div id="liturgy-content" style="display: none;">
-            <header class="liturgy-header">
-                <h1 id="liturgy-title"></h1>
-                <p class="liturgy-date" id="liturgy-date"></p>
-                <p class="liturgy-description" id="liturgy-description"></p>
-                <p class="liturgy-bible-version" id="liturgy-bible-version"></p>
-            </header>
+        <!-- Container para a lista de liturgias agrupadas por mês -->
+        <section id="liturgies-by-month-container" style="display: none;">
+            <!-- Conteúdo gerado por JS -->
+        </section>
 
-            <section class="liturgy-items-section">
-                <h2>Ordem do Culto</h2>
-                <div id="liturgy-items-container">
-                    <!-- Itens da liturgia serão inseridos aqui -->
-                </div>
-            </section>
-        </div>
-
-        <div id="liturgy-error" class="error-message" style="display: none;">
-            <p>Não foi possível carregar a liturgia. Tente novamente mais tarde.</p>
+        <div id="public-liturgy-error" class="error-message" style="display: none;">
+            <p>Não foi possível carregar as liturgias.</p>
         </div>
     </div>
 </main>
 
-<!-- Modal para exibir texto bíblico -->
-<div id="bibleVerseModal" class="modal-bible-verse">
-    <div class="modal-bible-verse-content">
-        <span class="close-bible-verse-modal">×</span>
-        <h3 id="bibleVerseModalTitle"></h3>
-        <div id="bibleVerseModalBody" class="verse-text-display">
-            Carregando versículos...
+<!-- Modal para exibir UMA liturgia completa -->
+<div id="liturgyDetailModal" class="modal-liturgy-detail">
+    <div class="modal-liturgy-detail-content">
+        <span class="close-liturgy-detail-modal">×</span>
+        <header class="liturgy-modal-header">
+            <h1 id="modal-liturgy-title"></h1>
+            <p class="liturgy-modal-meta" id="modal-liturgy-date"></p>
+            <p class="liturgy-modal-meta" id="modal-liturgy-description"></p>
+            <p class="liturgy-modal-meta" id="modal-liturgy-bible-version"></p>
+        </header>
+        <section class="liturgy-modal-items-section">
+            <div id="modal-liturgy-items-container">
+                <!-- Itens da liturgia específica serão inseridos aqui -->
+            </div>
+        </section>
+        <div id="modal-item-verse-text-container" class="verse-text-modal-embed" style="display:none;">
+            <h4 id="modal-item-verse-title"></h4>
+            <div id="modal-item-verse-body"></div>
+            <button id="close-verse-embed-btn">Fechar Texto Bíblico</button>
         </div>
     </div>
 </div>
 
 
 <!-- Reutilize seu Footer -->
+<!-- Footer -->
 <footer class="footer">
     <div class="container">
         <div class="footer-grid">
-            <div class="footer-info" id="footerInfoContent">
-                <!-- Conteúdo do rodapé (pode ser preenchido por JS como no seu index) -->
+            <div class="footer-info">
+                <!-- Será preenchido dinamicamente -->
             </div>
             <div class="footer-social">
                 <h3>Redes Sociais</h3>
-                <div class="social-links" id="footerSocialLinks">
-                    <!-- Links sociais -->
+                <div class="social-links">
+                    <!-- Será preenchido dinamicamente -->
                 </div>
             </div>
-            <div class="footer-contact" id="footerContactInfo">
-                <!-- Informações de contato -->
+            <div class="footer-contact">
+                <!-- Será preenchido dinamicamente -->
             </div>
         </div>
         <div class="footer-bottom">

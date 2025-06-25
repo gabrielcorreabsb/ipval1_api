@@ -1,222 +1,290 @@
-/* assets/css/visualizar-liturgia.css */
+/* assets/css/liturgias-publicas.css */
 
-/* Herda de global.css, então só precisamos de estilos específicos */
+/* Garanta que global.css esteja importado no HTML antes deste arquivo */
 
-.liturgy-view-page .container {
-    padding-top: 20px; /* Espaço abaixo do header */
-    padding-bottom: 40px;
+/* -------------------------------------------------------------------------- */
+/* Estilos Gerais da Página de Liturgias Públicas                             */
+/* -------------------------------------------------------------------------- */
+.liturgy-public-page .container {
+    padding-top: 30px;
+    padding-bottom: 60px;
+    opacity: 0;
+    animation: fadeInPage 0.6s 0.1s ease-out forwards;
+}
+@keyframes fadeInPage { to { opacity: 1; } }
+
+.liturgy-public-page .page-title-section {
+    margin-bottom: 50px;
+}
+.liturgy-public-page .page-title h1 {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    letter-spacing: -0.5px;
+}
+.liturgy-public-page .page-title p {
+    font-size: 1.1rem;
+    color: var(--color-text-light);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.loading-indicator, .error-message {
+/* Indicador de Carregamento e Mensagem de Erro */
+.loading-indicator,
+.error-message {
     text-align: center;
-    padding: 40px 20px;
-    font-size: 1.2em;
+    padding: 50px 20px;
+    font-size: 1.15rem;
     color: var(--color-text-light);
 }
 .loading-indicator p::after {
     content: '...';
     display: inline-block;
-    animation: আন্দোলন점 1s infinite;
+    animation: loadingDots 1.4s infinite steps(4, end);
 }
-@keyframes আন্দোলন점 {
+@keyframes loadingDots {
     0%, 100% { opacity: 0; }
     50% { opacity: 1; }
 }
 
-
-.liturgy-header {
-    text-align: center;
-    margin-bottom: 40px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--color-secondary); /* Usando a cor secundária como divisor */
+/* -------------------------------------------------------------------------- */
+/* Listagem de Liturgias (Agrupadas por Mês)                                 */
+/* -------------------------------------------------------------------------- */
+.month-group {
+    margin-bottom: 45px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUpItem 0.5s ease-out forwards;
 }
-
-.liturgy-header h1 {
+.month-group-header {
     font-family: var(--font-primary);
-    font-size: 2.5rem; /* Ajuste conforme o design */
+    font-size: 1.9rem;
     color: var(--color-primary);
-    margin-bottom: 10px;
-}
-
-.liturgy-date, .liturgy-description, .liturgy-bible-version {
-    font-size: 1.1rem;
-    color: var(--color-text-light);
-    margin-bottom: 5px;
-    line-height: 1.6;
-}
-.liturgy-bible-version {
-    font-style: italic;
-    font-size: 1rem;
-}
-
-.liturgy-items-section h2 {
-    font-family: var(--font-primary);
-    font-size: 1.8rem;
-    color: var(--color-primary);
+    padding-bottom: 12px;
     margin-bottom: 25px;
-    text-align: center;
-    position: relative;
-}
-.liturgy-items-section h2::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 2px;
-    background-color: var(--color-primary);
-    margin: 10px auto 0;
+    border-bottom: 2px solid var(--color-secondary);
+    font-weight: 600;
+    text-transform: capitalize;
 }
 
-
-#liturgy-items-container .liturgy-item {
+.liturgy-list-entry {
     background-color: var(--color-white);
-    padding: 20px;
-    margin-bottom: 20px;
+    padding: 20px 25px;
+    margin-bottom: 18px;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-light);
-    border-left: 5px solid var(--color-primary); /* Destaque à esquerda */
-}
-
-#liturgy-items-container .liturgy-item.tipo-titulo_secao h3 {
-    font-family: var(--font-primary);
-    font-size: 1.6rem;
-    color: var(--color-accent); /* Verde mais escuro para títulos de seção */
-    margin: 0;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--color-secondary);
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-#liturgy-items-container .liturgy-item.tipo-texto_simples p,
-#liturgy-items-container .liturgy-item.tipo-anuncio p,
-#liturgy-items-container .liturgy-item.tipo-oracao_comunitaria p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: var(--color-text);
-    white-space: pre-wrap; /* Para preservar quebras de linha do textarea */
-    margin: 0;
-}
-
-#liturgy-items-container .liturgy-item.tipo-hino p {
-    font-size: 1.1rem;
-    font-style: italic;
-    color: var(--color-text-light);
-    text-align: center;
-    margin: 10px 0;
-}
-#liturgy-items-container .liturgy-item.tipo-hino p strong {
-    font-weight: 600;
-    color: var(--color-text);
-}
-
-
-#liturgy-items-container .liturgy-item.tipo-referencia_biblica .reference-text {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--color-primary);
+    transition: box-shadow var(--transition-speed) ease, transform var(--transition-speed) ease, border-left-color var(--transition-speed) ease;
     cursor: pointer;
-    text-decoration: none;
-    display: inline-block; /* Para aplicar padding/margin corretamente */
-    margin-bottom: 10px;
-}
-#liturgy-items-container .liturgy-item.tipo-referencia_biblica .reference-text:hover {
-    text-decoration: underline;
-}
-
-#liturgy-items-container .liturgy-item.tipo-referencia_biblica .bible-text-content {
-    margin-top: 10px;
-    padding: 15px;
-    background-color: var(--color-secondary); /* Fundo bege claro para o texto bíblico */
-    border-radius: 8px;
-    font-size: 1rem;
-    line-height: 1.7;
-    border-left: 3px solid var(--color-accent);
-}
-
-.verse-text-display .verse {
-    margin-bottom: 0.8em;
-    line-height: 1.6;
-}
-.verse-text-display .verse sup {
-    font-size: 0.7em;
-    vertical-align: super;
-    margin-right: 0.2em;
-    color: var(--color-primary);
-    font-weight: bold;
-}
-
-
-/* Modal para Texto Bíblico */
-.modal-bible-verse {
-    display: none; /* Escondido por padrão */
-    position: fixed;
-    z-index: 1002; /* Acima de outros elementos */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.5); /* Fundo escurecido */
-    align-items: center; /* Centralizar verticalmente */
-    justify-content: center; /* Centralizar horizontalmente */
-}
-
-.modal-bible-verse-content {
-    background-color: var(--color-white);
-    color: var(--color-text);
-    margin: auto;
-    padding: 25px 30px;
-    border-radius: var(--border-radius);
-    width: 90%;
-    max-width: 700px; /* Largura máxima do modal */
-    box-shadow: var(--shadow-medium);
-    position: relative; /* Para o botão de fechar */
-    max-height: 80vh; /* Altura máxima, com scroll interno */
+    border-left: 6px solid var(--color-secondary);
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.liturgy-list-entry:hover {
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-4px) scale(1.01);
+    border-left-color: var(--color-primary);
+}
+.liturgy-list-entry .liturgy-item-info h3 {
+    font-family: var(--font-secondary);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 5px 0;
+    transition: color var(--transition-speed) ease;
+}
+.liturgy-list-entry:hover .liturgy-item-info h3 { color: var(--color-primary); }
+.liturgy-list-entry .liturgy-item-info .date { font-size: 0.9rem; color: var(--color-text-light); }
+
+.liturgy-list-entry .btn-view-liturgy {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 9px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
+    box-shadow: var(--shadow-light);
+    white-space: nowrap;
+}
+.liturgy-list-entry .btn-view-liturgy:hover {
+    background-color: var(--color-accent);
+    transform: scale(1.03);
+    box-shadow: var(--shadow-medium);
+}
+.liturgy-list-entry .btn-view-liturgy i { margin-right: 7px; }
+
+/* -------------------------------------------------------------------------- */
+/* Modal de Detalhes da Liturgia (#liturgyDetailModal)                        */
+/* -------------------------------------------------------------------------- */
+.modal-liturgy-detail {
+    display: none; position: fixed; z-index: 1020; /* Z-index alto */
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(11, 102, 54, 0.65); /* Overlay verde da sua paleta */
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.3s ease-in-out; pointer-events: none;
+}
+.modal-liturgy-detail.active { opacity: 1; pointer-events: auto; }
+
+.modal-liturgy-detail-content {
+    background-color: var(--color-background); /* Fundo FAFAFA do site */
+    color: var(--color-text);
+    padding: 0;
+    border-radius: 10px;
+    width: 90%; max-width: 800px; height: 90vh;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+    position: relative; display: flex; flex-direction: column; overflow: hidden;
+    transform: scale(0.95) translateY(15px); opacity: 0;
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease-out;
+}
+.modal-liturgy-detail.active .modal-liturgy-detail-content {
+    transform: scale(1) translateY(0); opacity: 1;
 }
 
-.close-bible-verse-modal {
-    color: var(--color-text-light);
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
+.close-liturgy-detail-modal {
+    color: var(--color-text-light); position: absolute; top: 10px; right: 15px;
+    font-size: 2rem; font-weight: 300; cursor: pointer; z-index: 101; /* Acima do header do modal */
+    transition: color var(--transition-speed) ease, transform var(--transition-speed) ease;
+    padding: 8px; line-height: 1;
 }
-.close-bible-verse-modal:hover,
-.close-bible-verse-modal:focus {
-    color: var(--color-primary);
+.close-liturgy-detail-modal:hover { color: var(--color-primary); transform: rotate(180deg) scale(1.1); }
+
+/* Cabeçalho do Modal da Liturgia */
+.liturgy-modal-header {
+    padding: 20px 30px;
+    border-bottom: 1px solid #e9e9e9;
+    text-align: left;
+    flex-shrink: 0;
+    background-color: var(--color-white);
+    border-top-left-radius: 10px; border-top-right-radius: 10px;
+}
+.liturgy-modal-header h1#modal-liturgy-title {
+    font-family: var(--font-primary); color: var(--color-primary);
+    font-size: 1.8rem; margin-bottom: 6px; font-weight: 700;
+}
+.liturgy-modal-header .liturgy-modal-meta {
+    font-size: 0.9rem; color: var(--color-text-light); margin-bottom: 3px; line-height: 1.4;
+}
+.liturgy-modal-header .liturgy-modal-meta#modal-liturgy-bible-version {
+    font-style: italic; font-size: 0.85rem; display: block; margin-top: 6px;
 }
 
-#bibleVerseModalTitle {
-    font-family: var(--font-primary);
-    color: var(--color-primary);
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-    border-bottom: 1px solid var(--color-secondary);
-    padding-bottom: 10px;
+/* Seção de Itens da Liturgia no Modal */
+.liturgy-modal-items-section {
+    padding: 15px 30px 30px 30px;
+    overflow-y: auto;
+    flex-grow: 1;
+    background-color: var(--color-background); /* Fundo FAFAFA */
+    border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;
 }
 
-#bibleVerseModalBody {
-    overflow-y: auto; /* Scroll para o conteúdo do versículo se for longo */
-    flex-grow: 1; /* Para ocupar o espaço disponível */
+/* Card de Item Individual DENTRO do Modal */
+#modal-liturgy-items-container .liturgy-item-card {
+    background-color: transparent; box-shadow: none;
+    border-left: 4px solid transparent; /* Borda será específica por tipo */
+    padding: 15px 0 15px 15px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid #efefef; /* Divisor muito sutil */
+    transition: background-color 0.2s ease;
+}
+#modal-liturgy-items-container .liturgy-item-card:last-child { border-bottom: none; margin-bottom: 0; }
+/* #modal-liturgy-items-container .liturgy-item-card:hover { background-color: #f9f9f9; } */
+
+#modal-liturgy-items-container .liturgy-item-card.tipo-titulo_secao {
+    border-left-color: var(--color-primary); padding-left: 0;
+    border-bottom-style: solid; border-bottom-color: var(--color-primary);
+    margin-top: 25px; margin-bottom: 20px;
+}
+#modal-liturgy-items-container .liturgy-item-card.tipo-titulo_secao h3 {
+    font-family: var(--font-primary); font-size: 1.5rem; color: var(--color-primary);
+    margin-bottom: 0; padding-bottom: 8px; border-bottom: none; text-align: left; font-weight: 600;
 }
 
+#modal-liturgy-items-container .liturgy-item-card .item-text-content p { /* Para TEXTO_SIMPLES, ANUNCIO, ORACAO */
+    font-size: 1rem; line-height: 1.7; color: var(--color-text);
+}
+
+#modal-liturgy-items-container .liturgy-item-card.tipo-hino {
+    border-left-color: var(--color-secondary); text-align: left;
+}
+#modal-liturgy-items-container .liturgy-item-card.tipo-hino .hino-title {
+    font-family: var(--font-secondary); font-size: 1.1rem; font-weight: 500; color: var(--color-text);
+}
+#modal-liturgy-items-container .liturgy-item-card.tipo-hino .hino-number {
+    font-size: 0.9rem; color: var(--color-text-light); font-style: italic;
+}
+
+/* Referência Bíblica e Área Expansível para Texto */
+#modal-liturgy-items-container .liturgy-item-card.tipo-referencia_biblica {
+    border-left-color: var(--color-accent);
+    padding-bottom: 10px; /* Menos padding se o texto for expandir abaixo */
+}
+.reference-text-display { /* O link clicável */
+    font-family: var(--font-secondary); font-size: 1.1rem; font-weight: 600;
+    color: var(--color-primary); cursor: pointer; text-decoration: none;
+    display: inline-flex; align-items: center;
+    padding: 8px 0; /* Aumenta área de clique */
+    transition: color var(--transition-speed) ease;
+    border-bottom: 2px dashed transparent;
+}
+.reference-text-display:hover, .reference-text-display.active {
+    color: var(--color-accent);
+    border-bottom-color: var(--color-accent); /* Mostra sublinhado no hover/ativo */
+}
+.reference-text-display i {
+    font-size: 1.1em; margin-right: 10px; color: var(--color-primary);
+    transition: color var(--transition-speed) ease;
+}
+.reference-text-display:hover i, .reference-text-display.active i { color: var(--color-accent); }
+
+.bible-text-accordion-content { /* Container para o texto bíblico expansível */
+    max-height: 0; /* Começa fechado */
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out, padding-top 0.4s ease-in-out, margin-top 0.4s ease-in-out;
+    background-color: var(--color-secondary); /* Fundo bege claro */
+    border-radius: 0 0 var(--border-radius) var(--border-radius); /* Arredonda cantos inferiores */
+    padding: 0 20px; /* Padding lateral */
+    margin-top: 0;
+    border-left: 3px solid var(--color-accent);
+    margin-left: -19px; /* Para alinhar com o padding do card pai (15px + 4px da borda) */
+    margin-right: -20px; /* Para ocupar toda a largura do card pai */
+}
+.bible-text-accordion-content.open {
+    max-height: 500px; /* Altura máxima para expandir, ajuste conforme necessário */
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-top: 10px; /* Espaço entre a referência e o texto */
+}
+.bible-text-accordion-content .verse-text-display .verse {
+    margin-bottom: 0.8em; line-height: 1.7; color: var(--color-text);
+}
+.bible-text-accordion-content .verse-text-display .verse sup {
+    font-family: var(--font-secondary); font-size: 0.7em; font-weight: 600;
+    color: var(--color-primary); margin-right: 0.3em; vertical-align: super;
+}
+
+
+/* Animação de Fade In para itens da liturgia (pode ser adicionada via JS) */
+@keyframes fadeInUpItem {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Responsividade */
 @media (max-width: 768px) {
-    .liturgy-header h1 {
-        font-size: 2rem;
-    }
-    .liturgy-items-section h2 {
-        font-size: 1.5rem;
-    }
-    #liturgy-items-container .liturgy-item {
-        padding: 15px;
-        margin-bottom: 15px;
-    }
-    .modal-bible-verse-content {
-        padding: 20px;
-        width: 95%;
-    }
+    .liturgy-public-page .page-title-section .page-title h1 { font-size: 2rem; }
+    .month-group-header { font-size: 1.6rem; }
+    .liturgy-list-entry { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .liturgy-list-entry .btn-view-liturgy { align-self: flex-start; }
+
+    .modal-liturgy-detail-content { width: 100%; height: 100%; max-height: 100vh; border-radius: 0; }
+    .close-liturgy-detail-modal { top: 10px; right: 10px; font-size: 1.8rem; background: rgba(255,255,255,0.8); border-radius: 50%; padding: 5px 8px; }
+    .liturgy-modal-header { padding: 15px 20px; }
+    .liturgy-modal-header h1 { font-size: 1.5rem; }
+    .liturgy-modal-items-section { padding: 10px 20px 20px 20px; }
+    #modal-liturgy-items-container .liturgy-item-card.tipo-titulo_secao h3 { font-size: 1.3rem; }
+    .bible-text-accordion-content { margin-left: -16px; margin-right: -20px; }
 }
