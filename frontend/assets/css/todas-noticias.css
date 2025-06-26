@@ -1,0 +1,64 @@
+/* assets/css/todas-noticias.css (Opcional, para ajustes específicos) */
+
+/* Garante que global.css e index.css (se contiver .noticias-feed) sejam carregados antes */
+
+.all-news-page .container {
+    padding-top: 30px;
+    padding-bottom: 50px;
+}
+
+/* Se .noticias-feed do index.css já for um grid, não precisa repetir.
+   Caso contrário, defina o grid aqui: */
+#all-news-container.noticias-feed {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Ou o minmax que você usa */
+    gap: 25px; /* Ou o gap que você usa */
+    padding-top: 20px; /* Espaço após os filtros/título */
+}
+
+/* Estilos para paginação/botão "Carregar Mais" */
+.pagination-controls {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.btn-outline { /* Reutilize seu estilo de botão outline ou defina um novo */
+    /* Exemplo de estilo (ajuste conforme seu global.css) */
+    padding: 10px 25px;
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
+    background-color: transparent;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all var(--transition-speed) ease;
+    cursor: pointer;
+}
+.btn-outline:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+.btn-outline:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* (Opcional) Filtros */
+.news-filters {
+    background-color: var(--color-card);
+    padding: 15px 20px;
+    border-radius: var(--border-radius);
+    margin-bottom: 30px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+    box-shadow: var(--shadow-light);
+}
+.news-filters select, .news-filters input[type="month"] {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.95rem;
+}

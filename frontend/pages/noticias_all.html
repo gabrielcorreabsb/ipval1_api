@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5VWQKZS4');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todas as Notícias - IPV1</title>
+  <meta name="description" content="Fique por dentro de todas as notícias e comunicados da Igreja Presbiteriana de Valparaíso 1.">
+  <meta name="keywords" content="igreja presbiteriana, valparaíso, cristianismo, evangelho, cultos, ipv1">
+
+  <!-- Open Graph (para compartilhamento) -->
+  <meta property="og:title" content="Igreja Presbiteriana do Valparaíso 1">
+  <meta property="og:description" content="Comunidade cristã comprometida com o evangelho">
+  <meta property="og:image" content="https://ipv1.org.br/assets/imgs/logo.png">
+  <meta property="og:url" content="https://ipv1.org.br">
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/index.css">
+  <link rel="stylesheet" href="../assets/css/todas-noticias.css">
+  <!-- Removido o link para acessibilidade.css, já que os estilos foram movidos para noticia_visu.css -->
+
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg" />
+  <link rel="shortcut icon" href="/assets/favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="/assets/favicon/site.webmanifest" />
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VWQKZS4"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div class="construction-cta-banner">
+  <div class="container construction-cta-content">
+
+    <span class="cta-icon"><i class="fas fa-hard-hat"></i></span>
+    <p>Estamos construindo o futuro! Conheça o <strong>Projeto Edificar</strong> e faça parte desta obra.</p>
+    <a href="https://projetoedificar.ipv1.org.br" target="_blank" class="cta-button-banner">Saiba Mais e Contribua <i class="fas fa-arrow-right"></i></a>
+    <button class="close-cta-banner" aria-label="Fechar aviso">×</button>
+  </div>
+</div>
+<header class="header">
+  <div class="header-container">
+    <div class="logo">
+      <a href="../index.html">
+        <img src="../assets/imgs/logo.png" alt="Logo Igreja Presbiteriana">
+      </a>    </div>
+    <nav class="main-nav">
+      <button class="mobile-menu-btn">
+        <span class="hamburger"></span>
+      </button>
+      <ul class="nav-list">
+        <li><a href="../index.html">Início</a></li>
+        <li class="menu-item-has-children">
+          <a href="#">Igreja<i class="fas fa-chevron-down dropdown-icon"></i></a>
+          <ul class="sub-menu">
+            <li><a href="../pages/igreja.html">Quem Somos</a></li>
+            <li><a href="../pages/departamentos.html">Ministérios</a></li>
+          </ul>
+        </li>
+        <li><a href="../pages/agenda.html">Agenda</a></li>
+        <li><a href="../pages/midia.html">Midia</a></li>
+        <li><a href="../pages/contribua.html">Contribua</a></li>
+        <li><a href="../pages/contato.html">Contato</a></li>
+        <li class="menu-item-has-children">
+          <a href="#">Recursos<i class="fas fa-chevron-down dropdown-icon"></i></a>
+          <ul class="sub-menu">
+            <li><a href="../pages/gerador.html">Gerador de Ata UPH/SAF</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<!-- Conteúdo da Notícia -->
+<main class="main-content all-news-page">
+  <div class="container">
+    <header class="page-title-section">
+      <div class="page-title">
+        <h1>Todas as Notícias</h1>
+        <p>Acompanhe os últimos acontecimentos e comunicados da nossa igreja.</p>
+      </div>
+    </header>
+
+    <!-- Filtros (Opcional, pode adicionar depois) -->
+    <!--
+    <div class="news-filters">
+        <select id="news-category-filter">
+            <option value="">Todas as Categorias</option>
+
+        </select>
+        <input type="month" id="news-month-filter">
+    </div>
+    -->
+
+    <div id="all-news-loading" class="loading-indicator">
+      <p>Carregando notícias...</p>
+    </div>
+
+    <section id="all-news-container" class="noticias-feed" style="display: none;">
+      <!-- Notícias em formato de card serão inseridas aqui -->
+      <!-- Pode ser o mesmo layout de .noticias-cards da index -->
+    </section>
+
+    <div id="all-news-pagination" class="pagination-controls" style="text-align: center; margin-top: 30px; display:none;">
+      <button id="btn-load-more-news" class="btn-outline">Carregar Mais Notícias</button>
+    </div>
+
+    <div id="all-news-error" class="error-message" style="display: none;">
+      <p>Não foi possível carregar as notícias.</p>
+    </div>
+
+  </div>
+</main>
+
+<!-- Footer -->
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-info">
+        <!-- Será preenchido dinamicamente -->
+      </div>
+      <div class="footer-social">
+        <h3>Redes Sociais</h3>
+        <div class="social-links">
+          <!-- Será preenchido dinamicamente -->
+        </div>
+      </div>
+      <div class="footer-contact">
+        <!-- Será preenchido dinamicamente -->
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>©<span id="anoRodape"></span> Igreja Presbiteriana de Valparaíso. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/menu_site.js"></script>
+<script src="../assets/js/acessibilidade.js"></script>
+<script src="../assets/js/todas-noticias.js"></script>
+<script src="../assets/js/footer.js"></script>
+<script src="../assets/js/obra.js"></script>
+
+
+</body>
+</html>

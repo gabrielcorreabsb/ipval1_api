@@ -134,6 +134,86 @@
     transform: translateX(3px);
 }
 
+a.noticia-item-link {
+    text-decoration: none;
+    color: inherit; /* Herda a cor do texto do pai, para não ficar azul por padrão */
+    display: block; /* Faz o link ocupar toda a área do article */
+}
+
+/* Estilos para .noticia-item (conforme seu CSS fornecido) */
+.noticia-item {
+    display: flex; /* MODIFICADO: Usar flex para alinhar data e conteúdo lado a lado */
+    align-items: flex-start; /* Alinha itens no topo */
+    gap: 15px; /* Espaço entre o bloco de data e o conteúdo */
+    padding: 15px 20px; /* Padding interno do item */
+    border-bottom: 1px solid rgba(11, 102, 54, 0.1);
+    transition: background-color 0.3s ease;
+}
+.noticia-item:last-child {
+    border-bottom: none; /* Remove a borda do último item */
+}
+.noticia-item:hover {
+    background-color: rgba(254, 240, 189, 0.2); /* var(--color-secondary) com alpha */
+}
+
+.noticia-data {
+    background-color: var(--color-primary); /* Verde primário para o fundo da data */
+    color: var(--color-white);           /* Texto branco */
+    font-weight: 700;
+    padding: 8px; /* Padding um pouco menor */
+    border-radius: 6px; /* Bordas mais suaves */
+    text-align: center;
+    flex-shrink: 0; /* Não deixa a caixa de data encolher */
+    width: 55px;    /* Largura fixa */
+    line-height: 1.1;
+}
+.noticia-data-dia {
+    display: block;
+    font-size: 1.4rem; /* Dia maior */
+}
+.noticia-data-mes {
+    display: block;
+    font-size: 0.75rem; /* Mês menor */
+    text-transform: uppercase;
+    margin-top: 2px;
+}
+
+.noticia-item-content { /* Novo container para título e resumo */
+    flex-grow: 1; /* Ocupa o espaço restante */
+}
+
+.noticia-titulo { /* Título da notícia na lista */
+    font-size: 1.05rem; /* Ajuste o tamanho */
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 6px; /* Espaço abaixo do título */
+    line-height: 1.3;
+    /* Limitar linhas como no seu CSS original */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.noticia-resumo { /* Resumo da notícia na lista */
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    /* Limitar linhas como no seu CSS original */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Mostrar 2 linhas do resumo */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.noticias-lista-footer {
+    padding: 20px; /* Aumentar padding */
+    text-align: center;
+    border-top: 1px solid rgba(11, 102, 54, 0.1);
+}
+
 /* Responsividade */
 @media (max-width: 992px) {
     .noticias-container {

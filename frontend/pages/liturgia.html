@@ -19,9 +19,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Liturgia - IPV1</title> <!-- O título será dinâmico -->
-    <!-- Você pode adicionar meta tags dinâmicas com JS se necessário -->
-    <meta name="description" content="Acompanhe a liturgia do culto da Igreja Presbiteriana de Valparaíso 1.">
+    <title>Liturgias e Estudos - IPV1</title>
+    <meta name="description" content="Acompanhe a liturgia do culto e os estudos da escola bíblica dominical da Igreja Presbiteriana de Valparaíso 1.">
 
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap"
           rel="stylesheet">
@@ -36,6 +35,7 @@
     <link rel="stylesheet" href="../assets/css/index.css">
     <link rel="stylesheet" href="../assets/css/visualizar-liturgia.css">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <link rel="icon" type="image/png" href="../assets/favicon/favicon-96x96.png" sizes="96x96"/>
@@ -103,52 +103,76 @@
     <div class="container">
         <header class="page-title-section">
             <div class="page-title">
-                <h1 id="main-page-title">Liturgias/Estudos EBD IPV1</h1>
-                <p id="main-page-subtitle">Navegue pelas nossas liturgias de culto e estudos da escola bíblica dominical.</p>
+                <h1>Liturgias e Estudos do Mês</h1>
+                <p>Selecione o mês e ano para ver as liturgias/estudos.</p>
             </div>
         </header>
 
-        <div id="public-liturgy-loading" class="loading-indicator">
-            <p>Carregando...</p>
+        <div class="liturgy-controls">
+            <div class="month-year-selector">
+                <label for="select-month">Mês:</label>
+                <select id="select-month"></select>
+                <label for="select-year">Ano:</label>
+                <select id="select-year"></select>
+                <button id="btn-load-month-liturgies" class="btn btn-primary">Carregar Liturgias/Estudos</button>
+            </div>
         </div>
 
-        <!-- Container para a lista de liturgias agrupadas por mês -->
-        <section id="liturgies-by-month-container" style="display: none;">
-            <!-- Conteúdo gerado por JS -->
+        <div id="public-liturgy-loading" class="loading-indicator" style="display: none;">
+            <p>Carregando liturgias/estudos do mês...</p>
+        </div>
+
+        <section id="liturgies-for-selected-month-container">
+            <!-- As liturgias do mês selecionado serão listadas aqui -->
+            <!-- Cada liturgia será um card/link para abrir o modal de detalhe -->
         </section>
 
         <div id="public-liturgy-error" class="error-message" style="display: none;">
-            <p>Não foi possível carregar as liturgias.</p>
+            <p>Não foi possível carregar as liturgias/estudos.</p>
         </div>
     </div>
 </main>
 
-<!-- Modal para exibir UMA liturgia completa -->
+<!-- MODAL DE DETALHE DA LITURGIA (como antes, mas com seletor de versão) -->
 <div id="liturgyDetailModal" class="modal-liturgy-detail">
     <div class="modal-liturgy-detail-content">
         <span class="close-liturgy-detail-modal">×</span>
         <header class="liturgy-modal-header">
             <h1 id="modal-liturgy-title"></h1>
-            <p class="liturgy-modal-meta" id="modal-liturgy-date"></p>
-            <p class="liturgy-modal-meta" id="modal-liturgy-description"></p>
-            <p class="liturgy-modal-meta" id="modal-liturgy-bible-version"></p>
+            <div class="liturgy-modal-meta-container">
+                <p class="liturgy-modal-meta" id="modal-liturgy-date"></p>
+                <p class="liturgy-modal-meta" id="modal-liturgy-description"></p>
+            </div>
+            <div class="bible-version-selector-modal">
+                <label for="modal-bible-version-select">Versão da Bíblia:</label>
+                <select id="modal-bible-version-select">
+                    <!-- Opções de versão preenchidas por JS -->
+                </select>
+            </div>
         </header>
         <section class="liturgy-modal-items-section">
             <div id="modal-liturgy-items-container">
-                <!-- Itens da liturgia específica serão inseridos aqui -->
+                <!-- Itens da liturgia específica -->
             </div>
         </section>
+
+        <div class="liturgy-modal-footer-actions">
+            <button id="btn-compile-share-whatsapp" class="btn btn-whatsapp-share">
+                <i class="fab fa-whatsapp"></i>Compartilhar Anotações via Whatsapp
+            </button>
+            <button id="btn-download-liturgy-pdf" class="btn btn-pdf-download"> <!-- NOVA CLASSE -->
+                <i class="fas fa-file-pdf"></i> Baixar como PDF
+            </button>
+        </div>
+        <!-- Área para texto bíblico embutido (como antes) -->
         <div id="modal-item-verse-text-container" class="verse-text-modal-embed" style="display:none;">
             <h4 id="modal-item-verse-title"></h4>
             <div id="modal-item-verse-body"></div>
-            <button id="close-verse-embed-btn">Fechar Texto Bíblico</button>
+            <button id="close-verse-embed-btn" class="btn btn-secondary-outline">Fechar Texto</button>
         </div>
     </div>
 </div>
 
-
-<!-- Reutilize seu Footer -->
-<!-- Footer -->
 <footer class="footer">
     <div class="container">
         <div class="footer-grid">
