@@ -1,13 +1,18 @@
-/* Seção de Notícias - Novo Layout */
+/* ====================================================== */
+/* CSS PARA A SEÇÃO DE NOTÍCIAS NA PÁGINA INICIAL (INDEX) */
+/* ====================================================== */
+
+/* Layout principal da seção com grid */
 .noticias-container {
     display: grid;
+    /* Coluna da esquerda (cards) ocupa 65%, direita (lista) 35% */
     grid-template-columns: 65% 35%;
     gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Cards principais à esquerda */
+/* --- Coluna da Esquerda (Cards Principais) --- */
 .noticias-cards {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -15,16 +20,19 @@
     gap: 20px;
 }
 
+/* O primeiro card de notícia ocupa as duas colunas */
 .noticias-cards .news-card:first-child {
     grid-column: 1 / -1;
     height: 400px;
 }
 
+/* Demais cards */
 .noticias-cards .news-card:not(:first-child) {
     height: 350px;
 }
 
-/* Lista de notícias à direita */
+
+/* --- Coluna da Direita (Lista "Últimas Publicações") --- */
 .noticias-lista {
     background-color: var(--color-white);
     border-radius: var(--border-radius);
@@ -40,73 +48,107 @@
     padding: 15px 20px;
 }
 
-.noticias-lista-header h3 {
-    color: var(--color-white);
+.noticias-lista-header h1 {
+    color: #ffffff !important; /* Match your site's color scheme, e.g., white or green (#2E7D32) */
+    text-decoration: none !important;
     font-size: 1.3rem;
     margin: 0;
 }
 
 .noticias-lista-content {
-    flex-grow: 1;
+    flex-grow: 1; /* Faz o conteúdo ocupar o espaço disponível */
     padding: 0;
 }
 
+/* Garante que o link ocupe toda a área do item */
+a.noticia-item-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* Container de cada item da lista */
 .noticia-item {
-    padding: 20px;
+    display: flex;
+    align-items: center;  /* IMPORTANTE: Centraliza o título verticalmente com a data */
+    gap: 15px;
+    padding: 15px 20px;
     border-bottom: 1px solid rgba(11, 102, 54, 0.1);
     transition: background-color 0.3s ease;
 }
 
-.noticia-item:hover {
-    background-color: rgba(254, 240, 189, 0.2);
+.noticia-item:last-child {
+    border-bottom: none;
 }
 
+.noticia-item:hover {
+    background-color: #fdf5e2;
+}
+
+/* Bloco da data (caixa verde) - Estilo mantido como você gostou */
 .noticia-data {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
+    flex-shrink: 0;
+    width: 60px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border-radius: 8px;
+    padding: 8px;
+    text-align: center;
+    font-weight: 700;
+    line-height: 1.1;
 }
 
 .noticia-data-dia {
-    background-color: var(--color-primary);
-    color: var(--color-white);
-    font-weight: 700;
-    padding: 5px 10px;
-    border-radius: 4px;
-    margin-right: 10px;
-    font-size: 0.9rem;
+    display: block;
+    font-size: 1.6rem;
 }
 
 .noticia-data-mes {
-    color: var(--color-text-light);
-    font-size: 0.9rem;
+    display: block;
+    font-size: 0.8rem;
     text-transform: uppercase;
+    margin-top: 2px;
 }
 
+/* Container do título */
+.noticia-item-content {
+    flex-grow: 1;
+}
+
+/* Título da notícia */
+
+/* Estilo para o título da notícia na lista, usando variáveis globais */
 .noticia-titulo {
+    font-family: var(--font-primary); /* <-- USA A FONTE DE TÍTULOS (Montserrat) */
+    font-weight: 600;                 /* <-- Usa um peso "semi-bold" para destaque */
+    color: var(--color-text);         /* <-- USA A COR DE TEXTO PADRÃO (#333333) */
     font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--color-text);
-    margin-bottom: 8px;
     line-height: 1.4;
+    margin: 0;
+    transition: color 0.3s ease;
+
+    /* Mantém o truncamento do texto */
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    text-overflow: ellipsis;
 }
 
+/* Opcional: Efeito hover para o título */
+.noticia-item-link:hover .noticia-titulo {
+    color: var(--color-primary); /* Muda para a cor verde primária ao passar o mouse */
+}
+
+/* OCULTA O RESUMO DA NOTÍCIA */
 .noticia-resumo {
-    color: var(--color-text-light);
-    font-size: 0.95rem;
-    line-height: 1.5;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    display: none;
 }
 
+
+/* Rodapé da lista com o botão "Ver todas" */
 .noticias-lista-footer {
-    padding: 15px 20px;
+    padding: 20px;
     text-align: center;
     border-top: 1px solid rgba(11, 102, 54, 0.1);
 }
@@ -134,90 +176,11 @@
     transform: translateX(3px);
 }
 
-a.noticia-item-link {
-    text-decoration: none;
-    color: inherit; /* Herda a cor do texto do pai, para não ficar azul por padrão */
-    display: block; /* Faz o link ocupar toda a área do article */
-}
 
-/* Estilos para .noticia-item (conforme seu CSS fornecido) */
-.noticia-item {
-    display: flex; /* MODIFICADO: Usar flex para alinhar data e conteúdo lado a lado */
-    align-items: flex-start; /* Alinha itens no topo */
-    gap: 15px; /* Espaço entre o bloco de data e o conteúdo */
-    padding: 15px 20px; /* Padding interno do item */
-    border-bottom: 1px solid rgba(11, 102, 54, 0.1);
-    transition: background-color 0.3s ease;
-}
-.noticia-item:last-child {
-    border-bottom: none; /* Remove a borda do último item */
-}
-.noticia-item:hover {
-    background-color: rgba(254, 240, 189, 0.2); /* var(--color-secondary) com alpha */
-}
-
-.noticia-data {
-    background-color: var(--color-primary); /* Verde primário para o fundo da data */
-    color: var(--color-white);           /* Texto branco */
-    font-weight: 700;
-    padding: 8px; /* Padding um pouco menor */
-    border-radius: 6px; /* Bordas mais suaves */
-    text-align: center;
-    flex-shrink: 0; /* Não deixa a caixa de data encolher */
-    width: 55px;    /* Largura fixa */
-    line-height: 1.1;
-}
-.noticia-data-dia {
-    display: block;
-    font-size: 1.4rem; /* Dia maior */
-}
-.noticia-data-mes {
-    display: block;
-    font-size: 0.75rem; /* Mês menor */
-    text-transform: uppercase;
-    margin-top: 2px;
-}
-
-.noticia-item-content { /* Novo container para título e resumo */
-    flex-grow: 1; /* Ocupa o espaço restante */
-}
-
-.noticia-titulo { /* Título da notícia na lista */
-    font-size: 1.05rem; /* Ajuste o tamanho */
-    font-weight: 600;
-    color: var(--color-text);
-    margin-bottom: 6px; /* Espaço abaixo do título */
-    line-height: 1.3;
-    /* Limitar linhas como no seu CSS original */
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.noticia-resumo { /* Resumo da notícia na lista */
-    color: var(--color-text-light);
-    font-size: 0.9rem;
-    line-height: 1.4;
-    /* Limitar linhas como no seu CSS original */
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* Mostrar 2 linhas do resumo */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.noticias-lista-footer {
-    padding: 20px; /* Aumentar padding */
-    text-align: center;
-    border-top: 1px solid rgba(11, 102, 54, 0.1);
-}
-
-/* Responsividade */
+/* --- Regras de Responsividade --- */
 @media (max-width: 992px) {
     .noticias-container {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Colunas empilhadas */
     }
 
     .noticias-cards {
@@ -233,7 +196,7 @@ a.noticia-item-link {
 
 @media (max-width: 576px) {
     .noticias-cards {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Cards empilhados */
     }
 
     .noticias-cards .news-card {

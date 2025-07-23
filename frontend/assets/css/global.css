@@ -36,6 +36,10 @@
     scroll-behavior: smooth; /* Smooth scrolling for anchor links */
 }
 
+html {
+    height: 100%;
+}
+
 body {
     font-family: var(--font-secondary);
     line-height: 1.7;
@@ -43,7 +47,13 @@ body {
     background-color: var(--color-background);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* --- INÍCIO DA CORREÇÃO --- */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Garante que o body ocupe pelo menos 100% da altura da janela */
+    /* --- FIM DA CORREÇÃO --- */
 }
+
 
 .container {
     max-width: 1200px;
@@ -73,6 +83,8 @@ body {
 
 .main-content {
     padding-top: 120px; /* Adjust this value as needed based on your header's height */
+    flex-grow: 1;
+    padding-bottom: 60px;
 }
 
 /* --- Header - GLOBAL Styles (Moved from index.css to global.css) --- */

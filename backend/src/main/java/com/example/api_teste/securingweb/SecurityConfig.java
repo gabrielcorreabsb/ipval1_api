@@ -100,6 +100,11 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.PUT, "/api/liturgias/**").hasRole("PASTOR") // Apenas PASTOR pode atualizar
                                 .requestMatchers(HttpMethod.DELETE, "/api/liturgias/**").hasRole("PASTOR") //
 
+                                // --- INÍCIO: Permissões para Galeria de Fotos ---
+                                .requestMatchers(HttpMethod.GET, "/api/galeria/**").permitAll() // Público pode ver as fotos e categorias
+                                .requestMatchers(HttpMethod.POST, "/api/galeria").hasAnyRole("PASTOR") // Apenas Pastor ou um novo role "MIDIA" podem fazer upload
+                                .requestMatchers(HttpMethod.DELETE, "/api/galeria/**").hasAnyRole("PASTOR")
+
 
                                 // Recursos estáticos
                                 .requestMatchers(

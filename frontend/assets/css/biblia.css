@@ -1,0 +1,238 @@
+/* assets/css/biblia.css */
+
+/* Garanta que global.css esteja importado no HTML */
+
+.bible-page .container {
+    padding-top: 30px;
+    padding-bottom: 140px;
+}
+
+/* Abas de Navegação */
+.tabs-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--color-secondary);
+}
+.tab-btn {
+    padding: 12px 25px;
+    border: none;
+    background-color: transparent;
+    font-family: var(--font-primary);
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--color-text-light);
+    cursor: pointer;
+    transition: color 0.3s ease, border-bottom-color 0.3s ease;
+    border-bottom: 3px solid transparent;
+    position: relative;
+    top: 2px; /* Para alinhar com a borda inferior do container */
+}
+.tab-btn.active {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+}
+.tab-btn:hover {
+    color: var(--color-primary);
+}
+
+/* Wrapper para o conteúdo das abas */
+.tab-content-wrapper {
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+}
+.tab-content {
+    display: none; /* Escondido por padrão */
+    animation: fadeInContent 0.5s ease-in-out;
+}
+.tab-content.active {
+    display: block; /* A aba ativa é exibida */
+}
+@keyframes fadeInContent {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Controles de Seleção (Livro, Capítulo, Versão) */
+.bible-controls, .challenge-version-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: var(--color-card);
+    border-radius: 8px;
+}
+.control-select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: var(--font-secondary);
+    min-width: 180px;
+    cursor: pointer;
+}
+
+/* Cabeçalho do Desafio */
+.challenge-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.challenge-header #challenge-date {
+    font-size: 1rem;
+    color: var(--color-text-light);
+    margin-bottom: 5px;
+}
+.challenge-header #challenge-reading-ref {
+    font-family: var(--font-primary);
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 15px;
+}
+
+/* Área de Exibição do Texto Bíblico */
+.bible-text-display {
+    background-color: var(--color-background); /* Fundo levemente acinzentado */
+    padding: 20px 25px;
+    border-radius: 8px;
+    min-height: 200px;
+}
+.bible-text-display .placeholder-text {
+    text-align: center;
+    color: var(--color-text-light);
+    font-style: italic;
+    padding-top: 50px;
+}
+.bible-text-display .chapter-title {
+    font-family: var(--font-primary);
+    font-size: 1.8rem;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 25px;
+}
+.bible-text-display .verse {
+    margin-bottom: 1em;
+    line-height: 1.7;
+    font-size: 1.1rem;
+    color: var(--color-text);
+}
+.bible-text-display .verse sup {
+    font-size: 0.7em;
+    vertical-align: super;
+    margin-right: 0.3em;
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.bible-page.main-content {
+    padding-top: 120px; /* Reduz o espaço superior para um valor menor. Ajuste conforme necessário. */
+    /* OU se estiver usando margin-top: */
+    /* margin-top: 40px; */
+}
+
+/* Opcional: Ajustar o padding do container se necessário */
+.bible-page .container {
+    padding-top: 0; /* Remove padding extra do container se houver */
+}
+
+/* Responsividade */
+/* --- Telas Médias (Tablets) - A partir de 992px para baixo --- */
+@media (max-width: 992px) {
+    .bible-page .page-title-section .page-title h1 {
+        font-size: 2.2rem; /* Título da página um pouco menor */
+    }
+    .bible-controls {
+        flex-direction: column; /* Empilha os seletores em tablets para melhor toque */
+        gap: 12px;
+    }
+    .control-select {
+        width: 100%; /* Faz os selects ocuparem a largura total */
+        max-width: 400px; /* Mas com um máximo para não ficarem enormes */
+    }
+    .tab-content-wrapper {
+        padding: 25px; /* Reduz um pouco o padding */
+    }
+}
+
+/* --- Telas Pequenas (Tablets em Retrato e Celulares) - A partir de 768px para baixo --- */
+@media (max-width: 768px) {
+    .bible-page .page-title-section .page-title h1 {
+        font-size: 2rem;
+    }
+    .bible-page .page-title p {
+        font-size: 1rem;
+    }
+
+    .tabs-container {
+        justify-content: space-around;
+        gap: 0;
+        margin-bottom: 25px;
+    }
+    .tab-btn {
+        padding: 10px 15px;
+        font-size: 1rem;
+        flex-grow: 1;
+        text-align: center;
+        white-space: nowrap; /* Impede que o texto quebre em duas linhas */
+    }
+
+    .tab-content-wrapper {
+        padding: 20px;
+    }
+
+    /* Os seletores já foram ajustados no breakpoint de 992px */
+    /* .bible-controls { flex-direction: column; } */
+    /* .control-select { width: 100%; } */
+
+    .challenge-header #challenge-reading-ref {
+        font-size: 1.4rem; /* Reduz o tamanho da referência do desafio */
+    }
+
+    .bible-text-display {
+        padding: 15px 20px;
+    }
+    .bible-text-display .chapter-title {
+        font-size: 1.6rem;
+    }
+    .bible-text-display .verse {
+        font-size: 1rem; /* Texto do versículo um pouco menor */
+        line-height: 1.8; /* Aumenta o espaçamento para leitura */
+    }
+}
+
+/* --- Telas Muito Pequenas (Celulares) - A partir de 480px para baixo --- */
+@media (max-width: 480px) {
+    .bible-page .page-title-section .page-title h1 {
+        font-size: 1.8rem;
+    }
+
+    .tab-btn {
+        font-size: 0.9rem; /* Texto das abas um pouco menor */
+        padding: 10px 8px; /* Menos padding lateral */
+    }
+
+    .tab-content-wrapper {
+        padding: 15px; /* Padding ainda menor */
+    }
+
+    .challenge-header #challenge-reading-ref {
+        font-size: 1.2rem;
+    }
+
+    .bible-text-display {
+        padding: 15px;
+    }
+
+    .bible-text-display .chapter-title {
+        font-size: 1.5rem;
+    }
+    .bible-text-display .verse {
+        font-size: 0.95rem; /* Fonte um pouco menor em telas muito pequenas */
+    }
+}

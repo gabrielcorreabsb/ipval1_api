@@ -1,3 +1,19 @@
+/* assets/css/menu.css (Corrigido) */
+
+/* Use as variáveis do seu tema se tiver um :root definido em outro lugar,
+   senão, defina as cores diretamente. Vou usar as do seu tema escuro. */
+:root {
+    --primary: #667eea;
+    --secondary: #764ba2;
+    --background: #1a1a1a;
+    --text: #ffffff;
+    --card-bg: rgba(255, 255, 255, 0.1);
+    --hover-bg: rgba(255, 255, 255, 0.15);
+    --border: rgba(255, 255, 255, 0.2);
+    --nav-bg: #1e1e1e; /* Um fundo sólido para o menu */
+    --error: #dc3545;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -5,13 +21,13 @@
 }
 
 nav {
-    background-color: #333;
-    padding: 1rem;
+    background-color: var(--nav-bg);
+    padding: 0.8rem 1rem; /* Padding vertical um pouco menor */
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .nav-container {
@@ -20,100 +36,87 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1.5rem; /* Espaço entre logo, menu e botões */
 }
 
+/* --- CORREÇÃO PRINCIPAL --- */
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 1rem; /* Espaçamento entre os links do menu */
+    align-items: center;
+    flex-wrap: nowrap; /* Impede que os itens quebrem a linha */
+    flex-grow: 1; /* Permite que a lista de links cresça para ocupar o espaço */
+    justify-content: center; /* Centraliza os links no espaço disponível */
+    overflow: hidden; /* Esconde qualquer overflow se for extremo */
 }
 
 .nav-menu a {
-    color: white;
+    color: var(--text);
     text-decoration: none;
-    font-size: 1.1rem;
+    font-size: 0.95rem; /* Fonte um pouco menor para caber mais itens */
+    font-weight: 500;
     transition: all 0.3s ease;
     padding: 0.5rem 1rem;
-    border-radius: 4px;
+    border-radius: 6px;
+    white-space: nowrap; /* Impede que o texto do link quebre (ex: "Nova Notícia") */
 }
 
 .nav-menu a:hover {
-    color: #00ff88;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--hover-bg);
+}
+
+.nav-menu a.active {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
 }
 
 .user-section {
     display: flex;
     align-items: center;
     gap: 1rem;
+    flex-shrink: 0; /* Impede que a seção de botões encolha */
 }
 
+/* --- FIM DA CORREÇÃO PRINCIPAL --- */
+
+
 .btn {
-    padding: 0.5rem 1rem;
+    padding: 0.6rem 1rem;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 0.5rem;
     font-size: 0.9rem;
     transition: all 0.3s ease;
+    white-space: nowrap;
 }
-
 .btn:hover {
     transform: translateY(-1px);
 }
-
 .btn-primary {
-    background-color: #007bff;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: white;
 }
-
 .btn-primary:hover {
-    background-color: #0056b3;
+    opacity: 0.9;
 }
-
-.btn-export {
-    background-color: #28a745;
-    color: white;
-}
-
-.btn-export:hover {
-    background-color: #218838;
-}
-
 .logout-btn {
-    background-color: #dc3545;
+    background-color: var(--error);
     color: white;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.3s ease;
 }
-
 .logout-btn:hover {
-    background-color: #c82333;
+    filter: brightness(0.9);
 }
 
-#userName, #userNameMobile {
-    color: white;
-    margin: 0 1rem;
-}
+/* --- Seção de Responsividade para o Menu --- */
 
 .hamburger {
     display: none;
     cursor: pointer;
-    padding: 10px;
-    z-index: 100;
-    border-radius: 4px;
-    transition: background-color 0.3s;
+    z-index: 1001; /* Para ficar acima do menu quando aberto */
 }
-
-.hamburger:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
 .hamburger div {
     width: 25px;
     height: 3px;
@@ -122,16 +125,30 @@ nav {
     transition: all 0.3s ease;
     border-radius: 2px;
 }
-
 .mobile-user-section {
     display: none;
 }
 
+/* Breakpoint para telas menores onde o menu de desktop começa a ficar apertado */
+@media screen and (max-width: 1100px) {
+    .nav-menu {
+        gap: 0.5rem; /* Reduz o espaçamento entre os links */
+    }
+    .nav-menu a {
+        padding: 0.5rem 0.8rem; /* Reduz o padding dos links */
+        font-size: 0.9rem;
+    }
+}
+
+
+/* Breakpoint onde o menu hambúrguer assume (768px como no seu código) */
 @media screen and (max-width: 768px) {
     .hamburger {
         display: block;
     }
-
+    .desktop-user-section {
+        display: none;
+    }
     .nav-menu {
         position: fixed;
         left: -100%;
@@ -139,103 +156,50 @@ nav {
         flex-direction: column;
         background-color: #333;
         width: 80%;
+        max-width: 300px;
         height: 100vh;
         padding: 80px 0;
-        transition: 0.4s ease-in-out;
+        transition: left 0.4s ease-in-out;
         box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+        justify-content: flex-start; /* Alinha itens no topo no mobile */
+        gap: 0;
     }
-
     .nav-menu.active {
         left: 0;
     }
-
-    .desktop-user-section {
-        display: none;
+    .nav-menu li {
+        width: 100%;
+    }
+    .nav-menu a {
+        display: block;
+        padding: 1rem 1.5rem;
+        border-radius: 0;
+        border-bottom: 1px solid var(--border);
+    }
+    .nav-menu li:last-of-type a {
+        border-bottom: none;
     }
 
     .mobile-user-section {
         display: flex;
         flex-direction: column;
         gap: 1rem;
-        padding: 1rem;
-        border-top: 1px solid #555;
+        padding: 1.5rem;
         margin-top: 1rem;
+        border-top: 1px solid #555;
     }
-
     .mobile-user-section .btn,
     .mobile-user-section .logout-btn {
         width: 100%;
         justify-content: center;
     }
 
-    .nav-menu li {
-        opacity: 0;
-        transform: translateX(-20px);
-        transition: all 0.4s ease;
-    }
-
-    .nav-menu.active li {
-        opacity: 1;
-        transform: translateX(0);
-    }
-
-    /* Delay para cada item do menu */
-    .nav-menu li:nth-child(1) {
-        transition-delay: 0.1s;
-    }
-
-    .nav-menu li:nth-child(2) {
-        transition-delay: 0.2s;
-    }
-
-    .nav-menu li:nth-child(3) {
-        transition-delay: 0.3s;
-    }
-
-    .nav-menu li:nth-child(4) {
-        transition-delay: 0.4s;
-    }
-
-    .mobile-user-section {
-        opacity: 0;
-        transform: translateX(-20px);
-        transition: all 0.4s ease;
-        transition-delay: 0.5s;
-    }
-
-    .nav-menu.active .mobile-user-section {
-        opacity: 1;
-        transform: translateX(0);
-    }
-
-    /* Overlay escuro quando o menu está aberto */
-    .nav-menu::before {
-        content: '';
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        opacity: 0;
-        visibility: hidden;
-        transition: 0.3s;
-        z-index: -1;
-    }
-
-    .nav-menu.active::before {
-        opacity: 1;
-        visibility: visible;
-    }
-
     .hamburger.active .line1 {
         transform: rotate(-45deg) translate(-5px, 6px);
     }
-
     .hamburger.active .line2 {
         opacity: 0;
     }
-
     .hamburger.active .line3 {
         transform: rotate(45deg) translate(-5px, -6px);
     }

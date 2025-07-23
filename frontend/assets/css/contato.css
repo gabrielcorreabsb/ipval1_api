@@ -11,20 +11,8 @@
 .contato-container {
     max-width: 1200px; /* Keep max-width if page-specific, otherwise consider global container */
     margin: 0 auto; /* Keep margin auto if page-specific, otherwise consider global container */
-    padding: 2rem;
 }
 
-.page-title {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.page-title h1 {
-    color: var(--color-text); /* Using global color variable */
-    font-size: 2.5rem;
-    font-weight: 700; /* Keep font-weight: 700 if page titles should be bold, otherwise define in global.css */
-    font-family: var(--font-primary); /* Using global font variable */
-}
 
 .contact-grid {
     display: grid;

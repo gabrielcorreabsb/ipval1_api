@@ -1,216 +1,137 @@
-/* Importa as variáveis e estilos base do seu CSS atual */
-@import 'style.css';
+/* assets/css/noticias.css */
+/* Este arquivo assume que global_back.css já foi carregado. */
 
-/* Estilos específicos para as tabs */
-.tabs {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
+/* -------------------------------------------------------------------------- */
+/* ESTILOS ESPECÍFICOS PARA A PÁGINA DE NOTÍCIAS                              */
+/* -------------------------------------------------------------------------- */
 
-.tab-btn {
-    padding: 0.8rem 1.5rem;
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    color: var(--text);
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.tab-btn:hover {
-    background: var(--hover-bg);
-}
-
-.tab-btn.active {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    border-color: transparent;
-}
-
-/* Estilos para o grid de notícias */
+/* 1. Grid e Cards de Notícias */
 .news-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 2rem;
+    gap: 1.8rem;
+    padding-top: 1rem;
 }
-
-/* Estilos para o card de notícia */
 .news-card {
     background: var(--card-bg);
-    border-radius: 12px;
+    border-radius: var(--border-radius-main);
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
     border: 1px solid var(--border);
+    border-left-width: 4px;
+    border-left-color: transparent;
+    animation: fadeInCard 0.5s ease-in-out;
 }
-
+@keyframes fadeInCard {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 .news-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-medium);
 }
+.news-card.pending { border-left-color: var(--warning); }
+.news-card.approved { border-left-color: var(--success); }
 
-.news-card.pending {
-    border-left: 4px solid #ffc107;
-}
-
-.news-card.approved {
-    border-left: 4px solid #28a745;
-}
-
-/* Container da imagem */
+/* 2. Conteúdo do Card de Notícia */
 .news-image-container {
     position: relative;
     width: 100%;
     height: 200px;
     overflow: hidden;
+    background-color: var(--hover-bg);
 }
-
 .news-thumbnail {
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform 0.4s ease;
 }
-
+.news-card:hover .news-thumbnail {
+    transform: scale(1.05);
+}
 .news-no-image {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--hover-bg);
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
     color: var(--text);
 }
-
-.news-no-image i {
-    font-size: 3rem;
-    opacity: 0.5;
-}
-
-/* Badge de status */
+.news-no-image i { font-size: 3rem; opacity: 0.5; }
 .news-status-badge {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.875rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    backdrop-filter: blur(5px);
+    top: 1rem; right: 1rem; padding: 0.4rem 0.8rem;
+    border-radius: 20px; font-size: 0.8rem; font-weight: 500;
+    display: flex; align-items: center; gap: 0.5rem;
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
 }
-
-.news-status-badge.approved {
-    background: rgba(40, 167, 69, 0.9);
-    color: white;
-}
-
-.news-status-badge.pending {
-    background: rgba(255, 193, 7, 0.9);
-    color: black;
-}
-
-/* Conteúdo da notícia */
+.news-status-badge.approved { color: var(--success); }
+.news-status-badge.pending { color: var(--warning); }
+.news-status-badge i { font-size: 0.7rem; }
 .news-content-wrapper {
-    padding: 1.5rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+    padding: 1rem 1.2rem; flex: 1; display: flex; flex-direction: column;
 }
-
-.news-header {
+.news-title {
+    font-size: 1.15rem; margin-bottom: 0.6rem; font-weight: 600;
+    color: var(--text); line-height: 1.4;
+}
+.news-meta {
+    display: flex; flex-wrap: wrap; gap: 1rem;
+    font-size: 0.8rem; color: rgba(255,255,255,0.7);
     margin-bottom: 1rem;
 }
-
-.news-title {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-    color: var(--text);
-}
-
-.news-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-}
-
+.news-meta span { display: inline-flex; align-items: center; gap: 5px; }
+.news-meta i { color: var(--primary); }
 .news-content {
-    margin-bottom: 1.5rem;
-    color: var(--text);
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
+    font-size: 0.9rem; flex-grow: 1; margin-bottom: 1rem;
+    color: rgba(255,255,255,0.85); overflow: hidden; display: -webkit-box;
+    -webkit-line-clamp: 3; -webkit-box-orient: vertical;
 }
-
-/* Footer do card */
 .news-footer {
-    margin-top: auto;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border);
+    padding-top: 1rem; border-top: 1px solid var(--border);
 }
-
 .news-actions {
-    display: flex;
-    gap: 0.5rem;
-    justify-content: flex-end;
+    display: flex; gap: 0.6rem; justify-content: flex-end;
 }
-
-/* Botões */
 .news-actions button {
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.875rem;
-    transition: all 0.3s ease;
-}
-
-.btn-approve {
-    background: var(--success);
+    padding: 0.5rem 1rem; border-radius: 6px; border: none;
+    cursor: pointer; display: flex; align-items: center;
+    gap: 0.5rem; font-size: 0.85rem; transition: all 0.3s ease;
     color: white;
 }
-
-.btn-edit {
-    background: var(--primary);
-    color: white;
-}
-
-.btn-delete {
-    background: var(--error);
-    color: white;
-}
-
+.btn-approve { background-color: var(--success); }
+.btn-edit { background-color: var(--primary); }
+.btn-delete { background-color: var(--error); }
 .news-actions button:hover {
-    filter: brightness(1.1);
+    filter: brightness(1.15);
     transform: translateY(-2px);
 }
 
-/* Responsividade */
+/* -------------------------------------------------------------------------- */
+/* RESPONSIVIDADE (Específica da Página e Correção do Modal)                  */
+/* -------------------------------------------------------------------------- */
+
+/* --- CORREÇÃO DO MODAL RESPONSIVO --- */
+/* Esta classe é aplicada ao popup do SweetAlert via JavaScript */
+.swal-wide-noticia.swal2-popup {
+    width: 800px !important; /* Largura padrão para desktop */
+    max-width: 90vw !important; /* Garante que não ultrapasse 90% da largura da janela */
+}
+
 @media (max-width: 768px) {
     .news-grid {
         grid-template-columns: 1fr;
-        padding: 1rem;
+        gap: 1.5rem;
     }
-
     .news-actions button span {
         display: none;
     }
-
     .news-actions button {
-        padding: 0.5rem;
+        padding: 0.6rem;
     }
 
-    .news-meta {
-        flex-direction: column;
-        gap: 0.5rem;
+    /* Ajusta o modal para telas menores */
+    .swal-wide-noticia.swal2-popup {
+        width: 95vw !important; /* Em mobile, ocupa quase toda a largura da tela */
     }
 }

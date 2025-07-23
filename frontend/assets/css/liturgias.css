@@ -1,231 +1,124 @@
 /* assets/css/liturgias.css */
+/* Este arquivo assume que global_back.css já foi carregado. */
 
-/* 1. Definição de Variáveis e Estilos Base */
-:root {
-    --primary: #667eea;
-    --secondary: #764ba2;
-    --background: #1a1a1a;   /* Fundo escuro principal da página */
-    --text: #ffffff;
-    --card-bg: rgba(255, 255, 255, 0.08);
-    --hover-bg: rgba(255, 255, 255, 0.12);
-    --border: rgba(255, 255, 255, 0.2);
-    --nav-bg: rgba(30, 30, 30, 0.95); /* Fundo da navegação um pouco diferente */
-    --modal-item-bg: #282c34;      /* Fundo para o modal de item, um pouco mais claro que o body */
-    --input-bg: #3a3f47;         /* Fundo para inputs/selects/textarea */
-    --error: #ff4d4d;
-    --success: #4caf50;
-    --warning: #ff9800;
-    --font-main: 'Poppins', sans-serif;
-    --border-radius-main: 8px;
-    --shadow-light: 0 2px 8px rgba(0,0,0,0.2);
-    --shadow-medium: 0 5px 15px rgba(0,0,0,0.3);
-    --z-index-nav: 1000;
-    --z-index-swal-backdrop: 10040; /* SweetAlert backdrop z-index (estimado) */
-    --z-index-swal-popup: 10050;    /* SweetAlert popup z-index (estimado) */
-    --z-index-item-modal-backdrop: 10060; /* Nosso modal de item backdrop */
-    --z-index-item-modal-content: 10070;  /* Nosso modal de item content */
+/* -------------------------------------------------------------------------- */
+/* ESTILOS ESPECÍFICOS PARA A PÁGINA DE GERENCIAMENTO DE LITURGIAS            */
+/* -------------------------------------------------------------------------- */
+
+/* 1. Grid e Cards de Liturgia */
+.liturgies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: var(--font-main);
-}
-
-body {
-    background-color: var(--background);
-    color: var(--text);
-    min-height: 100vh;
+.liturgy-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius-main);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
     display: flex;
     flex-direction: column;
-    line-height: 1.6;
+    animation: fadeInCard 0.5s ease-in-out;
+}
+@keyframes fadeInCard {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 0 15px;
+.liturgy-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+    border-color: var(--primary);
+}
+
+.liturgy-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-top-left-radius: var(--border-radius-main);
+    border-top-right-radius: var(--border-radius-main);
+}
+
+/* 2. Conteúdo do Card de Liturgia */
+.liturgy-info {
+    margin-top: 5px;
     flex-grow: 1;
 }
-
-/* 2. Estilos do Menu */
-nav {
-    background-color: var(--nav-bg);
-    backdrop-filter: blur(5px);
-    padding: 1rem;
-    position: sticky;
-    top: 0;
-    width: 100%;
-    z-index: var(--z-index-nav);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+.liturgy-info h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 0.75rem;
 }
-.nav-container {
-    max-width: 1200px; margin: 0 auto; display: flex;
-    justify-content: space-between; align-items: center; padding: 0 15px;
-}
-.nav-menu { display: flex; list-style: none; gap: 1.5rem; }
-.nav-menu a {
-    color: var(--text); text-decoration: none; font-size: 1rem;
-    padding: 0.6rem 1rem; border-radius: var(--border-radius-main);
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-.nav-menu a:hover, .nav-menu a.active {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: var(--text);
-}
-.user-section { display: flex; align-items: center; gap: 1rem; }
-
-/* Botões Genéricos */
-.btn {
-    padding: 0.7rem 1.2rem; border: none; border-radius: var(--border-radius-main);
-    cursor: pointer; font-size: 0.9rem; font-weight: 500;
-    transition: all 0.3s ease; display: inline-flex;
-    align-items: center; gap: 0.5rem;
-}
-.btn-primary {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: var(--text);
-}
-.btn-primary:hover {
-    opacity: 0.9; transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-
-
-
-.logout-btn { background-color: var(--error); color: var(--text); }
-.logout-btn:hover { background-color: #d32f2f; }
-.hamburger { display: none; cursor: pointer; }
-.hamburger div { width: 25px; height: 3px; background-color: var(--text); margin: 5px 0; transition: all 0.3s ease; border-radius: 2px; }
-.mobile-user-section { display: none; }
-
-/* 3. Estilos do Conteúdo da Página de Liturgias */
-.content-header {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-top: 2rem; margin-bottom: 1.5rem; padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border);
-}
-.content-header h1 { font-size: 1.8rem; font-weight: 600; color: var(--primary); }
-.search-bar { margin-bottom: 2rem; }
-.search-bar input[type="text"] {
-    width: 100%; padding: 0.8rem 1rem; background-color: var(--input-bg); /* Input background */
-    border: 1px solid var(--border); border-radius: var(--border-radius-main);
-    color: var(--text); font-size: 1rem;
-}
-.search-bar input[type="text"]::placeholder { color: rgba(255, 255, 255, 0.6); }
-
-.liturgies-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
-.liturgy-card {
-    background: var(--card-bg); border: 1px solid var(--border);
-    border-radius: var(--border-radius-main); padding: 1.5rem;
-    transition: all 0.3s ease; position: relative; display: flex; flex-direction: column;
-}
-.liturgy-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-medium); border-color: var(--primary); }
-.liturgy-card::before {
-    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    border-top-left-radius: var(--border-radius-main); border-top-right-radius: var(--border-radius-main);
-}
-.liturgy-info { margin-top: 5px; flex-grow: 1; }
-.liturgy-info h3 { font-size: 1.25rem; font-weight: 600; color: var(--primary); margin-bottom: 0.75rem; }
 .liturgy-info p {
-    font-size: 0.9rem; color: rgba(255, 255, 255, 0.85); margin-bottom: 0.5rem;
-    display: flex; align-items: center; gap: 0.6rem;
-}
-.liturgy-info p i { width: 16px; text-align: center; color: var(--primary); opacity: 0.9; }
-.liturgy-actions {
-    display: flex; gap: 0.6rem; margin-top: 1rem; padding-top: 1rem;
-    border-top: 1px solid var(--border); justify-content: flex-end;
-}
-.liturgy-actions button, .liturgy-actions a.btn { padding: 0.6rem 0.9rem; font-size: 0.85rem; border-radius: 5px; }
-.btn-edit,
-.btn-delete,
-.btn-info,
-.btn-move { /* Nova classe para botões de mover, se quiser estilo diferente */
-    padding: 0.5rem; /* Um pouco menor para caber bem em listas */
-    border-radius: 6px; /* Bordas um pouco menos arredondadas */
-    border: 1px solid var(--border);
-    background: transparent;
-    color: var(--text);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: inline-flex; /* Para ícones e texto alinharem bem */
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 0.5rem;
+    display: flex;
     align-items: center;
-    justify-content: center;
-    line-height: 1; /* Ajuda no alinhamento vertical do ícone */
-    min-width: 36px; /* Largura mínima */
-    height: 36px;   /* Altura */
+    gap: 0.6rem;
+}
+.liturgy-info p i {
+    width: 16px;
+    text-align: center;
+    color: var(--primary);
+    opacity: 0.9;
 }
 
+/* 3. Ações no Card de Liturgia */
+.liturgy-actions {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    justify-content: flex-end;
+}
+.liturgy-actions button, .liturgy-actions a.btn {
+    padding: 0.6rem 0.9rem;
+    font-size: 0.85rem;
+}
 .btn-info {
-    color: #138496;
-    border: 1px solid #138496 !important; /* Borda bem chamativa para teste */
-
+    background: transparent;
+    color: #5bc0de;
+    border: 1px solid #5bc0de;
 }
 .btn-info:hover {
-    background-color: #138496; /
+    background-color: #5bc0de;
     color: var(--text);
-    border-color: #138496;
 }
 
-.btn-edit {
-    color: var(--primary);
-    border-color: var(--primary);
-}
-.btn-edit:hover {
-    background-color: var(--primary);
-    color: var(--text);
-    border-color: var(--primary); /* Garante que a borda não mude no hover */
-}
-
-.btn-delete {
-    color: var(--error);
-    border-color: var(--error);
-}
-.btn-delete:hover {
-    background-color: var(--error);
-    color: var(--text);
-    border-color: var(--error);
-}
-
-.btn-move { /* Estilo para botões de mover para cima/baixo */
-    color: var(--text-light, #ccc); /* Usando uma cor mais clara se text-light não estiver definida */
-    border-color: var(--text-light, #ccc);
-}
-.btn-move:hover {
-    color: var(--primary);
-    border-color: var(--primary);
-    background-color: rgba(255,255,255,0.05);
-}
 
 /* 4. Estilos para o Modal de Adicionar/Editar Item (HTML Modal) */
-.modal#liturgyItemModal { /* Aumentando especificidade com ID */
+.modal#liturgyItemModal {
     display: none;
     position: fixed;
-    z-index: var(--z-index-item-modal-backdrop); /* MAIOR QUE O SWAL */
+    z-index: 10060; /* z-index alto para ficar sobre o Swal */
     left: 0; top: 0; width: 100%; height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.8); /* Overlay mais escuro */
-    /* display: flex;  JS controla isso */
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
     align-items: center;
     justify-content: center;
 }
-
 #liturgyItemModal .modal-content {
-    background-color: var(--modal-item-bg); /* Fundo específico para este modal */
+    background-color: #282c34;
     color: var(--text);
     padding: 25px 30px;
     border: 1px solid var(--border);
     border-radius: var(--border-radius-main);
     width: 90%;
-    max-width: 550px; /* Um pouco menor que o swal-wide */
+    max-width: 550px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     position: relative;
-    z-index: var(--z-index-item-modal-content); /* Para conteúdo ficar sobre o backdrop do modal */
+    z-index: 10070;
 }
-
 #liturgyItemModal h2 {
     color: var(--primary); text-align: center; font-size: 1.3rem;
     margin-bottom: 1.2rem; padding-bottom: 0.7rem; border-bottom: 1px solid var(--border);
@@ -235,30 +128,26 @@ nav {
     font-size: 1.7rem; font-weight: bold; cursor: pointer; transition: color 0.2s ease;
 }
 #liturgyItemModal .close-button:hover { color: var(--text); }
-
 #liturgyItemModal #liturgyItemForm label {
     display: block; margin-top: 0.9rem; margin-bottom: 0.3rem;
     font-weight: 500; font-size: 0.85rem; color: rgba(255,255,255,0.9);
 }
-
-#liturgyItemModal #liturgyItemForm input[type="text"],
-#liturgyItemModal #liturgyItemForm input[type="number"],
+#liturgyItemModal #liturgyItemForm input,
 #liturgyItemModal #liturgyItemForm select,
 #liturgyItemModal #liturgyItemForm textarea {
     width: 100%; padding: 0.75rem 1rem; margin-bottom: 0.9rem;
     border: 1px solid var(--border); border-radius: 5px;
-    background-color: var(--input-bg); /* Fundo escuro para campos */
-    color: var(--text); /* Texto branco nos campos */
+    background-color: var(--input-bg);
+    color: var(--text);
     font-size: 0.9rem;
 }
 #liturgyItemModal #liturgyItemForm select {
     appearance: none; -webkit-appearance: none; -moz-appearance: none;
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23cccccc%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.4-12.8z%22/%3E%3C/svg%3E');
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%2...etc...');
     background-repeat: no-repeat; background-position: right 0.8rem center; background-size: 0.6em auto;
     padding-right: 2rem;
 }
 #liturgyItemModal #liturgyItemForm select option { background-color: var(--input-bg); color: var(--text); }
-
 #liturgyItemModal #liturgyItemForm input:focus,
 #liturgyItemModal #liturgyItemForm select:focus,
 #liturgyItemModal #liturgyItemForm textarea:focus {
@@ -270,38 +159,8 @@ nav {
 #liturgyItemModal #liturgyItemForm button[type="submit"].btn-primary {
     width: 100%; margin-top: 1.3rem; padding: 0.8rem; font-size: 1rem;
 }
-#itemConteudoTextualDiv, #itemReferenciaBiblicaDiv, #itemHinoDiv { padding-top: 0.5rem; margin-top: 0.5rem; }
 
-/* 5. Estilos para o SweetAlert2 */
-.swal2-container { z-index: var(--z-index-swal-backdrop) !important; }
-.swal2-popup {
-    background: var(--modal-item-bg) !important; /* Fundo consistente com o modal de item */
-    color: var(--text) !important;
-    border: 1px solid var(--border) !important;
-    border-radius: var(--border-radius-main) !important;
-    z-index: var(--z-index-swal-popup) !important;
-}
-.swal2-title { color: var(--primary) !important; font-size: 1.5rem !important; }
-.swal2-html-container { color: var(--text) !important; font-size: 1rem !important; }
-.swal2-input, .swal2-textarea, .swal2-select {
-    background: var(--input-bg) !important;
-    color: var(--text) !important;
-    border: 1px solid var(--border) !important;
-    border-radius: 5px !important;
-    font-size: 0.95rem !important;
-}
-.swal2-input:focus, .swal2-textarea:focus, .swal2-select:focus {
-    border-color: var(--primary) !important;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.4) !important;
-}
-.swal-wide.swal2-popup { /* Target swal-wide especificamente se a classe for adicionada */
-    width: 65vw !important; /* Um pouco menor que 70vw para não cobrir tela toda */
-    max-width: 850px !important;
-}
-.swal2-label {
-    display: block; margin-top: 12px; margin-bottom: 6px;
-    font-weight: 500; color: rgba(255,255,255,0.9); text-align: left; font-size: 0.9rem;
-}
+/* 5. Estilos para a lista de itens editáveis dentro do SweetAlert2 */
 #itemsContainerAdmin {
     margin-top: 18px; text-align: left; border: 1px solid var(--border);
     padding: 12px 18px; border-radius: 6px; background-color: rgba(0,0,0,0.15);
@@ -321,41 +180,28 @@ nav {
 .item-actions { display: flex; gap: 6px; align-items: center; flex-shrink: 0;}
 .item-actions button {
     background: transparent; border: 1px solid var(--border); color: var(--text);
-    padding: 6px 8px; margin-left: 0; /* Removido margin-left individual */
-    border-radius: 5px; cursor: pointer; font-size: 0.8rem; line-height: 1;
-    transition: all 0.2s ease;
+    padding: 6px 8px; border-radius: 5px; cursor: pointer; font-size: 0.8rem;
+    line-height: 1; transition: all 0.2s ease;
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 32px; height: 32px;
 }
 .item-actions button:hover { opacity: 0.8; transform: translateY(-1px); }
-.item-actions button.edit-item-btn { color: var(--primary); border-color: var(--primary); }
-.item-actions button.edit-item-btn:hover { background-color: var(--primary); color: white; }
-.item-actions button.delete-item-btn { color: var(--error); border-color: var(--error); }
-.item-actions button.delete-item-btn:hover { background-color: var(--error); color: white; }
-.item-actions button[title="Mover Para Cima"],
-.item-actions button[title="Mover Para Baixo"] { color: #ccc; border-color: #ccc; }
-.item-actions button[title="Mover Para Cima"]:hover,
-.item-actions button[title="Mover Para Baixo"]:hover { color: var(--primary); border-color: var(--primary); background-color: rgba(255,255,255,0.05); }
 
 
-/* 6. Responsividade */
-@media screen and (max-width: 768px) {
-    .nav-menu {
-        position: fixed; left: -100%; top: 0; flex-direction: column;
-        background-color: var(--nav-bg); width: 70%; height: 100vh;
-        padding-top: 60px; transition: 0.3s ease-in-out; z-index: 999;
-    }
-    .nav-menu.active { left: 0; }
-    .hamburger { display: block; }
-    .desktop-user-section { display: none; }
-    .mobile-user-section {
-        display: flex; flex-direction: column; gap: 1rem; padding: 1rem;
-        border-top: 1px solid var(--border); margin-top: 1rem;
-    }
-    .mobile-user-section .btn, .mobile-user-section .logout-btn { width: 100%; justify-content: center; }
-    .content-header h1 { font-size: 1.5rem; }
+/* --- CORREÇÃO DE RESPONSIVIDADE PARA O MODAL PRINCIPAL --- */
+/* A classe .swal-wide é adicionada via JS para o modal de liturgia */
+.swal-wide.swal2-popup {
+    width: 70vw !important; /* Largura padrão para desktop */
+    max-width: 850px !important; /* Limite máximo */
+}
+
+/* 6. Responsividade Específica para Liturgias */
+@media (max-width: 768px) {
     .liturgies-grid { grid-template-columns: 1fr; gap: 1rem; }
     #liturgyItemModal .modal-content { width: 95%; padding: 20px; max-width: none; }
-    .swal-wide.swal2-popup { width: 90vw !important; max-width: none !important; }
+
+    /* Ajusta o modal principal do Swal para telas menores */
+    .swal-wide.swal2-popup {
+        width: 95vw !important; /* Ocupa quase toda a largura em mobile */
+    }
 }
-.hamburger.active .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
-.hamburger.active .line2 { opacity: 0; }
-.hamburger.active .line3 { transform: rotate(45deg) translate(-5px, -6px); }

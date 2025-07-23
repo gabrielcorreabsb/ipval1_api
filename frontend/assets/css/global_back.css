@@ -1,0 +1,233 @@
+/* assets/css/global_back.css */
+
+/* ========================================================================== */
+/* 1. VARIÁVEIS E ESTILOS BASE                                                */
+/* ========================================================================== */
+:root {
+    --primary: #667eea;
+    --secondary: #764ba2;
+    --background: #1a1a1a;
+    --text: #ffffff;
+    --card-bg: rgba(255, 255, 255, 0.08);
+    --hover-bg: rgba(255, 255, 255, 0.15);
+    --border: rgba(255, 255, 255, 0.2);
+    --nav-bg: #1e1e1e;
+    --input-bg: #3a3f47;
+    --error: #dc3545;
+    --success: #28a745;
+    --warning: #ffc107;
+    --font-main: 'Poppins', sans-serif;
+    --border-radius-main: 8px;
+    --shadow-light: 0 2px 8px rgba(0,0,0,0.2);
+    --shadow-medium: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-main);
+}
+
+html { height: 100%; }
+
+body {
+    background: var(--background);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding-top: 70px; /* Ajuste para a altura do seu header */
+}
+
+/* ========================================================================== */
+/* 2. LAYOUT E COMPONENTES GLOBAIS                                            */
+/* ========================================================================== */
+
+/* --- Navegação --- */
+nav {
+    background-color: var(--nav-bg);
+    padding: 0.8rem 1rem;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+.nav-container {
+    max-width: 1200px; margin: 0 auto; display: flex;
+    justify-content: space-between; align-items: center; gap: 1.5rem;
+}
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+    align-items: center;
+
+    /* --- INÍCIO DA CORREÇÃO --- */
+    flex-grow: 1; /* Permite que o menu ocupe o espaço disponível */
+    flex-shrink: 1; /* PERMITE que o menu ENCOLHA se necessário */
+    justify-content: flex-start; /* ALINHA os itens do menu à esquerda */
+    overflow: hidden; /* Esconde itens que não couberem, antes do breakpoint mobile */
+    /* --- FIM DA CORREÇÃO --- */
+}
+.nav-menu a {
+    color: rgba(255, 255, 255, 0.8); /* Cor do texto um pouco mais sutil */
+    text-decoration: none; font-size: 0.95rem; font-weight: 500;
+    padding: 0.5rem 1rem; border-radius: 6px; white-space: nowrap;
+    transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease; /* Adicionada transição de cor e transform */
+    position: relative; /* Para o pseudo-elemento do hover */
+}
+
+/* --- MELHORIA NO HOVER DO MENU --- */
+.nav-menu a:hover {
+    background-color: transparent; /* Remove o fundo no hover */
+    color: var(--text); /* Torna o texto totalmente branco no hover */
+    transform: translateY(-2px); /* Efeito de levantar sutil */
+}
+
+/* Linha sutil abaixo do item no hover e no item ativo */
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px; /* Posição da linha abaixo do texto */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    transition: width 0.3s ease;
+}
+.nav-menu a:hover::after,
+.nav-menu a.active::after {
+    width: 80%; /* Largura da linha no hover/ativo */
+}
+
+.nav-menu a.active {
+    background: transparent; /* Remove o fundo do item ativo */
+    color: var(--text);      /* Garante que o texto do item ativo seja branco */
+    font-weight: 600;        /* Destaque extra no peso da fonte */
+}
+/* --- FIM DA MELHORIA NO HOVER DO MENU --- */
+
+.mobile-user-section {
+    display: none;
+}
+.user-section { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
+
+/* --- Container e Cabeçalho de Conteúdo --- */
+.container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 15px;
+    flex-grow: 1;
+}
+.content-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 1.5rem;
+}
+.content-header h1 {
+    font-size: 1.8rem; font-weight: 600;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+/* --- Botões --- */
+.btn {
+    padding: 0.7rem 1.2rem; border: none; border-radius: var(--border-radius-main);
+    cursor: pointer; font-size: 0.9rem; font-weight: 500;
+    transition: all 0.3s ease; display: inline-flex;
+    align-items: center; justify-content: center; gap: 0.5rem;
+    white-space: nowrap;
+}
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: var(--text);
+}
+.btn-primary:hover {
+    opacity: 0.9; transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+}
+
+/* --- MELHORIA NO BOTÃO SAIR --- */
+.logout-btn {
+    background-color: transparent;
+    color: var(--error);
+    border: 1px solid var(--error);
+    padding: 0.6rem 1rem;
+    font-weight: 500;
+}
+.logout-btn:hover {
+    background-color: var(--error);
+    color: var(--text);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(220, 53, 69, 0.3);
+}
+/* --- FIM DA MELHORIA NO BOTÃO SAIR --- */
+
+
+/* --- Abas e Filtros --- */
+.search-bar {
+    display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;
+}
+.search-bar input, .search-bar select {
+    padding: 0.8rem; border: 1px solid var(--border); border-radius: 6px;
+    background: var(--input-bg); color: var(--text); font-size: 0.95rem;
+    flex-grow: 1;
+}
+.search-bar select { min-width: 200px; flex-grow: 0; }
+.tabs {
+    display: flex; gap: 1rem; margin-bottom: 2rem;
+}
+.tab-btn {
+    padding: 0.7rem 1.4rem; background: var(--card-bg); border: 1px solid var(--border);
+    color: var(--text); border-radius: 6px; cursor: pointer; transition: all 0.3s ease;
+}
+.tab-btn:hover { background: var(--hover-bg); border-color: var(--primary); }
+.tab-btn.active { background: linear-gradient(135deg, var(--primary), var(--secondary)); border-color: transparent; }
+
+/* ========================================================================== */
+/* 3. RESPONSIVIDADE GLOBAL                                                   */
+/* ========================================================================== */
+
+@media (max-width: 1100px) {
+    .nav-menu { gap: 0.5rem; }
+    .nav-menu a { padding: 0.5rem 0.8rem; font-size: 0.9rem; }
+}
+
+@media (max-width: 768px) {
+    body { padding-top: 60px !important; }
+    .container { margin-top: 20px; }
+    .hamburger { display: block; }
+    .desktop-user-section { display: none; }
+    .nav-menu {
+        position: fixed; left: -100%; top: 0; flex-direction: column;
+        background-color: var(--nav-bg); width: 70%; max-width: 280px;
+        height: 100vh; padding-top: 60px; transition: left 0.3s ease-in-out;
+        z-index: 999; gap: 0;
+    }
+    .nav-menu.active { left: 0; }
+    .nav-menu li { width: 100%; }
+    .nav-menu a { display: block; padding: 1rem; border-bottom: 1px solid var(--border); }
+    .nav-menu a::after { display: none; } /* Remove a linha do hover no menu mobile */
+
+    .mobile-user-section {
+        display: flex; flex-direction: column; gap: 1rem;
+        padding: 1rem; margin-top: 1rem; border-top: 1px solid var(--border);
+    }
+    .mobile-user-section .btn, .mobile-user-section .logout-btn { width: 100%; justify-content: center; }
+    .content-header h1 { font-size: 1.6rem; }
+}
+
+@media (max-width: 576px) {
+    body { font-size: 15px; }
+    .container { width: 100%; padding-left: 10px; padding-right: 10px; margin-top: 15px; }
+    .content-header h1 { font-size: 1.4rem; }
+}
+
+.hamburger { cursor: pointer; }
+.hamburger div { width: 25px; height: 3px; background-color: var(--text); margin: 5px; transition: all 0.3s ease; border-radius: 2px; }
+.hamburger.active .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
+.hamburger.active .line2 { opacity: 0; }
+.hamburger.active .line3 { transform: rotate(45deg) translate(-5px, -6px); }

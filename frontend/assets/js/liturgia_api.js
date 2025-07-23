@@ -4,11 +4,11 @@ async function fetchFromLocalAPI(endpoint, options = {}) {
 
     try {
         const token = AuthService.getToken(); // Usando AuthService para pegar o token da sua API
-        if (!token && !url.includes('/auth/login') && !url.includes('/public/')) { // Não redireciona se for login ou público
-            console.warn('Token não encontrado, redirecionando para login.');
-            AuthService.clearAuthData(); // Limpa qualquer dado de auth inconsistente
-            window.location.replace('./login.html'); // Ajuste o caminho para sua página de login
-            return null; // Interrompe a execução da requisição
+        if (!token && !isPublic) { // <-- LÓGICA ALTERADA AQUI
+            console.warn('Token não encontrado para rota protegida, redirecionando para login.');
+            AuthService.clearAuthData();
+            window.location.replace('./login.html');
+            return null;
         }
 
         const defaultHeaders = {
@@ -71,11 +71,11 @@ async function fetchFromLocalAPI(endpoint, options = {}) {
 
 // Liturgias
 function getLiturgias() {
-    return fetchFromLocalAPI('/liturgias');
+    return fetchFromLocalAPI('/liturgias', {}, true);
 }
 
 function getLiturgyById(id) {
-    return fetchFromLocalAPI(`/liturgias/${id}`);
+    return fetchFromLocalAPI(`/liturgias/${id}`, {}, true);
 }
 
 function createLiturgy(liturgiaData) {
@@ -100,15 +100,15 @@ function deleteLiturgy(id) {
 
 // Informações da Bíblia (do seu backend)
 function getBibleVersionsLocal() {
-    return fetchFromLocalAPI('/bibliainfo/versoes');
+    return fetchFromLocalAPI('/bibliainfo/versoes', {}, true);
 }
 
 function getBibleBooksLocal() {
-    return fetchFromLocalAPI('/bibliainfo/livros');
+    return fetchFromLocalAPI('/bibliainfo/livros', {}, true);
 }
 
 function getBibleTestamentsLocal() {
-    return fetchFromLocalAPI('/bibliainfo/testamentos');
+    return fetchFromLocalAPI('/bibliainfo/testamentos', {}, true);
 }
 
 // Adicione aqui outras funções para chamar sua API local conforme necessário
@@ -118,10 +118,6 @@ function getBibleTestamentsLocal() {
 // -----------------------------------------------------------------------------
 // PARTE 2: COMUNICAÇÃO COM A API EXTERNA (abibliadigital.com.br)
 // -----------------------------------------------------------------------------
-
-const API_BASE_URL_BIBLIA_DIGITAL = 'https://www.abibliadigital.com.br/api';
-// Seu token para a API da Bíblia Digital (aumenta o rate limit)
-const BIBLIA_DIGITAL_API_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHIiOiJUaHUgTWFyIDA2IDIwMjUgMDI6MDQ6NDkgR01UKzAwMDAuYmxvZ3NydG9AZ21haWwuY29tIiwiaWF0IjoxNzQxMjI2Njg5fQ.6eeiNxai_syPf1Xfh3jJwBDfSnjtLbv8GAKcRBeR5lM';
 
 /**
  * Busca o texto de um único versículo da API da Bíblia Digital.

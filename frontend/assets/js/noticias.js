@@ -404,7 +404,6 @@ async function criarNoticia(dados) {
         formData.append('conteudo', dados.conteudo);
         formData.append('usuarioId', usuario.idUsuario.toString());
 
-        // Converter imagem para WebP se existir
         if (dados.imagem) {
             try {
                 const webpImage = await convertToWebP(dados.imagem);
@@ -412,22 +411,18 @@ async function criarNoticia(dados) {
             } catch (error) {
                 console.error('Erro ao converter imagem:', error);
                 mostrarMensagem('Erro ao processar imagem', 'error');
-                // Se houver erro na conversão, usa a imagem original
                 formData.append('imagem', dados.imagem);
             }
         }
 
         const response = await fetch(`${CONFIG.API_URL}/noticias`, {
             method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            },
+            headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
             body: formData
         });
 
         if (!response.ok) {
             const errorData = await response.text();
-            console.error('Erro do servidor:', errorData);
             throw new Error(`Erro na requisição: ${response.status}`);
         }
 
@@ -469,27 +464,13 @@ async function abrirModalNovaNoticia() {
             preConfirm: async () => {
                 const titulo = document.getElementById('titulo').value;
                 const editor = tinymce.get('conteudo');
-
-                if (!editor) {
-                    Swal.showValidationMessage('Editor não inicializado corretamente');
-                    return false;
-                }
-
+                if (!editor) { Swal.showValidationMessage('Editor não inicializado.'); return false; }
                 const conteudo = editor.getContent();
                 const imagemInput = document.getElementById('imagem');
                 const imagem = imagemInput.files[0];
-
                 const validacao = validarNoticia(titulo, conteudo);
-                if (!validacao.valido) {
-                    Swal.showValidationMessage(validacao.mensagem);
-                    return false;
-                }
-
-                return {
-                    titulo: validacao.titulo,
-                    conteudo: validacao.conteudo,
-                    imagem
-                };
+                if (!validacao.valido) { Swal.showValidationMessage(validacao.mensagem); return false; }
+                return { titulo: validacao.titulo, conteudo: validacao.conteudo, imagem };
             },
             willClose: () => {
                 tinymce.remove('#conteudo');
@@ -498,9 +479,9 @@ async function abrirModalNovaNoticia() {
             confirmButtonText: 'Salvar',
             cancelButtonText: 'Cancelar',
             width: '80%',
+            // --- CORREÇÃO APLICADA AQUI ---
             customClass: {
-                container: 'swal-wide',
-                popup: 'swal-tall'
+                popup: 'swal-wide-noticia'
             }
         });
 
@@ -525,12 +506,7 @@ async function editarNoticia(id) {
                 <div class="modal-content">
                     <input id="titulo" class="swal2-input" value="${noticia.titulo}">
                     <input type="file" id="imagem" accept="image/*" class="swal2-file">
-                    ${noticia.imagemUrl ? `
-                        <div class="current-image">
-                            <img src="${noticia.imagemUrl}" alt="Imagem atual" style="max-width: 200px;">
-                            <p>Imagem atual</p>
-                        </div>
-                    ` : ''}
+                    ${noticia.imagemUrl ? `<div class="current-image"><img src="${noticia.imagemUrl}" alt="Imagem atual" style="max-width: 200px;"><p>Imagem atual</p></div>` : ''}
                     <div class="editor-container">
                         <textarea id="conteudo">${noticia.conteudo}</textarea>
                     </div>
@@ -542,29 +518,15 @@ async function editarNoticia(id) {
             preConfirm: () => {
                 const titulo = document.getElementById('titulo').value;
                 const editor = tinymce.get('conteudo');
-                const imagemInput = document.getElementById('imagem');
-
-                if (!editor) {
-                    Swal.showValidationMessage('Editor não inicializado corretamente');
-                    return false;
-                }
-
+                if (!editor) { Swal.showValidationMessage('Editor não inicializado.'); return false; }
                 const conteudo = editor.getContent();
                 const validacao = validarNoticia(titulo, conteudo);
-                if (!validacao.valido) {
-                    Swal.showValidationMessage(validacao.mensagem);
-                    return false;
-                }
-
-                const dados = {
-                    titulo: validacao.titulo,
-                    conteudo: validacao.conteudo
-                };
-
+                if (!validacao.valido) { Swal.showValidationMessage(validacao.mensagem); return false; }
+                const dados = { titulo: validacao.titulo, conteudo: validacao.conteudo };
+                const imagemInput = document.getElementById('imagem');
                 if (imagemInput.files.length > 0) {
                     dados.imagem = imagemInput.files[0];
                 }
-
                 return dados;
             },
             willClose: () => {
@@ -574,9 +536,9 @@ async function editarNoticia(id) {
             confirmButtonText: 'Salvar',
             cancelButtonText: 'Cancelar',
             width: '80%',
+            // --- CORREÇÃO APLICADA AQUI ---
             customClass: {
-                container: 'swal-wide',
-                popup: 'swal-tall'
+                popup: 'swal-wide-noticia'
             }
         });
 
@@ -591,34 +553,21 @@ async function editarNoticia(id) {
 
 async function atualizarNoticia(id, dados) {
     try {
-        console.log('Dados recebidos para atualização:', dados); // Log para debug
-
-        // Criar FormData com os dados atualizados
         const formData = new FormData();
         formData.append('titulo', dados.titulo);
         formData.append('conteudo', dados.conteudo);
-
         if (dados.imagem) {
             formData.append('imagem', dados.imagem);
         }
 
-        // Log para verificar o conteúdo do FormData
-        for (let pair of formData.entries()) {
-            console.log(pair[0] + ': ' + pair[1]);
-        }
-
         const response = await fetch(`${CONFIG.API_URL}/noticias/${id}`, {
             method: 'PUT',
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-                // Não incluir Content-Type para FormData
-            },
+            headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
             body: formData
         });
 
         if (!response.ok) {
             const errorData = await response.text();
-            console.error('Erro do servidor:', errorData);
             throw new Error(`Erro na requisição: ${response.status}`);
         }
 
@@ -639,7 +588,6 @@ async function aprovarNoticia(id) {
         await fazerRequisicao(`${CONFIG.API_URL}/noticias/${id}/aprovar`, {
             method: 'PUT'
         });
-
         mostrarMensagem('Notícia aprovada com sucesso!', 'success');
         await carregarNoticias();
     } catch (error) {
@@ -654,19 +602,11 @@ function exibirNoticias(noticiasFiltradas) {
         console.error('Element newsGrid not found');
         return;
     }
-
     grid.innerHTML = '';
-
     if (!noticiasFiltradas || noticiasFiltradas.length === 0) {
-        grid.innerHTML = `
-            <div class="no-news">
-                <i class="fas fa-newspaper"></i>
-                <p>Nenhuma notícia encontrada</p>
-            </div>
-        `;
+        grid.innerHTML = `<div class="no-news"><i class="fas fa-newspaper"></i><p>Nenhuma notícia encontrada</p></div>`;
         return;
     }
-
     noticiasFiltradas.forEach(noticia => {
         const card = criarCardNoticia(noticia);
         grid.appendChild(card);
@@ -684,13 +624,11 @@ async function deletarNoticia(id) {
         background: 'var(--background)',
         color: 'var(--text)'
     });
-
     if (result.isConfirmed) {
         try {
             await fazerRequisicao(`${CONFIG.API_URL}/noticias/${id}`, {
                 method: 'DELETE'
             });
-
             mostrarMensagem('Notícia excluída com sucesso!', 'success');
             await carregarNoticias();
         } catch (error) {
@@ -707,44 +645,28 @@ document.addEventListener('DOMContentLoaded', async () => {
             window.location.replace('./login.html');
             return;
         }
-
-        // Carregar notícias iniciais
         await carregarNoticias();
-
-        // Configurar listener para busca
         const searchInput = document.getElementById('searchInput');
         if (searchInput) {
             searchInput.addEventListener('input', () => {
-                console.log('Busca alterada:', searchInput.value);
                 filtrarEExibirNoticias();
             });
         }
-
-        // Configurar listener para filtro de status
         const statusFilter = document.getElementById('statusFilter');
         if (statusFilter) {
             statusFilter.addEventListener('change', () => {
-                console.log('Status alterado:', statusFilter.value);
                 filtrarEExibirNoticias();
             });
         }
-
-        // Configurar listeners para tabs
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.addEventListener('click', async (e) => {
-                // Remover classe active de todos os botões
                 document.querySelectorAll('.tab-btn').forEach(b =>
                     b.classList.remove('active')
                 );
-
-                // Adicionar classe active ao botão clicado
                 e.target.classList.add('active');
-
-                // Recarregar notícias quando mudar a tab
                 await carregarNoticias();
             });
         });
-
     } catch (error) {
         console.error('Erro na inicialização:', error);
         mostrarMensagem('Erro ao inicializar a página', 'error');

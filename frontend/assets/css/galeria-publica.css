@@ -1,0 +1,158 @@
+/* assets/css/galeria-publica.css (Completo) */
+
+/* Garanta que global.css seja carregado antes no HTML */
+
+.gallery-public-page .container {
+    padding-top: 30px;
+    padding-bottom: 50px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* FILTROS DE CATEGORIA                                                       */
+/* -------------------------------------------------------------------------- */
+.gallery-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 40px;
+}
+.filter-btn {
+    padding: 10px 22px;
+    border: 1px solid var(--color-secondary);
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    border-radius: 25px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+}
+.filter-btn:hover {
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
+}
+.filter-btn.active {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-light);
+}
+
+/* -------------------------------------------------------------------------- */
+/* GRID E ITENS DA GALERIA (ESTILO INSTAGRAM)                                 */
+/* -------------------------------------------------------------------------- */
+
+/* --- CORREÇÃO PRINCIPAL: WRAPPER PARA O GRID --- */
+.gallery-wrapper {
+    max-width: 935px; /* Largura similar à do feed do Instagram em desktop */
+    margin: 0 auto; /* Centraliza o wrapper dentro do .container */
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px; /* Espaçamento padrão do Instagram em desktop */
+}
+
+.photo-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 1 / 1;
+    animation: zoomIn 0.5s ease-out;
+    background-color: var(--color-card);
+    /* border-radius foi removido para um visual mais "afiado" como no Instagram */
+}
+@keyframes zoomIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.photo-item::before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+}
+.photo-item .photo-image,
+.photo-item .photo-item-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+}
+.photo-item img.photo-image {
+    object-fit: cover;
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+/* Overlay e Efeitos de Hover */
+.photo-item-overlay {
+    background: rgba(0, 0, 0, 0.4); /* Overlay mais sutil */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza o conteúdo no overlay */
+    align-items: center;
+    padding: 20px;
+    color: var(--color-white);
+    text-align: center; /* Centraliza o texto */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+.photo-item:hover .photo-image {
+    transform: scale(1.1); /* Efeito de zoom maior */
+    filter: brightness(0.9);
+}
+.photo-item:hover .photo-item-overlay {
+    opacity: 1;
+}
+
+/* Conteúdo do Overlay */
+.photo-item-description {
+    font-size: 1rem;
+    font-weight: 600; /* Mais destaque */
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 8px; /* Espaço para os metadados */
+}
+.photo-item-meta {
+    font-size: 0.85rem;
+    display: flex;
+    gap: 15px; /* Espaço entre ícones de meta */
+}
+.photo-item-meta span {
+    display: inline-flex;
+    align-items: center;
+}
+.photo-item-meta i {
+    margin-right: 5px;
+}
+
+/* As animações de entrada do texto foram removidas para um efeito mais direto no hover */
+
+/* -------------------------------------------------------------------------- */
+/* RESPONSIVIDADE PARA O GRID                                                 */
+/* -------------------------------------------------------------------------- */
+@media (max-width: 992px) {
+    .gallery-wrapper {
+        max-width: 100%; /* Em telas menores, deixa o grid ocupar a largura do .container */
+    }
+    .gallery-grid {
+        gap: 15px;
+    }
+}
+@media (max-width: 768px) {
+    .gallery-grid {
+        gap: 5px;
+    }
+}
+@media (max-width: 480px) {
+    .gallery-grid {
+        gap: 3px;
+    }
+    .photo-item-overlay { display: none; } /* Opcional: Esconde o overlay em telas muito pequenas para um visual mais limpo */
+}

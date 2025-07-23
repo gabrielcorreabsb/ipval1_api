@@ -17,8 +17,7 @@
 /* ESTILOS GERAIS DA PÁGINA DE LITURGIAS PÚBLICAS                             */
 /* -------------------------------------------------------------------------- */
 .liturgy-public-page .container {
-    padding-top: 30px;
-    padding-bottom: 60px;
+    padding-top: 120px;
     opacity: 0; /* Para animação de entrada */
     animation: fadeInPage 0.6s 0.1s ease-out forwards;
 }
@@ -39,6 +38,18 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+/* Em assets/css/liturgias-publicas.css */
+
+/* Aplica o layout de sticky footer apenas em páginas com esta classe no body */
+
+/* Se o espaçamento do header estiver errado SOMENTE nesta página, ajuste aqui: */
+body.sticky-footer-page .main-content {
+    padding-top: 120px; /* Reduz o espaço superior para um valor menor. Ajuste conforme necessário. */
+    /* OU se estiver usando margin-top: */
+    /* margin-top: 40px; */
+}
+
 
 /* Indicador de Carregamento e Mensagem de Erro (já deve ter no global.css) */
 /* .loading-indicator, .error-message { ... } */
@@ -249,25 +260,51 @@
 
 /* Card de Item Individual DENTRO do Modal */
 #modal-liturgy-items-container .liturgy-item-card {
-    background-color: transparent; /* Itens não terão fundo de card, só o conteúdo */
+    background-color: var(--color-white); /* Adicionado para que o conteúdo não seja transparente */
     box-shadow: none;
-    border-left: 4px solid transparent; /* Borda será específica por tipo */
-    padding: 15px 0 15px 15px; /* Padding à esquerda para alinhar com a borda */
-    margin-bottom: 20px; /* Espaçamento maior entre itens */
-    border-bottom: 1px solid #efefef; /* Divisor sutil entre itens */
-    transition: none; /* Sem transição de hover para estes */
+    border-left: 4px solid transparent;
+    padding: 15px 20px; /* Padding geral para o card */
+    margin-bottom: 18px;
+    border-bottom: 1px solid #efefef;
+    position: relative; /* Mantém para posicionamento interno se necessário */
+    display: flex; /* MUDANÇA IMPORTANTE */
+    flex-direction: column; /* Organiza o conteúdo em coluna */
+    gap: 10px; /* Espaço entre os elementos filhos */
 }
+
+/* Container para o conteúdo principal do item (título, hino, referência) */
+.item-main-content {
+    display: flex;
+    justify-content: space-between; /* Empurra o botão "Anotar" para a direita */
+    align-items: center; /* Alinha verticalmente */
+    width: 100%;
+}
+
+/* Estilos para o conteúdo específico (título, hino, etc) dentro do .item-main-content */
+.item-main-content > h3,
+.item-main-content > .hino-content,
+.item-main-content > .reference-text-display,
+.item-main-content > .item-text-content {
+    flex-grow: 1; /* Faz o conteúdo principal ocupar o máximo de espaço */
+    margin-right: 15px; /* Espaço antes do botão de anotar */
+}
+
 #modal-liturgy-items-container .liturgy-item-card:last-child { border-bottom: none; margin-bottom: 0; }
 
 #modal-liturgy-items-container .liturgy-item-card.tipo-titulo_secao {
-    border-left-color: var(--color-primary); padding-left: 0; /* Sem padding se a borda for o alinhador */
-    border-bottom-style: solid; border-bottom-color: var(--color-primary); /* Borda inferior mais forte */
-    margin-top: 30px; margin-bottom: 25px; /* Mais espaço para títulos de seção */
+    padding: 0; /* Títulos de seção não precisam de padding de card */
+    border: none;
+    background-color: transparent;
+    margin-top: 25px;
+    margin-bottom: 20px;
 }
+
 #modal-liturgy-items-container .liturgy-item-card.tipo-titulo_secao:first-child { margin-top: 0; }
 #modal-liturgy-items-container .liturgy-item-card.tipo-titulo_secao h3 {
-    font-family: var(--font-primary); font-size: 1.6rem; color: var(--color-primary);
-    margin-bottom: 0; padding-bottom: 10px; border-bottom: none; text-align: left; font-weight: 600;
+    width: 100%; /* Ocupar toda a largura */
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: 8px;
+    font-size: 1.6rem;
 }
 
 #modal-liturgy-items-container .liturgy-item-card .item-text-content p {
@@ -315,21 +352,22 @@
 .reference-text-display.active::after { transform: rotate(180deg); }
 
 .bible-text-accordion-content {
-    max-height: 0; overflow: hidden;
-    transition: max-height 0.35s ease-out, padding 0.35s ease-out, margin-top 0.35s ease-out;
-    background-color: var(--color-secondary-alpha, rgba(254, 240, 189, 0.2)); /* Usar a variável global */
-    border-radius: 6px; /* Bordas mais suaves */
-    padding: 0 20px; margin-top: 0;
-    /* border-left: 3px solid var(--color-accent); Removido, o fundo já destaca */
-    /* margin-left, margin-right removidos, padding interno cuidará disso */
+    max-height: 0;
+    overflow: hidden;
+    /* Transição apenas para max-height. Outras propriedades podem causar "saltos". */
+    transition: max-height 0.4s ease-in-out;
+    background-color: var(--color-secondary-alpha, rgba(254, 240, 189, 0.15));
+    border-radius: 6px;
+    margin-top: 0; /* Começa sem margem */
+    padding: 0 20px; /* Padding lateral é aplicado, mas padding vertical só quando aberto */
 }
+
 .bible-text-accordion-content.open {
-    max-height: 600px; padding-top: 15px; padding-bottom: 15px; margin-top: 10px;
-}
-.bible-text-accordion-content .verse-text-display .verse { margin-bottom: 0.8em; line-height: 1.7; color: var(--color-text); }
-.bible-text-accordion-content .verse-text-display .verse sup {
-    font-family: var(--font-secondary); font-size: 0.7em; font-weight: 600;
-    color: var(--color-primary); margin-right: 0.3em; vertical-align: super;
+    max-height: 1000px; /* Um valor alto o suficiente para caber todo o conteúdo */
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-top: 10px; /* Adiciona margem SÓ quando aberto */
+    border-top: 1px solid rgba(0,0,0,0.05); /* Divisor sutil */
 }
 
 /* Botão para fechar texto bíblico EMBUTIDO (dentro do modal da liturgia) */
@@ -350,82 +388,89 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Estilos para Anotações nos Itens da Liturgia */
-.liturgy-item-card { /* O card de item dentro do modal */
-    position: relative; /* Para posicionar o botão de anotar se necessário */
-    padding-bottom: 40px; /* Espaço para o botão de anotar e textarea */
-}
 
 .btn-toggle-annotation {
-    position: absolute;
-    bottom: 10px;
-    right: 15px;
     background-color: transparent;
     color: var(--color-text-light);
-    border: 1px solid var(--color-text-light);
-    padding: 4px 8px;
-    font-size: 0.75rem;
+    border: 1px solid #ccc; /* Borda sutil */
+    padding: 5px 10px;
+    font-size: 0.8rem;
     border-radius: 5px;
     cursor: pointer;
     transition: all var(--transition-speed) ease;
+    flex-shrink: 0; /* Impede que o botão encolha */
+    align-self: flex-start; /* Alinha o botão no topo do seu container flex */
 }
 .btn-toggle-annotation:hover {
     background-color: var(--color-primary);
     color: var(--color-white);
     border-color: var(--color-primary);
 }
-.btn-toggle-annotation i { margin-right: 4px; }
+.btn-toggle-annotation i { margin-right: 5px; }
 
+/* Área de Texto para Anotação */
 .item-annotation-textarea {
-    width: calc(100% - 0px); /* Ajusta para compensar padding do pai se houver */
-    min-height: 60px;
-    padding: 8px;
-    border: 1px solid var(--color-secondary);
+    width: 100%; /* Ocupa a largura total do card */
+    min-height: 70px;
+    padding: 10px;
+    border: 1px solid var(--color-secondary); /* Borda bege para destacar */
     border-radius: 5px;
-    margin-top: 10px;
     font-family: var(--font-secondary);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     resize: vertical;
-    background-color: var(--color-white);
+    background-color: #fdfdfd; /* Fundo levemente diferente */
     color: var(--color-text);
     display: none; /* Começa escondido */
+    animation: fadeInAnnotation 0.3s ease-out; /* Animação de entrada */
 }
 .item-annotation-textarea.visible {
     display: block;
 }
+@keyframes fadeInAnnotation {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
 /* Estilos para Marcação de Versículos */
-.verse-text-display .verse { /* O <p> de cada versículo */
-    cursor: pointer;
-    padding: 5px 3px; /* Pequeno padding para área de clique */
-    border-radius: 3px;
-    transition: background-color 0.2s ease;
-    position: relative; /* Para o ícone de anotação do versículo */
-}
-.verse-text-display .verse:hover {
-    background-color: rgba(254, 240, 189, 0.3); /* --color-secondary com alpha */
-}
-.verse-text-display .verse.marked {
-    background-color: var(--color-secondary-alpha, rgba(254, 240, 189, 0.5)) !important; /* Fundo bege para marcado */
-    font-weight: 500; /* Leve destaque no texto */
-}
-.verse-text-display .verse.marked sup {
-    color: var(--color-accent) !important; /* Destaque no número do versículo */
+/* Novo wrapper para cada par de versículo + anotação */
+.verse-wrapper {
+    margin-bottom: 10px; /* Espaço entre cada versículo */
 }
 
-/* (Opcional) Pequeno campo de anotação para versículo marcado */
+.verse-text-display .verse {
+    cursor: pointer;
+    padding: 6px 4px; /* Aumenta um pouco a área de clique */
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    position: relative;
+    line-height: 1.6;
+}
+.verse-text-display .verse:hover {
+    background-color: rgba(254, 240, 189, 0.4);
+}
+.verse-text-display .verse.marked {
+    background-color: var(--color-secondary-alpha, rgba(254, 240, 189, 0.6)) !important;
+    font-weight: 500;
+}
+
+
+/* Área de anotação do versículo */
 .verse-annotation-input {
-    display: block;
-    width: 95%;
-    margin-left: 5%; /* Pequeno recuo */
-    margin-top: 5px;
-    margin-bottom: 10px;
-    padding: 5px;
-    font-size: 0.85rem;
+    display: none; /* Começa escondido, JS controla */
+    width: 98%; /* Um pouco menor que 100% para recuo */
+    margin-left: 2%; /* Recuo */
+    margin-top: 8px; /* Espaço entre o versículo e a caixa de anotação */
+    padding: 8px;
+    font-size: 0.9rem;
     border: 1px dashed var(--color-primary);
     border-radius: 4px;
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(255,255,255,0.9);
+    resize: vertical;
+    min-height: 50px;
+    animation: fadeInAnnotation 0.3s; /* Mesma animação do textarea de item */
 }
+
+
 
 
 /* Botão de Compilar e Compartilhar */
@@ -479,17 +524,148 @@
 /* -------------------------------------------------------------------------- */
 /* RESPONSIVIDADE                                                             */
 /* -------------------------------------------------------------------------- */
-@media (max-width: 768px) {
-    .liturgy-public-page .page-title-section .page-title h1 { font-size: 2rem; }
-    .month-group-header { font-size: 1.6rem; }
-    .liturgy-list-entry { flex-direction: column; align-items: flex-start; gap: 10px; }
-    .liturgy-list-entry .btn-view-liturgy { align-self: flex-start; margin-top: 5px;}
+/* --- Telas Médias (Tablets) - A partir de 992px para baixo --- */
+@media (max-width: 992px) {
+    .liturgy-public-page .page-title-section .page-title h1 {
+        font-size: 2.2rem; /* Título da página um pouco menor */
+    }
+    .month-group-header {
+        font-size: 1.7rem; /* Título do mês um pouco menor */
+    }
+    .modal-liturgy-detail-content {
+        width: 95%; /* Modal um pouco mais largo em tablets */
+        max-width: 700px;
+    }
+}
 
-    .modal-liturgy-detail-content { width: 100%; height: 100%; max-height: 100vh; border-radius: 0; }
-    .close-liturgy-detail-modal { top: 12px; right: 12px; font-size: 1.8rem; background: rgba(255,255,255,0.8); border-radius: 50%; padding: 4px 7px; }
-    .liturgy-modal-header { padding: 15px 20px; }
-    .liturgy-modal-header h1#modal-liturgy-title { font-size: 1.5rem; }
-    .liturgy-modal-items-section { padding: 10px 20px 20px 20px; }
-    #modal-liturgy-items-container .liturgy-item-card.tipo-titulo_secao h3 { font-size: 1.4rem; } /* Ajustado */
-    .bible-text-accordion-content.open { padding-left: 15px; padding-right: 15px; }
+
+/* --- Telas Pequenas (Tablets em Retrato e Celulares) - A partir de 768px para baixo --- */
+@media (max-width: 768px) {
+    .liturgy-public-page .container {
+        padding-top: 20px;
+        padding-bottom: 40px;
+    }
+    .liturgy-public-page .page-title-section .page-title h1 {
+        font-size: 2rem; /* Título principal menor */
+    }
+    .liturgy-public-page .page-title p {
+        font-size: 1rem; /* Subtítulo menor */
+    }
+
+    /* Controles de Mês/Ano */
+    .month-year-selector {
+        flex-direction: column; /* Empilha os seletores */
+        gap: 12px;
+    }
+    .month-year-selector select,
+    .month-year-selector button {
+        width: 100%; /* Ocupam largura total */
+        text-align: center;
+    }
+
+    /* Lista de Liturgias */
+    .month-group-header {
+        font-size: 1.6rem;
+    }
+    .liturgy-list-entry {
+        flex-direction: column;   /* Empilha o conteúdo do item da lista */
+        align-items: flex-start; /* Alinha tudo à esquerda */
+        gap: 12px;               /* Aumenta o espaço entre título e botão */
+    }
+    .liturgy-list-entry .btn-view-liturgy {
+        align-self: flex-start; /* Garante que o botão fique alinhado à esquerda */
+        margin-top: 5px;
+    }
+    .liturgy-list-entry .liturgy-item-info h3 {
+        font-size: 1.1rem; /* Título da liturgia na lista um pouco menor */
+    }
+
+    /* Modal de Detalhes da Liturgia */
+    .modal-liturgy-detail-content {
+        width: 100%;             /* Ocupa toda a largura da tela */
+        height: 100%;            /* Ocupa toda a altura da tela */
+        max-height: 100vh;
+        border-radius: 0;        /* Remove bordas arredondadas em tela cheia */
+        transform: none; /* Remove animação de entrada para uma transição mais simples */
+    }
+    .modal-liturgy-detail.active .modal-liturgy-detail-content {
+        transform: none; /* Garante que não haja transformação */
+    }
+
+    .close-liturgy-detail-modal {
+        top: 12px;
+        right: 12px;
+        font-size: 1.8rem;
+        background: rgba(255, 255, 255, 0.85); /* Fundo para melhor visibilidade */
+        border-radius: 50%;
+        width: 36px;  /* Tamanho fixo para o círculo */
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0; /* Zera padding para centralizar o 'x' */
+    }
+
+    .liturgy-modal-header {
+        padding: 15px 20px;
+    }
+    .liturgy-modal-header h1#modal-liturgy-title {
+        font-size: 1.5rem;
+    }
+
+    .liturgy-modal-items-section {
+        padding: 15px 20px 20px 20px; /* Reduz padding lateral */
+    }
+
+    #modal-liturgy-items-container .liturgy-item-card {
+        padding: 12px 15px;
+    }
+
+    #modal-liturgy-items-container .liturgy-item-card.tipo-titulo_secao h3 {
+        font-size: 1.4rem;
+    }
+
+    .bible-version-selector-modal {
+        flex-direction: column; /* Empilha label e select */
+        align-items: stretch;   /* Fazem ocupar largura total */
+        gap: 8px;
+    }
+
+    .bible-text-accordion-content.open {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .liturgy-modal-footer-actions {
+        padding: 15px;
+        flex-direction: column; /* Empilha os botões de ação no rodapé do modal */
+        gap: 10px;
+    }
+    .liturgy-modal-footer-actions button {
+        width: 100%; /* Fazem os botões ocuparem a largura total */
+        justify-content: center; /* Centraliza o conteúdo (ícone e texto) */
+    }
+}
+
+/* --- Telas Muito Pequenas (Celulares) - A partir de 480px para baixo --- */
+@media (max-width: 480px) {
+    .liturgy-public-page .page-title h1 {
+        font-size: 1.8rem;
+    }
+    .month-group-header {
+        font-size: 1.4rem;
+    }
+
+    .liturgy-modal-header h1#modal-liturgy-title {
+        font-size: 1.3rem;
+    }
+    .liturgy-modal-header .liturgy-modal-meta {
+        font-size: 0.9rem;
+    }
+    #modal-liturgy-items-container .liturgy-item-card.tipo-titulo_secao h3 {
+        font-size: 1.2rem;
+    }
+    .reference-text-display {
+        font-size: 1rem;
+    }
 }

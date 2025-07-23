@@ -16,13 +16,18 @@
         f.parentNode.insertBefore(j, f);
     })(window, document, 'script', 'dataLayer', 'GTM-5VWQKZS4');</script>
     <!-- End Google Tag Manager -->
-    <link rel="canonical" href="https://ipv1.org.br/pages/liturgia.html">
-    <meta name="keywords" content="liturgia dominical, estudo bíblico, boletim IPV1, ordem de culto, igreja presbiteriana valparaíso">
 
-    <meta property="og:title" content="Liturgias e Estudos | IPV1">
-    <meta property="og:description" content="Acompanhe a liturgia do culto e os estudos da escola bíblica dominical da Igreja Presbiteriana de Valparaíso 1.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Galeria de Fotos | Igreja Presbiteriana de Valparaíso 1 (IPV1)</title>
+    <link rel="canonical" href="https://ipv1.org.br/pages/galeria.html">
+    <meta name="keywords" content="galeria de fotos igreja, fotos de eventos religiosos, fotos de cultos, comunidade IPV1, igreja presbiteriana valparaíso">
+
+    <meta property="og:title" content="Galeria de Fotos | IPV1">
+    <meta property="og:description" content="Veja os momentos especiais da nossa comunidade. Fotos dos cultos, eventos e atividades da Igreja Presbiteriana de Valparaíso 1.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ipv1.org.br/pages/liturgia.html">
+    <meta property="og:url" content="https://ipv1.org.br/pages/galeria.html">
     <meta property="og:image" content="https://ipv1.org.br/assets/imgs/logo.png">
     <meta property="og:site_name" content="IPV1">
     <meta property="og:locale" content="pt_BR">
@@ -30,10 +35,10 @@
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
-            "@type": "CollectionPage",
-            "name": "Liturgias e Estudos - IPV1",
-            "description": "Página com a coleção de liturgias do culto e estudos da escola bíblica dominical da Igreja Presbiteriana de Valparaíso 1.",
-            "url": "https://ipv1.org.br/pages/liturgia.html",
+            "@type": "ImageGallery",
+            "name": "Galeria de Fotos - IPV1",
+            "description": "Galeria de fotos com registros dos cultos, eventos e atividades da comunidade da Igreja Presbiteriana de Valparaíso 1.",
+            "url": "https://ipv1.org.br/pages/galeria.html",
             "publisher": {
                 "@type": "Organization",
                 "name": "Igreja Presbiteriana de Valparaíso 1",
@@ -61,19 +66,16 @@
             },{
                 "@type": "ListItem",
                 "position": 2,
-                "name": "Liturgias e Estudos",
-                "item": "https://ipv1.org.br/pages/liturgia.html"
+                "name": "Mídias Online",
+                "item": "https://ipv1.org.br/pages/midia.html"
+            },{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Galeria de Fotos",
+                "item": "https://ipv1.org.br/pages/galeria.html"
             }]
         }
     </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Liturgias e Estudos - IPV1</title>
-    <meta name="description"
-          content="Acompanhe a liturgia do culto e os estudos da escola bíblica dominical da Igreja Presbiteriana de Valparaíso 1.">
-
-
 
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap"
           rel="stylesheet">
@@ -86,7 +88,7 @@
     <!-- Seus CSS Globais -->
     <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/index.css">
-    <link rel="stylesheet" href="../assets/css/visualizar-liturgia.css">
+    <link rel="stylesheet" href="../assets/css/galeria-publica.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -97,8 +99,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png"/>
     <link rel="manifest" href="../assets/favicon/site.webmanifest"/>
 </head>
-<body class="sticky-footer-page">
-
+<body>
 <!-- Google Tag Manager (noscript) -->
 <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VWQKZS4"
@@ -165,78 +166,36 @@
     </div>
 </header>
 
-<main class="main-content">
-    <div class="liturgy-public-page .container">
+<main class="main-content gallery-public-page">
+    <div class="galeria-container">
         <div class="page-title">
-            <h1>Liturgias e Estudos do Mês</h1>
-            <p>Selecione o mês e ano para ver as liturgias/estudos.</p>
+            <h1>Galeria de Fotos</h1>
+            <p>Relembre os momentos especiais da nossa comunidade.</p>
         </div>
 
 
-        <div class="liturgy-controls">
-            <div class="month-year-selector">
-                <label for="select-month">Mês:</label>
-                <select id="select-month"></select>
-                <label for="select-year">Ano:</label>
-                <select id="select-year"></select>
-                <button id="btn-load-month-liturgies" class="btn btn-primary">Carregar Liturgias/Estudos</button>
-            </div>
+        <!-- Filtros de Categoria -->
+        <div id="gallery-filters" class="gallery-filters">
+            <!-- Botões de filtro serão inseridos aqui pelo JS -->
         </div>
 
-        <div id="public-liturgy-loading" class="loading-indicator" style="display: none;">
-            <p>Carregando liturgias/estudos do mês...</p>
+        <div id="gallery-loading" class="loading-indicator">
+            <p>Carregando fotos...</p>
         </div>
 
-        <section id="liturgies-for-selected-month-container">
-            <!-- As liturgias do mês selecionado serão listadas aqui -->
-            <!-- Cada liturgia será um card/link para abrir o modal de detalhe -->
-        </section>
+        <!-- NOVO WRAPPER AQUI -->
+        <div class="gallery-wrapper">
+            <section id="gallery-grid-public" class="gallery-grid">
+                <!-- As fotos serão inseridas aqui pelo JS -->
+            </section>
+        </div>
 
-        <div id="public-liturgy-error" class="error-message" style="display: none;">
-            <p>Não foi possível carregar as liturgias/estudos.</p>
+        <div id="gallery-error" class="error-message" style="display: none;">
+            <p>Não foi possível carregar as fotos no momento.</p>
         </div>
     </div>
 </main>
 
-<!-- MODAL DE DETALHE DA LITURGIA (como antes, mas com seletor de versão) -->
-<div id="liturgyDetailModal" class="modal-liturgy-detail">
-    <div class="modal-liturgy-detail-content">
-        <span class="close-liturgy-detail-modal">×</span>
-        <header class="liturgy-modal-header">
-            <h1 id="modal-liturgy-title"></h1>
-            <div class="liturgy-modal-meta-container">
-                <p class="liturgy-modal-meta" id="modal-liturgy-date"></p>
-                <p class="liturgy-modal-meta" id="modal-liturgy-description"></p>
-            </div>
-            <div class="bible-version-selector-modal">
-                <label for="modal-bible-version-select">Versão da Bíblia:</label>
-                <select id="modal-bible-version-select">
-                    <!-- Opções de versão preenchidas por JS -->
-                </select>
-            </div>
-        </header>
-        <section class="liturgy-modal-items-section">
-            <div id="modal-liturgy-items-container">
-                <!-- Itens da liturgia específica -->
-            </div>
-        </section>
-
-        <div class="liturgy-modal-footer-actions">
-            <button id="btn-compile-share-whatsapp" class="btn btn-whatsapp-share">
-                <i class="fab fa-whatsapp"></i>Compartilhar Anotações via Whatsapp
-            </button>
-            <button id="btn-download-liturgy-pdf" class="btn btn-pdf-download"> <!-- NOVA CLASSE -->
-                <i class="fas fa-file-pdf"></i> Baixar como PDF
-            </button>
-        </div>
-        <!-- Área para texto bíblico embutido (como antes) -->
-        <div id="modal-item-verse-text-container" class="verse-text-modal-embed" style="display:none;">
-            <h4 id="modal-item-verse-title"></h4>
-            <div id="modal-item-verse-body"></div>
-            <button id="close-verse-embed-btn" class="btn btn-secondary-outline">Fechar Texto</button>
-        </div>
-    </div>
-</div>
 
 <footer class="footer">
     <div class="container">
@@ -260,15 +219,9 @@
     </div>
 </footer>
 
-<!-- Botão Voltar ao Topo -->
-<a href="#" class="back-to-top" id="backToTopBtn">
-    <i class="fas fa-arrow-up"></i>
-</a>
-
 <script src="../assets/js/config.js"></script>
 <script src="../assets/js/auth.js"></script>
-<script src="../assets/js/liturgia_api.js"></script>
-<script src="../assets/js/visualizar-liturgia.js"></script>
+<script src="../assets/js/galeria-publica.js"></script>
 <script src="../assets/js/menu_site.js"></script>
 <script src="../assets/js/footer.js"></script>
 <script src="../assets/js/obra.js"></script>

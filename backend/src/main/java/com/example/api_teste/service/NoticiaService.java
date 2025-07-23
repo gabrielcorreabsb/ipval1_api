@@ -32,60 +32,56 @@ public class NoticiaService {
     @Transactional
     public NoticiaDTO criar(Noticia noticia, MultipartFile imagem, Integer usuarioId) {
         try {
-            // Busca o usuário
             Usuario autor = usuarioRepository.findById(usuarioId)
                     .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
-            // Faz o upload da imagem para o Firebase
-            String imageUrl = firebaseStorageService.uploadImage(imagem);
+            // --- CORREÇÃO AQUI: Passando os parâmetros de pasta ---
+            String imageUrl = firebaseStorageService.uploadImage(
+                    imagem,
+                    "noticias", // Pasta principal
+                    "geral"     // Subpasta para notícias (pode ser "default", "publicacoes", etc.)
+            );
 
-            // Configura a notícia
             noticia.setAutor(autor);
             noticia.setImagemUrl(imageUrl);
             noticia.setDataCriacao(LocalDateTime.now());
-            noticia.setAprovada(false); // por padrão, notícia não está aprovada
+            noticia.setAprovada(false);
 
-            // Salva a notícia
             Noticia noticiaSalva = noticiaRepository.save(noticia);
-
             return new NoticiaDTO(noticiaSalva);
 
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao criar notícia: " + e.getMessage());
+            throw new RuntimeException("Erro ao criar notícia: " + e.getMessage(), e); // Adicionado 'e' para stack trace
         }
     }
 
+    @Transactional
     public NoticiaDTO atualizarNoticia(Integer id, String titulo, String conteudo, MultipartFile imagem) {
-        // Buscar a notícia existente
         Noticia noticia = noticiaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Notícia não encontrada"));
 
-        // Atualizar os campos básicos
         noticia.setTitulo(titulo);
         noticia.setConteudo(conteudo);
 
-        // Se uma nova imagem foi enviada
         if (imagem != null && !imagem.isEmpty()) {
             try {
-                // Se já existe uma imagem antiga, deletar do Firebase
                 if (noticia.getImagemUrl() != null && !noticia.getImagemUrl().isEmpty()) {
                     firebaseStorageService.deleteFile(noticia.getImagemUrl());
                 }
 
-                // Fazer upload da nova imagem
-                String imageUrl = firebaseStorageService.uploadImage(imagem);
+                // --- CORREÇÃO AQUI: Passando os parâmetros de pasta ---
+                String imageUrl = firebaseStorageService.uploadImage(
+                        imagem,
+                        "noticias", // Pasta principal
+                        "geral"     // Subpasta para notícias
+                );
                 noticia.setImagemUrl(imageUrl);
             } catch (Exception e) {
-                throw new RuntimeException("Erro ao processar imagem: " + e.getMessage());
+                throw new RuntimeException("Erro ao processar imagem: " + e.getMessage(), e); // Adicionado 'e' para stack trace
             }
         }
 
-
-
-        // Salvar as alterações
         Noticia noticiaAtualizada = noticiaRepository.save(noticia);
-
-        // Converter para DTO e retornar
         return new NoticiaDTO(noticiaAtualizada);
     }
 

@@ -16,13 +16,19 @@
         f.parentNode.insertBefore(j, f);
     })(window, document, 'script', 'dataLayer', 'GTM-5VWQKZS4');</script>
     <!-- End Google Tag Manager -->
-    <link rel="canonical" href="https://ipv1.org.br/pages/liturgia.html">
-    <meta name="keywords" content="liturgia dominical, estudo bíblico, boletim IPV1, ordem de culto, igreja presbiteriana valparaíso">
 
-    <meta property="og:title" content="Liturgias e Estudos | IPV1">
-    <meta property="og:description" content="Acompanhe a liturgia do culto e os estudos da escola bíblica dominical da Igreja Presbiteriana de Valparaíso 1.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bíblia Sagrada Online e Plano de Leitura | IPV1</title>
+    <meta name="description" content="Leia a Bíblia Sagrada online em diversas versões. Acompanhe nosso plano de leitura bíblica anual (Desafio 2025) e fortaleça sua fé com a Palavra de Deus.">
+    <link rel="canonical" href="https://ipv1.org.br/pages/biblia.html">
+    <meta name="keywords" content="bíblia online, leitura bíblica, plano de leitura da bíblia, bíblia sagrada, NVI, Almeida, estudo bíblico online, IPV1">
+
+    <meta property="og:title" content="Bíblia Sagrada Online e Plano de Leitura | IPV1">
+    <meta property="og:description" content="Acesse a Bíblia completa em várias versões e participe do nosso desafio de leitura anual. Uma ferramenta para sua edificação.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ipv1.org.br/pages/liturgia.html">
+    <meta property="og:url" content="https://ipv1.org.br/pages/biblia.html">
     <meta property="og:image" content="https://ipv1.org.br/assets/imgs/logo.png">
     <meta property="og:site_name" content="IPV1">
     <meta property="og:locale" content="pt_BR">
@@ -30,10 +36,18 @@
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
-            "@type": "CollectionPage",
-            "name": "Liturgias e Estudos - IPV1",
-            "description": "Página com a coleção de liturgias do culto e estudos da escola bíblica dominical da Igreja Presbiteriana de Valparaíso 1.",
-            "url": "https://ipv1.org.br/pages/liturgia.html",
+            "@type": "WebPage",
+            "name": "Bíblia Online e Desafio de Leitura",
+            "description": "Ferramenta online para leitura da Bíblia Sagrada em português, com múltiplas versões e um plano de leitura anual para a comunidade da IPV1.",
+            "url": "https://ipv1.org.br/pages/biblia.html",
+            "mainEntity": {
+                "@type": "Book",
+                "name": "Bíblia Sagrada",
+                "alternativeHeadline": "A Palavra de Deus",
+                "description": "O livro sagrado do Cristianismo, contendo o Antigo e o Novo Testamento.",
+                "inLanguage": "pt-BR",
+                "bookFormat": "https://schema.org/EBook"
+            },
             "publisher": {
                 "@type": "Organization",
                 "name": "Igreja Presbiteriana de Valparaíso 1",
@@ -41,11 +55,6 @@
                     "@type": "ImageObject",
                     "url": "https://ipv1.org.br/assets/imgs/logo.png"
                 }
-            },
-            "isPartOf": {
-                "@type": "WebSite",
-                "url": "https://ipv1.org.br/",
-                "name": "Igreja Presbiteriana de Valparaíso 1"
             }
         }
     </script>
@@ -61,19 +70,16 @@
             },{
                 "@type": "ListItem",
                 "position": 2,
-                "name": "Liturgias e Estudos",
+                "name": "Liturgia e Estudos",
                 "item": "https://ipv1.org.br/pages/liturgia.html"
+            },{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Leitura Bíblica",
+                "item": "https://ipv1.org.br/pages/biblia.html"
             }]
         }
     </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Liturgias e Estudos - IPV1</title>
-    <meta name="description"
-          content="Acompanhe a liturgia do culto e os estudos da escola bíblica dominical da Igreja Presbiteriana de Valparaíso 1.">
-
-
 
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap"
           rel="stylesheet">
@@ -86,7 +92,7 @@
     <!-- Seus CSS Globais -->
     <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/index.css">
-    <link rel="stylesheet" href="../assets/css/visualizar-liturgia.css">
+    <link rel="stylesheet" href="../assets/css/biblia.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -97,8 +103,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png"/>
     <link rel="manifest" href="../assets/favicon/site.webmanifest"/>
 </head>
-<body class="sticky-footer-page">
-
+<body>
 <!-- Google Tag Manager (noscript) -->
 <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VWQKZS4"
@@ -165,78 +170,52 @@
     </div>
 </header>
 
-<main class="main-content">
-    <div class="liturgy-public-page .container">
-        <div class="page-title">
-            <h1>Liturgias e Estudos do Mês</h1>
-            <p>Selecione o mês e ano para ver as liturgias/estudos.</p>
-        </div>
-
-
-        <div class="liturgy-controls">
-            <div class="month-year-selector">
-                <label for="select-month">Mês:</label>
-                <select id="select-month"></select>
-                <label for="select-year">Ano:</label>
-                <select id="select-year"></select>
-                <button id="btn-load-month-liturgies" class="btn btn-primary">Carregar Liturgias/Estudos</button>
+<main class="main-content bible-page">
+    <div class="container">
+            <div class="page-title">
+                <h1>Bíblia Sagrada</h1>
+                <p>Leia a Palavra de Deus e acompanhe nosso desafio de leitura anual.</p>
             </div>
+        </header>
+
+        <!-- Abas de Navegação -->
+        <div class="tabs-container">
+            <button class="tab-btn active" data-tab="leitura-livre">Bíblia Online</button>
+            <button class="tab-btn" data-tab="desafio-leitura">Desafio de Leitura 2025</button>
         </div>
 
-        <div id="public-liturgy-loading" class="loading-indicator" style="display: none;">
-            <p>Carregando liturgias/estudos do mês...</p>
-        </div>
+        <!-- Conteúdo das Abas -->
+        <div class="tab-content-wrapper">
+            <!-- Aba 1: Leitura Livre da Bíblia -->
+            <div id="leitura-livre" class="tab-content active">
+                <div class="bible-controls">
+                    <select id="bible-version-select" class="control-select"></select>
+                    <select id="bible-book-select" class="control-select"></select>
+                    <select id="bible-chapter-select" class="control-select"></select>
+                </div>
+                <div id="bible-text-container" class="bible-text-display">
+                    <p class="placeholder-text">Selecione o livro e o capítulo para iniciar a leitura.</p>
+                </div>
+            </div>
 
-        <section id="liturgies-for-selected-month-container">
-            <!-- As liturgias do mês selecionado serão listadas aqui -->
-            <!-- Cada liturgia será um card/link para abrir o modal de detalhe -->
-        </section>
-
-        <div id="public-liturgy-error" class="error-message" style="display: none;">
-            <p>Não foi possível carregar as liturgias/estudos.</p>
+            <!-- Aba 2: Desafio de Leitura -->
+            <div id="desafio-leitura" class="tab-content">
+                <div class="challenge-header">
+                    <h2 id="challenge-date"></h2>
+                    <h3 id="challenge-reading-ref"></h3>
+                    <div class="challenge-version-selector">
+                        <label for="challenge-version-select">Versão:</label>
+                        <select id="challenge-version-select" class="control-select"></select>
+                    </div>
+                </div>
+                <div id="challenge-text-container" class="bible-text-display">
+                    <div class="loading-indicator"><p>Carregando leitura do desafio...</p></div>
+                </div>
+            </div>
         </div>
     </div>
 </main>
 
-<!-- MODAL DE DETALHE DA LITURGIA (como antes, mas com seletor de versão) -->
-<div id="liturgyDetailModal" class="modal-liturgy-detail">
-    <div class="modal-liturgy-detail-content">
-        <span class="close-liturgy-detail-modal">×</span>
-        <header class="liturgy-modal-header">
-            <h1 id="modal-liturgy-title"></h1>
-            <div class="liturgy-modal-meta-container">
-                <p class="liturgy-modal-meta" id="modal-liturgy-date"></p>
-                <p class="liturgy-modal-meta" id="modal-liturgy-description"></p>
-            </div>
-            <div class="bible-version-selector-modal">
-                <label for="modal-bible-version-select">Versão da Bíblia:</label>
-                <select id="modal-bible-version-select">
-                    <!-- Opções de versão preenchidas por JS -->
-                </select>
-            </div>
-        </header>
-        <section class="liturgy-modal-items-section">
-            <div id="modal-liturgy-items-container">
-                <!-- Itens da liturgia específica -->
-            </div>
-        </section>
-
-        <div class="liturgy-modal-footer-actions">
-            <button id="btn-compile-share-whatsapp" class="btn btn-whatsapp-share">
-                <i class="fab fa-whatsapp"></i>Compartilhar Anotações via Whatsapp
-            </button>
-            <button id="btn-download-liturgy-pdf" class="btn btn-pdf-download"> <!-- NOVA CLASSE -->
-                <i class="fas fa-file-pdf"></i> Baixar como PDF
-            </button>
-        </div>
-        <!-- Área para texto bíblico embutido (como antes) -->
-        <div id="modal-item-verse-text-container" class="verse-text-modal-embed" style="display:none;">
-            <h4 id="modal-item-verse-title"></h4>
-            <div id="modal-item-verse-body"></div>
-            <button id="close-verse-embed-btn" class="btn btn-secondary-outline">Fechar Texto</button>
-        </div>
-    </div>
-</div>
 
 <footer class="footer">
     <div class="container">
@@ -260,15 +239,10 @@
     </div>
 </footer>
 
-<!-- Botão Voltar ao Topo -->
-<a href="#" class="back-to-top" id="backToTopBtn">
-    <i class="fas fa-arrow-up"></i>
-</a>
-
 <script src="../assets/js/config.js"></script>
 <script src="../assets/js/auth.js"></script>
-<script src="../assets/js/liturgia_api.js"></script>
-<script src="../assets/js/visualizar-liturgia.js"></script>
+<script src="../assets/js/plano-leitura.js"></script>
+<script src="../assets/js/biblia.js"></script>
 <script src="../assets/js/menu_site.js"></script>
 <script src="../assets/js/footer.js"></script>
 <script src="../assets/js/obra.js"></script>

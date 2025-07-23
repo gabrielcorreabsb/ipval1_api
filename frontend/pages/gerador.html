@@ -2,11 +2,19 @@
 <html lang="pt-BR">
 <head>
     <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-5VWQKZS4');</script>
+    <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-5VWQKZS4');</script>
     <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,8 +22,10 @@
     <!-- Meta Tags Básicas -->
     <title>Gerador de Atas UPH e SAF | Igreja Presbiteriana do Valparaíso 1</title>
     <link rel="canonical" href="https://ipv1.org.br/pages/gerador.html">
-    <meta name="description" content="Ferramenta online para geração de atas de reuniões da UPH (União Presbiteriana de Homens) e SAF (Sociedade Auxiliadora Feminina) da IPV1. Sistema completo com campos para registro de membros, devocional e pautas.">
-    <meta name="keywords" content="gerador atas igreja, atas UPH, atas SAF, documentos igreja presbiteriana, reuniões ipv1, ferramenta secretaria igreja">
+    <meta name="description"
+          content="Ferramenta online para geração de atas de reuniões da UPH (União Presbiteriana de Homens) e SAF (Sociedade Auxiliadora Feminina) da IPV1. Sistema completo com campos para registro de membros, devocional e pautas.">
+    <meta name="keywords"
+          content="gerador atas igreja, atas UPH, atas SAF, documentos igreja presbiteriana, reuniões ipv1, ferramenta secretaria igreja">
 
     <!-- Open Graph existente - não alterado -->
     <meta property="og:title" content="Igreja Presbiteriana do Valparaíso 1">
@@ -133,23 +143,26 @@
         }
     </script>
 
-    <link rel="icon" type="image/png" href="/assets/favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg" />
-    <link rel="shortcut icon" href="/assets/favicon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png" />
-    <link rel="manifest" href="/assets/favicon/site.webmanifest" />
+    <link rel="icon" type="image/png" href="/assets/favicon/favicon-96x96.png" sizes="96x96"/>
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg"/>
+    <link rel="shortcut icon" href="/assets/favicon/favicon.ico"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png"/>
+    <link rel="manifest" href="/assets/favicon/site.webmanifest"/>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;500&display=swap"
+          rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/index.css">
     <link rel="stylesheet" href="../assets/css/gerador.css">
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VWQKZS4"
-                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VWQKZS4"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
 <!-- End Google Tag Manager (noscript) -->
 <!-- Header -->
 <header class="header">
@@ -157,7 +170,7 @@
         <div class="logo">
             <a href="../index.html">
                 <img src="../assets/imgs/logo.png" alt="Logo Igreja Presbiteriana">
-            </a>        </div>
+            </a></div>
         <nav class="main-nav">
             <button class="mobile-menu-btn">
                 <span class="hamburger"></span>
@@ -172,9 +185,22 @@
                     </ul>
                 </li>
                 <li><a href="../pages/agenda.html">Agenda</a></li>
-                <li><a href="../pages/midia.html">Midia</a></li>
                 <li><a href="../pages/contribua.html">Contribua</a></li>
                 <li><a href="../pages/contato.html">Contato</a></li>
+                <li class="menu-item-has-children">
+                    <a href="#">Liturgia e Estudos<i class="fas fa-chevron-down dropdown-icon"></i></a>
+                    <ul class="sub-menu">
+                        <li><a href="../pages/liturgia.html">Liturgia/Estudos Online</a></li>
+                        <li><a href="../pages/biblia.html">Leitura Bíblica</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item-has-children">
+                    <a href="#">Midia<i class="fas fa-chevron-down dropdown-icon"></i></a>
+                    <ul class="sub-menu">
+                        <li><a href="../pages/midia.html">Midias Onlines</a></li>
+                        <li><a href="../pages/galeria.html">Galeria de Fotos</a></li>
+                    </ul>
+                </li>
                 <li class="menu-item-has-children">
                     <a href="#">Recursos<i class="fas fa-chevron-down dropdown-icon"></i></a>
                     <ul class="sub-menu">
@@ -250,7 +276,8 @@
                 </div>
 
                 <div class="form-group full-width">
-                    <label for="outrosMembros">Membros Presentes (além da diretoria) <span class="required">*</span></label>
+                    <label for="outrosMembros">Membros Presentes (além da diretoria) <span
+                            class="required">*</span></label>
                     <textarea id="outrosMembros" rows="5" placeholder="Digite um nome por linha" required></textarea>
                 </div>
 
@@ -260,7 +287,8 @@
                 </div>
 
                 <div class="form-group full-width">
-                    <label for="responsavelExposicao">Responsável pela Exposição Devocional <span class="required">*</span></label>
+                    <label for="responsavelExposicao">Responsável pela Exposição Devocional <span
+                            class="required">*</span></label>
                     <input type="text" id="responsavelExposicao" required>
                 </div>
 
@@ -271,7 +299,8 @@
 
                 <div class="form-group full-width">
                     <label for="pautaDiscussao">Pauta da Discussão <span class="required">*</span></label>
-                    <textarea id="pautaDiscussao" rows="7" placeholder="Digite os tópicos da pauta, um por linha"></textarea>
+                    <textarea id="pautaDiscussao" rows="7"
+                              placeholder="Digite os tópicos da pauta, um por linha"></textarea>
                 </div>
 
                 <div class="form-group">

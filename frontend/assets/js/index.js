@@ -420,24 +420,26 @@ function criarCardNoticia(noticia, index) {
 }
 
 // Função para criar item de notícia na lista
-function criarItemNoticiaLista(noticia) {
-    const data = new Date(noticia.dataCriacao);
-    const dia = data.getDate();
-    const mes = data.toLocaleString('pt-BR', {month: 'short'}).replace('.', '');
+ function criarItemNoticiaLista(noticia) {
+     const data = new Date(noticia.dataCriacao);
+     const dia = data.getDate();
+     const mes = data.toLocaleString('pt-BR', { month: 'short' }).replace('.', '');
 
-    return `
-        <div class="noticia-item">
-            <div class="noticia-data">
-                <span class="noticia-data-dia">${dia}</span>
-                <span class="noticia-data-mes">${mes}</span>
-            </div>
-            <h4 class="noticia-titulo">
-                <a href="./pages/noticias.html?id=${noticia.id}">${noticia.titulo}</a>
-            </h4>
-            <p class="noticia-resumo">${noticia.conteudo.replace(/<[^>]*>/g, '').slice(0, 120)}...</p>
-        </div>
+     // NOTA: O resumo <p> foi removido conforme seu pedido anterior de simplificar.
+     return `
+        <a href="./pages/noticias.html?id=${noticia.id}" class="noticia-item-link">
+            <article class="noticia-item">
+                <div class="noticia-data">
+                    <span class="noticia-data-dia">${dia}</span>
+                    <span class="noticia-data-mes">${mes}</span>
+                </div>
+                <div class="noticia-item-content">
+                    <h4 class="noticia-titulo">${noticia.titulo}</h4>
+                </div>
+            </article>
+        </a>
     `;
-}
+ }
 
 // Função para mostrar erro ao carregar notícias
 function mostrarErroNoticias() {

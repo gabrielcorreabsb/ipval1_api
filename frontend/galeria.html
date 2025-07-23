@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciamento da Galeria</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/global_back.css">
+  <link rel="stylesheet" href="./assets/css/galeria.css">
+<!--  <link rel="stylesheet" href="./assets/css/menu.css">-->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-container">
+    <div class="hamburger">
+      <div class="line1"></div> <div class="line2"></div> <div class="line3"></div>
+    </div>
+    <ul class="nav-menu">
+      <li><a href="./home.html">Início</a></li>
+      <li><a href="./membros.html">Membros</a></li>
+      <li><a href="./usuarios.html">Usuários</a></li>
+      <li><a href="./agenda.html">Eventos</a></li>
+      <li><a href="./liturgias.html">Liturgias</a></li> <!-- Link para Liturgias -->
+      <li><a href="./noticia.html">Notícias</a></li>
+      <li><a href="./galeria.html">Galeria</a></li>
+      <li><a href="./configuracoes.html">Outros</a></li>
+      <div class="mobile-user-section">
+        <button onclick="abrirModalNovaFoto()" class="btn btn-primary">
+          <i class="fas fa-plus"></i> Nova Foto
+        </button>
+        <button id="logoutBtnMobile" class="logout-btn">Sair</button>
+      </div>
+    </ul>
+    <div class="user-section desktop-user-section">
+      <button onclick="abrirModalNovaFoto()" class="btn btn-primary">
+        <i class="fas fa-plus"></i> Nova Foto
+      </button>
+      <button id="logoutBtn" class="logout-btn">Sair</button>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <header class="content-header">
+    <h1>Gerenciamento da Galeria de Fotos</h1>
+  </header>
+
+  <!-- Filtros de Categoria -->
+  <div class="tabs" id="categoryTabs">
+    <!-- As abas de categoria serão inseridas aqui pelo JS -->
+    <button class="tab-btn active" data-category="TODAS">Todas</button>
+  </div>
+
+  <!-- Grid para as fotos -->
+  <div class="gallery-grid" id="galleryGrid">
+    <!-- Cards de fotos serão carregados aqui dinamicamente -->
+  </div>
+</div>
+
+<script src="./assets/js/config.js"></script>
+<script src="./assets/js/auth.js"></script>
+<script src="./assets/js/galeria.js"></script> <!-- NOVO JS -->
+<script src="./assets/js/menu.js"></script>
+</body>
+</html>
